@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <th:block layout:fragment="css"> </th:block>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Anime Template" />
+    <meta name="keywords" content="Anime, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Anime | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/plyr.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+  </head>
+
+  <body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+      <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-2">
+            <div class="header__logo">
+              <a href="./index.html">
+                <img src="img/logo_long.png" alt="" />
+              </a>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="header__nav">
+              <nav class="header__menu mobile-menu">
+                <ul>
+                  <li class="active"><a href="./index.html">Homepage</a></li>
+                  <li>
+                    <a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                    <ul class="dropdown">
+                      <li><a href="./categories.html">Categories</a></li>
+                      <li><a href="./anime-details.html">Anime Details</a></li>
+                      <li><a href="./anime-watching.html">Anime Watching</a></li>
+                      <li><a href="./blog-details.html">Blog Details</a></li>
+                      <li><a href="./signup.html">Sign Up</a></li>
+                      <li><a href="./login.html">Login</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="./blog.html">Our Blog</a></li>
+                  <li><a href="#">Contacts</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="header__right">
+              <a href="#" class="search-switch"><span class="icon_search"></span></a>
+              <a href="./login.html"><span class="icon_profile"></span></a>
+            </div>
+          </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb__links">
+              <a href="./index.html"><i class="fa fa-home"></i> 카테고리</a>
+              <a href="./categories.html">큰 카테고리</a>
+              <span>작은 카테고리</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad">
+      <div class="container">
+        <div class="anime__details__content">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="anime__details__pic set-bg" data-setbg="img/anime/item1.jpg">
+                <img src="img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
+                <img src="img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
+
+                <div class="comment"><i class="fa-regular fa-heart"></i> 11</div>
+                <!-- <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
+                <div class="wish_list follow-btn">
+                  <!-- <a href="#" class="follow-btn"> -->
+                  <i class="fa fa-heart-o"></i>
+                  <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
+                  <!-- </a> -->
+                </div>
+              </div>
+              <!-- <img class="anime__details__pic__sub" src="img/anime/item1.jpg"></img> -->
+              <div class="item__details__pic__sub">
+                <div class="set-bg" data-setbg="img/anime/item1.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item2.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item3.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item4.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item5.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item6.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item7.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item8.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item9.jpg"></div>
+                <div class="set-bg" data-setbg="img/anime/item10.jpg"></div>
+              </div>
+            </div>
+            <div class="col-lg-9">
+              <div class="anime__details__text">
+                <div class="anime__details__title">
+                  <h3>상품제목</h3>
+                  <span>판매자 : 김재인</span>
+                  <span>배송방법 : 착불</span>
+                </div>
+                
+                <!-- <p>
+                  <div>경매가 : 100,000,000원</div>
+                  <div>입찰인원 : 0</div>
+                  <div>입찰 가능 기간 : 2024/05/11</div>
+                </p> -->
+                <div class="anime__details__widget">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                      <ul>
+                        <li><span>경매시작가:</span> 100,000원</li>
+                        <li><span>입찰인원:</span> 1,000명</li>
+                        <li><span>입찰 기간:</span> 2024/05/12 15:30</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="anime__details__btn">
+                  <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
+                  <div class="bidding_form">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-4 col-sm-4">
+                        <input type="text" placeholder="가격을 입력하세요" />
+                      </div>
+                      <div>
+                        <a href="#" class="watch-btn"><span>입찰하기</span> </a>
+                        <!-- <i class="fa fa-angle-right"></i> -->
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="anime__details__btn wish_list">
+                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="item_nav">
+          <nav class="header__menu mobile-menu">
+            <ul>
+              <li class="item_menu detail active"><a href="">제품 설명</a></li>
+              <li class="item_menu bidding"><a href="">경매 기록</a></li>
+              <li class="item_menu review"><a href="">댓글</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="row item_nav_sub item_detail">
+          <div class="section-title">
+            <h5>상품설명</h5>
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nihil excepturi doloribus autem quibusdam earum. Minus fugit hic facilis
+            ducimus voluptas magnam rerum impedit ipsam sequi, tempora, quis laudantium tempore molestias nemo. Velit voluptate, excepturi placeat
+            repellat voluptatem inventore vitae molestiae adipisci, ducimus voluptatum autem commodi veritatis explicabo optio totam perspiciatis
+            ullam laboriosam, exercitationem nesciunt illo temporibus? Repellendus omnis architecto hic porro neque itaque tempore molestias ab
+            voluptatum sapiente reprehenderit vel corporis nemo eligendi sunt obcaecati ratione fugiat quisquam atque, odio voluptate. Maiores modi,
+            molestiae nobis asperiores laudantium aliquid tempora dignissimos, vero esse atque voluptate ad laborum aut obcaecati dolore, est libero
+            possimus culpa? Dolorum, sapiente distinctio perspiciatis doloribus quae minima ea nostrum explicabo nisi officiis alias accusamus.
+            Laudantium officiis dolorum, odit possimus praesentium nulla amet laboriosam, illum quod dolores vitae numquam eligendi quos blanditiis
+            saepe tenetur ipsam nemo. Quod perspiciatis id natus alias dolore. Veritatis vitae doloremque, totam quia, incidunt placeat rem vel minus
+            natus dolor illo atque laboriosam accusamus quas reprehenderit eos nesciunt sunt ad? Eius illum accusamus laboriosam suscipit explicabo
+            nihil debitis ut esse facere, dolorum eum! Architecto, nobis? Laborum rerum maiores qui, eligendi voluptatibus odio facilis dicta velit
+            assumenda at eius quaerat libero dignissimos excepturi voluptas magnam ipsum a quisquam consectetur quia molestiae necessitatibus.
+            Repellendus iure quos, doloremque nihil ad optio beatae, expedita blanditiis nulla vitae, eligendi temporibus. Ratione aspernatur rerum
+            quod, incidunt pariatur asperiores natus explicabo iste dolore repellendus numquam illo. A quidem dignissimos alias soluta quisquam eum
+            possimus maxime, aliquid perspiciatis similique dolores autem ut, quod facere minima beatae ipsa deleniti fuga voluptatum numquam cumque
+            quae animi nulla esse. Fugiat, consequuntur aliquid dolorum beatae a illo minima? Officia, praesentium enim, ea odit aut impedit quibusdam
+            cum doloremque autem sit hic consectetur corrupti illo eligendi nostrum exercitationem, debitis laborum doloribus. Minus blanditiis nulla,
+            minima dignissimos voluptas consectetur. Et quos repudiandae amet eveniet culpa voluptas sint est nemo natus quidem. Excepturi, earum!
+            Qui, animi! Assumenda eveniet architecto accusamus earum illum ullam cum rerum? Perferendis quasi aspernatur voluptas, ratione assumenda
+            consectetur iusto ad labore asperiores fugit doloremque ipsam officiis incidunt qui est facere quisquam alias optio saepe, harum
+            recusandae commodi culpa cupiditate. Nemo quidem perspiciatis impedit optio unde magnam voluptas distinctio. Nobis iusto itaque nam dolore
+            illo. Nobis, quo placeat velit, asperiores ratione in rerum error eligendi, veniam sequi magnam quos aut blanditiis illo nesciunt magni
+            architecto? Unde voluptas quasi obcaecati aut vitae facilis laboriosam corporis fuga magni, enim nihil magnam odit fugit adipisci id.
+            Maiores suscipit, nam minima eos a officia labore laudantium soluta placeat quas magnam at quidem minus, doloribus culpa voluptates
+            laboriosam repellendus esse provident excepturi molestiae nobis ea illo? Magnam aliquid eum doloribus repudiandae cum ratione consequuntur
+            velit eaque aut aperiam? Veritatis animi dicta nemo maiores nisi incidunt nobis voluptates illum distinctio culpa suscipit at sequi
+            consequuntur similique esse aperiam corrupti, qui ea asperiores! Sapiente aliquam nisi omnis dolorum porro modi maxime ipsam dicta
+            provident debitis, libero odio illo. Corrupti, in qui. Inventore, in tenetur doloremque pariatur aut, eum animi atque id temporibus
+            mollitia ipsa nulla. Porro iste laborum cupiditate unde ex mollitia, modi ipsa, distinctio, omnis nostrum consectetur eos. Aliquid
+            pariatur aspernatur necessitatibus harum voluptates tempore, neque beatae vel porro eaque dolorum libero. Tempore voluptates suscipit
+            voluptate enim aspernatur asperiores ut ullam eaque, numquam laudantium expedita libero aliquid earum vitae eveniet autem quae ipsam
+            quisquam. Tempora fuga vitae beatae maxime numquam impedit modi amet doloribus molestiae soluta! Quaerat, cumque aut provident nesciunt
+            expedita pariatur! Pariatur, dicta. Cum dolorum fugiat facere eius laudantium iusto harum maiores, aliquam tempore dolorem quidem deserunt
+            molestias, libero incidunt ipsum! Necessitatibus adipisci excepturi, laborum nesciunt eaque ipsum tempore debitis quam aliquid laboriosam
+            magnam, natus aperiam quos molestias et eveniet deleniti deserunt quisquam totam minus, perferendis at error esse. Deserunt magnam, amet
+            quod dolorum impedit dicta quasi natus, a voluptatem molestias, vel inventore. Veniam, doloribus rerum placeat corrupti ab reiciendis
+            ducimus, iure asperiores fuga pariatur, quos quibusdam? Veniam, eveniet! At id iusto eius aliquid voluptatem, consectetur inventore
+            delectus deleniti autem repellat, minima beatae nostrum! Voluptates hic nemo dolores, tempore perspiciatis veritatis eaque iure quis
+            molestiae accusantium saepe dolorem mollitia quod libero blanditiis quaerat? Sequi voluptas voluptate nemo, et distinctio ipsam
+            accusantium. Perferendis eos minima iure tempore, culpa illum aut! Consequatur asperiores aliquam quaerat quam corporis? Nostrum dolor,
+            aut consequuntur fugit porro sunt optio culpa soluta? Debitis ratione, quia, dolores ipsam consequatur nostrum laudantium pariatur
+            necessitatibus minima accusamus beatae quaerat dolore quae magnam iste nobis ut alias nisi deleniti, iusto sunt. Pariatur culpa modi totam
+            distinctio repellat suscipit dolores et sapiente, quidem earum veniam veritatis ipsa recusandae eaque aut voluptatum labore architecto
+            laboriosam officia! Reprehenderit alias ratione inventore, cum ullam enim rerum quia consequuntur nesciunt labore debitis fugit recusandae
+            repellat! Maxime praesentium quod sint dolore sunt laborum nulla. Officiis facilis ipsum, reprehenderit harum consequatur doloremque
+            commodi sint ad accusamus modi vel enim amet earum quas assumenda! Velit omnis, neque asperiores reiciendis, quos veritatis et officia
+            dolore eligendi rerum itaque voluptas. Laborum quo dolore, ea ipsam, dolores, deserunt illo quam voluptates voluptate labore corporis?
+            Laborum nostrum rem autem sapiente ducimus consequuntur, dolor reiciendis explicabo esse sed perspiciatis distinctio blanditiis cum
+            dolores in placeat ipsam quo sit voluptate accusantium mollitia molestiae non. Non nostrum asperiores natus quidem nihil iste delectus,
+            corporis minima quisquam ex nisi, ut, sapiente placeat! Eligendi nihil ratione voluptatem odio, velit, officia, excepturi reiciendis
+            impedit iusto culpa molestiae libero voluptatum fugit repudiandae dolor deleniti! Deleniti architecto illum nisi perspiciatis. Quis porro
+            odit consequuntur corporis dignissimos, eius eveniet blanditiis aperiam obcaecati, et earum nisi ipsum atque dolore, delectus ex
+            praesentium commodi rerum. Aut molestiae eligendi voluptates iure, corrupti quas fugiat omnis rem deserunt placeat necessitatibus autem
+            ullam impedit odit? Tenetur assumenda dolorem eius repellendus sint porro pariatur placeat numquam excepturi alias, tempora illum quisquam
+            aspernatur unde reprehenderit voluptatibus fuga? Sit enim aperiam praesentium consequuntur tempore facilis possimus quos ex, magni dicta
+            minima, expedita voluptatibus cum fuga aut assumenda nisi. Iusto, labore! Ipsa cum voluptate dolorem harum at inventore in ea voluptatem
+            dolores perspiciatis, aperiam esse voluptatibus. Blanditiis pariatur odio ex.
+          </div>
+        </div>
+        <div class="row item_nav_sub item-bidding-record" style="display: none">
+          <div class="section-title">
+            <h5>경매기록</h5>
+          </div>
+          <div>
+            <table class="w-full whitespace-no-wrap">
+              <thead>
+                <tr
+                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-white-400 dark:bg-gray-800"
+                >
+                  <th class="px-4 py-3">번호</th>
+                  <th class="px-4 py-3">닉네임</th>
+                  <th class="px-4 py-3">입찰가</th>
+                  <th class="px-4 py-3">입찰시간</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr class="text-gray-700 dark:text-white-400">
+                  <td class="px-4 py-3">1</td>
+                  <td class="px-4 py-3">user1</td>
+                  <td class="px-4 py-3">15000</td>
+                  <td class="px-4 py-3">2024/05/09 12:46</td>
+                </tr>
+                <tr class="text-gray-700 dark:text-white-400">
+                  <td class="px-4 py-3">2</td>
+                  <td class="px-4 py-3">user2</td>
+                  <td class="px-4 py-3">13000</td>
+                  <td class="px-4 py-3">2024/05/09 13:12</td>
+                </tr>
+                <tr class="text-gray-700 dark:text-white-400">
+                  <td class="px-4 py-3">3</td>
+                  <td class="px-4 py-3">user3</td>
+                  <td class="px-4 py-3">21500</td>
+                  <td class="px-4 py-3">2024/05/09 14:27</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row item_nav_sub item_review" style="display: none">
+          <div class="col-lg-12 col-md-8">
+            <div class="anime__details__review">
+              <div class="section-title">
+                <h5>상품평</h5>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-1.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-2.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                  <p>Finally it came out ages ago</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-3.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                  <p>Where is the episode 15 ? Slow update! Tch</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-4.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-5.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                  <p>Finally it came out ages ago</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="img/anime/review-6.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                  <p>Where is the episode 15 ? Slow update! Tch</p>
+                </div>
+              </div>
+            </div>
+            <div class="anime__details__form">
+              <div class="section-title">
+                <h5>상품평 작성</h5>
+              </div>
+              <form action="#">
+                <textarea placeholder="Your Comment"></textarea>
+                <button type="submit"><i class="fa fa-location-arrow"></i> 작성</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- 관련 상품 form -->
+        <form class="relation_categori_form">
+          <div class="row item_nav">
+            <div class="section-title">
+              <h5>관련 상품</h5>
+            </div>
+          </div>
+          <div class="row relative__products">
+            <!-- 관련 상품 div안에 화살표 넣기 -->
+            <img src="img/anime/left.png" class="arrow left_btn" onclick="imgChange(-1)"></img>
+            <!-- <img src="img/anime/right.png" class="arrow right_btn" onclick="imgChange(+1)"></img> -->
+            <!-- 관련 상품 화살표 -->
+            <div class="relative__product__item">
+                <div class="product__item__pic set-bg" data-setbg="img/popular/popular-1.jpg">
+                </div>
+                <div class="product__item__text">
+                  <ul>
+                    <li>카테고리1</li>
+                    <li>카테고리2</li>
+                  </ul>
+                  <h5><a href="#">상품1</a></h5>
+                </div>
+            </div>
+            <div class="relative__product__item">
+                <div class="product__item__pic set-bg" data-setbg="img/popular/popular-2.jpg">
+                </div>
+                <div class="product__item__text">
+                  <ul>
+                    <li>카테고리1</li>
+                    <li>카테고리2</li>
+                  </ul>
+                  <h5><a href="#">상품2</a></h5>
+                </div>
+            </div>
+            <div class="relative__product__item">
+                <div class="product__item__pic set-bg" data-setbg="img/popular/popular-3.jpg">
+                </div>
+                <div class="product__item__text">
+                  <ul>
+                    <li>카테고리1</li>
+                    <li>카테고리2</li>
+                  </ul>
+                  <h5><a href="#">상품3</a></h5>
+                </div>
+            </div>
+            <div class="relative__product__item">
+              <div class="product__item__pic set-bg" data-setbg="img/popular/popular-4.jpg">
+              </div>
+              <div class="product__item__text">
+                <ul>
+                  <li>카테고리1</li>
+                  <li>카테고리2</li>
+                </ul>
+                <h5><a href="#">상품4</a></h5>
+              </div>
+            </div>
+            <div class="relative__product__item">
+              <div class="product__item__pic set-bg" data-setbg="img/popular/popular-5.jpg">
+              </div>
+              <div class="product__item__text">
+                <ul>
+                  <li>카테고리1</li>
+                  <li>카테고리2</li>
+                </ul>
+                <h5><a href="#">상품5</a></h5>
+              </div>
+            </div>
+            <img src="img/anime/right.png" class="arrow right_btn" onclick="imgChange(+1)"></img>
+          </div>
+        </form>
+      </div>
+    </section>
+    <!-- Anime Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+      <div class="page-up">
+        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="footer__logo">
+              <a href="./index.html"><img src="img/logo_long.png" alt="" /></a>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="footer__nav">
+              <ul>
+                <li class="active"><a href="./index.html">Homepage</a></li>
+                <li><a href="./categories.html">Categories</a></li>
+                <li><a href="./blog.html">Our Blog</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3">
+            <p>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+              Copyright &copy;
+              <script>
+                document.write(new Date().getFullYear());
+              </script>
+              All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+              <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Search model Begin -->
+    <div class="search-model">
+      <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="search-close-switch"><i class="icon_close"></i></div>
+        <form class="search-model-form">
+          <input type="text" id="search-input" placeholder="Search here....." />
+        </form>
+      </div>
+    </div>
+    <!-- Search model end -->
+
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/image_detail.js"></script>
+  </body>
+</html>

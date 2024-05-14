@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- Header Section Begin -->
+  <header class="header" th:fragment="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
+          <div class="header__logo">
+            <a href="/">
+              <img th:href="@{/img/logo.png}" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <nav class="header__menu">
+            <input class="form-control" type="text" placeholder="무엇이든 물어보세요" aria-label="Search" />
+            <div class="col-lg-2">
+              <button type="button" class="btn btn-primary flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                검색
+              </button>
+            </div>
+          </nav>
+        </div>
+        <div class="col-lg-2">
+          <div class="header__right">
+            <a href="./login.html"><span class="icon_profile"></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="header__category">
+        <div class="header__category d-flex">
+          <li class="header__category">
+            <ul>
+              <li>
+                <i class="fa-solid fa-bars">
+                  <ul class="dropdown">
+                    <li>
+                      <a href="#"><b>패션 의류/잡화</b></a>
+                    </li>
+                    <li>
+                      <a href="#"><b>모바일/태블릿</b></a>
+                    </li>
+                    <li>
+                      <a href="#"><b>가전제품</b></a>
+                    </li>
+                    <li>
+                      <a href="#"><b>게임</b></a>
+                    </li>
+                    <li>
+                      <a href="#"><b>레저/여행</b></a>
+                    </li>
+                    <li>
+                      <a href="#"><b>기타</b></a>
+                    </li>
+                  </ul>
+                </i>
+              </li>
+            </ul>
+          </li>
+          <div class="header__category__notice">
+            <a href="./blog-details"><b>이벤트</b></a>
+            <a href="./notice-details" style="margin-left: 20px"><b>공지사항</b></a>
+          </div>
+        </div>
+      </div>
+      <div id="mobile-menu-wrap">
+        <div class="header__nav">
+          <form class="d-flex align-items-center justify-content-center">
+            <nav class="header__menu mobile-menu">
+              <ul>
+                <li>
+                  <span>여기를 클릭하세요</span>
+                  <ul class="dropdown">
+                    <li><a href="./anime-details.html">공지사항</a></li>
+                    <li><a href="./anime-watching.html">##</a></li>
+                    <li><a href="./blog-details.html">##</a></li>
+                    <li><a href="./login.html">로그인</a></li>
+                    <li><a href="./signup.html">회원가입</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Header End -->
+</html>

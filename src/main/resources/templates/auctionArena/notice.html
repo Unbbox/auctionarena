@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8 notice">
+            <div class="blog__details__title">
+              <h2>공지사항</h2>
+            </div>
+            <!-- 검색 -->
+            <form action="" role="search" id="searchForm">
+              <div class="search">
+                <select name="search_type" id="search_type">
+                  <option value="">제목</option>
+                  <option value="">내용</option>
+                  <option value="">작성자</option>
+                </select>
+                <input class="text" type="search" placeholder="검색" name="keyword" id="keyword"/>
+                <button class="search-btn" type="submit">검색</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 리스트 -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- 리스트 내용 -->
+                  <tr>
+                    <th scope="row">
+                      <td>
+                        <a class="title" href="">제목</a>
+                      </td>
+                      <td>작성자</td>
+                      <td>작성일</td>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+                
+              <!-- 페이지 나누기 -->
+              <div class="product__pagination">
+                <a href="#" class="current-page">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <a href="#"><i class="fa fa-angle-double-right"></i></a>
+              </div>
+            </div>
+            <button class="create-notice-btn" type="submit">작성</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Details Section End -->
+  </div>

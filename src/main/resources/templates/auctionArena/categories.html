@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+    <!-- Breadcrumb Begin -->
+    <!-- <div class="breadcrumb-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb__links">
+              <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+              <a href="./categories.html">카테고리</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <!-- Breadcrumb End -->
+
+    <div class="col-lg-16">
+        <div class="header__nav">
+          <nav class="category__menu mobile-menu">
+            <ul>
+              <li>
+                <a href="">패션 의류/잡화<span class="arrow_carrot-down"></span></a>
+                <ul class="dropdown">
+                <li><a href="">여성의류</a></li>
+                  <li><a href="">남성의류</a></li>
+                  <li><a href="">운동화</a></li>
+                  <li><a href="">시계</a></li>
+                  <li><a href="">모자</a></li>
+                </ul>
+              </li>      
+              <li>
+                <a href="">모바일/태블릿<span class="arrow_carrot-down"></span></a>
+                <ul class="dropdown">
+                <li><a href="">스마트폰</a></li>
+                  <li><a href="">태블릿pc</a></li>
+                  <li><a href="">스마트워치/밴드</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="">가전제품<span class="arrow_carrot-down"></span></a>
+                <ul class="dropdown">
+                <li><a href="">냉장고</a></li>
+                  <li><a href="">TV</a></li>
+                  <li><a href="">세탁기/건조기</a></li>
+                  <li><a href="">주방가전</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="">게임<span class="arrow_carrot-down"></span></a>
+                <ul class="dropdown">
+                <li><a href="">PC게임</a></li>
+                  <li><a href="">플레이스테이션</a></li>
+                  <li><a href="">닌텐도</a></li>
+                  <li><a href="">xbox</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="">레저/여행<span class="arrow_carrot-down"></span></a>
+                <ul class="dropdown">
+                <li><a href="">등산의류/용품</a></li>
+                  <li><a href="">캠핑용품</a></li>
+                  <li><a href="">낚시용품</a></li>
+                </ul>
+              </li>         
+             </ul>
+          </nav>
+        </div>
+        <!-- <form class="mt-4" role="search" id="searchForm">
+          <input type="hidden" name="page" class="form-control" />
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <select name="type" id="type" class="form-select">
+                <option value="" >조건 선택</option>
+                <option value="t">상품명</option>
+                <option value="c" >내용</option>
+                <option value="w" >판매자</option>
+
+              </select>
+            </div>
+            <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" />
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </div>
+        </form> -->
+      </div>
+  
+
+
+
+    <!-- Product Section Begin -->
+    <section class="product-page spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-16">
+            <div class="product__page__content">
+              <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>  
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-6">
+                  <div class="products__item">  
+                    <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">
+                      <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
+                      <ul>
+                        <li><a href="#">200,000원</a></li>
+                      </ul>
+                      <button type="button" class="btn btn-success flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white">
+                        입찰
+                      </button>
+                      <button type="button" class="btn btn-warning flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-black">
+                        즉시구매
+                      </button>
+                    </div>
+                  </div>
+                </div>                                 
+              </div>
+            </div>
+            
+            <div class="products__pagination">
+              <a href="#"><i class="fa fa-angle-double-left"></i></a>
+              <a href="#" class="current-page">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+              <a href="#"><i class="fa fa-angle-double-right"></i></a>
+            </div>
+          </div>
+          
+      </div>
+    </section>
+    <!-- Product Section End -->
+</html>
