@@ -532,12 +532,7 @@ ol {
 /* ============================================ */
 
 .header {
-<<<<<<< HEAD
-  background: #ffffff;
-  color: #000;
-=======
   /* background: #070720; */
->>>>>>> 1eb4a58f5efa8a3596421cefbb12cd0febf396a6
 }
 
 .header__logo {
@@ -1946,7 +1941,7 @@ ol {
   height: 330px;
   width: 1px;
   background: rgba(0, 0, 0, 0.2);
-  content: "";
+  content: '';
 }
 
 .login__form h3 {
@@ -2031,12 +2026,8 @@ ol {
 .login__register h3 {
   color: #3d3d3d;
   font-weight: 700;
-<<<<<<< HEAD
-  font-family: 'Oswald', sans-serif;
-=======
   font-size: 25px;
-  font-family: "Oswald", sans-serif;
->>>>>>> 1eb4a58f5efa8a3596421cefbb12cd0febf396a6
+  font-family: 'Oswald', sans-serif;
   margin-bottom: 30px;
 }
 
