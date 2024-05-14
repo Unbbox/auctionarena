@@ -15,7 +15,7 @@
 }
 
 .category__menu ul li:hover a {
-  color: #111111;
+  color: #ffffff;
 }
 
 .category__menu ul li:hover .dropdown {
@@ -84,6 +84,7 @@
 
 .products__item__pic {
   height: 250px;
+  width: 175px;
   border-radius: 5px;
   position: relative;
   cursor: pointer;
@@ -180,7 +181,7 @@
 .products__item__text ul li a {
   list-style: none;
   font-size: 20px;
-  color: #111111;
+  color: #ffffff;
   font-weight: 700;
   display: inline-block;
   text-decoration: none;
@@ -191,7 +192,7 @@
     font-weight: 700;
     line-height: 26px; */
 
-  color: #111111;
+  color: #ffffff;
   font-size: 15px;
   line-height: 26px;
 }
@@ -217,7 +218,7 @@
 }
 
 .products__pagination a:hover {
-  color: #111111;
+  color: #ffffff;
 }
 
 .products__pagination a.current-page {
