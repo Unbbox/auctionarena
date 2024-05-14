@@ -10,8 +10,7 @@
 }
 .owl-carousel {
   display: none;
-  width: 1024px;
-  height: 400px;
+  width: 100%;
   z-index: 1;
 }
 .owl-carousel .owl-stage {
