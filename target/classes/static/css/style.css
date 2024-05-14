@@ -65,7 +65,7 @@ strong {
   text-transform: uppercase;
   padding-left: 20px;
   position: relative;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   text-decoration: none;
 }
 /* ============================================(민선) */
@@ -73,9 +73,9 @@ strong {
 html,
 body {
   height: 100%;
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
   -webkit-font-smoothing: antialiased;
-  background: #0b0c2a;
+  background: #ffffff;
 }
 
 h1,
@@ -87,7 +87,7 @@ h6 {
   margin: 0;
   color: #111111;
   font-weight: 400;
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
 }
 
 h1 {
@@ -116,7 +116,7 @@ h6 {
 
 p {
   font-size: 15px;
-  font-family: "Mulish", sans-serif;
+  font-family: 'Mulish', sans-serif;
   color: #3d3d3d;
   font-weight: 400;
   line-height: 25px;
@@ -167,7 +167,7 @@ ol {
   text-transform: uppercase;
   padding-left: 20px;
   position: relative;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
 }
 
 .section-title h4:after,
@@ -178,7 +178,7 @@ ol {
   height: 32px;
   width: 4px;
   background: #e53637;
-  content: "";
+  content: '';
 }
 
 .set-bg {
@@ -385,12 +385,47 @@ ol {
 -----------------------*/
 
 /* 검색창(민선) */
-.form-control {
+
+.search-bar {
+  width: 220px;
+  height: 27px;
+  border-radius: 5px;
+  border: solid 1px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  opacity: 1;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+.search-bar__input {
+  width: 100%;
+  border: none;
+  -webkit-appearance: none;
+  text-align: center;
+  margin-left: 10px;
+  overflow: auto;
+  z-index: -1;
+  font-size: 15px;
+}
+
+.search-bar a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.fa-search {
+  font-size: 15px;
+  text-align: right;
+}
+
+/* .form-control {
   margin-top: 10px;
   margin-left: 100px;
   border: 1px solid black;
   width: 600px;
-}
+} */
 /* 검색창 */
 
 /* 추가한 header css 클래스(민선) */
@@ -496,11 +531,13 @@ ol {
 /* ============================================ */
 
 .header {
-  background: #070720;
+  background: #ffffff;
+  color: #000;
 }
 
 .header__logo {
-  padding: 20px 0 17px;
+  margin-top: 5px;
+  background-color: #ffffff;
 }
 
 .header__logo a {
@@ -508,7 +545,9 @@ ol {
 }
 
 .header__menu {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
 }
 
 .header__menu ul li {
@@ -594,7 +633,7 @@ ol {
 .header__right a {
   display: inline-block;
   font-size: 18px;
-  color: #ffffff;
+  color: #000;
   margin-right: 30px;
 }
 
@@ -641,7 +680,7 @@ ol {
 .hero__text h2 {
   color: #ffffff;
   font-size: 42px;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
   line-height: 52px;
   margin-top: 35px;
@@ -773,7 +812,7 @@ ol {
   height: 54px;
   width: 54px;
   background: rgba(255, 255, 255, 0.1);
-  content: "";
+  content: '';
   z-index: -1;
   margin: 0 auto;
 }
@@ -890,7 +929,7 @@ ol {
 .product__sidebar .section-title h5 {
   color: #ffffff;
   font-weight: 600;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   line-height: 21px;
   text-transform: uppercase;
   padding-left: 20px;
@@ -904,7 +943,7 @@ ol {
   height: 32px;
   width: 4px;
   background: #e53637;
-  content: "";
+  content: '';
 }
 
 .product__sidebar__view {
@@ -1221,7 +1260,7 @@ ol {
   height: 6px;
   width: 6px;
   background: #b7b7b7;
-  content: "";
+  content: '';
 }
 
 .anime__details__widget ul li span {
@@ -1286,7 +1325,7 @@ ol {
   top: 15px;
   border-top: 15px solid transparent;
   border-left: 15px solid #1d1e39;
-  content: "";
+  content: '';
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -1372,7 +1411,7 @@ ol {
 
 .anime__video__player .plyr--video .plyr__control.plyr__tab-focus,
 .anime__video__player .plyr--video .plyr__control:hover,
-.anime__video__player .plyr--video .plyr__control[aria-expanded="true"] {
+.anime__video__player .plyr--video .plyr__control[aria-expanded='true'] {
   background: transparent;
 }
 
@@ -1384,7 +1423,7 @@ ol {
   color: transparent;
 }
 
-.anime__video__player .plyr--full-ui input[type="range"] {
+.anime__video__player .plyr--full-ui input[type='range'] {
   color: #ffffff;
 }
 
@@ -1482,8 +1521,8 @@ ol {
   position: absolute;
   right: -14px;
   top: 0;
-  content: "";
-  font-family: "FontAwesome";
+  content: '';
+  font-family: 'FontAwesome';
 }
 
 .breadcrumb__links span {
@@ -1512,7 +1551,7 @@ ol {
 .normal__breadcrumb__text h2 {
   color: #ffffff;
   font-size: 48px;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: 700;
   margin-bottom: 22px;
 }
@@ -1902,13 +1941,13 @@ ol {
   height: 330px;
   width: 1px;
   background: rgba(255, 255, 255, 0.2);
-  content: "";
+  content: '';
 }
 
 .login__form h3 {
   color: #ffffff;
   font-weight: 700;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   margin-bottom: 30px;
 }
 
@@ -1925,7 +1964,7 @@ ol {
   height: 30px;
   width: 1px;
   background: #b7b7b7;
-  content: "";
+  content: '';
 }
 
 .login__form form .input__item input {
@@ -1987,7 +2026,7 @@ ol {
 .login__register h3 {
   color: #ffffff;
   font-weight: 700;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   margin-bottom: 30px;
 }
 
@@ -2088,7 +2127,7 @@ ol {
 .signup .login__social__links h3 {
   color: #ffffff;
   font-weight: 700;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   margin-bottom: 30px;
 }
 
@@ -2102,7 +2141,7 @@ ol {
 -----------------------*/
 
 .footer {
-  background: #070720;
+  background: #e0dfdf;
   padding-top: 60px;
   padding-bottom: 40px;
   position: relative;
@@ -2171,11 +2210,17 @@ ol {
   .hero {
     overflow: hidden;
   }
+  .header__menu.mobile-menu {
+    display: none;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1170px;
+  }
+  .header__menu.mobile-menu {
+    display: none;
   }
 }
 
@@ -2195,6 +2240,9 @@ ol {
   .blog__item__text {
     padding: 0 50px;
   }
+  .header__menu.mobile-menu {
+    display: none;
+  }
 }
 
 /* Tablet Device = 768px */
@@ -2210,10 +2258,7 @@ ol {
     position: relative;
   }
   .header__right {
-    position: absolute;
-    right: 120px;
-    top: -42px;
-    padding: 0;
+    display: none;
   }
   .header__menu {
     display: none;
@@ -2315,10 +2360,7 @@ ol {
     position: relative;
   }
   .header__right {
-    position: absolute;
-    right: 120px;
-    top: -80px;
-    padding: 0;
+    display: none;
   }
   .header__menu {
     display: none;
@@ -2554,7 +2596,7 @@ ol {
 .agree h3 {
   color: #ffffff;
   font-weight: 700;
-  font-family: "Oswald", sans-serif;
+  font-family: 'Oswald', sans-serif;
   margin-bottom: 30px;
 }
 
@@ -2566,8 +2608,8 @@ ol {
   position: relative;
 }
 
-.agree input[type="checkbox"] {
-  content: "";
+.agree input[type='checkbox'] {
+  content: '';
   display: block;
   position: absolute;
   right: 0;
