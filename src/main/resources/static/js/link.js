@@ -5,9 +5,9 @@ document.querySelector(".link").addEventListener("click", (e) => {
 
   heartdiv.addEventListener("click", (e) => {
     // const heart = heartbtn.querySelector(".fa-heart");
-    console.log(heartbtn);
-    const heartbtn = heartdiv.querySelector("i");
 
+    const heartbtn = heartdiv.querySelector("i");
+    console.log(heartbtn);
     if (heartbtn.classList.contains("fa-regular")) {
       heartbtn.classList.remove("fa-regular");
       heartbtn.classList.add("fa-solid");
@@ -20,5 +20,5 @@ document.querySelector(".link").addEventListener("click", (e) => {
   // heartbtn = e.target;
   // console.log(heartbtn);
   // console.log(heartbtn.querySelector(".fa-heart"));
-  window.location.href = "anime-details";
+  // window.location.href = "anime-details";
 });
