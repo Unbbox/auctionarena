@@ -2730,3 +2730,8 @@ ol {
 .notice__details .blog__details__text p {
   margin-bottom: 40px;
 }
+
+.product__pagination li {
+  list-style: none;
+  float: left;
+}
