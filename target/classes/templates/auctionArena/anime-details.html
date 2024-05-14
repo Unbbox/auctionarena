@@ -232,7 +232,7 @@
           </div>
           <div class="row relative__products">
             <!-- 관련 상품 div안에 화살표 넣기 -->
-            <img src="img/anime/left.png" class="arrow left_btn" onclick="imgChange(-1)"></img>
+            <img src="/img/anime/left.png" class="arrow left_btn" onclick="imgChange(-1)"></img>
             <!-- <img src="img/anime/right.png" class="arrow right_btn" onclick="imgChange(+1)"></img> -->
             <!-- 관련 상품 화살표 -->
             <!-- <div class="relative__product__item">
@@ -297,8 +297,13 @@
         <div class="swiper">
           <div class="swiper-wrapper">
             <!-- 슬라이드 -->
-            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-1.jpg">상품 1</div>
-            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-2.jpg">상품 2</div>
+            <div class="swiper-slide">
+              <div class="category_item_pic set-bg">
+                <img src="/img/popular/popular-1.jpg">
+                <span class="categori_product_content">상품 1</span>
+              </div>
+            </div>
+            <div class="swiper-slide product__item__pic set-bg"><img src="/img/popular/popular-2.jpg">상품 2</div>
             <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-3.jpg">상품 3</div>
             <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-4.jpg">상품 4</div>
             <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-5.jpg">상품 5</div>
