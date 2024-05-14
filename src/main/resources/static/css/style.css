@@ -161,7 +161,7 @@ ol {
 
 .section-title h4,
 .section-title h5 {
-  color: #ffffff;
+  color: black;
   font-weight: 600;
   line-height: 21px;
   text-transform: uppercase;
@@ -185,6 +185,7 @@ ol {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
+  cursor: pointer;
 }
 
 .spad {
@@ -403,7 +404,7 @@ ol {
   width: 100%;
   border: none;
   -webkit-appearance: none;
-  text-align: center;
+  text-align: left;
   margin-left: 10px;
   overflow: auto;
   z-index: -1;
@@ -784,24 +785,23 @@ ol {
   font-size: 36px;
   height: 66px;
   width: 66px;
-  background: #333642;
   line-height: 66px;
   text-align: center;
-  color: #ffffff;
+  color: #e0dfdf;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   position: relative;
   z-index: 1;
   position: absolute;
-  left: -33px;
+  left: -15px;
   top: 50%;
   margin-top: -47px;
 }
 
 .hero__slider.owl-carousel .owl-nav button.owl-next {
   left: auto;
-  right: -33px;
+  right: -20px;
 }
 
 .hero__slider.owl-carousel .owl-nav button:after {
@@ -811,7 +811,6 @@ ol {
   right: 0;
   height: 54px;
   width: 54px;
-  background: rgba(255, 255, 255, 0.1);
   content: '';
   z-index: -1;
   margin: 0 auto;
@@ -2230,6 +2229,9 @@ ol {
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .hero {
     overflow: hidden;
+  }
+  .header__menu.mobile-menu {
+    display: none;
   }
   .login__form {
     position: relative;
