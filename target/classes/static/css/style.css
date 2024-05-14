@@ -2919,16 +2919,18 @@ ol {
 
 .category_item_pic {
   width: 300px;
-  height: 300px;
+  height: 350px;
 }
 
 .category_item_pic img {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
 }
 
 .categori_product_content {
-  text-align: center;
+  /* margin-bottom: 0px; */
+  /* text-align: center; */
+  font-size: 15px;
 }
 /* 관련 상품 css 종료 */
 /* css 추가 완료(재인) */
