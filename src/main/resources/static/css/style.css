@@ -409,6 +409,7 @@ ol {
 .search-bar a {
   color: inherit;
   text-decoration: none;
+  margin-left: 10px;
 }
 
 .fa-search {
@@ -917,7 +918,7 @@ ol {
 }
 
 .product__item__text h5 a {
-  color: #ffffff;
+  color: black;
   font-weight: 700;
   line-height: 26px;
 }
