@@ -1,79 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-  <th:block layout:fragment="css"> </th:block>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Anime Template" />
-    <meta name="keywords" content="Anime, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Anime | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/plyr.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
-  </head>
-
-  <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-      <div class="loader"></div>
-    </div>
-
-    <!-- Header Section Begin -->
-    <header class="header">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-2">
-            <div class="header__logo">
-              <a href="./index.html">
-                <img src="img/logo_long.png" alt="" />
-              </a>
-            </div>
-          </div>
-          <div class="col-lg-8">
-            <div class="header__nav">
-              <nav class="header__menu mobile-menu">
-                <ul>
-                  <li class="active"><a href="./index.html">Homepage</a></li>
-                  <li>
-                    <a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
-                    <ul class="dropdown">
-                      <li><a href="./categories.html">Categories</a></li>
-                      <li><a href="./anime-details.html">Anime Details</a></li>
-                      <li><a href="./anime-watching.html">Anime Watching</a></li>
-                      <li><a href="./blog-details.html">Blog Details</a></li>
-                      <li><a href="./signup.html">Sign Up</a></li>
-                      <li><a href="./login.html">Login</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="./blog.html">Our Blog</a></li>
-                  <li><a href="#">Contacts</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-          <div class="col-lg-2">
-            <div class="header__right">
-              <a href="#" class="search-switch"><span class="icon_search"></span></a>
-              <a href="./login.html"><span class="icon_profile"></span></a>
-            </div>
-          </div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-      </div>
-    </header>
-    <!-- Header End -->
+  <div layout:fragment="content">
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -97,32 +24,29 @@
         <div class="anime__details__content">
           <div class="row">
             <div class="col-lg-3">
-              <div class="anime__details__pic set-bg" data-setbg="img/anime/item1.jpg">
-                <img src="img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
-                <img src="img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
-
-                <div class="comment"><i class="fa-regular fa-heart"></i> 11</div>
-                <!-- <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
+            <!-- <div class="detail_image"> -->
+              <div class="anime__details__pic set-bg" data-setbg="/img/anime/item1.jpg">
+                <img src="/img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
+                <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
+                <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div>
                 <div class="wish_list follow-btn">
-                  <!-- <a href="#" class="follow-btn"> -->
-                  <i class="fa fa-heart-o"></i>
-                  <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
-                  <!-- </a> -->
-                </div>
+                  <i class="fa-regular fa-heart"></i>
+                </div> -->
+              </div>
+              <div class="item__details__pic__sub">
+                <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item2.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item3.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item4.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item5.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item6.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item7.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item8.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item9.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item10.jpg"></div>
               </div>
               <!-- <img class="anime__details__pic__sub" src="img/anime/item1.jpg"></img> -->
-              <div class="item__details__pic__sub">
-                <div class="set-bg" data-setbg="img/anime/item1.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item2.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item3.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item4.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item5.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item6.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item7.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item8.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item9.jpg"></div>
-                <div class="set-bg" data-setbg="img/anime/item10.jpg"></div>
-              </div>
+              
             </div>
             <div class="col-lg-9">
               <div class="anime__details__text">
@@ -143,7 +67,7 @@
                       <ul>
                         <li><span>경매시작가:</span> 100,000원</li>
                         <li><span>입찰인원:</span> 1,000명</li>
-                        <li><span>입찰 기간:</span> 2024/05/12 15:30</li>
+                        <li><span>남은 시간:</span> 2024/05/12 15:30</li>
                       </ul>
                     </div>
                   </div>
@@ -162,7 +86,7 @@
                     </div>
                     <div class="row">
                       <div class="anime__details__btn wish_list">
-                        <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a>
+                        <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
                       </div>
                     </div>
                   </div>
@@ -185,63 +109,7 @@
             <h5>상품설명</h5>
           </div>
           <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam nihil excepturi doloribus autem quibusdam earum. Minus fugit hic facilis
-            ducimus voluptas magnam rerum impedit ipsam sequi, tempora, quis laudantium tempore molestias nemo. Velit voluptate, excepturi placeat
-            repellat voluptatem inventore vitae molestiae adipisci, ducimus voluptatum autem commodi veritatis explicabo optio totam perspiciatis
-            ullam laboriosam, exercitationem nesciunt illo temporibus? Repellendus omnis architecto hic porro neque itaque tempore molestias ab
-            voluptatum sapiente reprehenderit vel corporis nemo eligendi sunt obcaecati ratione fugiat quisquam atque, odio voluptate. Maiores modi,
-            molestiae nobis asperiores laudantium aliquid tempora dignissimos, vero esse atque voluptate ad laborum aut obcaecati dolore, est libero
-            possimus culpa? Dolorum, sapiente distinctio perspiciatis doloribus quae minima ea nostrum explicabo nisi officiis alias accusamus.
-            Laudantium officiis dolorum, odit possimus praesentium nulla amet laboriosam, illum quod dolores vitae numquam eligendi quos blanditiis
-            saepe tenetur ipsam nemo. Quod perspiciatis id natus alias dolore. Veritatis vitae doloremque, totam quia, incidunt placeat rem vel minus
-            natus dolor illo atque laboriosam accusamus quas reprehenderit eos nesciunt sunt ad? Eius illum accusamus laboriosam suscipit explicabo
-            nihil debitis ut esse facere, dolorum eum! Architecto, nobis? Laborum rerum maiores qui, eligendi voluptatibus odio facilis dicta velit
-            assumenda at eius quaerat libero dignissimos excepturi voluptas magnam ipsum a quisquam consectetur quia molestiae necessitatibus.
-            Repellendus iure quos, doloremque nihil ad optio beatae, expedita blanditiis nulla vitae, eligendi temporibus. Ratione aspernatur rerum
-            quod, incidunt pariatur asperiores natus explicabo iste dolore repellendus numquam illo. A quidem dignissimos alias soluta quisquam eum
-            possimus maxime, aliquid perspiciatis similique dolores autem ut, quod facere minima beatae ipsa deleniti fuga voluptatum numquam cumque
-            quae animi nulla esse. Fugiat, consequuntur aliquid dolorum beatae a illo minima? Officia, praesentium enim, ea odit aut impedit quibusdam
-            cum doloremque autem sit hic consectetur corrupti illo eligendi nostrum exercitationem, debitis laborum doloribus. Minus blanditiis nulla,
-            minima dignissimos voluptas consectetur. Et quos repudiandae amet eveniet culpa voluptas sint est nemo natus quidem. Excepturi, earum!
-            Qui, animi! Assumenda eveniet architecto accusamus earum illum ullam cum rerum? Perferendis quasi aspernatur voluptas, ratione assumenda
-            consectetur iusto ad labore asperiores fugit doloremque ipsam officiis incidunt qui est facere quisquam alias optio saepe, harum
-            recusandae commodi culpa cupiditate. Nemo quidem perspiciatis impedit optio unde magnam voluptas distinctio. Nobis iusto itaque nam dolore
-            illo. Nobis, quo placeat velit, asperiores ratione in rerum error eligendi, veniam sequi magnam quos aut blanditiis illo nesciunt magni
-            architecto? Unde voluptas quasi obcaecati aut vitae facilis laboriosam corporis fuga magni, enim nihil magnam odit fugit adipisci id.
-            Maiores suscipit, nam minima eos a officia labore laudantium soluta placeat quas magnam at quidem minus, doloribus culpa voluptates
-            laboriosam repellendus esse provident excepturi molestiae nobis ea illo? Magnam aliquid eum doloribus repudiandae cum ratione consequuntur
-            velit eaque aut aperiam? Veritatis animi dicta nemo maiores nisi incidunt nobis voluptates illum distinctio culpa suscipit at sequi
-            consequuntur similique esse aperiam corrupti, qui ea asperiores! Sapiente aliquam nisi omnis dolorum porro modi maxime ipsam dicta
-            provident debitis, libero odio illo. Corrupti, in qui. Inventore, in tenetur doloremque pariatur aut, eum animi atque id temporibus
-            mollitia ipsa nulla. Porro iste laborum cupiditate unde ex mollitia, modi ipsa, distinctio, omnis nostrum consectetur eos. Aliquid
-            pariatur aspernatur necessitatibus harum voluptates tempore, neque beatae vel porro eaque dolorum libero. Tempore voluptates suscipit
-            voluptate enim aspernatur asperiores ut ullam eaque, numquam laudantium expedita libero aliquid earum vitae eveniet autem quae ipsam
-            quisquam. Tempora fuga vitae beatae maxime numquam impedit modi amet doloribus molestiae soluta! Quaerat, cumque aut provident nesciunt
-            expedita pariatur! Pariatur, dicta. Cum dolorum fugiat facere eius laudantium iusto harum maiores, aliquam tempore dolorem quidem deserunt
-            molestias, libero incidunt ipsum! Necessitatibus adipisci excepturi, laborum nesciunt eaque ipsum tempore debitis quam aliquid laboriosam
-            magnam, natus aperiam quos molestias et eveniet deleniti deserunt quisquam totam minus, perferendis at error esse. Deserunt magnam, amet
-            quod dolorum impedit dicta quasi natus, a voluptatem molestias, vel inventore. Veniam, doloribus rerum placeat corrupti ab reiciendis
-            ducimus, iure asperiores fuga pariatur, quos quibusdam? Veniam, eveniet! At id iusto eius aliquid voluptatem, consectetur inventore
-            delectus deleniti autem repellat, minima beatae nostrum! Voluptates hic nemo dolores, tempore perspiciatis veritatis eaque iure quis
-            molestiae accusantium saepe dolorem mollitia quod libero blanditiis quaerat? Sequi voluptas voluptate nemo, et distinctio ipsam
-            accusantium. Perferendis eos minima iure tempore, culpa illum aut! Consequatur asperiores aliquam quaerat quam corporis? Nostrum dolor,
-            aut consequuntur fugit porro sunt optio culpa soluta? Debitis ratione, quia, dolores ipsam consequatur nostrum laudantium pariatur
-            necessitatibus minima accusamus beatae quaerat dolore quae magnam iste nobis ut alias nisi deleniti, iusto sunt. Pariatur culpa modi totam
-            distinctio repellat suscipit dolores et sapiente, quidem earum veniam veritatis ipsa recusandae eaque aut voluptatum labore architecto
-            laboriosam officia! Reprehenderit alias ratione inventore, cum ullam enim rerum quia consequuntur nesciunt labore debitis fugit recusandae
-            repellat! Maxime praesentium quod sint dolore sunt laborum nulla. Officiis facilis ipsum, reprehenderit harum consequatur doloremque
-            commodi sint ad accusamus modi vel enim amet earum quas assumenda! Velit omnis, neque asperiores reiciendis, quos veritatis et officia
-            dolore eligendi rerum itaque voluptas. Laborum quo dolore, ea ipsam, dolores, deserunt illo quam voluptates voluptate labore corporis?
-            Laborum nostrum rem autem sapiente ducimus consequuntur, dolor reiciendis explicabo esse sed perspiciatis distinctio blanditiis cum
-            dolores in placeat ipsam quo sit voluptate accusantium mollitia molestiae non. Non nostrum asperiores natus quidem nihil iste delectus,
-            corporis minima quisquam ex nisi, ut, sapiente placeat! Eligendi nihil ratione voluptatem odio, velit, officia, excepturi reiciendis
-            impedit iusto culpa molestiae libero voluptatum fugit repudiandae dolor deleniti! Deleniti architecto illum nisi perspiciatis. Quis porro
-            odit consequuntur corporis dignissimos, eius eveniet blanditiis aperiam obcaecati, et earum nisi ipsum atque dolore, delectus ex
-            praesentium commodi rerum. Aut molestiae eligendi voluptates iure, corrupti quas fugiat omnis rem deserunt placeat necessitatibus autem
-            ullam impedit odit? Tenetur assumenda dolorem eius repellendus sint porro pariatur placeat numquam excepturi alias, tempora illum quisquam
-            aspernatur unde reprehenderit voluptatibus fuga? Sit enim aperiam praesentium consequuntur tempore facilis possimus quos ex, magni dicta
-            minima, expedita voluptatibus cum fuga aut assumenda nisi. Iusto, labore! Ipsa cum voluptate dolorem harum at inventore in ea voluptatem
-            dolores perspiciatis, aperiam esse voluptatibus. Blanditiis pariatur odio ex.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum dicta optio tenetur dolore doloremque esse similique assumenda saepe accusamus culpa. Dolores, nihil architecto esse facere obcaecati vel ex. Non eligendi sapiente aliquam. In, perspiciatis? Illo neque velit cumque a labore, modi, dignissimos recusandae, voluptatibus blanditiis alias ex aspernatur laboriosam libero? Ducimus alias, ullam a eum mollitia voluptates ipsum provident doloribus optio, iusto praesentium nostrum quasi labore officiis blanditiis repellendus perspiciatis quibusdam. Cupiditate hic praesentium id, fugit, in amet labore inventore veniam nemo debitis, officia vero aliquid assumenda possimus dolores. Animi facilis, aut eveniet deleniti tempore veritatis delectus earum cumque, assumenda porro ea soluta at velit doloremque dolore quidem adipisci! Laboriosam velit ipsam ullam et ut maiores non enim illum doloribus sequi. Maiores, totam! Id soluta provident optio, ea nihil est omnis laboriosam placeat qui, deserunt itaque porro hic nam mollitia tenetur ex quos necessitatibus facilis molestiae explicabo vel! Earum eligendi cumque ab, placeat asperiores, sapiente quos corrupti modi soluta, reiciendis nobis commodi odit voluptatum blanditiis dolorum deleniti perspiciatis ducimus quae. Neque numquam distinctio aperiam nam dolorem ut ex tempora veritatis obcaecati commodi repellendus quis eius, dolore, sit alias, asperiores similique consequatur ratione. Deserunt magni reprehenderit nesciunt, eveniet nisi non neque cumque possimus ex voluptatibus facere deleniti soluta dignissimos corrupti nemo voluptatem alias asperiores sunt omnis repellat, aspernatur voluptates et facilis labore. Consequatur, magnam nemo eveniet dolorum velit laborum incidunt ex quia error sint sit sapiente voluptatum et eligendi ipsam id qui? Repudiandae, in iusto distinctio quod doloremque iste consectetur nemo a veritatis recusandae, cupiditate qui! Nihil illum deserunt quaerat culpa necessitatibus libero, itaque consequuntur, odio cupiditate soluta doloremque sint eos enim facilis reiciendis quos architecto magnam doloribus error voluptate! Cupiditate, vero expedita magni quos fugit suscipit temporibus natus provident recusandae soluta velit veritatis at? Atque labore reiciendis vel exercitationem tempore veritatis, autem ipsa ratione dicta temporibus saepe laudantium perferendis. Rerum quaerat sequi, itaque velit voluptatem tenetur voluptates repudiandae eos consectetur eum ipsam laborum esse fugit iure facilis animi temporibus assumenda est eveniet obcaecati excepturi beatae eligendi tempora? Officia illum quibusdam reprehenderit a eum quaerat, fuga facere distinctio corrupti nemo quod soluta asperiores rerum cumque minima! Harum atque reiciendis veniam eum soluta eaque cumque officiis corrupti laborum ullam, cupiditate alias saepe? Delectus unde distinctio non iure. Quasi aperiam, non aliquid, illo aliquam doloremque repudiandae tenetur, explicabo ratione asperiores provident velit eligendi eveniet. Sit quis quibusdam, omnis tempore aperiam eos excepturi placeat expedita cumque consequatur fugit dignissimos beatae earum eum nemo, voluptatum est nulla numquam commodi blanditiis voluptatem esse mollitia explicabo. Distinctio praesentium nam non impedit fugiat porro explicabo dicta ut, libero voluptas laborum dolores quis provident cupiditate rerum sit quibusdam! Odio distinctio cumque eum rerum hic accusamus ratione, dolorem nisi aut totam tempore officiis, architecto fuga, repellendus id minima sequi ex sint assumenda similique sed fugit a. Incidunt esse deserunt totam error veniam quas natus ea earum praesentium! Repellat maiores qui impedit, eos nobis iste sit cupiditate dolores nam porro similique quibusdam possimus quidem veniam hic laborum amet laboriosam, fuga sunt?
           </div>
         </div>
         <div class="row item_nav_sub item-bidding-record" style="display: none">
@@ -425,59 +293,26 @@
             <img src="img/anime/right.png" class="arrow right_btn" onclick="imgChange(+1)"></img>
           </div>
         </form>
+        <!-- [Swiper] 관련 상품 슬라이더 -->
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- 슬라이드 -->
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="img/popular/popular-1.jpg">상품 1</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="img/popular/popular-2.jpg">상품 2</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="img/popular/popular-3.jpg">상품 3</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="img/popular/popular-4.jpg">상품 4</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="img/popular/popular-5.jpg">상품 5</div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+          <!-- <div class="swiper-pagination-bullet"></div> -->
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
       </div>
     </section>
     <!-- Anime Section End -->
-
-    <!-- Footer Section Begin -->
-    <footer class="footer">
-      <div class="page-up">
-        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="footer__logo">
-              <a href="./index.html"><img src="img/logo_long.png" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="footer__nav">
-              <ul>
-                <li class="active"><a href="./index.html">Homepage</a></li>
-                <li><a href="./categories.html">Categories</a></li>
-                <li><a href="./blog.html">Our Blog</a></li>
-                <li><a href="#">Contacts</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-3">
-            <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;
-              <script>
-                document.write(new Date().getFullYear());
-              </script>
-              All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
-              <a href="https://colorlib.com" target="_blank">Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Search model Begin -->
-    <div class="search-model">
-      <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-          <input type="text" id="search-input" placeholder="Search here....." />
-        </form>
-      </div>
-    </div>
-    <!-- Search model end -->
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -489,5 +324,7 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/image_detail.js"></script>
+    
+    
   </body>
 </html>
