@@ -88,12 +88,7 @@
   border-radius: 5px;
   position: relative;
   cursor: pointer;
-}
-
-.products__item__pic a img {
-  height: 250px;
-  border-radius: 5px;
-  position: relative;
+  /* object-fit: cover; */
 }
 
 .products__item__pic .ep {

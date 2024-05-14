@@ -75,6 +75,7 @@ body {
   height: 100%;
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* background: #ffffff; */
   background: #0b0c2a;
 }
 
