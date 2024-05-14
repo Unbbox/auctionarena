@@ -1,5 +1,12 @@
 .category__menu {
   text-align: center;
+  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
+  width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+.header__nav {
+  background-color: #ffffff;
 }
 
 .category__menu ul li {
@@ -15,7 +22,8 @@
 }
 
 .category__menu ul li:hover a {
-  color: #111111;
+  /* color: #e53637; */
+  font-weight: 700;
 }
 
 .category__menu ul li:hover .dropdown {
@@ -65,7 +73,7 @@
   font-size: 15px;
   color: #111111;
   display: block;
-  font-weight: 700;
+  /* font-weight: 700; */
   -webkit-transition: all, 0.5s;
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
