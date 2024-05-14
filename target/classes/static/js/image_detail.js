@@ -10,15 +10,17 @@ sub_images.forEach((iamge) => {
 
 // 찜목록 활성화 비활성화
 // wishBtn.querySelector(".wish_list").addEventListener("click", (e) => {
-wishBtn.querySelector("i").addEventListener("click", (e) => {
-  console.log(e.target);
+wishBtn.addEventListener("click", (e) => {
+  const btn = e.target.querySelector("i");
 
-  if (e.target.classList.contains("fa-heart")) {
-    e.target.classList.remove("fa-regular");
-    e.target.classList.add("fa-solid");
-  } else {
-    e.target.classList.remove("fa-solid");
-    e.target.classList.add("fa-regular");
+  if (btn.classList.contains("fa-heart")) {
+    if (btn.classList.contains("fa-regular")) {
+      btn.classList.remove("fa-regular");
+      btn.classList.add("fa-solid");
+    } else {
+      btn.classList.remove("fa-solid");
+      btn.classList.add("fa-regular");
+    }
   }
 });
 
@@ -56,16 +58,16 @@ item_nav.forEach((nav) => {
 
 // 이미지 변경
 const img_obj = [
-  "img/anime/item1.jpg",
-  "img/anime/item2.jpg",
-  "img/anime/item3.jpg",
-  "img/anime/item4.jpg",
-  "img/anime/item5.jpg",
-  "img/anime/item6.jpg",
-  "img/anime/item7.jpg",
-  "img/anime/item8.jpg",
-  "img/anime/item9.jpg",
-  "img/anime/item10.jpg",
+  "/img/anime/item1.jpg",
+  "/img/anime/item2.jpg",
+  "/img/anime/item3.jpg",
+  "/img/anime/item4.jpg",
+  "/img/anime/item5.jpg",
+  "/img/anime/item6.jpg",
+  "/img/anime/item7.jpg",
+  "/img/anime/item8.jpg",
+  "/img/anime/item9.jpg",
+  "/img/anime/item10.jpg",
 ];
 num = 0;
 function imgChange(cnt) {
@@ -80,15 +82,3 @@ function imgChange(cnt) {
   }
   imageBtn.style.backgroundImage = `url(${img_obj[num]})`;
 }
-// 탭 활성화 및 내용 출력 종료
-
-// str = "";
-// str += `<div class="section-title">`;
-// str += `<h5>상품설명</h5>`;
-// str += `</div><div>`;
-// str += `asdjfklasjdlkf`;
-// str += `</div>`;
-
-// console.log(item.innerText);
-// document.querySelector(".item-detail").innerHTML = str;
-// });
