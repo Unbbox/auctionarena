@@ -19,17 +19,6 @@ public class AuctionController {
         return "auctionArena/categories";
     }
 
-    // 공지사항
-    @GetMapping("/notice")
-    public String notice() {
-        return "auctionArena/notice";
-    }
-
-    @GetMapping("/notice-details")
-    public String noticeDetails() {
-        return "auctionArena/notice-details";
-    }
-
     // 판매 등록
     @GetMapping("/anime-details")
     public void getDetails() {
