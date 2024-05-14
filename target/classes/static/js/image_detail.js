@@ -58,16 +58,16 @@ item_nav.forEach((nav) => {
 
 // 이미지 변경
 const img_obj = [
-  "img/anime/item1.jpg",
-  "img/anime/item2.jpg",
-  "img/anime/item3.jpg",
-  "img/anime/item4.jpg",
-  "img/anime/item5.jpg",
-  "img/anime/item6.jpg",
-  "img/anime/item7.jpg",
-  "img/anime/item8.jpg",
-  "img/anime/item9.jpg",
-  "img/anime/item10.jpg",
+  "/img/anime/item1.jpg",
+  "/img/anime/item2.jpg",
+  "/img/anime/item3.jpg",
+  "/img/anime/item4.jpg",
+  "/img/anime/item5.jpg",
+  "/img/anime/item6.jpg",
+  "/img/anime/item7.jpg",
+  "/img/anime/item8.jpg",
+  "/img/anime/item9.jpg",
+  "/img/anime/item10.jpg",
 ];
 num = 0;
 function imgChange(cnt) {
