@@ -2896,11 +2896,6 @@ ol {
   right: 5px;
 }
 
-.product__item__pic {
-  width: 195px;
-  height: 195px;
-}
-
 .relative__products {
   padding: 0.5rem 0rem 0rem 0.5rem;
   /* margin-top: 0.5rem; */
@@ -2917,6 +2912,15 @@ ol {
 
 .relation_categori_form {
   padding-top: 25px;
+}
+
+.product__item__pic img {
+  width: 250px;
+  height: 250px;
+}
+
+.categori_product_content {
+  text-align: center;
 }
 /* 관련 상품 css 종료 */
 /* css 추가 완료(재인) */
