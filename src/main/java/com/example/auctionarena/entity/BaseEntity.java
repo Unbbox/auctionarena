@@ -18,7 +18,6 @@ import lombok.Setter;
 @MappedSuperclass // BaseEntity 상속할 경우 필드를 컬럼으로 인식하기
 public abstract class BaseEntity {
 
-    // update 불가능
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;
