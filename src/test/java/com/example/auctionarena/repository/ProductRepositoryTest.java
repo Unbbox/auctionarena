@@ -24,7 +24,7 @@ public class ProductRepositoryTest {
                     .title("제품" + i)
                     .content("개쩌는 상품..!" + i)
                     .startPrice(i * 1000L)
-                    .biddingDate(Integer.toString(i % 7))
+                    .biddingDate((i % 7L))
                     .category(Category.builder().cno(i % 5L).build())
                     .build();
             productRepository.save(product);
