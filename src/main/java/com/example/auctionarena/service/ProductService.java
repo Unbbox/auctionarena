@@ -17,10 +17,11 @@ public interface ProductService {
                 .pno(product.getPno())
                 .title(product.getTitle())
                 .content(product.getContent())
-                .writerName(product.getMember().getNickname())
+                // .writerName(product.getMember().getNickname())
                 .replyCnt(replyCnt != null ? replyCnt : 0)
                 .startPrice(product.getStartPrice())
                 .biddingDate(product.getBiddingDate())
+                .cno(product.getCategory().getCno())
                 .createdDate(product.getCreatedDate())
                 .lastModifiedDate(product.getLastModifiedDate())
                 .build();
@@ -32,7 +33,7 @@ public interface ProductService {
         Member member = Member.builder().email(dto.getWriterName()).build();
         // bidding을 꼭 넣어야하는가?
         // Bidding bidding = Bidding.builder().build();
-        Category category = Category.builder().categoryName(dto.getCategory()).build();
+        Category category = Category.builder().cno(dto.getCno()).build();
 
         return Product.builder()
                 .pno(dto.getPno())
@@ -40,7 +41,7 @@ public interface ProductService {
                 .content(dto.getContent())
                 .startPrice(dto.getStartPrice())
                 .biddingDate(dto.getBiddingDate())
-                .member(member)
+                // .member(member)
                 // .bidding(bidding)
                 .category(category)
                 .build();

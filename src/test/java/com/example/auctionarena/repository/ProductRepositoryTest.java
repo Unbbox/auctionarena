@@ -24,15 +24,23 @@ public class ProductRepositoryTest {
     // 완성 X
     @Test
     public void productInsertTest() {
+
         // 제품 데이터 추가 / 제품 이미지 추가
+
         IntStream.rangeClosed(1, 50).forEach(i -> {
+            Long cno = (long) (Math.random() * 6) + 1;
+            Category category = Category.builder().cno(cno).build();
+
+            Long mid = (long) (Math.random() * 99) + 1;
+            Member member = Member.builder().mid(mid).build();
+
             Product product = Product.builder()
                     .title("제품" + i)
                     .content("개쩌는 상품..!" + i)
                     .startPrice(i * 1000L)
-                    .biddingDate((i % 7L))
-                    .member(Member.builder().mid(i % 5L).build())
-                    .category(Category.builder().cno(i % 5L).build())
+                    .biddingDate((i % 7L) + 1)
+                    .member(member)
+                    .category(category)
                     .build();
             productRepository.save(product);
 
