@@ -107,6 +107,18 @@
                </ul>
             </nav>
           </div>
+          <form action="" role="search" id="searchForm">
+            <!-- 검색 후 결과 페이지는 1로 보여주기 -->
+            <input type="hidden" name="page" value="1" class="form-control">
+            <div class="search product-search">
+              <select name="search_type" id="search_type">
+                <option value="t">상품명</option>
+                <option value="c" >내용</option>
+              </select>
+              <input class="text" type="search" placeholder="검색" name="keyword" id="keyword" />
+              <button class="search-btn" type="submit">검색</button>
+            </div>
+          </form>
 
       
         
