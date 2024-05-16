@@ -20,7 +20,7 @@ public class AuctionController {
     }
 
     // 판매 등록
-    @GetMapping("/anime-details")
+    @GetMapping("/product_details")
     public void getDetails() {
         log.info("물품 판매 페이지 요청");
     }
