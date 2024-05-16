@@ -48,7 +48,7 @@
   margin-right: 16px;
 }
 
-.category__menu ul li.active a {
+.category__menu ul li .active a {
   background: #e53637;
   color: #111111;
 }
