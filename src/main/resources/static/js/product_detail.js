@@ -25,19 +25,20 @@ wishBtn.addEventListener("click", (e) => {
 });
 
 // 탭별 활성화 표시 및 해당 내용 출력
-const item_nav = document.querySelectorAll(".item_nav li");
+const items_nav = document.querySelectorAll(".item_nav li");
 const items = document.querySelectorAll(".item_nav_sub");
 
 const detail = document.querySelector(".item_detail");
 const bidding = document.querySelector(".item-bidding-record");
 const review = document.querySelector(".item_review");
 
-item_nav.forEach((nav) => {
+items_nav.forEach((nav) => {
   nav.addEventListener("click", (e) => {
     e.preventDefault();
+    console.log(e.target);
 
-    // 탭 활성화
-    item_nav.forEach((e) => {
+    //탭 활성화
+    items_nav.forEach((e) => {
       e.classList.remove("active");
     });
     nav.classList.add("active");
