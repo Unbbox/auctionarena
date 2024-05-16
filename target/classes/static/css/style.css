@@ -34,7 +34,7 @@
 html,
 body {
   height: 100%;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   background: #ffffff;
 }
@@ -48,7 +48,7 @@ h6 {
   margin: 0;
   color: #111111;
   font-weight: 400;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
 }
 
 h1 {
@@ -77,7 +77,7 @@ h6 {
 
 p {
   font-size: 15px;
-  font-family: 'Mulish', sans-serif;
+  font-family: "Mulish", sans-serif;
   color: #3d3d3d;
   font-weight: 400;
   line-height: 25px;
@@ -123,7 +123,7 @@ ol {
   text-transform: uppercase;
   padding-left: 20px;
   position: relative;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
 }
 
 .section-title h4:after,
@@ -134,7 +134,7 @@ ol {
   height: 32px;
   width: 4px;
   background: #e53637;
-  content: '';
+  content: "";
 }
 
 .set-bg {
@@ -374,7 +374,7 @@ ol {
 .hero__text h2 {
   color: #ffffff;
   font-size: 42px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 700;
   line-height: 52px;
   margin-top: 35px;
@@ -504,9 +504,9 @@ ol {
   right: 0;
   height: 54px;
   width: 54px;
-  content: '';
+  content: "";
   background: rgba(255, 255, 255, 0.1);
-  content: '';
+  content: "";
   z-index: -1;
   margin: 0 auto;
 }
@@ -623,7 +623,7 @@ ol {
 .product__sidebar .section-title h5 {
   color: #ffffff;
   font-weight: 600;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   line-height: 21px;
   text-transform: uppercase;
   padding-left: 20px;
@@ -637,7 +637,7 @@ ol {
   height: 32px;
   width: 4px;
   background: #e53637;
-  content: '';
+  content: "";
 }
 
 .product__sidebar__view {
@@ -954,7 +954,7 @@ ol {
   height: 6px;
   width: 6px;
   background: #b7b7b7;
-  content: '';
+  content: "";
 }
 
 .anime__details__widget ul li span {
@@ -1019,7 +1019,7 @@ ol {
   top: 15px;
   border-top: 15px solid transparent;
   border-left: 15px solid #1d1e39;
-  content: '';
+  content: "";
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
@@ -1105,7 +1105,7 @@ ol {
 
 .anime__video__player .plyr--video .plyr__control.plyr__tab-focus,
 .anime__video__player .plyr--video .plyr__control:hover,
-.anime__video__player .plyr--video .plyr__control[aria-expanded='true'] {
+.anime__video__player .plyr--video .plyr__control[aria-expanded="true"] {
   background: transparent;
 }
 
@@ -1117,7 +1117,7 @@ ol {
   color: transparent;
 }
 
-.anime__video__player .plyr--full-ui input[type='range'] {
+.anime__video__player .plyr--full-ui input[type="range"] {
   color: #ffffff;
 }
 
@@ -1215,8 +1215,8 @@ ol {
   position: absolute;
   right: -14px;
   top: 0;
-  content: '';
-  font-family: 'FontAwesome';
+  content: "";
+  font-family: "FontAwesome";
 }
 
 .breadcrumb__links span {
@@ -1245,7 +1245,7 @@ ol {
 .normal__breadcrumb__text h2 {
   color: #000000;
   font-size: 48px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   font-weight: 700;
   margin-bottom: 22px;
 }
@@ -1635,13 +1635,13 @@ ol {
   height: 330px;
   width: 1px;
   background: rgba(0, 0, 0, 0.2);
-  content: '';
+  content: "";
 }
 
 .login__form h3 {
   color: #000000;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   margin-bottom: 30px;
 }
 
@@ -1658,7 +1658,7 @@ ol {
   height: 30px;
   width: 1px;
   background: #b7b7b7;
-  content: '';
+  content: "";
 }
 
 .login__form form .input__item input {
@@ -1721,7 +1721,7 @@ ol {
   color: #3d3d3d;
   font-weight: 700;
   font-size: 25px;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   margin-bottom: 30px;
 }
 
@@ -1822,7 +1822,7 @@ ol {
 .signup .login__social__links h3 {
   color: #ffffff;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   margin-bottom: 30px;
 }
 
@@ -2254,7 +2254,7 @@ ol {
 }
 
 /*----------------------------------------*/
-/* 이나 */
+/* 이나 start */
 /*----------------------------------------*/
 
 .input__item .post {
@@ -2291,7 +2291,7 @@ ol {
 .agree h3 {
   color: #000;
   font-weight: 700;
-  font-family: 'Oswald', sans-serif;
+  font-family: "Oswald", sans-serif;
   margin-bottom: 30px;
 }
 
@@ -2303,8 +2303,8 @@ ol {
   position: relative;
 }
 
-.agree input[type='checkbox'] {
-  content: '';
+.agree input[type="checkbox"] {
+  content: "";
   display: block;
   position: absolute;
   right: 0;
@@ -2454,6 +2454,38 @@ ol {
   list-style: none;
   float: left;
 }
+
+.notice-search input {
+  height: 42px;
+  width: 50%;
+  background: #ffffff;
+  font-size: 15px;
+  color: #a6a6a6;
+  border-radius: 2px;
+  border: 1px solid #e8e8e8;
+  padding: 12px 10px;
+  margin-left: 5px;
+  margin-right: 2px;
+}
+
+.notice-search .search-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background: #e53637;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 11px 30px;
+  margin-left: 3px;
+}
+
+/*----------------------------------------*/
+/* 이나 end */
+/*----------------------------------------*/
+
 /* 직접 추가한 css(재인) */
 .anime__details__pic {
   width: 300px;
