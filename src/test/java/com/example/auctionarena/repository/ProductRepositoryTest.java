@@ -1,14 +1,12 @@
 package com.example.auctionarena.repository;
 
+import com.example.auctionarena.entity.Category;
+import com.example.auctionarena.entity.Product;
 import java.util.Date;
 import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import com.example.auctionarena.entity.Category;
-import com.example.auctionarena.entity.Product;
 
 @SpringBootTest
 public class ProductRepositoryTest {
