@@ -31,7 +31,7 @@ public interface ProductService {
 
         Member member = Member.builder().email(dto.getWriterName()).build();
         // bidding을 꼭 넣어야하는가?
-        Bidding bidding = Bidding.builder().build();
+        // Bidding bidding = Bidding.builder().build();
         Category category = Category.builder().categoryName(dto.getCategory()).build();
 
         return Product.builder()
@@ -41,7 +41,7 @@ public interface ProductService {
                 .startPrice(dto.getStartPrice())
                 .biddingDate(dto.getBiddingDate())
                 .member(member)
-                .bidding(bidding)
+                // .bidding(bidding)
                 .category(category)
                 .build();
     }

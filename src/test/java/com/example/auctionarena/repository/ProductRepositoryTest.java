@@ -2,6 +2,8 @@ package com.example.auctionarena.repository;
 
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.entity.ProductImage;
+
 import java.util.Date;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
@@ -14,9 +16,11 @@ public class ProductRepositoryTest {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+
     @Test
     public void productInsertTest() {
-        // 제품 데이터 추가
+        // 제품 데이터 추가 / 제품 이미지 추가
         IntStream.rangeClosed(1, 50).forEach(i -> {
             Product product = Product.builder()
                     .title("제품" + i)
@@ -27,6 +31,13 @@ public class ProductRepositoryTest {
                     .build();
             productRepository.save(product);
 
+            int count = (int) (Math.random() * 10) + 1;
+
+            for (int j = 0; j < count; j++) {
+                ProductImage pImage = ProductImage.builder().build();
+
+            }
         });
     }
+
 }
