@@ -123,6 +123,7 @@
   font-size: 14px;
   color: #111111;
   font-weight: 500;
+  text-align: left;
 }
 
 .header__category ul li a {
@@ -136,11 +137,6 @@
   padding: 20px;
 }
 
-.header__category ul li a span {
-  position: relative;
-  font-size: 17px;
-  top: 2px;
-}
 /* ============================================ */
 
 .header {

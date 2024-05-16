@@ -20,6 +20,7 @@
   touch-action: manipulation;
   -moz-backface-visibility: hidden;
 }
+
 .owl-carousel .owl-stage:after {
   content: '.';
   display: block;
@@ -32,6 +33,7 @@
   position: relative;
   overflow: hidden;
   -webkit-transform: translate3d(0, 0, 0);
+  height: 400px;
 }
 .owl-carousel .owl-item,
 .owl-carousel .owl-wrapper {
@@ -107,10 +109,7 @@
 .owl-carousel.owl-rtl .owl-item {
   float: right;
 }
-.owl-carousel .animated {
-  animation-duration: 1s;
-  animation-fill-mode: both;
-}
+
 .owl-carousel .owl-animated-in {
   z-index: 0;
 }

@@ -453,7 +453,7 @@ ol {
 .hero__slider.owl-carousel .owl-dots {
   position: absolute;
   left: 0;
-  bottom: 10px;
+  bottom: 110px;
   width: 100%;
   text-align: center;
 }
@@ -489,7 +489,7 @@ ol {
   position: absolute;
   left: -15px;
   top: 50%;
-  margin-top: -47px;
+  margin-top: -100px;
 }
 
 .hero__slider.owl-carousel .owl-nav button.owl-next {
@@ -505,7 +505,6 @@ ol {
   height: 54px;
   width: 54px;
   content: '';
-  background: rgba(255, 255, 255, 0.1);
   content: '';
   z-index: -1;
   margin: 0 auto;

@@ -22,7 +22,7 @@
               <li><a th:href="@{/}"><b>홈</b></a></li>
               <li><a th:href="@{/member/login}"><b>로그인</b></a></li>
               <li><a th:href="@{/member/signup}"><b>회원가입</b></a></li>
-              <li><a th:href="@{/}"><b>판매하기</b></a></li>
+              <li><a th:href="@{/member/login}"><b>판매하기</b></a></li>
             </ul>
           </nav>
       </div>
@@ -31,8 +31,8 @@
                 <li>
                   <i class="fa-solid fa-bars">
                     <ul class="dropdown">
-                      <li style="border-bottom: 1px solid black; padding: 10px;">
-                        <span>전체 카테고리</span>
+                      <li style="border-bottom: 1px solid black; padding: 10px 10px;">
+                        <span style="margin-right: 25px;">카테고리</span>
                       </li>
                       <li>
                         <a th:href="@{/auctionArena/fashion-category}"><b>패션 의류/잡화</b></a>
