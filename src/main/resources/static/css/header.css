@@ -23,7 +23,6 @@
   text-align: left;
   margin-left: 10px;
   overflow: auto;
-  z-index: -1;
   font-size: 15px;
 }
 
@@ -44,8 +43,6 @@
   margin-top: 2px;
   text-align: center;
   padding: 20px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   font-size: 20px;
 }
 
@@ -148,6 +145,8 @@
 
 .header {
   background: white;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .header nav ul {

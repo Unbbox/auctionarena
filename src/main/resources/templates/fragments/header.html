@@ -7,20 +7,24 @@
         <div class="header__logo">
           <a th:href="@{/}"><img class="header__logo" th:src="@{/img/logo.png}" alt="" /></a>
         </div>
-        <div class="search-bar">
-          <button class="search-btn" type="submit" name="click" value="">
-            <i class="fas fa-search"></i>
-          </button>
-          <input class="search-bar__input" type="text" placeholder="검색" aria-label="Search" />
-        </div>
-        <nav>
-          <ul>
-            <li><a th:href="@{/}"><b>홈</b></a></li>
-            <li><a th:href="@{/member/login}"><b>로그인</b></a></li>
-            <li><a th:href="@{/member/signup}"><b>회원가입</b></a></li>
-            <li><a th:href="@{/}"><b>판매하기</b></a></li>
-          </ul>
-        </nav>
+        <!-- 검색 -->
+        <form action="" role="search" id="searchForm">
+          <input type="hidden" name="page" value="1" class="form-control">
+          <div class="search-bar">
+            <button class="search-btn" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+            <input class="search-bar__input" type="search" placeholder="검색" aria-label="Search" />
+          </div>
+        </form>
+          <nav>
+            <ul>
+              <li><a th:href="@{/}"><b>홈</b></a></li>
+              <li><a th:href="@{/member/login}"><b>로그인</b></a></li>
+              <li><a th:href="@{/member/signup}"><b>회원가입</b></a></li>
+              <li><a th:href="@{/}"><b>판매하기</b></a></li>
+            </ul>
+          </nav>
       </div>
           <div class="header__category">
             <ul>
@@ -60,4 +64,7 @@
     </div>
   </header>
   <!-- Header End -->
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/search.js}"></script>
+  </th:block>
 </html>
