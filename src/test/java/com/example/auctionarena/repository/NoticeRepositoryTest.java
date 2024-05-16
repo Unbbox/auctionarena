@@ -16,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Notice;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
 public class NoticeRepositoryTest {
 
@@ -45,5 +47,19 @@ public class NoticeRepositoryTest {
         for (Object[] objects : list) {
             System.out.println(Arrays.toString(objects));
         }
+    }
+
+    @Transactional
+    @Test
+    public void noticeRead() {
+        Notice notice = noticeRepository.findById(1L).get();
+        System.out.println(notice);
+        System.out.println(notice.getWriter());
+    }
+
+    @Transactional
+    @Test
+    public void noticeRemove() {
+        noticeRepository.deleteById(299L);
     }
 }

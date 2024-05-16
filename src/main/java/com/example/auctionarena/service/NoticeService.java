@@ -10,6 +10,12 @@ public interface NoticeService {
 
     PageResultDto<NoticeDto, Object[]> getList(PageRequestDto requestDto);
 
+    NoticeDto getRow(Long nno);
+
+    void modify(NoticeDto dto);
+
+    void noticeRemove(Long nno);
+
     public default NoticeDto entityToDto(Notice notice, Member member) {
         return NoticeDto.builder()
                 .nno(notice.getNno())
