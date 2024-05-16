@@ -83,15 +83,20 @@ function imgChange(cnt) {
 }
 
 // 현재 시간 표시
-today = new Date();
-year = today.getFullYear();
-month = today.getMonth() + 1;
-day = today.getDate();
-hour = today.getHours();
-minute = today.getMinutes();
-second = today.getSeconds();
+function getTime() {
+  today = new Date();
+  year = today.getFullYear();
+  month = today.getMonth() + 1;
+  day = today.getDate();
+  hour = today.getHours();
+  minute = today.getMinutes();
+  second = today.getSeconds();
 
-date = year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute + ":" + second;
+  date = year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute + ":" + second;
 
-document.querySelector(".date_now").innerText = date;
-// console.log(year + "년" + month + "월" + day + "일 " + hour + ":" + minute + ":" + second);
+  document.querySelector(".date_now").innerText = date;
+
+  setTimeout(getTime, 1000);
+}
+
+getTime();
