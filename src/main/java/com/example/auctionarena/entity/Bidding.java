@@ -25,26 +25,19 @@ import lombok.ToString;
 @Entity
 public class Bidding extends BaseEntity {
 
-  @SequenceGenerator(
-    name = "bidding_seq_gen",
-    sequenceName = "bidding_seq",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "bidding_seq_gen"
-  )
-  @Id
-  private Long bno;
+    @SequenceGenerator(name = "bidding_seq_gen", sequenceName = "bidding_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bidding_seq_gen")
+    @Id
+    private Long bno;
 
-  @Column(nullable = false)
-  private Long biddingPrice;
+    // @Column(nullable = false)
+    private Long biddingPrice;
 
-  @Column(nullable = false)
-  private Long biddingDate;
+    // @Column(nullable = false)
+    private Long biddingDate;
 
-  @OneToOne(fetch = FetchType.LAZY)
-  private Product product;
-  // @OneToMany(fetch = FetchType.LAZY)
-  // private Member member;
+    @OneToOne(fetch = FetchType.LAZY)
+    private Product product;
+    // @OneToMany(fetch = FetchType.LAZY)
+    // private Member member;
 }

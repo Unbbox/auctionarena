@@ -5,6 +5,7 @@ import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 
 import java.util.Date;
+import java.util.UUID;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ public class ProductRepositoryTest {
     private ProductRepository productRepository;
 
     @Autowired
+    private ProductImageRepository productImageRepository;
 
+    // 완성 X
     @Test
     public void productInsertTest() {
         // 제품 데이터 추가 / 제품 이미지 추가
@@ -31,12 +34,16 @@ public class ProductRepositoryTest {
                     .build();
             productRepository.save(product);
 
-            int count = (int) (Math.random() * 10) + 1;
+            // int count = (int) (Math.random() * 10) + 1;
 
-            for (int j = 0; j < count; j++) {
-                ProductImage pImage = ProductImage.builder().build();
-
-            }
+            // for (int j = 0; j < count; j++) {
+            // ProductImage pImage = ProductImage.builder()
+            // .uuid(UUID.randomUUID().toString())
+            // .product(product)
+            // .imgName("img" + j + ".jpg")
+            // .build();
+            // productImageRepository.save(pImage);
+            // }
         });
     }
 
