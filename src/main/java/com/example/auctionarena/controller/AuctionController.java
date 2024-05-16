@@ -22,14 +22,14 @@ public class AuctionController {
   public String getMobileCategory() {
     log.info("전체 상품 목록 페이지 요청");
 
-    return "auctionArena/fashion-category";
+    return "auctionArena/mobile-category";
   }
 
   @GetMapping("/electronic-category")
   public String getElectronicCategory() {
     log.info("전체 상품 목록 페이지 요청");
 
-    return "auctionArena/fashion-category";
+    return "auctionArena/electronic-category";
   }
 
   @GetMapping("/game-category")
