@@ -1,5 +1,6 @@
 package com.example.auctionarena.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -29,12 +30,14 @@ public class Bidding extends BaseEntity {
     @Id
     private Long bno;
 
-    private Long startPrice;
+    // @Column(nullable = false)
+    private Long biddingPrice;
+
+    // @Column(nullable = false)
     private Long biddingDate;
 
     @OneToOne(fetch = FetchType.LAZY)
     private Product product;
-
-    // @OneToMany(fetch = FetchType.Lazy)
+    // @OneToMany(fetch = FetchType.LAZY)
     // private Member member;
 }

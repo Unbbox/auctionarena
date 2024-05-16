@@ -23,7 +23,6 @@
   text-align: left;
   margin-left: 10px;
   overflow: auto;
-  z-index: -1;
   font-size: 15px;
 }
 
@@ -44,8 +43,6 @@
   margin-top: 2px;
   text-align: center;
   padding: 20px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   font-size: 20px;
 }
 
@@ -126,6 +123,7 @@
   font-size: 14px;
   color: #111111;
   font-weight: 500;
+  text-align: left;
 }
 
 .header__category ul li a {
@@ -139,15 +137,12 @@
   padding: 20px;
 }
 
-.header__category ul li a span {
-  position: relative;
-  font-size: 17px;
-  top: 2px;
-}
 /* ============================================ */
 
 .header {
   background: white;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .header nav ul {

@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,13 +36,22 @@ public class Product extends BaseEntity {
 
     private Long startPrice;
 
-    private String biddingDate;
+    private Long biddingDate;
 
     // 멤버 관련
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // private Member writer;
+    // member.nickname
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 
     // 응찰 관련
+    // bidding.startPrice , bidding.biddingDate
+    // @ManyToOne(fetch = FetchType.LAZY)
+    // private Bidding bidding;
+
+    // 카테고리 관련
     @ManyToOne(fetch = FetchType.LAZY)
-    private Bidding bidding;
+    private Category category;
+
+    // 이미지 관련
+    // private ProductImage productImage;
 }

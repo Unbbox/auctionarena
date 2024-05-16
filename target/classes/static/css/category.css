@@ -1,9 +1,41 @@
+.product-search {
+  background-color: #ffffff;
+}
+
+.product-search input {
+  height: 42px;
+  width: 50%;
+  background: #ffffff;
+  font-size: 15px;
+  color: #a6a6a6;
+  border-radius: 2px;
+  border: 1px solid #e8e8e8;
+  padding: 12px 10px;
+  margin-left: 5px;
+  margin-right: 2px;
+}
+
+.product-search .search-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background: #e53637;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 11px 30px;
+  margin-left: 3px;
+}
+
 .category__menu {
   text-align: center;
   /* box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15); */
   width: 800px;
   margin: 0 auto;
   background-color: #ffffff;
+  /* display: inline-block; */
 }
 .header__nav {
   background-color: #ffffff;
