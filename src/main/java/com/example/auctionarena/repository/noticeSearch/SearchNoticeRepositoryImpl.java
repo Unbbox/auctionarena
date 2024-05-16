@@ -81,4 +81,22 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
         return new PageImpl<>(list, pageable, count);
     }
 
+    @Override
+    public Object[] getRow(Long nno) {
+        log.info("상세조회 요청");
+
+        QNotice notice = QNotice.notice;
+        QMember member = QMember.member;
+
+        JPQLQuery<Notice> query = from(notice);
+        query.leftJoin(notice.writer, member);
+        query.where(notice.nno.eq(nno));
+
+        JPQLQuery<Tuple> tuple = query.select(notice, member);
+
+        Tuple result = tuple.fetch().get(0);
+
+        return result.toArray();
+    }
+
 }

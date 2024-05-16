@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8 notice">
+            <div class="blog__details__title">
+              <h2>공지사항 작성</h2>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="blog__details__content notice__details">
+              <div class="blog__details__text notice-create">
+                <form action="" method="post">
+                  <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input class="form-control" type="text" name="title" id="title">
+                  </div>
+                  <div class="mb-3">
+                    <label for="writerNickname" class="form-label">작성자</label>
+                    <input class="form-control" type="text" name="writerNickname" id="writerNickname" readonly>
+                  </div>
+                  <div class="mb-3">
+                    <label for="content" class="form-label">내용</label>
+                    <textarea class="form-control" type="text" name="content" id="content" rows="10"></textarea>
+                  </div>
+                  <div class="blog__details__text">
+                    <button class="notice-create-btn" type="submit">작성</button>
+                  </div>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Details Section End -->
+  </div>
+</html>

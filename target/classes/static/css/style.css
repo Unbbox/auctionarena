@@ -2448,6 +2448,7 @@ ol {
 
 .notice__details .blog__details__text p {
   margin-bottom: 40px;
+  min-height: 500px;
 }
 
 .product__pagination li {
@@ -2480,6 +2481,45 @@ ol {
   display: inline-block;
   padding: 11px 30px;
   margin-left: 3px;
+}
+
+.notice-create-btn {
+  display: inline-block;
+  color: #ffffff;
+  background: rgba(8, 12, 48, 0.705);
+  font-weight: 700;
+  padding: 6px 20px;
+  border: none;
+  float: right;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  margin-right: 1px;
+  margin-bottom: 5px;
+  -webkit-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+
+.notice-create label {
+  font-size: 20px;
+}
+
+.notice-remove-btn {
+  display: inline-block;
+  color: #ffffff;
+  background: #e53637;
+  font-weight: 700;
+  padding: 6px 20px;
+  border: none;
+  float: right;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  margin-left: 5px;
+  margin-right: 1px;
+  margin-bottom: 5px;
+  -webkit-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
 }
 
 /*----------------------------------------*/

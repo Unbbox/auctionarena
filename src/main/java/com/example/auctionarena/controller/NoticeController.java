@@ -4,16 +4,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.auctionarena.dto.NoticeDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-@RequestMapping("auctionArena")
+@RequestMapping("notice")
 @Log4j2
 @RequiredArgsConstructor
 @Controller
@@ -23,14 +26,49 @@ public class NoticeController {
 
     // 공지사항
     @GetMapping("/notice")
-    public void notice(@ModelAttribute("requestDto") PageRequestDto requestDto, RedirectAttributes rttr, Model model) {
+    public void notice(RedirectAttributes rttr, Model model, @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("list 요청");
 
         model.addAttribute("result", service.getList(requestDto));
     }
 
-    @GetMapping("/notice-details")
-    public String noticeDetails() {
-        return "auctionArena/notice-details";
+    @GetMapping({ "/notice-details", "/notice-modify" })
+    public void noticeDetails(@RequestParam Long nno, Model model,
+            @ModelAttribute("requestDto") PageRequestDto requestDto) {
+        log.info("read or modify 요청");
+
+        model.addAttribute("dto", service.getRow(nno));
     }
+
+    @PostMapping("/notice-modify")
+    public String postModify(NoticeDto dto, RedirectAttributes rttr,
+            @ModelAttribute("requestDto") PageRequestDto requestDto) {
+        log.info("modify 요청", dto);
+
+        service.modify(dto);
+
+        rttr.addAttribute("nno", dto.getNno());
+        rttr.addAttribute("page", requestDto.getPage());
+        rttr.addAttribute("type", requestDto.getType());
+        rttr.addAttribute("keyword", requestDto.getKeyword());
+        return "redirect:/notice/notice-details";
+    }
+
+    @PostMapping("/notice-remove")
+    public String postRemove(Long nno, RedirectAttributes rttr,
+            @ModelAttribute("requestDto") PageRequestDto requestDto) {
+        log.info("remove 요청", nno);
+
+        service.noticeRemove(nno);
+        rttr.addAttribute("page", requestDto.getPage());
+        rttr.addAttribute("type", requestDto.getType());
+        rttr.addAttribute("keyword", requestDto.getKeyword());
+        return "redirect:/notice/notice";
+    }
+
+    @GetMapping("/notice-create")
+    public String noticeCreate() {
+        return "notice/notice-create";
+    }
+
 }

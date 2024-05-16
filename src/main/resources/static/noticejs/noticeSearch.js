@@ -1,7 +1,7 @@
 document.querySelector("#searchForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const type = document.querySelector("#type");
+  const type = document.querySelector("#search_type");
   const keyword = document.querySelector("#keyword");
 
   if (type.value == "") {

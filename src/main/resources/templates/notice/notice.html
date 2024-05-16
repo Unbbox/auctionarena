@@ -41,7 +41,7 @@
                   <tr th:each="dto : ${result.dtoList}">
                     <th scope="row" th:text="${dto.nno}"></th>
                       <td>
-                        <a class="title" href="" th:text="${dto.title}"></a>
+                        <a class="title" th:href="@{notice-details(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}" th:text="${dto.title}"></a>
                       </td>
                       <td th:text="${dto.writerNickname}"></td>
                       <td th:text="${#temporals.format(dto.createdDate, 'yyyy-MM-dd')}"></td>
@@ -72,5 +72,5 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
-    <script th:src="@{/js/search.js}"></script>
+    <script th:src="@{/noticejs/noticeSearch.js}"></script>
   </th:block>

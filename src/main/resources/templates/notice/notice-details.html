@@ -7,27 +7,29 @@
         <div class="row d-flex justify-content-center">
           <div class="col-lg-8 notice">
             <div class="blog__details__title">
-              <h2>제목</h2>
+              <h2>[[${dto.title}]]</h2>
               <h6>
-                작성자
-                <span>- 작성일</span>
+                [[${dto.writerNickname}]]
+                <span>- [[${#temporals.format(dto.createdDate, 'yyyy/MM/dd')}]]</span>
               </h6>
             </div>
           </div>
           <div class="col-lg-8">
             <div class="blog__details__content notice__details">
               <div class="blog__details__text">
-                <p>
-                  As a result the last couple of eps haven’t been super exciting for me, because they’ve been more like settling into a familiar and
-                  comfortable routine.  We’re seeing character growth here but it’s subtle (apart from Shouyou, arguably).  I mean, Tobio being an
-                  asshole is nothing new – it’s kind of the foundation of his entire character arc.  Confronting whether his being an asshole is a
-                  problem for the Crows this directly is a bit of an evolution, and probably an overdue one at that, but the overall dynamic with
-                  Kageyama is basically unchanged.
-                </p>
+                <p>[[${dto.content}]]</p>
                 <div class="blog__details__text notice__details_btn">
-                  <button class="notice-details-btn">수정</button>
-                  <button class="notice-details-btn">삭제</button>
-                  <button class="notice-details-btn">목록</button>
+                  <a
+                    class="notice-details-btn"
+                    th:href="@{notice-modify(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                    >수정</a
+                  >
+                  <a
+                    class="notice-details-btn"
+                    th:href="@{notice(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                  >
+                    목록
+                  </a>
                 </div>
               </div>
               <div class="blog__details__btns">
