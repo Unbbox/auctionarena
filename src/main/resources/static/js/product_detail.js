@@ -9,7 +9,6 @@ sub_images.forEach((iamge) => {
 });
 
 // 찜목록 활성화 비활성화
-// wishBtn.querySelector(".wish_list").addEventListener("click", (e) => {
 wishBtn.addEventListener("click", (e) => {
   const btn = e.target.querySelector("i");
 
@@ -25,7 +24,7 @@ wishBtn.addEventListener("click", (e) => {
 });
 
 // 탭별 활성화 표시 및 해당 내용 출력
-const items_nav = document.querySelectorAll(".item_nav li");
+const items_nav = document.querySelectorAll(".items_nav li");
 const items = document.querySelectorAll(".item_nav_sub");
 
 const detail = document.querySelector(".item_detail");
@@ -35,7 +34,6 @@ const review = document.querySelector(".item_review");
 items_nav.forEach((nav) => {
   nav.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(e.target);
 
     //탭 활성화
     items_nav.forEach((e) => {
@@ -83,3 +81,17 @@ function imgChange(cnt) {
   }
   imageBtn.style.backgroundImage = `url(${img_obj[num]})`;
 }
+
+// 현재 시간 표시
+today = new Date();
+year = today.getFullYear();
+month = today.getMonth() + 1;
+day = today.getDate();
+hour = today.getHours();
+minute = today.getMinutes();
+second = today.getSeconds();
+
+date = year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute + ":" + second;
+
+document.querySelector(".date_now").innerText = date;
+// console.log(year + "년" + month + "월" + day + "일 " + hour + ":" + minute + ":" + second);

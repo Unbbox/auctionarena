@@ -24,14 +24,9 @@
         <div class="anime__details__content">
           <div class="row">
             <div class="col-lg-3">
-            <!-- <div class="detail_image"> -->
               <div class="anime__details__pic set-bg" data-setbg="/img/anime/item1.jpg">
                 <img src="/img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
                 <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
-                <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                <div class="wish_list follow-btn">
-                  <i class="fa-regular fa-heart"></i>
-                </div> -->
               </div>
               <div class="item__details__pic__sub">
                 <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
@@ -63,11 +58,12 @@
                 </p> -->
                 <div class="anime__details__widget">
                   <div class="row">
-                    <div class="col-lg-6 col-md-6">
+                    <div class="col-lg-8 col-md-8">
+                    <!-- <div> -->
                       <ul>
-                        <li><span>경매시작가:</span> 100,000원</li>
-                        <li><span>입찰인원:</span> 1,000명</li>
-                        <li><span>남은 시간:</span> 2024/05/12 15:30</li>
+                        <li>경매시작가:<span> 100,000원</span></li>
+                        <li>입찰인원:<span> 1,000명</span></li>
+                        <li>남은 시간:<span class="date_now"></span></li>
                       </ul>
                     </div>
                   </div>
@@ -96,7 +92,7 @@
           </div>
         </div>
         <!-- 제품 설명, 경매기록, 댓글 nav tabs -->
-        <div class="item_nav">
+        <div class="items_nav">
           <ul class="nav justify-content-center">
             <li class="nav-item detail active">
               <a class="nav-link" aria-current="page" href="">제품 설명</a>
