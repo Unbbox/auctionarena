@@ -92,7 +92,7 @@ function getTime() {
   minute = today.getMinutes();
   second = today.getSeconds();
 
-  date = year + "년 " + month + "월 " + day + "일 " + hour + ":" + minute + ":" + second;
+  date = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 
   document.querySelector(".date_now").innerText = date;
 
