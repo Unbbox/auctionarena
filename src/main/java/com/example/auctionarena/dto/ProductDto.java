@@ -31,6 +31,7 @@ public class ProductDto {
     private String category; // 카테고리 분류
 
     private String writerName; // 작성자 이름
+
     private Long replyCount; // 게시글 댓글 수
 
     @NotBlank(message = "경매 시작 가격을 입력해주세요")

@@ -1,6 +1,7 @@
 package com.example.auctionarena.repository;
 
 import com.example.auctionarena.entity.Category;
+import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 
@@ -30,6 +31,7 @@ public class ProductRepositoryTest {
                     .content("개쩌는 상품..!" + i)
                     .startPrice(i * 1000L)
                     .biddingDate((i % 7L))
+                    .member(Member.builder().mid(i % 5L).build())
                     .category(Category.builder().cno(i % 5L).build())
                     .build();
             productRepository.save(product);
