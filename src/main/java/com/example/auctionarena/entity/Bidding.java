@@ -45,7 +45,6 @@ public class Bidding extends BaseEntity {
 
   @OneToOne(fetch = FetchType.LAZY)
   private Product product;
-
-  @OneToMany(fetch = FetchType.LAZY)
-  private Member member;
+  // @OneToMany(fetch = FetchType.LAZY)
+  // private Member member;
 }
