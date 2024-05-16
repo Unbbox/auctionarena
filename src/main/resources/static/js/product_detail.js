@@ -85,12 +85,12 @@ function imgChange(cnt) {
 // 현재 시간 표시
 function getTime() {
   today = new Date();
-  year = today.getFullYear();
-  month = today.getMonth() + 1;
-  day = today.getDate();
-  hour = today.getHours();
-  minute = today.getMinutes();
-  second = today.getSeconds();
+  year = String(today.getFullYear()).padStart(4, "0");
+  month = String(today.getMonth() + 1).padStart(2, "0");
+  day = String(today.getDate()).padStart(2, "0");
+  hour = String(today.getHours()).padStart(2, "0");
+  minute = String(today.getMinutes()).padStart(2, "0");
+  second = String(today.getSeconds()).padStart(2, "0");
 
   date = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
 
