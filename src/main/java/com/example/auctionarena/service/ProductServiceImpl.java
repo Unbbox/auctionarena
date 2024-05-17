@@ -7,7 +7,6 @@ import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,9 +29,9 @@ public class ProductServiceImpl implements ProductService {
   public List<ProductDto> getList() {
     List<Product> list = productRepository.findAll();
     List<ProductDto> productList = list
-        .stream()
-        .map(product -> entityToDto(product, null))
-        .collect(Collectors.toList());
+      .stream()
+      .map(product -> entityToDto(product, null))
+      .collect(Collectors.toList());
 
     return productList;
   }
@@ -40,11 +39,9 @@ public class ProductServiceImpl implements ProductService {
   // 제품 상세 페이지
   @Override
   public ProductDto getRow(Long pno) {
-
     Product entity = productRepository.findById(pno).get();
 
     return entityToDto(entity, null);
-
     /*
      * // 나중에 도전
      */
