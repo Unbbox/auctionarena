@@ -25,33 +25,40 @@ import lombok.ToString;
 @Entity
 public class Product extends BaseEntity {
 
-    @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
-    @Id
-    private Long pno;
+  @SequenceGenerator(
+    name = "product_seq_gen",
+    sequenceName = "product_seq",
+    allocationSize = 1
+  )
+  @GeneratedValue(
+    strategy = GenerationType.SEQUENCE,
+    generator = "product_seq_gen"
+  )
+  @Id
+  private Long pno;
 
-    private String title;
+  private String title;
 
-    private String content;
+  private String content;
 
-    private Long startPrice;
+  private Long startPrice;
 
-    private Long biddingDate;
+  private Long biddingDate;
 
-    // 멤버 관련
-    // member.nickname
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+  // 멤버 관련
+  // member.nickname
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Member member;
 
-    // 응찰 관련
-    // bidding.startPrice , bidding.biddingDate
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // private Bidding bidding;
+  // 응찰 관련
+  // bidding.startPrice , bidding.biddingDate
+  // @ManyToOne(fetch = FetchType.LAZY)
+  // private Bidding bidding;
 
-    // 카테고리 관련
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Category category;
+  // 카테고리 관련
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Category category;
+  // 이미지 관련
+  // private ProductImage productImage;
 
-    // 이미지 관련
-    // private ProductImage productImage;
 }

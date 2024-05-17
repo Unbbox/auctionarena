@@ -10,18 +10,24 @@ import com.example.auctionarena.entity.Product;
 import java.util.List;
 
 public interface ProductService {
-  List<ProductDto> getList();
+  //   List<ProductDto> getList();
+
+  PageResultDto<ProductDto, Object[]> getList(PageRequestDto requestDto);
 
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product, Long replyCnt) {
+  public default ProductDto entityToDto(
+    Product product,
+    Member member,
+    Long replyCnt
+  ) {
     return ProductDto
       .builder()
       .pno(product.getPno())
       .title(product.getTitle())
       .content(product.getContent())
-      // .writerName(product.getMember().getNickname())
+      .writerName(member.getNickname())
       .replyCnt(replyCnt != null ? replyCnt : 0)
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())

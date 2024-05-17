@@ -1,5 +1,6 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.service.ProductService;
 import java.util.List;
@@ -8,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("auctionArena")
@@ -20,11 +22,13 @@ public class AuctionController {
 
   // 전체 상품
   @GetMapping("/categories")
-  public String getAllCategory(Model model) {
+  public String getAllCategory(
+    @ModelAttribute("requestDto") PageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
 
-    List<ProductDto> list = service.getList();
-    model.addAttribute("list", list);
+    model.addAttribute("result", service.getList(requestDto));
 
     return "auctionArena/categories";
   }
