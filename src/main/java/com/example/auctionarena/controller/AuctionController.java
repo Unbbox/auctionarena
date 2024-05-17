@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuctionController {
 
   // 전체 상품
+  @GetMapping("/categories")
+  public String getAllCategory() {
+    log.info("전체 상품 목록 페이지 요청");
+
+    return "auctionArena/categories";
+  }
+
   @GetMapping("/fashion-category")
   public String getFashionCategory() {
     log.info("전체 상품 목록 페이지 요청");
