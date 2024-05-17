@@ -1,11 +1,14 @@
 package com.example.auctionarena.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
@@ -33,12 +36,13 @@ public class Bidding extends BaseEntity {
     // @Column(nullable = false)
     private Long biddingPrice;
 
+    // BaseEntity 있어서 안해도 될듯?
     // @Column(nullable = false)
-    private Long biddingDate;
+    // private String biddingTime;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
-    // @OneToMany(fetch = FetchType.LAZY)
-    // private Member member;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member member;
 }

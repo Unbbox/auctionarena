@@ -1,10 +1,12 @@
 package com.example.auctionarena.repository;
 
+import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.UUID;
 import java.util.stream.IntStream;
@@ -20,6 +22,9 @@ public class ProductRepositoryTest {
 
     @Autowired
     private ProductImageRepository productImageRepository;
+
+    @Autowired
+    private BiddingRepository biddingRepository;
 
     // 완성 X
     @Test
@@ -44,16 +49,36 @@ public class ProductRepositoryTest {
                     .build();
             productRepository.save(product);
 
-            // int count = (int) (Math.random() * 10) + 1;
+            int count = (int) (Math.random() * 10) + 1;
 
-            // for (int j = 0; j < count; j++) {
-            // ProductImage pImage = ProductImage.builder()
-            // .uuid(UUID.randomUUID().toString())
-            // .product(product)
-            // .imgName("img" + j + ".jpg")
-            // .build();
-            // productImageRepository.save(pImage);
-            // }
+            for (int j = 0; j < count; j++) {
+                ProductImage pImage = ProductImage.builder()
+                        .uuid(UUID.randomUUID().toString())
+                        .product(product)
+                        .imgName("img" + j + ".jpg")
+                        .build();
+                productImageRepository.save(pImage);
+            }
+        });
+    }
+
+    @Test
+    public void biddingDataInsertTest() {
+        // 응찰 관련 데이터 삽입
+        IntStream.rangeClosed(1, 50).forEach(i -> {
+
+            Long pno = (long) (Math.random() * 51) + 51;
+            Product product = Product.builder().pno(pno).build();
+
+            Long mid = (long) (Math.random() * 95) + 1;
+            Member member = Member.builder().mid(mid).build();
+
+            Bidding bidding = Bidding.builder()
+                    .biddingPrice(i * 10000L)
+                    .product(product)
+                    .member(member)
+                    .build();
+            biddingRepository.save(bidding);
         });
     }
 
