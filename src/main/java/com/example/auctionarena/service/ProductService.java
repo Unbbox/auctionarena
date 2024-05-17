@@ -1,5 +1,7 @@
 package com.example.auctionarena.service;
 
+import com.example.auctionarena.dto.CategoryPageRequestDto;
+import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
@@ -11,7 +13,11 @@ import com.example.auctionarena.entity.ProductImage;
 import java.util.List;
 
 public interface ProductService {
-  List<ProductDto> getList();
+  //   List<ProductDto> getList();
+
+  CategoryPageResultDto<ProductDto, Object[]> getList(
+    CategoryPageRequestDto requestDto
+  );
 
   // 제품 상세 페이지 요청
   ProductDto getRow(Long pno);
@@ -19,20 +25,24 @@ public interface ProductService {
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product, Member member, Long replyCnt) {
+  public default ProductDto entityToDto(
+    Product product,
+    Member member,
+    Long replyCnt
+  ) {
     return ProductDto
-        .builder()
-        .pno(product.getPno())
-        .title(product.getTitle())
-        .content(product.getContent())
-        .writerName(product.getMember().getNickname())
-        .replyCnt(replyCnt != null ? replyCnt : 0)
-        .startPrice(product.getStartPrice())
-        .biddingDate(product.getBiddingDate())
-        .category(product.getCategory().getCategoryName())
-        .createdDate(product.getCreatedDate())
-        .lastModifiedDate(product.getLastModifiedDate())
-        .build();
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      .writerName(product.getMember().getNickname())
+      .replyCnt(replyCnt != null ? replyCnt : 0)
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .category(product.getCategory().getCategoryName())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
   }
 
   // dto => entity
@@ -41,20 +51,20 @@ public interface ProductService {
     // bidding을 꼭 넣어야하는가?
     // Bidding bidding = Bidding.builder().build();
     Category category = Category
-        .builder()
-        .categoryName(dto.getCategory())
-        .build();
+      .builder()
+      .categoryName(dto.getCategory())
+      .build();
 
     return Product
-        .builder()
-        .pno(dto.getPno())
-        .title(dto.getTitle())
-        .content(dto.getContent())
-        .startPrice(dto.getStartPrice())
-        .biddingDate(dto.getBiddingDate())
-        .member(member)
-        // .bidding(bidding)
-        .category(category)
-        .build();
+      .builder()
+      .pno(dto.getPno())
+      .title(dto.getTitle())
+      .content(dto.getContent())
+      .startPrice(dto.getStartPrice())
+      .biddingDate(dto.getBiddingDate())
+      .member(member)
+      // .bidding(bidding)
+      .category(category)
+      .build();
   }
 }

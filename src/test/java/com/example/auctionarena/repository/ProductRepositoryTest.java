@@ -28,7 +28,7 @@ public class ProductRepositoryTest {
   @Test
   public void productInsertTest() {
     IntStream
-      .rangeClosed(1, 50)
+      .rangeClosed(1, 300)
       .forEach(i -> {
         Long cno = (long) (Math.random() * 6) + 1;
         Category category = Category.builder().cno(cno).build();

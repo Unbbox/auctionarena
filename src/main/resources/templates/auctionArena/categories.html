@@ -144,7 +144,7 @@
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${result.dtoList}">
                   <div class="products__item" >  
                     <div class="products__item__pic set-bg link" data-setbg="/img/fashion/신발2.png">
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
@@ -277,14 +277,10 @@
               </div>
             </div>
             
-            <div class="products__pagination">
-              <a href="#"><i class="fa fa-angle-double-left"></i></a>
-              <a href="#" class="current-page">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#"><i class="fa fa-angle-double-right"></i></a>
+            <div class="products__pagination justify-content-center">
+              <td th:if="${result.prev}"><a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a></td>
+              <td th:each="page : ${result.pageList}"><a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a></td>
+              <td th:if="${result.next}"><a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}" ><i class="fa fa-angle-double-right"></i></a></td>
             </div>
           </div>
           

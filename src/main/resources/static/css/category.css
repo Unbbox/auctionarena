@@ -236,6 +236,10 @@
   text-align: center;
 }
 
+.products__pagination li {
+  list-style: none;
+}
+
 .products__pagination a {
   display: inline-block;
   font-size: 15px;

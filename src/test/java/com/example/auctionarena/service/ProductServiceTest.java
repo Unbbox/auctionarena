@@ -9,9 +9,8 @@ public class ProductServiceTest {
 
   @Autowired
   private ProductService service;
-
-  @Test
-  public void serviceList() {
-    System.out.println(service.getList());
-  }
+  //   @Test
+  //   public void serviceList() {
+  //     System.out.println(service.getList());
+  //   }
 }
