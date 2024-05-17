@@ -56,7 +56,7 @@
                   <a th:href="@{notice(page=${result.start-1}, type=${requestDto.type}, keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a>
                 </li>
                 <!-- <a href="#" class="current-page">1</a> -->
-                <li th:class="'page-item ' + ${result.page == page? 'active':''}" th:each="page : ${result.pageList}">
+                <li th:class="'page-item ' + ${result.page == page? 'notice-active':''}" th:each="page : ${result.pageList}">
                   <a th:href="@{notice(page=${page}, type=${requestDto.type}, keyword=${requestDto.keyword})}" th:text="${page}"></a>
                 </li>
                 <li th:if="${result.next}">
@@ -64,7 +64,7 @@
                 </li>
               </div>
             </div>
-            <button class="create-notice-btn" type="submit">작성</button>
+            <a class="notice-details-btn" th:href="@{notice-create}">작성</a>
           </div>
         </div>
       </div>
