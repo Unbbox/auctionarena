@@ -2,6 +2,7 @@ package com.example.auctionarena.repository;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Notice;
+import com.example.auctionarena.entity.NoticeImage;
 
 import jakarta.transaction.Transactional;
 
@@ -24,9 +26,12 @@ public class NoticeRepositoryTest {
     @Autowired
     private NoticeRepository noticeRepository;
 
+    @Autowired
+    private NoticeImageRepository noticeImageRepository;
+
     @Test
     public void noticeInsert() {
-        LongStream.rangeClosed(101, 199).forEach(i -> {
+        LongStream.rangeClosed(1, 100).forEach(i -> {
             Member member = Member.builder().mid(i).nickname("USER" + i).build();
 
             Notice notice = Notice.builder()
@@ -35,6 +40,18 @@ public class NoticeRepositoryTest {
                     .writer(member)
                     .build();
             noticeRepository.save(notice);
+
+            // 이미지 샘플 추가
+            int count = (int) (Math.random() * 5) + 1;
+
+            for (int j = 0; j < count; j++) {
+                NoticeImage nImage = NoticeImage.builder()
+                        .nuuid(UUID.randomUUID().toString())
+                        .notice(notice)
+                        .nimgName("img" + j + ".jpg")
+                        .build();
+                noticeImageRepository.save(nImage);
+            }
         });
     }
 
