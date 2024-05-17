@@ -8,9 +8,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__links">
-              <a href="./index.html"><i class="fa fa-home"></i> 카테고리</a>
-              <a href="./categories.html">큰 카테고리</a>
-              <span>작은 카테고리</span>
+              <a th:href="@{index}"><i class="fa fa-home"></i> 전체</a>
+              <a th:href="@{categories}" th:text="${dto.category}">큰 카테고리</a>
             </div>
           </div>
         </div>
@@ -46,7 +45,7 @@
             <div class="col-lg-9">
               <div class="anime__details__text">
                 <div class="anime__details__title">
-                  <h3>상품제목</h3>
+                  <h3 th:text="${dto.productName}"></h3>
                   <span>판매자 : 김재인</span>
                   <span>배송방법 : 착불</span>
                 </div>
