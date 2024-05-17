@@ -9,7 +9,7 @@
           <div class="col-lg-12">
             <div class="breadcrumb__links">
               <a href=""><i class="fa fa-home"></i> 전체</a>
-              <a href="">큰 카테고리</a>
+              <a href="">[[${dto.category}]]</a>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
               <div class="anime__details__text">
                 <div class="anime__details__title">
                   <h3 th:text="${dto.title}">제품명</h3>
-                  판매자 : <span th:value="${dto.writerName}">김재인</span>
+                  판매자 : <span th:value="${dto.writerName}">[[${dto.writerName}]]</span>
                   배송방법 : <span>착불</span>
                 </div>
                 
@@ -60,7 +60,7 @@
                     <div class="col-lg-8 col-md-8">
                     <!-- <div> -->
                       <ul>
-                        <li>경매시작가:<span> 100,000원</span></li>
+                        <li>경매시작가:<span> [[${dto.startPrice}]]원</span></li>
                         <li>입찰인원:<span> 1,000명</span></li>
                         <li>남은 시간:<span class="date_now"></span></li>
                       </ul>

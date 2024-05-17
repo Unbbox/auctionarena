@@ -19,13 +19,13 @@ public interface ProductService {
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product, Long replyCnt) {
+  public default ProductDto entityToDto(Product product, Member member, Long replyCnt) {
     return ProductDto
         .builder()
         .pno(product.getPno())
         .title(product.getTitle())
         .content(product.getContent())
-        // .writerName(product.getMember().getNickname())
+        .writerName(product.getMember().getNickname())
         .replyCnt(replyCnt != null ? replyCnt : 0)
         .startPrice(product.getStartPrice())
         .biddingDate(product.getBiddingDate())
@@ -37,7 +37,7 @@ public interface ProductService {
 
   // dto => entity
   public default Product dtoToEntity(ProductDto dto) {
-    Member member = Member.builder().email(dto.getWriterName()).build();
+    Member member = Member.builder().nickname(dto.getWriterName()).build();
     // bidding을 꼭 넣어야하는가?
     // Bidding bidding = Bidding.builder().build();
     Category category = Category
@@ -52,7 +52,7 @@ public interface ProductService {
         .content(dto.getContent())
         .startPrice(dto.getStartPrice())
         .biddingDate(dto.getBiddingDate())
-        // .member(member)
+        .member(member)
         // .bidding(bidding)
         .category(category)
         .build();
