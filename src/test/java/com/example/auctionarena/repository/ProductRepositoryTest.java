@@ -26,7 +26,6 @@ public class ProductRepositoryTest {
     @Autowired
     private BiddingRepository biddingRepository;
 
-    // 완성 X
     @Test
     public void productInsertTest() {
 
@@ -67,10 +66,10 @@ public class ProductRepositoryTest {
         // 응찰 관련 데이터 삽입
         IntStream.rangeClosed(1, 50).forEach(i -> {
 
-            Long pno = (long) (Math.random() * 51) + 51;
+            Long pno = (long) (Math.random() * 50) + 2;
             Product product = Product.builder().pno(pno).build();
 
-            Long mid = (long) (Math.random() * 95) + 1;
+            Long mid = (long) (Math.random() * 99) + 1;
             Member member = Member.builder().mid(mid).build();
 
             Bidding bidding = Bidding.builder()
