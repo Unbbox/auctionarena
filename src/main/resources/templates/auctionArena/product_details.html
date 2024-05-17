@@ -8,8 +8,8 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__links">
-              <a th:href="@{index}"><i class="fa fa-home"></i> 전체</a>
-              <a th:href="@{categories}" th:text="${dto.category}">큰 카테고리</a>
+              <a href=""><i class="fa fa-home"></i> 전체</a>
+              <a href="">큰 카테고리</a>
             </div>
           </div>
         </div>
@@ -45,9 +45,9 @@
             <div class="col-lg-9">
               <div class="anime__details__text">
                 <div class="anime__details__title">
-                  <h3 th:text="${dto.productName}"></h3>
-                  <span>판매자 : 김재인</span>
-                  <span>배송방법 : 착불</span>
+                  <h3 th:text="${dto.title}">제품명</h3>
+                  판매자 : <span th:value="${dto.writerName}">김재인</span>
+                  배송방법 : <span>착불</span>
                 </div>
                 
                 <!-- <p>
@@ -120,7 +120,7 @@
             <table class="w-full whitespace-no-wrap">
               <thead>
                 <tr
-                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-white-400 dark:bg-gray-800"
+                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
                   <th class="px-4 py-3">번호</th>
                   <th class="px-4 py-3">닉네임</th>
@@ -131,11 +131,11 @@
               <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <tr class="text-gray-700 dark:text-white-400">
                   <td class="px-4 py-3">1</td>
-                  <td class="px-4 py-3">user1</td>
-                  <td class="px-4 py-3">15000</td>
-                  <td class="px-4 py-3">2024/05/09 12:46</td>
+                  <td class="px-4 py-3">입찰자1</td>
+                  <td class="px-4 py-3">입찰가격</td>
+                  <td class="px-4 py-3">입찰시간 12:46</td>
                 </tr>
-                <tr class="text-gray-700 dark:text-white-400">
+                <!-- <tr class="text-gray-700 dark:text-white-400">
                   <td class="px-4 py-3">2</td>
                   <td class="px-4 py-3">user2</td>
                   <td class="px-4 py-3">13000</td>
@@ -146,7 +146,7 @@
                   <td class="px-4 py-3">user3</td>
                   <td class="px-4 py-3">21500</td>
                   <td class="px-4 py-3">2024/05/09 14:27</td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
           </div>
@@ -318,5 +318,4 @@
       </div>
     </section>
     <!-- Anime Section End -->
-  </body>
 </html>

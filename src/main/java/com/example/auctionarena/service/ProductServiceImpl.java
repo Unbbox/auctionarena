@@ -41,9 +41,9 @@ public class ProductServiceImpl implements ProductService {
   @Override
   public ProductDto getRow(Long pno) {
 
-    Product enitty = productRepository.findById(pno).get();
+    Product entity = productRepository.findById(pno).get();
 
-    return entityToDto(enitty, null);
+    return entityToDto(entity, null);
 
     /*
      * // 나중에 도전

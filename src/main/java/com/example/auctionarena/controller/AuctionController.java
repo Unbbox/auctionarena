@@ -70,7 +70,10 @@ public class AuctionController {
   public void getDetails(@RequestParam Long pno, Model model) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
-    model.addAttribute("dto", service.getRow(pno));
+    ProductDto dto = service.getRow(pno);
+    log.info("제품 상세 출력 >> {}", dto);
+
+    model.addAttribute("dto", dto);
   }
 
 }

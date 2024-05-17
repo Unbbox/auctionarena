@@ -29,7 +29,7 @@ public class ProductDto {
     private String content; // 게시글 내용
 
     // 카테고리 관계
-    private String cName; // 카테고리 분류
+    private String category; // 카테고리 분류
 
     // 멤버 관계
     private String writerName; // 작성자 이름
@@ -48,6 +48,8 @@ public class ProductDto {
     // 제품이미지 리스트
     // @Builder.Default
     // private List<ProductImageDto> productImageDtos = new ArrayList<>();
+
+    // 응찰 관련 리스트
 
     private LocalDateTime createdDate;
     private LocalDateTime lastModifiedDate;
