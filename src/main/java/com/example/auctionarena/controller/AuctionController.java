@@ -1,19 +1,30 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.service.ProductService;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RequestMapping("auctionArena")
 @Log4j2
 @Controller
+@RequiredArgsConstructor
 public class AuctionController {
+
+  private final ProductService service;
 
   // 전체 상품
   @GetMapping("/categories")
-  public String getAllCategory() {
+  public String getAllCategory(Model model) {
     log.info("전체 상품 목록 페이지 요청");
+
+    List<ProductDto> list = service.getList();
+    model.addAttribute("list", list);
 
     return "auctionArena/categories";
   }

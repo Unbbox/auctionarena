@@ -144,20 +144,20 @@
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}">
+                  <div class="products__item" >  
                     <div class="products__item__pic set-bg link" data-setbg="/img/fashion/신발2.png">
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
                     </div>
                     <div class="products__item__text">
-                      <h5><a href="#">상품명</a></h5>
+                      <h5><a href="#" th:text="${dto.title}"></a></h5>
                       <ul>
-                        <li><a href="#">200,000원~</a></li>
+                        <li><a href="#" th:text="${dto.startPrice}"></a></li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
+                <!-- <div class="col-lg-2 col-md-4 col-sm-6">
                   <div class="products__item">  
                     <div class="products__item__pic set-bg" data-setbg="/img/popular/popular-1.jpg">
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
@@ -260,8 +260,8 @@
                       </ul>
                     </div>
                   </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
+                </div> -->
+                <!-- <div class="col-lg-2 col-md-4 col-sm-6">
                   <div class="products__item">  
                     <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
@@ -273,7 +273,7 @@
                       </ul>
                     </div>
                   </div>
-                </div>                                 
+                </div>                                  -->
               </div>
             </div>
             
