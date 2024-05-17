@@ -27,14 +27,14 @@
                     <textarea class="form-control" type="text" name="content" id="content" rows="10">[[${dto.content}]]</textarea>
                   </div>
                   <div class="blog__details__text">
-                    <button class="notice-remove-btn" type="button">삭제</button>
-                    <button class="notice-create-btn" type="submit">수정</button>
                     <a
                     class="notice-details-btn"
                     th:href="@{notice(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
                   >
                     목록
                   </a>
+                    <button class="notice-details-btn" type="button">삭제</button>
+                    <button class="notice-details-btn" type="submit">수정</button>
                   </div>
                   <input type="hidden" name="nno" th:value="${dto.nno}">
                 </form>
