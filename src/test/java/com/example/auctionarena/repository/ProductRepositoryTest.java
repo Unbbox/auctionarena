@@ -20,11 +20,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class ProductRepositoryTest {
 
-  @Autowired
-  private ProductRepository productRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
-  @Autowired
-  private ProductImageRepository productImageRepository;
+    @Autowired
+    private ProductImageRepository productImageRepository;
 
     @Autowired
     private BiddingRepository biddingRepository;
@@ -32,14 +32,12 @@ public class ProductRepositoryTest {
     @Test
     public void productInsertTest() {
 
-    IntStream
-      .rangeClosed(1, 50)
-      .forEach(i -> {
-        Long cno = (long) (Math.random() * 6) + 1;
-        Category category = Category.builder().cno(cno).build();
+        IntStream.rangeClosed(1, 50).forEach(i -> {
+            Long cno = (long) (Math.random() * 6) + 1;
+            Category category = Category.builder().cno(cno).build();
 
-        Long mid = (long) (Math.random() * 99) + 1;
-        Member member = Member.builder().mid(mid).build();
+            Long mid = (long) (Math.random() * 99) + 1;
+            Member member = Member.builder().mid(mid).build();
 
             Long mid = (long) (Math.random() * 99) + 1;
             Member member = Member.builder().mid(mid).build();
@@ -87,14 +85,15 @@ public class ProductRepositoryTest {
         });
     }
 
-        // for (int j = 0; j < count; j++) {
-        // ProductImage pImage = ProductImage.builder()
-        // .uuid(UUID.randomUUID().toString())
-        // .product(product)
-        // .imgName("img" + j + ".jpg")
-        // .build();
-        // productImageRepository.save(pImage);
-        // }
-      });
-  }
+            // for (int j = 0; j < count; j++) {
+            // ProductImage pImage = ProductImage.builder()
+            // .uuid(UUID.randomUUID().toString())
+            // .product(product)
+            // .imgName("img" + j + ".jpg")
+            // .build();
+            // productImageRepository.save(pImage);
+            // }
+        });
+    }
+
 }

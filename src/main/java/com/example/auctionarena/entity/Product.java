@@ -50,7 +50,7 @@ public class Product extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   private Member member;
 
-  // 응찰 관련(이거도 넣을 필요 없을수도)
+  // 응찰 관련
   // bidding.startPrice , bidding.biddingDate
   // @ManyToOne(fetch = FetchType.LAZY)
   // private Bidding bidding;
@@ -59,8 +59,5 @@ public class Product extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   private Category category;
   // 이미지 관련
-  // private ProductImage productImage;
-
-  // 이미지 관련(넣을 필요 없을듯)
   // private ProductImage productImage;
 }

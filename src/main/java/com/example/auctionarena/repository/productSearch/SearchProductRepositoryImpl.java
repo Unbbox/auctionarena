@@ -31,7 +31,7 @@ public class SearchProductRepositoryImpl
   @Override
   public Page<Object[]> list(String type, String keyword, Pageable pageable) {
     // log.info("Board + Reply + Member join");
-    QProduct product = QProduct.product;
+
     QMember member = QMember.member;
 
     JPQLQuery<Product> query = from(product);

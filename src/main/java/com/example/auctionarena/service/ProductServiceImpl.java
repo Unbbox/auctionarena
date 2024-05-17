@@ -3,14 +3,12 @@ package com.example.auctionarena.service;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
-import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -28,19 +26,14 @@ public class ProductServiceImpl implements ProductService {
   private final ProductImageRepository productImageRepository;
 
   @Override
-  public PageResultDto<ProductDto, Object[]> getList(
-    PageRequestDto requestDto
-  ) {
-    Page<Object[]> result = productRepository.list(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+  public List<ProductDto> getList() {
+    List<Product> list = productRepository.findAll();
+    List<ProductDto> productList = list
+      .stream()
+      .map(product -> entityToDto(product, null))
+      .collect(Collectors.toList());
 
-    Function<Object[], ProductDto> fn =
-      (entity -> entityToDto((Product) entity[0], (Member) entity[1], null));
-    // return result.stream().map(fn).collect(Collectors.toList());
-    return new PageResultDto<>(result, fn);
+    return productList;
   }
 
   // 제품 상세 페이지

@@ -11,9 +11,7 @@ import com.example.auctionarena.entity.ProductImage;
 import java.util.List;
 
 public interface ProductService {
-  //   List<ProductDto> getList();
-
-  PageResultDto<ProductDto, Object[]> getList(PageRequestDto requestDto);
+  List<ProductDto> getList();
 
   // 제품 상세 페이지 요청
   ProductDto getRow(Long pno);
@@ -22,27 +20,6 @@ public interface ProductService {
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
   public default ProductDto entityToDto(Product product, Long replyCnt) {
-    return ProductDto
-      .builder()
-      .pno(product.getPno())
-      .title(product.getTitle())
-      .content(product.getContent())
-      // .writerName(product.getMember().getNickname())
-      .replyCnt(replyCnt != null ? replyCnt : 0)
-      .startPrice(product.getStartPrice())
-      .biddingDate(product.getBiddingDate())
-      .category(product.getCategory().getCategoryName())
-      .createdDate(product.getCreatedDate())
-      .lastModifiedDate(product.getLastModifiedDate())
-      .build();
-  }
-
-  // 제품 상세 페이지용 임시
-  public default ProductDto entityToDto(
-    Product product,
-    List<ProductImage> productImages,
-    Long replyCnt
-  ) {
     return ProductDto
       .builder()
       .pno(product.getPno())

@@ -212,6 +212,9 @@
 
 .products__item__text ul li {
   list-style: none;
+}
+.products__item__text ul li a {
+  list-style: none;
   font-size: 20px;
   color: #111111;
   font-weight: 700;
@@ -233,11 +236,7 @@
   text-align: center;
 }
 
-.products__pagination li {
-  list-style: none;
-}
-
-.products__pagination li a {
+.products__pagination a {
   display: inline-block;
   font-size: 15px;
   color: #b7b7b7;
