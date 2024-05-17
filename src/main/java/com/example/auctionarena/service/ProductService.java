@@ -7,6 +7,7 @@ import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.entity.ProductImage;
 import java.util.List;
 
 public interface ProductService {
@@ -14,12 +15,32 @@ public interface ProductService {
 
   PageResultDto<ProductDto, Object[]> getList(PageRequestDto requestDto);
 
+  // 제품 상세 페이지 요청
+  ProductDto getRow(Long pno);
+
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
+  public default ProductDto entityToDto(Product product, Long replyCnt) {
+    return ProductDto
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      // .writerName(product.getMember().getNickname())
+      .replyCnt(replyCnt != null ? replyCnt : 0)
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .category(product.getCategory().getCategoryName())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
+  }
+
+  // 제품 상세 페이지용 임시
   public default ProductDto entityToDto(
     Product product,
-    Member member,
+    List<ProductImage> productImages,
     Long replyCnt
   ) {
     return ProductDto
@@ -27,11 +48,11 @@ public interface ProductService {
       .pno(product.getPno())
       .title(product.getTitle())
       .content(product.getContent())
-      .writerName(member.getNickname())
+      // .writerName(product.getMember().getNickname())
       .replyCnt(replyCnt != null ? replyCnt : 0)
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
-      .cno(product.getCategory().getCno())
+      .category(product.getCategory().getCategoryName())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();
@@ -42,7 +63,10 @@ public interface ProductService {
     Member member = Member.builder().email(dto.getWriterName()).build();
     // bidding을 꼭 넣어야하는가?
     // Bidding bidding = Bidding.builder().build();
-    Category category = Category.builder().cno(dto.getCno()).build();
+    Category category = Category
+      .builder()
+      .categoryName(dto.getCategory())
+      .build();
 
     return Product
       .builder()

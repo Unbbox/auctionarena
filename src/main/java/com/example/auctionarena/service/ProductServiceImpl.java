@@ -5,7 +5,10 @@ import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -22,6 +25,7 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;
+  private final ProductImageRepository productImageRepository;
 
   @Override
   public PageResultDto<ProductDto, Object[]> getList(
@@ -38,14 +42,28 @@ public class ProductServiceImpl implements ProductService {
     // return result.stream().map(fn).collect(Collectors.toList());
     return new PageResultDto<>(result, fn);
   }
-  //   @Override
-  //   public List<ProductDto> getList() {
-  //     List<Product> list = productRepository.findAll();
-  //     List<ProductDto> productList = list
-  //       .stream()
-  //       .map(product -> entityToDto(product, null))
-  //       .collect(Collectors.toList());
 
-  //     return productList;
-  //   }
+  // 제품 상세 페이지
+  @Override
+  public ProductDto getRow(Long pno) {
+    Product entity = productRepository.findById(pno).get();
+
+    return entityToDto(entity, null);
+    /*
+     * // 나중에 도전
+     */
+    // List<Object[]> result = productImageRepository.getProductRow(pno);
+    // Product product = (Product) result.get(0)[0];
+
+    // // result 길이만큼 반복
+    // List<ProductImage> productImages = new ArrayList<>();
+    // result.forEach(arr -> {
+    // ProductImage productImage = (ProductImage) arr[1];
+    // productImage.add(productImage);
+    // });
+
+    // Long reviewCnt = (Long) result.get(0)[2];
+
+    // return entityToDto(product, productImages, reviewCnt);
+  }
 }

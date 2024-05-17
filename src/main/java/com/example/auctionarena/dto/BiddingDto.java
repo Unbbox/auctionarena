@@ -22,7 +22,7 @@ public class BiddingDto {
 
     private Long mid; // 멤버 번호
 
-    private Long startPrice;
+    private Long biddingPrice;
 
-    private Long biddingDate;
+    private Long biddingTime;
 }
