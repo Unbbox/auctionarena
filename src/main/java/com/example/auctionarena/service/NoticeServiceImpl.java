@@ -20,6 +20,7 @@ import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.NoticeImageRepository;
 import com.example.auctionarena.repository.NoticeRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -94,9 +95,13 @@ public class NoticeServiceImpl implements NoticeService {
         noticeRepository.save(entity);
     }
 
+    @Transactional
     @Override
     public void noticeRemove(Long nno) {
-        noticeRepository.deleteById(nno);
+        Notice notice = Notice.builder().nno(nno).build();
+
+        noticeImageRepository.deleteByNotice(notice);
+        noticeRepository.delete(notice);
     }
 
 }

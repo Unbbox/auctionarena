@@ -44,7 +44,7 @@ public class NoticeController {
     @PostMapping("/notice-modify")
     public String postModify(NoticeDto dto, RedirectAttributes rttr,
             @ModelAttribute("requestDto") PageRequestDto requestDto) {
-        log.info("modify 요청", dto);
+        log.info("modify 요청 {}", dto);
 
         service.modify(dto);
 
@@ -56,11 +56,12 @@ public class NoticeController {
     }
 
     @PostMapping("/notice-remove")
-    public String postRemove(Long nno, RedirectAttributes rttr,
+    public String postRemove(@RequestParam Long nno, RedirectAttributes rttr,
             @ModelAttribute("requestDto") PageRequestDto requestDto) {
-        log.info("remove 요청", nno);
+        log.info("remove 요청 {}", nno);
 
         service.noticeRemove(nno);
+
         rttr.addAttribute("page", requestDto.getPage());
         rttr.addAttribute("type", requestDto.getType());
         rttr.addAttribute("keyword", requestDto.getKeyword());
