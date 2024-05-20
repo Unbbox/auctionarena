@@ -14,6 +14,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import com.example.auctionarena.dto.NoticeDto;
+import com.example.auctionarena.dto.PageRequestDto;
+import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Notice;
 import com.example.auctionarena.entity.NoticeImage;
@@ -55,11 +58,28 @@ public class NoticeRepositoryTest {
         });
     }
 
-    @Test
-    public void noticeList() {
-        PageRequest pageRequest = PageRequest.of(0, 10, Sort.by("nno").descending());
+    // @Test
+    // public void noticeList() {
+    // PageRequest pageRequest = PageRequest.of(0, 10);
 
-        Page<Object[]> list = noticeRepository.list("tcw", "Title", pageRequest);
+    // Page<Object[]> list = noticeRepository.getList("t", "Title", pageRequest);
+
+    // for (Object[] objects : list) {
+    // System.out.println(Arrays.toString(objects));
+    // }
+    // }
+
+    @Test
+    public void noiceImageList() {
+        PageRequestDto requestDto = PageRequestDto.builder()
+                .type("t")
+                .keyword("Title")
+                .page(1)
+                .size(10)
+                .build();
+
+        Page<Object[]> list = noticeImageRepository.getList(requestDto.getType(), requestDto.getKeyword(),
+                requestDto.getPageable(Sort.by("nno").descending()));
 
         for (Object[] objects : list) {
             System.out.println(Arrays.toString(objects));
@@ -69,9 +89,15 @@ public class NoticeRepositoryTest {
     @Transactional
     @Test
     public void noticeRead() {
-        Notice notice = noticeRepository.findById(1L).get();
-        System.out.println(notice);
-        System.out.println(notice.getWriter());
+        // Notice notice = noticeRepository.findById(1L).get();
+        // System.out.println(notice);
+        // System.out.println(notice.getWriter());
+
+        List<Object[]> resuList = noticeImageRepository.getRow(1L);
+
+        for (Object[] objects : resuList) {
+            System.out.println(Arrays.toString(objects));
+        }
     }
 
     @Transactional

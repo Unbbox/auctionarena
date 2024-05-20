@@ -3,6 +3,7 @@ package com.example.auctionarena.controller;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class AuctionController {
 
   private final ProductService service;
+  private final DetailService detailService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -76,9 +78,9 @@ public class AuctionController {
   public void getDetails(@RequestParam Long pno, Model model) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
-    ProductDto dto = service.getRow(pno);
+    ProductDto dto = detailService.getRow(pno);
     log.info("제품 상세 출력 >> {}", dto);
 
-    model.addAttribute("dto", dto);
+    model.addAttribute("dto", detailService.getRow(pno));
   }
 }

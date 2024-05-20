@@ -1,10 +1,9 @@
 package com.example.auctionarena.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,4 +28,7 @@ public class NoticeDto {
     private LocalDateTime createdDate;
 
     private LocalDateTime lastModifiedDate;
+
+    @Builder.Default
+    private List<NoticeImageDto> noticeImageDtos = new ArrayList<>();
 }

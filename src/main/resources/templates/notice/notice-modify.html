@@ -33,11 +33,30 @@
                   >
                     목록
                   </a>
-                    <button class="notice-details-btn" type="button">삭제</button>
+                    <button class="notice-details-btn remove" type="button">삭제</button>
                     <button class="notice-details-btn" type="submit">수정</button>
                   </div>
                   <input type="hidden" name="nno" th:value="${dto.nno}">
                 </form>
+
+                <div class="uploadResult mt-4">
+                  <!-- 기존에 이미 있는 포스터 보여주기 + 포스터 수정-->
+                  <ul>
+                    <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}, data-name=${image.getNimgName()}, data-path=${image.getNpath()}, data-uuid=${image.getNuuid()}">
+                      <div>
+                        <a href="">
+                          <img class="block" th:if="${image.npath != null}" th:src="|/upload/display?fileName=${image.getImageURL()}"/>
+                        </a>
+                        <span class="text-sm d-inline-block mx-1" th:text="${image.nimgName}"></span>
+                        <a href="#">
+                          <i class="fa-solid fa-xmark"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- 삭제 폼 -->
                 <form th:action="@{notice-remove}" method="post" id="actionForm">
                   <input type="hidden" name="nno" th:value="${dto.nno}">
                   <input type="hidden" name="page" th:value="${requestDto.page}">

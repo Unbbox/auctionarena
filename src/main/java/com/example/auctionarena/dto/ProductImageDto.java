@@ -38,7 +38,7 @@ public class ProductImageDto {
         return fullPath;
     }
 
-    // 썸네일 이미지는 필요할지 생각
+    // 썸네일 이미지는 굳이 필요없을듯
 
     // public String getThumbImageURL() {
     // String thumbFullPath = "";

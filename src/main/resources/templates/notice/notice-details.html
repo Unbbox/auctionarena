@@ -16,7 +16,11 @@
           </div>
           <div class="col-lg-12">
             <div class="blog__details__pic">
-              <img src="/img/blog/details/blog-details-pic.jpg" alt="" />
+              <ul>
+                <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}">
+                  <img class="block" th:if="${image.npath != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
+                </li>
+              </ul>
             </div>
           </div>
           <div class="col-lg-8">
@@ -62,4 +66,26 @@
     </section>
     <!-- Blog Details Section End -->
   </div>
+
+        <!--원본 이미지 보기 모달 창-->
+        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="imgModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img
+                  src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200724_215%2F1595581349044jAHJA_JPEG%2F31716943718608376_1431937637.jpeg"
+                  alt=""
+                />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </html>

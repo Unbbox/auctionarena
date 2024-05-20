@@ -45,8 +45,8 @@ public class ProductDto {
   private Long replyCnt;
 
   // 제품이미지 리스트
-  // @Builder.Default
-  // private List<ProductImageDto> productImageDtos = new ArrayList<>();
+  @Builder.Default
+  private List<ProductImageDto> productImageDtos = new ArrayList<>();
 
   // 응찰 관련
   private Long biddingPrice;
