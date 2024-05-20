@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 @Log4j2
 @RequiredArgsConstructor
 @Service
-public class ProductServiceImpl implements ProductService {
+public class DetailServiceImpl implements DetailService {
 
   private final ProductRepository productRepository;
   private final ProductImageRepository productImageRepository;
@@ -59,23 +59,23 @@ public class ProductServiceImpl implements ProductService {
   // return entityToDto(entity, null, null);
   // }
 
-  // @Override
-  // public ProductDto getRow(Long pno) {
-  // List<Object[]> result = productImageRepository.getProductRow(pno);
+  @Override
+  public ProductDto getRow(Long pno) {
+    List<Object[]> result = productImageRepository.getProductRow(pno);
 
-  // // result의 값 첫번째 == product
-  // Product product = (Product) result.get(0)[0];
+    // result의 값 첫번째 == product
+    Product product = (Product) result.get(0)[0];
 
-  // // result 길이만큼 반복
-  // List<ProductImage> productImages = new ArrayList<>();
-  // result.forEach(arr -> {
-  // // productImage 개수 만큼 이미지 가져오기
-  // ProductImage productImage = (ProductImage) arr[1];
-  // productImages.add(productImage);
-  // });
+    // result 길이만큼 반복
+    List<ProductImage> productImages = new ArrayList<>();
+    result.forEach(arr -> {
+      // productImage 개수 만큼 이미지 가져오기
+      ProductImage productImage = (ProductImage) arr[1];
+      productImages.add(productImage);
+    });
 
-  // Long reviewCnt = (Long) result.get(0)[2];
+    Long reviewCnt = (Long) result.get(0)[2];
 
-  // return entityToDto(product, null, reviewCnt);
-  // }
+    return entityToDto(product, null, reviewCnt);
+  }
 }

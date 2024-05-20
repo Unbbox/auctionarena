@@ -12,14 +12,14 @@ import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import java.util.List;
 
-public interface ProductService {
+public interface DetailService {
   // List<ProductDto> getList();
 
   CategoryPageResultDto<ProductDto, Object[]> getList(
       CategoryPageRequestDto requestDto);
 
   // 제품 상세 페이지 요청
-  // ProductDto getRow(Long pno);
+  ProductDto getRow(Long pno);
 
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
