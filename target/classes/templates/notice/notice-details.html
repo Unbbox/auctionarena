@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8 notice">
+            <div class="blog__details__title">
+              <h2>[[${dto.title}]]</h2>
+              <h6>
+                [[${dto.writerNickname}]]
+                <span>- [[${#temporals.format(dto.createdDate, 'yyyy/MM/dd')}]]</span>
+              </h6>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="blog__details__pic">
+              <ul>
+                <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}">
+                  <img class="block" th:if="${image.npath != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="blog__details__content notice__details">
+              <div class="blog__details__text">
+                <p>[[${dto.content}]]</p>
+                <div class="blog__details__text notice__details_btn">
+                  <a
+                    class="notice-details-btn"
+                    th:href="@{notice(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                  >
+                    목록
+                  </a>
+                  <a
+                    class="notice-details-btn"
+                    th:href="@{notice-modify(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                    >수정</a
+                  >
+                </div>
+              </div>
+              <div class="blog__details__btns">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="blog__details__btns__item">
+                      <h5>
+                        <a href="#"><span class="arrow_left"></span> Building a Better LiA...</a>
+                      </h5>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="blog__details__btns__item next__btn">
+                      <h5>
+                        <a href="#">Mugen no Juunin: Immortal – 21 <span class="arrow_right"></span></a>
+                      </h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Blog Details Section End -->
+  </div>
+
+        <!--원본 이미지 보기 모달 창-->
+        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="imgModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img
+                  src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200724_215%2F1595581349044jAHJA_JPEG%2F31716943718608376_1431937637.jpeg"
+                  alt=""
+                />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</html>
