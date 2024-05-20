@@ -24,22 +24,23 @@ public class AuctionController {
 
   // 전체 상품
   @GetMapping("/categories")
-  public String getAllCategory(
+  public void getAllCategory(
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
     log.info("전체 상품 목록 페이지 요청");
 
     model.addAttribute("result", service.getList(requestDto));
-
-    return "auctionArena/categories";
+    // return "auctionArena/categories";
   }
 
   @GetMapping("/fashion-category")
-  public String getFashionCategory() {
+  public void getFashionCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
-
-    return "auctionArena/fashion-category";
+    model.addAttribute("result", service.getList(requestDto));
   }
 
   @GetMapping("/mobile-category")
