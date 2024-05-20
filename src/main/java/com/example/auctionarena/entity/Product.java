@@ -25,15 +25,8 @@ import lombok.ToString;
 @Entity
 public class Product extends BaseEntity {
 
-  @SequenceGenerator(
-    name = "product_seq_gen",
-    sequenceName = "product_seq",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "product_seq_gen"
-  )
+  @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
   @Id
   private Long pno;
 
@@ -58,6 +51,7 @@ public class Product extends BaseEntity {
   // 카테고리 관련
   @ManyToOne(fetch = FetchType.LAZY)
   private Category category;
-  // 이미지 관련
+
+  // 이미지 관련 리스트
   // private ProductImage productImage;
 }

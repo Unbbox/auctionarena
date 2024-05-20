@@ -39,17 +39,18 @@ public class DetailServiceImpl implements DetailService {
 
   // return productList;
   // }
-  @Override
-  public CategoryPageResultDto<ProductDto, Object[]> getList(
-      CategoryPageRequestDto requestDto) {
-    Page<Object[]> result = productRepository.list(
-        requestDto.getType(),
-        requestDto.getKeyword(),
-        requestDto.getPageable(Sort.by("pno").descending()));
+  // @Override
+  // public CategoryPageResultDto<ProductDto, Object[]> getList(
+  // CategoryPageRequestDto requestDto) {
+  // Page<Object[]> result = productRepository.list(
+  // requestDto.getType(),
+  // requestDto.getKeyword(),
+  // requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn = (entity -> entityToDto((Product) entity[0], (Member) entity[1], null));
-    return new CategoryPageResultDto<>(result, fn);
-  }
+  // Function<Object[], ProductDto> fn = (entity -> entityToDto((Product)
+  // entity[0], (Member) entity[1], null));
+  // return new CategoryPageResultDto<>(result, fn);
+  // }
 
   // 제품 상세 페이지
   // @Override
@@ -76,6 +77,6 @@ public class DetailServiceImpl implements DetailService {
 
     Long reviewCnt = (Long) result.get(0)[2];
 
-    return entityToDto(product, null, reviewCnt);
+    return entityToDto(product, productImages, reviewCnt);
   }
 }
