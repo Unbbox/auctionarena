@@ -1,6 +1,7 @@
 package com.example.auctionarena.repository.noticeSearch;
 
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -12,11 +13,13 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import com.example.auctionarena.entity.Notice;
 import com.example.auctionarena.entity.QMember;
 import com.example.auctionarena.entity.QNotice;
+import com.example.auctionarena.entity.QNoticeImage;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 
 import lombok.extern.log4j.Log4j2;
@@ -29,17 +32,21 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public Page<Object[]> list(String type, String keyword, Pageable pageable) {
-        log.info("Notice + Member join");
+    public Page<Object[]> getList(String type, String keyword, Pageable pageable) {
+        log.info("Notice + Member + NoticeImage join");
 
         QNotice notice = QNotice.notice;
         QMember member = QMember.member;
+        QNoticeImage noticeImage = QNoticeImage.noticeImage;
 
-        // 쿼리
-        JPQLQuery<Notice> query = from(notice);
-        query.leftJoin(notice.writer, member);
+        // Notice와 NoticeImage, member를 조인
+        JPQLQuery<Notice> query = from(notice)
+                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice))
+                .leftJoin(member).on(notice.writer.eq(member));
 
-        JPQLQuery<Tuple> tuple = query.select(notice, member);
+        // 쿼리 생성
+        JPQLQuery<Tuple> tuple = query.select(notice, noticeImage, member)
+                .orderBy(notice.nno.desc());
 
         // 검색
         BooleanBuilder builder = new BooleanBuilder();
@@ -65,7 +72,8 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
             Order direction = order.isAscending() ? Order.ASC : Order.DESC;
             String prop = order.getProperty();
 
-            PathBuilder<Notice> orderByExpression = new PathBuilder<>(Notice.class, "notice");
+            PathBuilder<Notice> orderByExpression = new PathBuilder<>(Notice.class,
+                    "notice");
             tuple.orderBy(new OrderSpecifier(direction, orderByExpression.get(prop)));
         });
         // 페이지 처리
@@ -82,21 +90,28 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
     }
 
     @Override
-    public Object[] getRow(Long nno) {
+    public List<Object[]> getRow(Long nno) {
         log.info("상세조회 요청");
 
         QNotice notice = QNotice.notice;
         QMember member = QMember.member;
+        QNoticeImage noticeImage = QNoticeImage.noticeImage;
 
-        JPQLQuery<Notice> query = from(notice);
-        query.leftJoin(notice.writer, member);
-        query.where(notice.nno.eq(nno));
+        // Notice와 NoticeImage를 조인
+        JPQLQuery<Notice> query = from(notice)
+                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice))
+                .leftJoin(member).on(notice.writer.eq(member));
 
-        JPQLQuery<Tuple> tuple = query.select(notice, member);
+        // 쿼리 생성
+        JPQLQuery<Tuple> tuple = query.select(notice, noticeImage, member.nickname)
+                .where(notice.nno.eq(nno))
+                .orderBy(noticeImage.ninum.desc());
 
-        Tuple result = tuple.fetch().get(0);
+        // 결과 조회
+        List<Tuple> result = tuple.fetch();
 
-        return result.toArray();
+        // 결과를 List<Object[]>로 변환
+        return result.stream().map(Tuple::toArray).collect(Collectors.toList());
     }
 
 }

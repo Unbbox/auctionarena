@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.auctionarena.dto.NoticeDto;
 import com.example.auctionarena.dto.PageRequestDto;
+import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,7 @@ public class NoticeController {
 
     // 공지사항
     @GetMapping("/notice")
-    public void notice(RedirectAttributes rttr, Model model, @ModelAttribute("requestDto") PageRequestDto requestDto) {
+    public void notice(Model model, @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("list 요청");
 
         model.addAttribute("result", service.getList(requestDto));
