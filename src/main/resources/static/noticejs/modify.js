@@ -1,4 +1,4 @@
-document.querySelector(".notice-remove-btn").addEventListener("click", () => {
+document.querySelector(".remove").addEventListener("click", () => {
   const form = document.querySelector("#actionForm");
 
   if (!confirm("삭제하시겠습니까?")) {
