@@ -92,7 +92,23 @@ function getTime() {
   minute = String(today.getMinutes()).padStart(2, "0");
   second = String(today.getSeconds()).padStart(2, "0");
 
-  date = year + "/" + month + "/" + day + " " + hour + ":" + minute + ":" + second;
+  sale_days = sale_date.split("T");
+  sale_time = sale_date.split("T")[1];
+
+  // 마감 기한 저장
+  sale_day = sale_days[0].split("-");
+  sale_year = sale_day[0];
+  sale_month = sale_day[1];
+  sale_dayy = Number(sale_day[2]) + Number(biddingDate);
+
+  str = sale_year + sale_month + sale_dayy;
+  console.log("응찰 마감 일자는 " + str);
+  console.log("현재 시간" + today);
+
+  month = sale_month - month;
+  day = sale_dayy - Number(day);
+
+  hour = date = month + "/" + day + " " + hour + ":" + minute + ":" + second;
 
   document.querySelector(".date_now").innerText = date;
 

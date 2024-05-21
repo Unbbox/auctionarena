@@ -12,8 +12,8 @@ public interface CommentService {
     // 제품 판매글의 모든 리뷰 가져오기
     List<CommentDto> getCommentList(Long pno);
 
-    //
-    // CommentDto getComment(Long commentNo);
+    // 해당 판매글의 댓글 등록
+    Long insertComment(CommentDto commentDto);
 
     public default CommentDto entityToDto(Comment comment) {
         return CommentDto.builder()

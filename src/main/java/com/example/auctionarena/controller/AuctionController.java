@@ -82,4 +82,11 @@ public class AuctionController {
 
     model.addAttribute("dto", detailService.getRow(pno));
   }
+
+  // 제품 판매 등록 페이지
+  @GetMapping("/product_sale")
+  public void getProductSale() {
+    log.info("제품 판매 페이지 요청");
+  }
+
 }

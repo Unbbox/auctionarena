@@ -29,12 +29,17 @@ public class CommentServiceImpl implements CommentService {
         Product product = Product.builder().pno(pno).build();
         List<Comment> comments = repository.findByProduct(product);
 
-        // board의 댓글 코드
-        // List<Comment> comments = repository.getCommentsByProductOrderByCno(product);
-
         // entity to dto
         Function<Comment, CommentDto> fn = comment -> entityToDto(comment);
         return comments.stream().map(fn).collect(Collectors.toList());
+    }
+
+    @Override
+    public Long insertComment(CommentDto commentDto) {
+        log.info("{}번 제품 댓글 등록", commentDto.getPno());
+        Comment comment = dtoToEntity(commentDto);
+
+        return repository.save(comment).getCommentNo();
     }
 
 }
