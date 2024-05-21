@@ -2,6 +2,7 @@ package com.example.auctionarena.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.service.NoticeService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -70,14 +72,18 @@ public class NoticeController {
     }
 
     @GetMapping("/notice-create")
-    public void noticeCreate(@ModelAttribute("requestDto") PageRequestDto requestDto) {
+    public void noticeCreate(NoticeDto noticeDto, @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("create 요청");
     }
 
     @PostMapping("/notice-create")
-    public String postCreate(NoticeDto noticeDto, RedirectAttributes rttr,
+    public String postCreate(@Valid NoticeDto noticeDto, BindingResult result, RedirectAttributes rttr,
             @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("create {}", noticeDto);
+
+        if (result.hasErrors()) {
+            return "notice/notice-create";
+        }
 
         Long nno = service.noticeCreate(noticeDto);
 

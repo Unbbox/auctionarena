@@ -41,8 +41,8 @@ public class NoticeServiceImpl implements NoticeService {
                 requestDto.getKeyword(),
                 requestDto.getPageable(Sort.by("nno").descending()));
 
-        Function<Object[], NoticeDto> fn = (entity -> entityToDto((Notice) entity[0],
-                (List<NoticeImage>) Arrays.asList((NoticeImage) entity[1]), (Member) entity[2]));
+        Function<Object[], NoticeDto> fn = (entity -> entityToDto((Notice) entity[0], (Member) entity[1],
+                (List<NoticeImage>) Arrays.asList((NoticeImage) entity[2])));
 
         return new PageResultDto<>(result, fn);
 
@@ -72,19 +72,19 @@ public class NoticeServiceImpl implements NoticeService {
         List<Object[]> result = noticeImageRepository.getRow(nno);
 
         Notice notice = (Notice) result.get(0)[0]; // Notice 객체
-        NoticeImage noticeImage = (NoticeImage) result.get(0)[1]; // NoticeImage 객체
-        String nickname = (String) result.get(0)[2]; // String 타입의 nickname
+        String nickname = (String) result.get(0)[1]; // String 타입의 nickname
+        NoticeImage noticeImage = (NoticeImage) result.get(0)[2]; // NoticeImage 객체
 
         List<NoticeImage> noticeImages = new ArrayList<>();
         result.forEach(arr -> {
-            NoticeImage image = (NoticeImage) arr[1]; // NoticeImage 객체
+            NoticeImage image = (NoticeImage) arr[2]; // NoticeImage 객체
             noticeImages.add(image);
         });
 
         // Member 객체 생성
         Member member = Member.builder().nickname(nickname).build();
 
-        return entityToDto(notice, noticeImages, member);
+        return entityToDto(notice, member, noticeImages);
     }
 
     @Override
@@ -110,12 +110,38 @@ public class NoticeServiceImpl implements NoticeService {
         Map<String, Object> entityMap = dtoToEntity(noticeDto);
 
         Notice notice = (Notice) entityMap.get("notice");
-        noticeRepository.save(notice);
 
-        List<NoticeImage> noticeImages = (List<NoticeImage>) entityMap.get("imgList");
-        noticeImages.forEach(image -> noticeImageRepository.save(image));
+        // noticeRepository.save(notice);
 
-        return notice.getNno();
+        // List<NoticeImage> noticeImages = (List<NoticeImage>)
+        // entityMap.get("imgList");
+        // noticeImages.forEach(image -> noticeImageRepository.save(image));
+
+        // 작성자 동일 시 (확인용)
+        if (notice == null) {
+            notice = Notice.builder()
+                    .title(noticeDto.getTitle())
+                    .content(noticeDto.getContent())
+                    .build();
+        }
+
+        String writerNickname = noticeDto.getWriterNickname();
+        Member writer = memberRepository.findByNickname(writerNickname);
+
+        if (writer != null && writer.getNickname().equals(writerNickname)) {
+            notice.setWriter(writer);
+            noticeRepository.save(notice);
+
+            List<NoticeImage> noticeImages = (List<NoticeImage>) entityMap.get("imgList");
+            if (noticeImages != null) {
+                noticeImages.forEach(image -> noticeImageRepository.save(image));
+            }
+
+            return notice.getNno();
+        } else {
+            throw new IllegalArgumentException("작성자 정보를 찾을 수 없습니다.");
+        }
+
     }
 
 }

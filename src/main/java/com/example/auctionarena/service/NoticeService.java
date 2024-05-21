@@ -3,6 +3,7 @@ package com.example.auctionarena.service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import com.example.auctionarena.dto.NoticeDto;
@@ -25,7 +26,7 @@ public interface NoticeService {
 
     Long noticeCreate(NoticeDto noticeDto);
 
-    public default NoticeDto entityToDto(Notice notice, List<NoticeImage> noticeImages, Member member) {
+    public default NoticeDto entityToDto(Notice notice, Member member, List<NoticeImage> noticeImages) {
         NoticeDto noticeDto = NoticeDto.builder()
                 .nno(notice.getNno())
                 .title(notice.getTitle())
@@ -36,16 +37,24 @@ public interface NoticeService {
                 .lastModifiedDate(notice.getLastModifiedDate())
                 .build();
 
-        List<NoticeImageDto> noticeImageDtos = noticeImages.stream().map(noticeImage -> {
-            return NoticeImageDto.builder()
-                    .ninum(noticeImage.getNinum())
-                    .nuuid(noticeImage.getNuuid())
-                    .nimgName(noticeImage.getNimgName())
-                    .npath(noticeImage.getNpath())
-                    .build();
-        }).collect(Collectors.toList());
+        if (noticeImages != null) {
 
-        noticeDto.setNoticeImageDtos(noticeImageDtos);
+            List<NoticeImageDto> noticeImageDtos = noticeImages.stream().map(noticeImage -> {
+                if (noticeImage != null) {
+
+                    return NoticeImageDto.builder()
+                            .ninum(noticeImage.getNinum())
+                            .nuuid(noticeImage.getNuuid())
+                            .nimgName(noticeImage.getNimgName())
+                            .npath(noticeImage.getNpath())
+                            .build();
+                } else {
+                    return null;
+                }
+            }).filter(Objects::nonNull).collect(Collectors.toList());
+
+            noticeDto.setNoticeImageDtos(noticeImageDtos);
+        }
 
         return noticeDto;
     }

@@ -3,20 +3,15 @@ package com.example.auctionarena.repository;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import com.example.auctionarena.dto.NoticeDto;
 import com.example.auctionarena.dto.PageRequestDto;
-import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Notice;
 import com.example.auctionarena.entity.NoticeImage;

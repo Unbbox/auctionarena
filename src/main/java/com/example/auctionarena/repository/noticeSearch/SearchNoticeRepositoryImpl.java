@@ -41,12 +41,14 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
 
         // Notice와 NoticeImage, member를 조인
         JPQLQuery<Notice> query = from(notice)
-                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice))
-                .leftJoin(member).on(notice.writer.eq(member));
+                .leftJoin(member).on(notice.writer.eq(member))
+                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice));
 
-        // 쿼리 생성
-        JPQLQuery<Tuple> tuple = query.select(notice, noticeImage, member)
-                .orderBy(notice.nno.desc());
+        JPQLQuery<Tuple> tuple = query.select(notice, member, noticeImage)
+                .where(noticeImage.ninum.in(
+                        JPAExpressions.select(noticeImage.ninum.min()).from(noticeImage)
+                                .groupBy(noticeImage.notice.nno))
+                        .or(noticeImage.ninum.isNull()));
 
         // 검색
         BooleanBuilder builder = new BooleanBuilder();
@@ -99,11 +101,11 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
 
         // Notice와 NoticeImage를 조인
         JPQLQuery<Notice> query = from(notice)
-                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice))
-                .leftJoin(member).on(notice.writer.eq(member));
+                .leftJoin(member).on(notice.writer.eq(member))
+                .leftJoin(noticeImage).on(notice.eq(noticeImage.notice));
 
         // 쿼리 생성
-        JPQLQuery<Tuple> tuple = query.select(notice, noticeImage, member.nickname)
+        JPQLQuery<Tuple> tuple = query.select(notice, member.nickname, noticeImage)
                 .where(notice.nno.eq(nno))
                 .orderBy(noticeImage.ninum.desc());
 
