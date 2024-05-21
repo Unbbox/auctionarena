@@ -1,6 +1,8 @@
 package com.example.auctionarena.repository.productSearch;
 
+import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.entity.QCategory;
 import com.example.auctionarena.entity.QMember;
 import com.example.auctionarena.entity.QProduct;
 import com.querydsl.core.BooleanBuilder;
@@ -8,6 +10,7 @@ import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,14 +32,27 @@ public class SearchProductRepositoryImpl
   }
 
   @Override
-  public Page<Object[]> list(String type, String keyword, Pageable pageable) {
+  public Page<Object[]> list(
+    String type,
+    String keyword,
+    // Long cno,
+    Pageable pageable
+  ) {
     QProduct product = QProduct.product;
     QMember member = QMember.member;
+    QCategory category = QCategory.category;
 
     JPQLQuery<Product> query = from(product);
     query.leftJoin(product.member, member);
 
-    JPQLQuery<Tuple> tuple = query.select(product, member);
+    JPQLQuery<Tuple> tuple = query.select(
+      product,
+      member,
+      JPAExpressions
+        .select(category.cno)
+        .from(category)
+        .where(category.category.eq(product.category))
+    );
 
     BooleanBuilder builder = new BooleanBuilder();
     builder.and(product.pno.gt(0L));
@@ -53,6 +69,13 @@ public class SearchProductRepositoryImpl
       conditionBuilder.or(product.content.contains(keyword));
     }
     builder.and(conditionBuilder);
+
+    // 카테고리가 지정된 경우
+    // BooleanBuilder cateBuilder = new BooleanBuilder();
+    // if (cno != null) {
+    //   cateBuilder.or(product.category.eq(category));
+    // }
+    // builder.and(cateBuilder);
     tuple.where(builder);
 
     Sort sort = pageable.getSort();

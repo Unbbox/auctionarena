@@ -41,16 +41,20 @@ public class ProductServiceImpl implements ProductService {
   // }
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getList(
-      CategoryPageRequestDto requestDto) {
+    CategoryPageRequestDto requestDto
+  ) {
     Page<Object[]> result = productRepository.list(
-        requestDto.getType(),
-        requestDto.getKeyword(),
-        requestDto.getPageable(Sort.by("pno").descending()));
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
 
-    Function<Object[], ProductDto> fn = (entity -> entityToDto((Product) entity[0], (Member) entity[1], null));
+    Function<Object[], ProductDto> fn =
+      (entity -> entityToDto((Product) entity[0], null));
     return new CategoryPageResultDto<>(result, fn);
   }
-
   // 제품 상세 페이지
   // @Override
   // public ProductDto getRow(Long pno) {

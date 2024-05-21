@@ -26,30 +26,38 @@ public interface DetailService {
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product, List<ProductImage> productImages, Long replyCnt) {
-
-    ProductDto productDto = ProductDto.builder()
-        .pno(product.getPno())
-        .title(product.getTitle())
-        .content(product.getContent())
-        .writerName(product.getMember().getNickname())
-        .replyCnt(replyCnt != null ? replyCnt : 0)
-        .startPrice(product.getStartPrice())
-        .biddingDate(product.getBiddingDate())
-        .category(product.getCategory().getCategoryName())
-        .createdDate(product.getCreatedDate())
-        .lastModifiedDate(product.getLastModifiedDate())
-        .build();
+  public default ProductDto entityToDto(
+    Product product,
+    List<ProductImage> productImages,
+    Long replyCnt
+  ) {
+    ProductDto productDto = ProductDto
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      .writerName(product.getMember().getNickname())
+      .replyCnt(replyCnt != null ? replyCnt : 0)
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .category(product.getCategory().getCategoryName())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
 
     // 제품 상세 페이지의 이미지
-    List<ProductImageDto> productImageDtos = productImages.stream().map(productImage -> {
-      return ProductImageDto.builder()
+    List<ProductImageDto> productImageDtos = productImages
+      .stream()
+      .map(productImage -> {
+        return ProductImageDto
+          .builder()
           .inum(productImage.getInum())
           .uuid(productImage.getUuid())
           .imgName(productImage.getImgName())
           .path(productImage.getPath())
           .build();
-    }).collect(Collectors.toList());
+      })
+      .collect(Collectors.toList());
 
     productDto.setProductImageDtos(productImageDtos);
     return productDto;
@@ -61,20 +69,20 @@ public interface DetailService {
     // bidding을 꼭 넣어야하는가?
     // Bidding bidding = Bidding.builder().build();
     Category category = Category
-        .builder()
-        .categoryName(dto.getCategory())
-        .build();
+      .builder()
+      .categoryName(dto.getCategory())
+      .build();
 
     return Product
-        .builder()
-        .pno(dto.getPno())
-        .title(dto.getTitle())
-        .content(dto.getContent())
-        .startPrice(dto.getStartPrice())
-        .biddingDate(dto.getBiddingDate())
-        .member(member)
-        // .bidding(bidding)
-        .category(category)
-        .build();
+      .builder()
+      .pno(dto.getPno())
+      .title(dto.getTitle())
+      .content(dto.getContent())
+      .startPrice(dto.getStartPrice())
+      .biddingDate(dto.getBiddingDate())
+      .member(member)
+      // .bidding(bidding)
+      .category(category)
+      .build();
   }
 }
