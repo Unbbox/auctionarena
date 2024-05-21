@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="breadcrumb__links">
+              <a href=""><i class="fa fa-home"></i> 전체</a>
+              <a href="">[[${dto.category}]]</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Anime Section Begin -->
+    <section class="anime-details spad">
+      <div class="container">
+        <div class="anime__details__content">
+          <div class="row">
+            <div class="col-lg-3">
+              <div class="anime__details__pic set-bg" data-setbg="/img/anime/item1.jpg">
+                <img src="/img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
+                <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
+              </div>
+              <div class="item__details__pic__sub">
+                <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item2.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item3.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item4.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item5.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item6.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item7.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item8.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item9.jpg"></div>
+                <div class="set-bg" data-setbg="/img/anime/item10.jpg"></div>
+              </div>
+              <!-- <img class="anime__details__pic__sub" src="img/anime/item1.jpg"></img> -->
+              
+            </div>
+            <div class="col-lg-9">
+              <div class="anime__details__text">
+                <div class="anime__details__title">
+                  <h3 th:text="${dto.title}">제품명</h3>
+                  판매자 : <span th:value="${dto.writerName}">[[${dto.writerName}]]</span>
+                  배송방법 : <span>착불</span>
+                </div>
+                
+                <!-- <p>
+                  <div>경매가 : 100,000,000원</div>
+                  <div>입찰인원 : 0</div>
+                  <div>입찰 가능 기간 : 2024/05/11</div>
+                </p> -->
+                <div class="anime__details__widget">
+                  <div class="row">
+                    <div class="col-lg-8 col-md-8">
+                    <!-- <div> -->
+                      <ul>
+                        <li>경매시작가:<span> [[${dto.startPrice}]]원</span></li>
+                        <li>입찰인원:<span> 1,000명</span></li>
+                        <li>남은 시간:<span class="date_now"></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="anime__details__btn">
+                  <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
+                  <div class="bidding_form">
+                    <div class="row">
+                      <div class="col-lg-4 col-md-4 col-sm-4">
+                        <input type="text" placeholder="가격을 입력하세요" />
+                      </div>
+                      <div>
+                        <a href="#" class="watch-btn"><span>입찰하기</span> </a>
+                        <!-- <i class="fa fa-angle-right"></i> -->
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="anime__details__btn wish_list">
+                        <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 제품 설명, 경매기록, 댓글 nav tabs -->
+        <div class="items_nav">
+          <ul class="nav justify-content-center">
+            <li class="nav-item detail active">
+              <a class="nav-link" aria-current="page" href="">제품 설명</a>
+            </li>
+            <li class="nav-item bidding">
+              <a class="nav-link" href="">경매 기록</a>
+            </li>
+            <li class="nav-item review">
+              <a class="nav-link" href="">댓글</a>
+            </li>
+          </ul>
+        </div>
+        <div class="row item_nav_sub item_detail">
+          <div class="section-title">
+            <h5>상품설명</h5>
+          </div>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum dicta optio tenetur dolore doloremque esse similique assumenda saepe accusamus culpa. Dolores, nihil architecto esse facere obcaecati vel ex. Non eligendi sapiente aliquam. In, perspiciatis? Illo neque velit cumque a labore, modi, dignissimos recusandae, voluptatibus blanditiis alias ex aspernatur laboriosam libero? Ducimus alias, ullam a eum mollitia voluptates ipsum provident doloribus optio, iusto praesentium nostrum quasi labore officiis blanditiis repellendus perspiciatis quibusdam. Cupiditate hic praesentium id, fugit, in amet labore inventore veniam nemo debitis, officia vero aliquid assumenda possimus dolores. Animi facilis, aut eveniet deleniti tempore veritatis delectus earum cumque, assumenda porro ea soluta at velit doloremque dolore quidem adipisci! Laboriosam velit ipsam ullam et ut maiores non enim illum doloribus sequi. Maiores, totam! Id soluta provident optio, ea nihil est omnis laboriosam placeat qui, deserunt itaque porro hic nam mollitia tenetur ex quos necessitatibus facilis molestiae explicabo vel! Earum eligendi cumque ab, placeat asperiores, sapiente quos corrupti modi soluta, reiciendis nobis commodi odit voluptatum blanditiis dolorum deleniti perspiciatis ducimus quae. Neque numquam distinctio aperiam nam dolorem ut ex tempora veritatis obcaecati commodi repellendus quis eius, dolore, sit alias, asperiores similique consequatur ratione. Deserunt magni reprehenderit nesciunt, eveniet nisi non neque cumque possimus ex voluptatibus facere deleniti soluta dignissimos corrupti nemo voluptatem alias asperiores sunt omnis repellat, aspernatur voluptates et facilis labore. Consequatur, magnam nemo eveniet dolorum velit laborum incidunt ex quia error sint sit sapiente voluptatum et eligendi ipsam id qui? Repudiandae, in iusto distinctio quod doloremque iste consectetur nemo a veritatis recusandae, cupiditate qui! Nihil illum deserunt quaerat culpa necessitatibus libero, itaque consequuntur, odio cupiditate soluta doloremque sint eos enim facilis reiciendis quos architecto magnam doloribus error voluptate! Cupiditate, vero expedita magni quos fugit suscipit temporibus natus provident recusandae soluta velit veritatis at? Atque labore reiciendis vel exercitationem tempore veritatis, autem ipsa ratione dicta temporibus saepe laudantium perferendis. Rerum quaerat sequi, itaque velit voluptatem tenetur voluptates repudiandae eos consectetur eum ipsam laborum esse fugit iure facilis animi temporibus assumenda est eveniet obcaecati excepturi beatae eligendi tempora? Officia illum quibusdam reprehenderit a eum quaerat, fuga facere distinctio corrupti nemo quod soluta asperiores rerum cumque minima! Harum atque reiciendis veniam eum soluta eaque cumque officiis corrupti laborum ullam, cupiditate alias saepe? Delectus unde distinctio non iure. Quasi aperiam, non aliquid, illo aliquam doloremque repudiandae tenetur, explicabo ratione asperiores provident velit eligendi eveniet. Sit quis quibusdam, omnis tempore aperiam eos excepturi placeat expedita cumque consequatur fugit dignissimos beatae earum eum nemo, voluptatum est nulla numquam commodi blanditiis voluptatem esse mollitia explicabo. Distinctio praesentium nam non impedit fugiat porro explicabo dicta ut, libero voluptas laborum dolores quis provident cupiditate rerum sit quibusdam! Odio distinctio cumque eum rerum hic accusamus ratione, dolorem nisi aut totam tempore officiis, architecto fuga, repellendus id minima sequi ex sint assumenda similique sed fugit a. Incidunt esse deserunt totam error veniam quas natus ea earum praesentium! Repellat maiores qui impedit, eos nobis iste sit cupiditate dolores nam porro similique quibusdam possimus quidem veniam hic laborum amet laboriosam, fuga sunt?
+          </div>
+        </div>
+        <div class="row item_nav_sub item-bidding-record" style="display: none">
+          <div class="section-title">
+            <h5>경매기록</h5>
+          </div>
+          <div>
+            <table class="w-full whitespace-no-wrap">
+              <thead>
+                <tr
+                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                >
+                  <th class="px-4 py-3">번호</th>
+                  <th class="px-4 py-3">닉네임</th>
+                  <th class="px-4 py-3">입찰가</th>
+                  <th class="px-4 py-3">입찰시간</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
+                <tr class="text-gray-700 dark:text-white-400">
+                  <td class="px-4 py-3">1</td>
+                  <td class="px-4 py-3">입찰자1</td>
+                  <td class="px-4 py-3">입찰가격</td>
+                  <td class="px-4 py-3">입찰시간 12:46</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row item_nav_sub item_review" style="display: none">
+          <div class="col-lg-12 col-md-8">
+            <div class="anime__details__review">
+              <div class="section-title">
+                <h5>상품평</h5>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-1.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-2.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                  <p>Finally it came out ages ago</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-3.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                  <p>Where is the episode 15 ? Slow update! Tch</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-4.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-5.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                  <p>Finally it came out ages ago</p>
+                </div>
+              </div>
+              <div class="anime__review__item">
+                <div class="anime__review__item__pic">
+                  <img src="/img/anime/review-6.jpg" alt="" />
+                </div>
+                <div class="anime__review__item__text">
+                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                  <p>Where is the episode 15 ? Slow update! Tch</p>
+                </div>
+              </div>
+            </div>
+            <div class="anime__details__form">
+              <div class="section-title">
+                <h5>상품평 작성</h5>
+              </div>
+              <form action="#">
+                <textarea placeholder="Your Comment"></textarea>
+                <button type="submit"><i class="fa fa-location-arrow"></i> 작성</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- 관련 상품 form -->
+        <form class="relation_categori_form">
+          <div class="row item_nav">
+            <div class="section-title">
+              <h5>관련 상품</h5>
+            </div>
+          </div>
+          <div class="row relative__products">
+          </div>
+        </form>
+        <!-- [Swiper] 관련 상품 슬라이더 -->
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <!-- 슬라이드 -->
+            <div class="swiper-slide">
+              <div class="category_item_pic set-bg">
+                <img src="/img/popular/popular-1.jpg">
+                <span class="categori_product_content">상품 1</span>
+              </div>
+            </div>
+            <div class="swiper-slide product__item__pic set-bg"><img src="/img/popular/popular-2.jpg">상품 2</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-3.jpg">상품 3</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-4.jpg">상품 4</div>
+            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-5.jpg">상품 5</div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+          <!-- <div class="swiper-pagination-bullet"></div> -->
+          <!-- Add Arrows -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </section>
+    <!-- Anime Section End -->
+</html>
