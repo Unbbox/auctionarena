@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__links">
-              <a href=""><i class="fa fa-home"></i> 전체</a>
+              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-home"></i> 전체</a>
               <a href="">[[${dto.category}]]</a>
             </div>
           </div>
@@ -109,7 +109,7 @@
             <h5>상품설명</h5>
           </div>
           <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum dicta optio tenetur dolore doloremque esse similique assumenda saepe accusamus culpa. Dolores, nihil architecto esse facere obcaecati vel ex. Non eligendi sapiente aliquam. In, perspiciatis? Illo neque velit cumque a labore, modi, dignissimos recusandae, voluptatibus blanditiis alias ex aspernatur laboriosam libero? Ducimus alias, ullam a eum mollitia voluptates ipsum provident doloribus optio, iusto praesentium nostrum quasi labore officiis blanditiis repellendus perspiciatis quibusdam. Cupiditate hic praesentium id, fugit, in amet labore inventore veniam nemo debitis, officia vero aliquid assumenda possimus dolores. Animi facilis, aut eveniet deleniti tempore veritatis delectus earum cumque, assumenda porro ea soluta at velit doloremque dolore quidem adipisci! Laboriosam velit ipsam ullam et ut maiores non enim illum doloribus sequi. Maiores, totam! Id soluta provident optio, ea nihil est omnis laboriosam placeat qui, deserunt itaque porro hic nam mollitia tenetur ex quos necessitatibus facilis molestiae explicabo vel! Earum eligendi cumque ab, placeat asperiores, sapiente quos corrupti modi soluta, reiciendis nobis commodi odit voluptatum blanditiis dolorum deleniti perspiciatis ducimus quae. Neque numquam distinctio aperiam nam dolorem ut ex tempora veritatis obcaecati commodi repellendus quis eius, dolore, sit alias, asperiores similique consequatur ratione. Deserunt magni reprehenderit nesciunt, eveniet nisi non neque cumque possimus ex voluptatibus facere deleniti soluta dignissimos corrupti nemo voluptatem alias asperiores sunt omnis repellat, aspernatur voluptates et facilis labore. Consequatur, magnam nemo eveniet dolorum velit laborum incidunt ex quia error sint sit sapiente voluptatum et eligendi ipsam id qui? Repudiandae, in iusto distinctio quod doloremque iste consectetur nemo a veritatis recusandae, cupiditate qui! Nihil illum deserunt quaerat culpa necessitatibus libero, itaque consequuntur, odio cupiditate soluta doloremque sint eos enim facilis reiciendis quos architecto magnam doloribus error voluptate! Cupiditate, vero expedita magni quos fugit suscipit temporibus natus provident recusandae soluta velit veritatis at? Atque labore reiciendis vel exercitationem tempore veritatis, autem ipsa ratione dicta temporibus saepe laudantium perferendis. Rerum quaerat sequi, itaque velit voluptatem tenetur voluptates repudiandae eos consectetur eum ipsam laborum esse fugit iure facilis animi temporibus assumenda est eveniet obcaecati excepturi beatae eligendi tempora? Officia illum quibusdam reprehenderit a eum quaerat, fuga facere distinctio corrupti nemo quod soluta asperiores rerum cumque minima! Harum atque reiciendis veniam eum soluta eaque cumque officiis corrupti laborum ullam, cupiditate alias saepe? Delectus unde distinctio non iure. Quasi aperiam, non aliquid, illo aliquam doloremque repudiandae tenetur, explicabo ratione asperiores provident velit eligendi eveniet. Sit quis quibusdam, omnis tempore aperiam eos excepturi placeat expedita cumque consequatur fugit dignissimos beatae earum eum nemo, voluptatum est nulla numquam commodi blanditiis voluptatem esse mollitia explicabo. Distinctio praesentium nam non impedit fugiat porro explicabo dicta ut, libero voluptas laborum dolores quis provident cupiditate rerum sit quibusdam! Odio distinctio cumque eum rerum hic accusamus ratione, dolorem nisi aut totam tempore officiis, architecto fuga, repellendus id minima sequi ex sint assumenda similique sed fugit a. Incidunt esse deserunt totam error veniam quas natus ea earum praesentium! Repellat maiores qui impedit, eos nobis iste sit cupiditate dolores nam porro similique quibusdam possimus quidem veniam hic laborum amet laboriosam, fuga sunt?
+            [[${dto.content}]]
           </div>
         </div>
         <div class="row item_nav_sub item-bidding-record" style="display: none">
@@ -141,63 +141,12 @@
         </div>
         <div class="row item_nav_sub item_review" style="display: none">
           <div class="col-lg-12 col-md-8">
-            <div class="anime__details__review">
+            <div class="product_details_comment">
               <div class="section-title">
-                <h5>상품평</h5>
+                <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
               </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-1.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
-                </div>
-              </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-2.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                  <p>Finally it came out ages ago</p>
-                </div>
-              </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-3.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                  <p>Where is the episode 15 ? Slow update! Tch</p>
-                </div>
-              </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-4.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                  <p>whachikan Just noticed that someone categorized this as belonging to the genre "demons" LOL</p>
-                </div>
-              </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-5.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Lewis Mann - <span>5 Hour ago</span></h6>
-                  <p>Finally it came out ages ago</p>
-                </div>
-              </div>
-              <div class="anime__review__item">
-                <div class="anime__review__item__pic">
-                  <img src="/img/anime/review-6.jpg" alt="" />
-                </div>
-                <div class="anime__review__item__text">
-                  <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                  <p>Where is the episode 15 ? Slow update! Tch</p>
-                </div>
+              <div class="comments">
+                <!-- JS에서 댓글 처리 -->
               </div>
             </div>
             <div class="anime__details__form">
@@ -246,4 +195,12 @@
       </div>
     </section>
     <!-- Anime Section End -->
+    <th:block layout:fragment="script">
+    <script>
+      // 제품 번호 가져오기
+      const pno = "[[${dto.pno}]]";
+      
+    </script>
+    <script th:src="@{/js/comments.js}"></script>
+  </th:block>
 </html>

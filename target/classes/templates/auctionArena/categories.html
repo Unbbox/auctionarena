@@ -58,7 +58,7 @@
              </form>
           </div> -->
    <div class="header__nav">
-        <nav class="category__menu mobile-menu">
+        <nav class="category__menu mobile-menu" th:value="${dto}">
           <ul>
             <li>
               <a th:href="@{/auctionArena/categories}">전체</a>
@@ -71,7 +71,7 @@
               </ul> -->
             </li>
             <li>
-              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">패션 의류/잡화</a>
+              <a a th:href="@{/auctionArena/categories(cno=1,page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">패션 의류/잡화</a>
               <!-- <ul class="dropdown">
               <li><a href="">여성의류</a></li>
                 <li><a href="">남성의류</a></li>
@@ -144,9 +144,9 @@
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
                     </div>
                     <div class="products__item__text">
-                      <h5><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a></h5>
+                      <h5><a th:href="@{product_details(pno=${dto.pno},cno=${dto.cno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a></h5>
                       <ul>
-                        <li><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"fmt:formatNumber type="number" maxFractionDigits="3" th:value="${dto.startPrice}">[[${dto.startPrice}]] 원~</a></li>
+                        <li><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword},cno=${dto.cno})}"fmt:formatNumber type="number" maxFractionDigits="3" th:value="${dto.startPrice}">[[${dto.startPrice}]] 원~</a></li>
                       </ul>
                     </div>
                   </div>
@@ -155,9 +155,9 @@
             </div>
             
             <div class="products__pagination justify-content-center">
-              <td th:if="${result.prev}"><a th:href="@{(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a></td>
+              <td th:if="${result.prev}"><a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a></td>
               <td th:each="page : ${result.pageList}"><a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a></td>
-              <td th:if="${result.next}"><a th:href="@{(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}" ><i class="fa fa-angle-double-right"></i></a></td>
+              <td th:if="${result.next}"><a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}" ><i class="fa fa-angle-double-right"></i></a></td>
             </div>
           </div>
           
