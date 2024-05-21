@@ -16,6 +16,7 @@ import com.example.auctionarena.service.NoticeService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("notice")
 @Log4j2
@@ -69,8 +70,22 @@ public class NoticeController {
     }
 
     @GetMapping("/notice-create")
-    public String noticeCreate() {
-        return "notice/notice-create";
+    public void noticeCreate(@ModelAttribute("requestDto") PageRequestDto requestDto) {
+        log.info("create 요청");
+    }
+
+    @PostMapping("/notice-create")
+    public String postCreate(NoticeDto noticeDto, RedirectAttributes rttr,
+            @ModelAttribute("requestDto") PageRequestDto requestDto) {
+        log.info("create {}", noticeDto);
+
+        Long nno = service.noticeCreate(noticeDto);
+
+        rttr.addFlashAttribute("msg", nno);
+        rttr.addAttribute("page", requestDto.getPage());
+        rttr.addAttribute("type", requestDto.getType());
+        rttr.addAttribute("keyword", requestDto.getKeyword());
+        return "redirect:/notice/notice";
     }
 
 }
