@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 import org.springframework.data.domain.Page;
@@ -102,6 +103,19 @@ public class NoticeServiceImpl implements NoticeService {
 
         noticeImageRepository.deleteByNotice(notice);
         noticeRepository.delete(notice);
+    }
+
+    @Override
+    public Long noticeCreate(NoticeDto noticeDto) {
+        Map<String, Object> entityMap = dtoToEntity(noticeDto);
+
+        Notice notice = (Notice) entityMap.get("notice");
+        noticeRepository.save(notice);
+
+        List<NoticeImage> noticeImages = (List<NoticeImage>) entityMap.get("imgList");
+        noticeImages.forEach(image -> noticeImageRepository.save(image));
+
+        return notice.getNno();
     }
 
 }
