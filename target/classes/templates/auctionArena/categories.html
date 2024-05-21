@@ -155,9 +155,9 @@
             </div>
             
             <div class="products__pagination justify-content-center">
-              <td th:if="${result.prev}"><a th:href="@{(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a></td>
+              <td th:if="${result.prev}"><a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-angle-double-left"></i></a></td>
               <td th:each="page : ${result.pageList}"><a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a></td>
-              <td th:if="${result.next}"><a th:href="@{(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}" ><i class="fa fa-angle-double-right"></i></a></td>
+              <td th:if="${result.next}"><a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}" ><i class="fa fa-angle-double-right"></i></a></td>
             </div>
           </div>
           
