@@ -20,12 +20,12 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 @Log4j2
 public class SearchProductRepositoryImpl
-  extends QuerydslRepositorySupport
-  implements SearchProductRepository {
+    extends QuerydslRepositorySupport
+    implements SearchProductRepository {
 
   public SearchProductRepositoryImpl() {
     super(Product.class);
-    //TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub
   }
 
   @Override
@@ -57,19 +57,17 @@ public class SearchProductRepositoryImpl
 
     Sort sort = pageable.getSort();
     sort
-      .stream()
-      .forEach(order -> {
-        Order direction = order.isAscending() ? Order.ASC : Order.DESC;
-        String prop = order.getProperty();
+        .stream()
+        .forEach(order -> {
+          Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+          String prop = order.getProperty();
 
-        PathBuilder<Product> orderByExpression = new PathBuilder<>(
-          Product.class,
-          "product"
-        );
-        tuple.orderBy(
-          new OrderSpecifier(direction, orderByExpression.get(prop))
-        );
-      });
+          PathBuilder<Product> orderByExpression = new PathBuilder<>(
+              Product.class,
+              "product");
+          tuple.orderBy(
+              new OrderSpecifier(direction, orderByExpression.get(prop)));
+        });
     // 페이지 처리
     tuple.offset(pageable.getOffset());
     tuple.limit(pageable.getPageSize());
@@ -80,9 +78,9 @@ public class SearchProductRepositoryImpl
     long count = tuple.fetchCount();
 
     List<Object[]> list = result
-      .stream()
-      .map(t -> t.toArray())
-      .collect(Collectors.toList());
+        .stream()
+        .map(t -> t.toArray())
+        .collect(Collectors.toList());
 
     return new PageImpl<>(list, pageable, count);
   }

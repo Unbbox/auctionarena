@@ -10,7 +10,7 @@ import com.example.auctionarena.entity.Product;
 public interface CommentService {
 
     // 제품 판매글의 모든 리뷰 가져오기
-    List<CommentDto> getListOfProduct(Long pno);
+    List<CommentDto> getCommentList(Long pno);
 
     //
     // CommentDto getComment(Long commentNo);
@@ -28,12 +28,12 @@ public interface CommentService {
     }
 
     public default Comment dtoToEntity(CommentDto commentDto) {
-        Comment review = new Comment();
-        review.setCommentNo(commentDto.getCommentNo());
-        review.setText(commentDto.getText());
-        review.setMember(Member.builder().mid(commentDto.getMid()).build());
-        review.setCreatedDate(commentDto.getCreatedDate());
-        review.setProduct(Product.builder().pno(commentDto.getPno()).build());
-        return review;
+        Comment comment = new Comment();
+        comment.setCommentNo(commentDto.getCommentNo());
+        comment.setText(commentDto.getText());
+        comment.setMember(Member.builder().mid(commentDto.getMid()).build());
+        comment.setCreatedDate(commentDto.getCreatedDate());
+        comment.setProduct(Product.builder().pno(commentDto.getPno()).build());
+        return comment;
     }
 }

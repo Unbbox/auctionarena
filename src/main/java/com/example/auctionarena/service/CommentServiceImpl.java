@@ -23,11 +23,14 @@ public class CommentServiceImpl implements CommentService {
     private final CommentRepository repository;
 
     @Override
-    public List<CommentDto> getListOfProduct(Long pno) {
+    public List<CommentDto> getCommentList(Long pno) {
         log.info("판매 제품의 댓글 가져오기 {}", pno);
 
         Product product = Product.builder().pno(pno).build();
         List<Comment> comments = repository.findByProduct(product);
+
+        // board의 댓글 코드
+        // List<Comment> comments = repository.getCommentsByProductOrderByCno(product);
 
         // entity to dto
         Function<Comment, CommentDto> fn = comment -> entityToDto(comment);
