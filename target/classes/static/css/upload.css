@@ -1,0 +1,14 @@
+.upload_image {
+  width: 150px;
+  height: 150px;
+  background-color: azure;
+}
+
+.product_sale {
+  display: flex;
+  flex-direction: column;
+}
+
+.product_cate {
+  width: 150px;
+}

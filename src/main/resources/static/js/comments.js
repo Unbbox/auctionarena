@@ -37,4 +37,40 @@ const commentLoaded = () => {
     });
 };
 
+// 리뷰 등록
+const commentForm = document.querySelector(".comment-form");
+commentForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const text = commentForm.querySelector("#comments");
+  //   const nickname = commentForm.querySelector("#nickname");
+  const commentNo = commentForm.querySelector("#commentNo"); // 수정일 경우
+
+  const body = {
+    // nickname: nickname,
+    text: text.value,
+    commentNo: commentNo.value,
+  };
+
+  if (!commentNo.value) {
+    fetch(`/comments/product/${pno}`, {
+      headers: {
+        "content-type": "application/json",
+        // "X-CSRF-TOKEN": csrfValue,
+      },
+      body: JSON.stringify(body),
+      method: "post",
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+
+        text.value = ""; // 작성한 댓글 내용 지우기
+
+        if (data) alert(data + "번 댓글 등록 완료");
+        commentLoaded();
+      });
+  }
+});
+
 commentLoaded();

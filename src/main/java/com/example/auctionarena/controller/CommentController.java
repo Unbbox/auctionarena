@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -29,6 +31,15 @@ public class CommentController {
     public ResponseEntity<List<CommentDto>> getComments(@PathVariable("pno") Long pno) {
         log.info("{}번 제품 댓글 가져오기", pno);
         return new ResponseEntity<>(service.getCommentList(pno), HttpStatus.OK);
+    }
+
+    // 댓글 등록
+    @PostMapping("/product/{pno}")
+    public ResponseEntity<Long> postComments(@RequestBody CommentDto commentDto) {
+        log.info("리뷰 등록 : {}", commentDto);
+
+        Long commentNo = service.insertComment(commentDto);
+        return new ResponseEntity<Long>(commentNo, HttpStatus.OK);
     }
 
 }
