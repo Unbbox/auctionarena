@@ -13,7 +13,7 @@
           <div class="col-lg-8">
             <div class="blog__details__content notice__details">
               <div class="blog__details__text notice-create">
-                <form th:action="@{notice-create}" method="post" th:object="${noticeDto}">
+                <form th:action="@{notice-create}" method="post" th:object="${noticeDto}" id="create-form">
                   <div class="mb-3">
                     <label for="title" class="form-label">제목</label>
                     <input class="form-control" type="text" name="title" id="title" />
@@ -65,6 +65,10 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
+    <!-- <script>
+      // csrf 토큰 설정
+      const csrfValue = "[[${_csrf.token}]]";
+    </script> -->
     <script th:src="@{/noticejs/noticeCreate.js}"></script>
     <script th:src="@{/noticejs/noticeUpload.js}"></script>
   </th:block>

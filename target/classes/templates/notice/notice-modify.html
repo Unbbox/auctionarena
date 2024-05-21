@@ -13,7 +13,7 @@
           <div class="col-lg-8">
             <div class="blog__details__content notice__details">
               <div class="blog__details__text notice-create">
-                <form th:action="@{notice-modify}" method="post">
+                <form th:action="@{notice-modify}" method="post" id="create-form">
                   <div class="mb-3">
                     <label for="title" class="form-label">제목</label>
                     <input class="form-control" type="text" name="title" id="title" th:value="${dto.title}">
@@ -21,6 +21,30 @@
                   <div class="mb-3">
                     <label for="writerNickname" class="form-label">작성자</label>
                     <input class="form-control" type="text" name="writerNickname" id="writerNickname" th:value="${dto.writerNickname}" readonly>
+                  </div>
+                  <label class="block mt-4 text-sm form-label">
+                    <span class="block text-gray-700 dark:text-gray-400">Image Files</span>
+                    <input
+                      type="file"
+                      class="block w-full mt-1 form-control text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                      id="fileInput"
+                      multiple
+                    />
+                  </label>
+
+                  <div class="uploadResult">
+                    <ul>
+                      <!-- 
+                        <li data-name="" data-path="" data-uuid="">
+                            <div>
+                                <a href=""><img src="" class="block"></a>
+                                <span class="text-sm d-inline-block mx-1"></span>
+                                <a href="#" data-file="">
+                                    <i class="fa-solid fa-xmark" data-file=""></i>
+                                </a>
+                            </div>
+                        </li>
+                    --></ul>
                   </div>
                   <div class="mb-3">
                     <label for="content" class="form-label">내용</label>
@@ -73,6 +97,11 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
+    <!-- <script>
+      // csrf 토큰 설정
+      const csrfValue = '[[${_csrf.token}]]';
+    </script> -->
     <script th:src="@{/noticejs/noticeModify.js}"></script>
+    <script th:src="@{/noticejs/noticeUpload.js}"></script>
   </th:block>
 </html>
