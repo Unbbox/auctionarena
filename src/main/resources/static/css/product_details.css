@@ -27,6 +27,16 @@
   color: black;
 } */
 
+/* 제품 응찰 정보 관련 */
+.product_bidding_info {
+  /* list-style: none; */
+  font-size: 15px;
+  /* color: #ffffff; */
+  /* line-height: 30px; */
+  /* position: relative; */
+  /* padding-left: 18px; */
+}
+
 /* 댓글 창 관련 */
 .product_review_item {
   overflow: hidden;
