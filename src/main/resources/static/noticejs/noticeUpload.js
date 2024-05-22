@@ -34,6 +34,7 @@ fileInput.addEventListener("change", (e) => {
   const formData = new FormData();
   for (let index = 0; index < files.length; index++) {
     if (checkExtension(files[index].name)) {
+      formData.append("folderType", "notice");
       formData.append("uploadFiles", files[index]);
     }
   }
@@ -44,9 +45,9 @@ fileInput.addEventListener("change", (e) => {
 
   fetch("/upload/uploadAjax", {
     method: "post",
-    // headers: {
-    //   "X-CSRF-TOKEN": CSSFontFeatureValuesRule,
-    // },
+    headers: {
+      "X-CSRF-TOKEN": csrfValue,
+    },
     body: formData,
   })
     .then((response) => response.json())
@@ -68,9 +69,9 @@ document.querySelector("#create-form").addEventListener("submit", (e) => {
 
   let result = "";
   attachInfos.forEach((obj, idx) => {
-    result += `<input type='hidden' value='${obj.dataset.path}' name='noticeImageDtos[${idx}].npath'>`;
-    result += `<input type='hidden' value='${obj.dataset.uuid}' name='noticeImageDtos[${idx}].nuuid'>`;
-    result += `<input type='hidden' value='${obj.dataset.name}' name='noticeImageDtos[${idx}].nimgName'>`;
+    result += `<input type='hidden' value='${obj.dataset.path}' name='noticeImageDtos[${idx}].path'>`;
+    result += `<input type='hidden' value='${obj.dataset.uuid}' name='noticeImageDtos[${idx}].uuid'>`;
+    result += `<input type='hidden' value='${obj.dataset.name}' name='noticeImageDtos[${idx}].imgName'>`;
   });
   form.insertAdjacentHTML("beforeend", result);
 

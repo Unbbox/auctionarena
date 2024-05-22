@@ -27,18 +27,18 @@ public class QNoticeImage extends EntityPathBase<NoticeImage> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
+    public final StringPath imgName = createString("imgName");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
-
-    public final StringPath nimgName = createString("nimgName");
 
     public final NumberPath<Long> ninum = createNumber("ninum", Long.class);
 
     public final QNotice notice;
 
-    public final StringPath npath = createString("npath");
+    public final StringPath path = createString("path");
 
-    public final StringPath nuuid = createString("nuuid");
+    public final StringPath uuid = createString("uuid");
 
     public QNoticeImage(String variable) {
         this(NoticeImage.class, forVariable(variable), INITS);

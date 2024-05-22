@@ -20,7 +20,7 @@ public interface NoticeService {
 
     NoticeDto getRow(Long nno);
 
-    void modify(NoticeDto dto);
+    Long modify(NoticeDto dto);
 
     void noticeRemove(Long nno);
 
@@ -44,9 +44,9 @@ public interface NoticeService {
 
                     return NoticeImageDto.builder()
                             .ninum(noticeImage.getNinum())
-                            .nuuid(noticeImage.getNuuid())
-                            .nimgName(noticeImage.getNimgName())
-                            .npath(noticeImage.getNpath())
+                            .uuid(noticeImage.getUuid())
+                            .imgName(noticeImage.getImgName())
+                            .path(noticeImage.getPath())
                             .build();
                 } else {
                     return null;
@@ -87,9 +87,9 @@ public interface NoticeService {
         if (noticeImageDtos != null && noticeImageDtos.size() > 0) {
             List<NoticeImage> noticeImages = noticeImageDtos.stream().map(nDto -> {
                 NoticeImage noticeImage = NoticeImage.builder()
-                        .nimgName(nDto.getNimgName())
-                        .nuuid(nDto.getNuuid())
-                        .npath(nDto.getNpath())
+                        .imgName(nDto.getImgName())
+                        .uuid(nDto.getUuid())
+                        .path(nDto.getPath())
                         .notice(notice)
                         .build();
                 return noticeImage;

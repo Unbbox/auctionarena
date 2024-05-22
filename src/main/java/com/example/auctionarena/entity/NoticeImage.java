@@ -26,11 +26,11 @@ public class NoticeImage extends BaseEntity {
     @Id
     private Long ninum;
 
-    private String nuuid;
+    private String uuid;
 
-    private String nimgName;
+    private String imgName;
 
-    private String npath;
+    private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Notice notice;
