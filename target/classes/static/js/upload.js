@@ -1,48 +1,135 @@
-const upload_div = document.querySelector(".upload_image");
-const upload_image = document.querySelector(".upload_product_image");
+const upload_div = document.querySelector(".upload_image"); // upload div
+const upload_image = document.querySelector(".upload_product_image"); // file upload button
+const imagePreview = document.querySelector(".upload_image_preview ul"); // 이미지 파일 미리보기 ul
 
 // div 클릭 시 파일 등록
 upload_div.addEventListener("click", (e) => {
   upload_image.click();
 });
 
-upload_image.addEventListener("change", (e) => {
-  const uploadFiles = [];
-  const files = e.currentTarget.files;
-  const imagePreview = document.querySelector(".upload_image_preview");
-  const docFrag = new DocumentFragment();
+function checkExtension(fileName) {
+  // 정규식 사용
+  const regex = /(.*?).(png|gif|jpg)$/;
 
-  // 이미지 개수가 10개 초과일 시 => Java로 옮길 생각
-  if ([...files].length >= 11) {
-    alert("이미지는 최대 10개까지 업로드가 가능합니다.");
-    return;
+  // txt=>false, 이미지=>true
+  console.log(regex.test(fileName));
+  return regex.test(fileName);
+}
+
+function showUploadImages(arr) {
+  console.log("이미지 보여주기 ", arr);
+
+  let tags = "";
+
+  arr.forEach((obj, idx) => {
+    tags += `<li data-name="${obj.fileName}" data-path="${obj.folderPath}" data-uuid="${obj.uuid}">`;
+    tags += `<div>`;
+    tags += `<a href=""><img src="/upload/display?fileName=${obj.thumbImageURL}" class="block"></a>`;
+    tags += `<span class="text-sm d-inline-block mx-1">${obj.fileName}</span>`;
+    tags += `<a href="#" data-file="${obj.imageURL}">`;
+    tags += `<i class="fa-solid fa-xmark"></i></a>`;
+    tags += `</div></li>`;
+  });
+  uploadResult.insertAdjacentHTML("beforeend", tags);
+}
+
+upload_image.addEventListener("change", (e) => {
+  // checkExtension() 호출
+  // 이미지 파일이라면 FormData() 객체 생성 후
+  // append
+
+  const files = e.target.files;
+
+  const formData = new FormData();
+
+  for (let index = 0; index < files.length; index++) {
+    if (checkExtension(files[index].name)) {
+      formData.append("folderType", "product"); // 제품 업로드용
+      formData.append("uploadFiles", files[index]);
+    }
   }
 
-  // 이미지가 아닌 파일 업로드 시 예외처리
-  [...files].forEach((file) => {
-    if (!file.type.match("image/.*")) {
-      alert("이미지만 업로드 가능합니다.");
-      return;
-    }
+  for (const value of formData.values()) {
+    console.log(value);
+  }
 
-    if ([...files].length < 11) {
-      uploadFiles.push(file);
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const preview = createElement(e, file);
-        imagePreview.appendChild(preview);
-      };
-      reader.readAsDataURL(file);
-    }
-  });
+  fetch("/upload/uploadAjax", {
+    method: "post",
+    // headers: {
+    //   "X-CSRF-TOKEN": csrfValue,
+    // },
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      showUploadImages(data);
+    });
 });
 
-function createElement(e, file) {
-  const li = document.createElement("li");
-  const img = document.createElement("img");
-  img.setAttribute("src", e.target.result);
-  img.setAttribute("data-file", file.name);
-  li.appendChild(img);
+// register, modify 중복 사용
+// form submit 기능 중지
+// uploadResult ul li 태그 요소 가져오기
+// document.querySelector("#register-form").addEventListener("submit", (e) => {
+//   e.preventDefault();
 
-  return li;
-}
+//   const form = e.target;
+
+//   //첨부파일 정보 수집
+//   const attachInfos = document.querySelectorAll(".uploadResult ul li");
+//   console.log(attachInfos);
+
+//   //수집된 정보를  폼 태그 자식으로 붙여넣기
+//   let result = "";
+//   attachInfos.forEach((obj, idx) => {
+//     // hidden 3개 => MovieImageDto 객체 하나로 변경
+//     result += `<input type='hidden' value='${obj.dataset.path}' name='movieImageDtos[${idx}].path'>`;
+//     result += `<input type='hidden' value='${obj.dataset.uuid}' name='movieImageDtos[${idx}].uuid'>`;
+//     result += `<input type='hidden' value='${obj.dataset.name}' name='movieImageDtos[${idx}].imgName'>`;
+//   });
+//   form.insertAdjacentHTML("beforeend", result);
+
+//   console.log(form.innerHTML);
+
+//   form.submit();
+// });
+// upload_image.addEventListener("change", (e) => {
+//   const uploadFiles = [];
+//   const files = e.currentTarget.files;
+//   const docFrag = new DocumentFragment();
+
+//   // 이미지 개수가 10개 초과일 시 => Java로 옮길 생각
+//   if ([...files].length >= 11) {
+//     alert("이미지는 최대 10개까지 업로드가 가능합니다.");
+//     return;
+//   }
+
+//   // 이미지가 아닌 파일 업로드 시 예외처리
+//   [...files].forEach((file) => {
+//     if (!file.type.match("image/.*")) {
+//       alert("이미지만 업로드 가능합니다.");
+//       return;
+//     }
+
+//     if ([...files].length < 11) {
+//       uploadFiles.push(file);
+//       const reader = new FileReader();
+//       reader.onload = (e) => {
+//         const preview = createElement(e, file);
+//         imagePreview.appendChild(preview);
+//       };
+//       reader.readAsDataURL(file);
+//     }
+//   });
+// });
+
+// function createElement(e, file) {
+//   const li = document.createElement("li");
+//   const img = document.createElement("img");
+//   img.setAttribute("src", e.target.result);
+//   img.setAttribute("data-file", file.name);
+//   li.appendChild(img);
+
+//   return li;
+// }

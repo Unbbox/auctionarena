@@ -63,6 +63,7 @@
                     <!-- <div> -->
                       <ul>
                         <li>경매시작가:<span> [[${dto.startPrice}]]원</span></li>
+                        <li>현재경매가:<span> 원</span></li>
                         <li>입찰인원:<span> 1,000명</span></li>
                         <li>남은 시간: <span class="date_now"></span></li>
                       </ul>
@@ -156,7 +157,7 @@
                 <h5>상품평 작성</h5>
               </div>
               <!-- th:action="@{/comments/product/}" -->
-              <form method="post" class="comment-form">
+              <form method="post" th:action="@{/comments/product/}" class="comment-form">
                 <input type="hidden" name="commentNo" id="commentNo" />
                 <!-- 로그인 연결 후 th:value 추가 -->
                 <!-- <input type="hidden" name="mid" id="mid">

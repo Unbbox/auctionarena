@@ -118,7 +118,6 @@ function getTime() {
     date = days + "일 " + hour + "시간 " + min + "분 " + sec + "초";
   } else {
     date = "마감 되었습니다.";
-    console.log(str);
   }
   /* 남은 시간 코드 끝 */
 
