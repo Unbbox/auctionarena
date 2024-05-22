@@ -155,7 +155,8 @@
               <div class="section-title">
                 <h5>상품평 작성</h5>
               </div>
-              <form th:action="@{/comments/product/}" method="post" class="comment-form">
+              <!-- th:action="@{/comments/product/}" -->
+              <form method="post" class="comment-form">
                 <input type="hidden" name="commentNo" id="commentNo" />
                 <!-- 로그인 연결 후 th:value 추가 -->
                 <!-- <input type="hidden" name="mid" id="mid">
@@ -211,7 +212,7 @@
       const pno = "[[${dto.pno}]]";
       // 제품 등록 일자 가져오기
       const sale_date = "[[${dto.createdDate}]]"
-      const biddingDate = "[[${dto.biddingDate}]]"
+      const biddingDate = `[[${dto.biddingDate}]]`
       
     </script>
     <script th:src="@{/js/product_detail.js}"></script>

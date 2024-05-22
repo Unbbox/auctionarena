@@ -85,69 +85,43 @@ function imgChange(cnt) {
 // 현재 시간 표시
 function getTime() {
   today = new Date();
-  year = String(today.getFullYear()).padStart(4, "0");
-  month = String(today.getMonth() + 1).padStart(2, "0");
-  day = String(today.getDate()).padStart(2, "0");
-  hour = String(today.getHours()).padStart(2, "0");
-  minute = String(today.getMinutes()).padStart(2, "0");
-  second = String(today.getSeconds()).padStart(2, "0");
 
-  // 마감 기한 저장
-  // 마감 일자, 시간 분리
-  sale_days = sale_date.split("T");
-  sale_time = sale_date.split("T")[1];
-  // console.log(sale_time);
+  /* sale_date도 date로 입력해서 날짜만 비교 */
+  // 현재 시간과 제품 등록 시간 가져오기
+  new_tody = new Date();
+  bid_end_date = new Date(sale_date);
 
-  // 마감 일자 년월일 분리
-  end_date = sale_days[0].split("-");
-  end_year = parseInt(end_date[0]);
-  end_month = parseInt(end_date[1]);
-  end_day = Number(end_date[2]) + Number(biddingDate);
+  // (제품 등록시간 + 응찰 기간) 후 각 시간을 ms 단위로 가져오기
+  nt = new_tody.getTime();
+  bed = bid_end_date.getTime() + parseInt(biddingDate) * 1000 * 60 * 60 * 24;
 
-  // 마감 시간 시분초 분리
-  end_hour = sale_time.split(":")[0];
-  end_minute = sale_time.split(":")[1];
-  end_second = sale_time.split(":")[2];
+  // 응찰 기간이 현재 시간보다 클 경우 일, 시, 분, 초 저장
+  if (nt < bed) {
+    sec = parseInt(bed - nt) / 1000;
+    days = parseInt(sec / 60 / 60 / 24);
+    sec = sec - days * 60 * 60 * 24;
+    hour = parseInt(sec / 60 / 60);
+    sec = sec - hour * 60 * 60;
+    min = parseInt(sec / 60);
+    sec = parseInt(sec - min * 60);
 
-  // 마감 시간과 현재 시간 비교 후 남은 시간 계산
-  // 날짜 비교()
-  days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  bidding_year = end_year - year;
-  bidding_month = end_month - month;
-  bidding_day = end_day - day;
-  if (bidding_month < 0) {
-    bidding_year -= 1;
-    bidding_month += 12;
-  }
-  if (bidding_day < 0) {
-    bidding_month -= 1;
-    bidding_day += days[month - 1];
-    // 윤년 계산 => 기간이 2월달이고, 해당 연도가 윤년일 경우
-    if (month == 2) {
-      if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
-        bidding_day += 1;
-      }
+    if (hour < 10) {
+      hour = "0" + hour;
     }
-  }
+    if (min < 10) {
+      min = "0" + min;
+    }
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
 
-  // 시간 비교
-  bidding_hour = end_hour - hour;
-  bidding_minute = end_minute - minute;
-  bidding_second = end_second - second;
-  if (bidding_hour < 0) {
-    bidding_day -= 1;
-    bidding_hour += 24;
+    date = days + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+  } else {
+    date = "마감 되었습니다.";
+    console.log(str);
   }
-  if (bidding_minute < 0) {
-    bidding_hour -= 1;
-    bidding_minute += 60;
-  }
-  if (bidding_second < 0) {
-    bidding_minute -= 1;
-    bidding_second += 60;
-  }
+  /* 남은 시간 코드 끝 */
 
-  date = bidding_day + "일 " + bidding_hour + "시간 " + bidding_minute + "분 " + Math.floor(bidding_second) + "초";
   document.querySelector(".date_now").innerText = date;
 
   setTimeout(getTime, 1000);
