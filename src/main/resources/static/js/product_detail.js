@@ -110,14 +110,27 @@ function getTime() {
   end_second = sale_time.split(":")[2];
 
   // 마감 시간과 현재 시간 비교 후 남은 시간 계산
+  // 날짜 비교()
+  days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   bidding_year = end_year - year;
   bidding_month = end_month - month;
+  bidding_day = end_day - day;
   if (bidding_month < 0) {
     bidding_year -= 1;
     bidding_month += 12;
   }
-  bidding_day = end_day - day;
+  if (bidding_day < 0) {
+    bidding_month -= 1;
+    bidding_day += days[month - 1];
+    // 윤년 계산 => 기간이 2월달이고, 해당 연도가 윤년일 경우
+    if (month == 2) {
+      if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+        bidding_day += 1;
+      }
+    }
+  }
 
+  // 시간 비교
   bidding_hour = end_hour - hour;
   bidding_minute = end_minute - minute;
   bidding_second = end_second - second;
@@ -134,13 +147,7 @@ function getTime() {
     bidding_second += 60;
   }
 
-  // console.log("h: " + bidding_hour + ", m: " + bidding_minute + ", s: " + bidding_second);
-
-  month = end_month - month;
-  day = end_day - Number(day);
-
   date = bidding_day + "일 " + bidding_hour + "시간 " + bidding_minute + "분 " + Math.floor(bidding_second) + "초";
-
   document.querySelector(".date_now").innerText = date;
 
   setTimeout(getTime, 1000);

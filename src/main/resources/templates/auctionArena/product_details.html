@@ -45,8 +45,9 @@
             <div class="col-lg-9">
               <div class="anime__details__text">
                 <div class="anime__details__title">
-                  <h3 th:text="${dto.title}">제품명</h3>
-                  판매자 : <span th:value="${dto.writerName}">[[${dto.writerName}]]</span>
+                  <h3 th:text="${dto.title}">제목</h3>
+                  <!-- [[${dto.title}]] -->
+                  판매자 : <span th:text="${dto.writerName}">판매자</span>
                   배송방법 : <span>착불</span>
                 </div>
                 
