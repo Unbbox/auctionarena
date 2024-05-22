@@ -2,7 +2,6 @@ package com.example.auctionarena.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -48,25 +47,6 @@ public class NoticeServiceImpl implements NoticeService {
 
     }
 
-    // @Override
-    // public NoticeDto getRow(Long nno) {
-    // // List<Object[]> row = noticeRepository.getRow(nno);
-    // // return entityToDto((Notice) row[0], (Member) row[1]);
-
-    // List<Object[]> result = noticeImageRepository.getRow(nno);
-
-    // Notice notice = (Notice) result.get(0)[0];
-    // Member member = (Member) result.get(0)[2];
-
-    // List<NoticeImage> noticeImages = new ArrayList<>();
-    // result.forEach(arr -> {
-    // NoticeImage noticeImage = (NoticeImage) arr[1];
-    // noticeImages.add(noticeImage);
-    // });
-
-    // return entityToDto(notice, noticeImages, member);
-    // }
-
     @Override
     public NoticeDto getRow(Long nno) {
         List<Object[]> result = noticeImageRepository.getRow(nno);
@@ -87,13 +67,29 @@ public class NoticeServiceImpl implements NoticeService {
         return entityToDto(notice, member, noticeImages);
     }
 
+    @Transactional
     @Override
-    public void modify(NoticeDto dto) {
-        Notice entity = noticeRepository.findById(dto.getNno()).get();
-        entity.setTitle(dto.getTitle());
-        entity.setContent(dto.getContent());
+    public Long modify(NoticeDto dto) {
+        Notice notice = noticeRepository.findById(dto.getNno()).get();
+        notice.setTitle(dto.getTitle());
+        notice.setContent(dto.getContent());
 
-        noticeRepository.save(entity);
+        noticeRepository.save(notice);
+
+        // Map<String, Object> entityMap = dtoToEntity(dto);
+
+        // Notice notice = (Notice) entityMap.get("notice");
+        noticeImageRepository.deleteByNotice(notice);
+
+        List<NoticeImage> noticeImages = (List<NoticeImage>) dtoToEntity(dto).get("imgList");
+        if (noticeImages != null) {
+            // noticeImages.forEach(image -> noticeImageRepository.save(image));
+            for (NoticeImage noticeImage : noticeImages) {
+                noticeImage.setNotice(notice);
+                noticeImageRepository.save(noticeImage);
+            }
+        }
+        return notice.getNno();
     }
 
     @Transactional
@@ -134,7 +130,11 @@ public class NoticeServiceImpl implements NoticeService {
 
             List<NoticeImage> noticeImages = (List<NoticeImage>) entityMap.get("imgList");
             if (noticeImages != null) {
-                noticeImages.forEach(image -> noticeImageRepository.save(image));
+                // noticeImages.forEach(image -> noticeImageRepository.save(image));
+                for (NoticeImage noticeImage : noticeImages) {
+                    noticeImage.setNotice(notice);
+                    noticeImageRepository.save(noticeImage);
+                }
             }
 
             return notice.getNno();

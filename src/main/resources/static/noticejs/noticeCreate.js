@@ -13,7 +13,7 @@ document.querySelector(".uploadResult").addEventListener("click", (e) => {
   fetch("/upload/remove", {
     method: "post",
     headers: {
-      "X-CSRF-TOKEN": CSSFontFeatureValuesRule,
+      "X-CSRF-TOKEN": csrfValue,
     },
     body: formData,
   })
@@ -21,7 +21,9 @@ document.querySelector(".uploadResult").addEventListener("click", (e) => {
     .then((data) => {
       console.log(data);
       if (data) {
-        currentLi.remove();
+        if (confirm("이미지를 삭제하시겠습니까?")) {
+          currentLi.remove();
+        }
       }
     });
 });

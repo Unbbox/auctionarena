@@ -1,45 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <div layout:fragment="content">  
-    <!-- Product Sale Section Begin -->
-    <!-- 이미지 업로드 칸 -->
-    <label for="upload_image">제품 이미지 업로드</label>
-    <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
-    <div class="upload_image" name="upload_image">
-    </div>
-    <!-- 제목, 카테고리, 제품 설명 작성란 -->
-    <div class="product_sale">
-        <div class="product_title">
-            <h5>제목</h5>
-            <input type="text" name="title" id="title" placeholder="상품 제목 입력">
+        <!-- Product Sale Section Begin -->
+        <!-- 이미지 업로드 칸 -->
+        <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
+        <div class="product_image">
+            <h5>제품 이미지 업로드</h5>
+            <div class="upload_image" name="upload_image">
+                <i class="fa-solid fa-camera"> 이미지 업로드</i>
+            </div>
+            <div class="upload_image_preview">
+                <h5>이미지 미리보기</h5>
+                <ul>
+                    <!--  -->
+                </ul>
+            </div>
         </div>
-        <div class="product_category">
-            <h5>카테고리</h5>
-            <select name="categories" id="categories" class="product_cate">
-                <option value="패션 의류/잡화">패션 의류/잡화</option>
-                <option value="모바일/태블릿">모바일/태블릿</option>
-                <option value="가전제품">가전제품</option>
-                <option value="게임">게임</option>
-                <option value="레저/여행">레저/여행</option>
-                <option value="기타">기타</option>
-            </select>
+        <!-- 제목, 카테고리, 제품 설명 작성란 -->
+        <div class="product_sale">
+            <div class="product_title">
+                <h5>제목</h5>
+                <input type="text" name="title" id="title" placeholder="상품 제목 입력">
+            </div>
+            <div class="product_category">
+                <h5>카테고리</h5>
+                <select name="categories" id="categories" class="product_cate">
+                    <option value="패션 의류/잡화">패션 의류/잡화</option>
+                    <option value="모바일/태블릿">모바일/태블릿</option>
+                    <option value="가전제품">가전제품</option>
+                    <option value="게임">게임</option>
+                    <option value="레저/여행">레저/여행</option>
+                    <option value="기타">기타</option>
+                </select>
+            </div>
+            <div class="product_text">
+                <h5>제품 설명</h5>
+                <textarea name="cotent" id="content"></textarea>
+            </div>
         </div>
-        <div class="product_text">
-            <h5>제품 설명</h5>
-            <textarea name="cotent" id="content"></textarea>
+        <!-- 경매 시작가, 경매 종료 일자 지정 -->
+        <div>
+            <div class="bidding_start_price">
+                <h5>경매 시작가</h5>
+                <input type="text" name="" id="" placeholder="가격을 입력해주세요">
+            </div>
+            <div class="bidding_end_date">
+                <h5>경매 종료 일자</h5>
+                <!-- 달력을 넣는게 더 나을지 생각 -->
+                <!-- 지금 이 부분 안나옴 -->
+                <select name="bidding_date" id="bidding_date" class="bidding_date">
+                    <option value="1일">1일</option>
+                    <option value="3일">3일</option>
+                    <option value="5일">5일</option>
+                    <option value="7일">7일</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <!-- 경매 시작가, 경매 종료 일자 지정 -->
-    <div>
-        <div class="bidding_start_price">
-            <h5>경매 시작가</h5>
-            <input type="text" name="" id="" placeholder="가격을 입력해주세요">
-        </div>
-        <div class="bidding_end_date">
-            <h5>경매 종료 일자</h5>
-            <!-- 나중에 달력 넣으면 될듯 -->
-        </div>
-    </div>
+        ㅁㄴㅇㄹ
     </div>
   </section>
   <!-- Product Section End -->

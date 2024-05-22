@@ -85,30 +85,41 @@ function imgChange(cnt) {
 // 현재 시간 표시
 function getTime() {
   today = new Date();
-  year = String(today.getFullYear()).padStart(4, "0");
-  month = String(today.getMonth() + 1).padStart(2, "0");
-  day = String(today.getDate()).padStart(2, "0");
-  hour = String(today.getHours()).padStart(2, "0");
-  minute = String(today.getMinutes()).padStart(2, "0");
-  second = String(today.getSeconds()).padStart(2, "0");
 
-  sale_days = sale_date.split("T");
-  sale_time = sale_date.split("T")[1];
+  /* sale_date도 date로 입력해서 날짜만 비교 */
+  // 현재 시간과 제품 등록 시간 가져오기
+  new_tody = new Date();
+  bid_end_date = new Date(sale_date);
 
-  // 마감 기한 저장
-  sale_day = sale_days[0].split("-");
-  sale_year = sale_day[0];
-  sale_month = sale_day[1];
-  sale_dayy = Number(sale_day[2]) + Number(biddingDate);
+  // (제품 등록시간 + 응찰 기간) 후 각 시간을 ms 단위로 가져오기
+  nt = new_tody.getTime();
+  bed = bid_end_date.getTime() + parseInt(biddingDate) * 1000 * 60 * 60 * 24;
 
-  str = sale_year + sale_month + sale_dayy;
-  console.log("응찰 마감 일자는 " + str);
-  console.log("현재 시간" + today);
+  // 응찰 기간이 현재 시간보다 클 경우 일, 시, 분, 초 저장
+  if (nt < bed) {
+    sec = parseInt(bed - nt) / 1000;
+    days = parseInt(sec / 60 / 60 / 24);
+    sec = sec - days * 60 * 60 * 24;
+    hour = parseInt(sec / 60 / 60);
+    sec = sec - hour * 60 * 60;
+    min = parseInt(sec / 60);
+    sec = parseInt(sec - min * 60);
 
-  month = sale_month - month;
-  day = sale_dayy - Number(day);
+    if (hour < 10) {
+      hour = "0" + hour;
+    }
+    if (min < 10) {
+      min = "0" + min;
+    }
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
 
-  hour = date = month + "/" + day + " " + hour + ":" + minute + ":" + second;
+    date = days + "일 " + hour + "시간 " + min + "분 " + sec + "초";
+  } else {
+    date = "마감 되었습니다.";
+  }
+  /* 남은 시간 코드 끝 */
 
   document.querySelector(".date_now").innerText = date;
 

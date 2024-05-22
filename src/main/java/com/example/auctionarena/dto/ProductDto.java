@@ -34,8 +34,6 @@ public class ProductDto {
   // 멤버 관계
   private String writerName; // 작성자 이름
 
-  private Long replyCount; // 게시글 댓글 수
-
   @NotBlank(message = "경매 시작 가격을 입력해주세요")
   private Long startPrice; // 경매 시작 가격
 
@@ -52,6 +50,9 @@ public class ProductDto {
   // 응찰 관련
   private Long biddingPrice;
   private LocalDateTime biddingTime;
+
+  // 응찰 개수
+  private Long biddingCnt;
 
   private LocalDateTime createdDate;
   private LocalDateTime lastModifiedDate;

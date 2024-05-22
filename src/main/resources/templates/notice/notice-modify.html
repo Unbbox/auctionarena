@@ -45,6 +45,20 @@
                             </div>
                         </li>
                     --></ul>
+                                      <!-- 기존에 이미 있는 포스터 보여주기 + 포스터 수정-->
+                  <ul>
+                    <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}, data-name=${image.getImgName()}, data-path=${image.getPath()}, data-uuid=${image.getUuid()}">
+                      <div>
+                        <a href="">
+                          <img class="block" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}"/>
+                        </a>
+                        <span class="text-sm d-inline-block mx-1" th:text="${image.imgName}"></span>
+                        <a href="#">
+                          <i class="fa-solid fa-xmark"></i>
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
                   </div>
                   <div class="mb-3">
                     <label for="content" class="form-label">내용</label>
@@ -63,23 +77,6 @@
                   <input type="hidden" name="nno" th:value="${dto.nno}">
                 </form>
 
-                <div class="uploadResult mt-4">
-                  <!-- 기존에 이미 있는 포스터 보여주기 + 포스터 수정-->
-                  <ul>
-                    <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}, data-name=${image.getNimgName()}, data-path=${image.getNpath()}, data-uuid=${image.getNuuid()}">
-                      <div>
-                        <a href="">
-                          <img class="block" th:if="${image.npath != null}" th:src="|/upload/display?fileName=${image.getImageURL()}"/>
-                        </a>
-                        <span class="text-sm d-inline-block mx-1" th:text="${image.nimgName}"></span>
-                        <a href="#">
-                          <i class="fa-solid fa-xmark"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-
                 <!-- 삭제 폼 -->
                 <form th:action="@{notice-remove}" method="post" id="actionForm">
                   <input type="hidden" name="nno" th:value="${dto.nno}">
@@ -97,10 +94,10 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
-    <!-- <script>
+    <script>
       // csrf 토큰 설정
       const csrfValue = '[[${_csrf.token}]]';
-    </script> -->
+    </script>
     <script th:src="@{/noticejs/noticeModify.js}"></script>
     <script th:src="@{/noticejs/noticeUpload.js}"></script>
   </th:block>

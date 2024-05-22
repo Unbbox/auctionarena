@@ -1,7 +1,18 @@
+.product_image {
+  display: flex;
+}
+
 .upload_image {
   width: 150px;
   height: 150px;
-  background-color: azure;
+  background-color: white;
+
+  /* 아이콘 정렬 */
+  /* 수평 중앙 정렬 */
+  display: flex;
+  justify-content: center;
+  /* 수직 중앙 정렬 */
+  align-items: center;
 }
 
 .product_sale {
@@ -11,4 +22,22 @@
 
 .product_cate {
   width: 150px;
+}
+
+.upload_image_preview {
+  width: 580px;
+  height: 220px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/*  */
+li {
+  list-style: none;
+}
+
+img {
+  width: 100px;
+  height: 100px;
 }
