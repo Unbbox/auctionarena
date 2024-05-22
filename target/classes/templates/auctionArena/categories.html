@@ -58,63 +58,27 @@
              </form>
           </div> -->
    <div class="header__nav">
-        <nav class="category__menu mobile-menu" th:value="${dto}">
+        <nav class="category__menu mobile-menu" >
           <ul>
-            <li>
-              <a th:href="@{/auctionArena/categories}">전체</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">여성의류</a></li>
-                <li><a href="">남성의류</a></li>
-                <li><a href="">운동화</a></li>
-                <li><a href="">시계</a></li>
-                <li><a href="">모자</a></li>
-              </ul> -->
+            <li th:each="dto : ${result.dtoList}">
+              <a th:href="@{/auctionArena/categories}" th:text="${dto.category}"></a>
             </li>
-            <li>
+            <!-- <li>
               <a a th:href="@{/auctionArena/categories(cno=1,page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">패션 의류/잡화</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">여성의류</a></li>
-                <li><a href="">남성의류</a></li>
-                <li><a href="">운동화</a></li>
-                <li><a href="">시계</a></li>
-                <li><a href="">모자</a></li>
-              </ul> -->
             </li>      
             <li>
               <a th:href="@{/auctionArena/mobile-category}">모바일/태블릿</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">스마트폰</a></li>
-                <li><a href="">태블릿pc</a></li>
-                <li><a href="">스마트워치/밴드</a></li>
-              </ul> -->
             </li>
             <li>
               <a th:href="@{/auctionArena/electronic-category}">가전제품</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">냉장고</a></li>
-                <li><a href="">TV</a></li>
-                <li><a href="">세탁기/건조기</a></li>
-                <li><a href="">주방가전</a></li>
-              </ul> -->
             </li>
             <li>
               <a th:href="@{/auctionArena/game-category}">게임</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">PC게임</a></li>
-                <li><a href="">플레이스테이션</a></li>
-                <li><a href="">닌텐도</a></li>
-                <li><a href="">xbox</a></li>
-              </ul> -->
             </li>
             <li>
               <a th:href="@{/auctionArena/trib-category}">레저/여행</a>
-              <!-- <ul class="dropdown">
-              <li><a href="">등산의류/용품</a></li>
-                <li><a href="">캠핑용품</a></li>
-                <li><a href="">낚시용품</a></li>
-              </ul> -->
             </li>         
-           </ul>
+           </ul> -->
         </nav>
       </div>
       <form action="" role="search" id="searchForm">

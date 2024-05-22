@@ -27,8 +27,9 @@ public class AuctionController {
   // 전체 상품
   @GetMapping("/categories")
   public void getAllCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
 
     model.addAttribute("result", service.getList(requestDto));
@@ -37,8 +38,9 @@ public class AuctionController {
 
   @GetMapping("/fashion-category")
   public void getFashionCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
     model.addAttribute("result", service.getList(requestDto));
   }
@@ -73,8 +75,11 @@ public class AuctionController {
 
   // 제품 상세 페이지
   @GetMapping("/product_details")
-  public void getDetails(@RequestParam Long pno, Model model,
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
+  public void getDetails(
+    @RequestParam Long pno,
+    Model model,
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto
+  ) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
     ProductDto dto = detailService.getRow(pno);
@@ -88,5 +93,4 @@ public class AuctionController {
   public void getProductSale() {
     log.info("제품 판매 페이지 요청");
   }
-
 }

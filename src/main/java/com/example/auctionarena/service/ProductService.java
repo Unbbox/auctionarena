@@ -10,7 +10,6 @@ import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
-import java.util.List;
 
 public interface ProductService {
   // List<ProductDto> getList();
@@ -19,20 +18,21 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
+  // ProductDto getRow(Long cno);
+
   // 제품 상세 페이지 요청
   // ProductDto getRow(Long pno);
 
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product, Long replyCnt) {
+  public default ProductDto entityToDto(Product product) {
     return ProductDto
       .builder()
       .pno(product.getPno())
       .title(product.getTitle())
       .content(product.getContent())
       .writerName(product.getMember().getNickname())
-      .replyCnt(replyCnt != null ? replyCnt : 0)
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())

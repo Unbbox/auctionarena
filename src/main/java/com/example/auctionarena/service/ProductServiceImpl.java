@@ -5,13 +5,14 @@ import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import org.springframework.stereotype.Service;
 public class ProductServiceImpl implements ProductService {
 
   private final ProductRepository productRepository;
+  private final CategoryRepository categoryRepository;
   private final ProductImageRepository productImageRepository;
 
   // @Override
@@ -52,9 +54,16 @@ public class ProductServiceImpl implements ProductService {
     );
 
     Function<Object[], ProductDto> fn =
-      (entity -> entityToDto((Product) entity[0], null));
+      (entity -> entityToDto((Product) entity[0]));
     return new CategoryPageResultDto<>(result, fn);
   }
+  // @Override
+  // public ProductDto getRow(Long cno) {
+  //   // Product entitiy = productRepository.findByCno(cno).get();
+  //   // return entityToDto(entitiy);
+  //   Object[] row = productRepository.findByCno(cno);
+  //   return entityToDto((Product) row[0]);
+  // }
   // 제품 상세 페이지
   // @Override
   // public ProductDto getRow(Long pno) {
