@@ -19,11 +19,11 @@ public class NoticeImageDto {
 
     private Long ninum;
 
-    private String nuuid;
+    private String uuid;
 
-    private String nimgName;
+    private String imgName;
 
-    private String npath;
+    private String path;
 
     private Notice notice;
 
@@ -35,7 +35,7 @@ public class NoticeImageDto {
         String fullPath = "";
 
         try {
-            fullPath = URLEncoder.encode(npath + "/" + nuuid + "_notice_" + nimgName, "UTF-8");
+            fullPath = URLEncoder.encode(path + "/" + uuid + "_" + imgName, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

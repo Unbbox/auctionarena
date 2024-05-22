@@ -44,9 +44,9 @@ public class NoticeRepositoryTest {
 
             for (int j = 0; j < count; j++) {
                 NoticeImage nImage = NoticeImage.builder()
-                        .nuuid(UUID.randomUUID().toString())
+                        .uuid(UUID.randomUUID().toString())
                         .notice(notice)
-                        .nimgName("img" + j + ".jpg")
+                        .imgName("img" + j + ".jpg")
                         .build();
                 noticeImageRepository.save(nImage);
             }

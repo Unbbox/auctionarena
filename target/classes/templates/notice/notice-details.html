@@ -18,7 +18,7 @@
             <div class="blog__details__pic">
               <ul>
                 <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}">
-                  <img class="block" th:if="${image.npath != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
+                  <img class="block" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
                 </li>
               </ul>
             </div>

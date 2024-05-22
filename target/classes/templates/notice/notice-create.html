@@ -23,6 +23,8 @@
                     <label for="writerNickname" class="form-label">작성자</label>
                     <input class="form-control" type="text" name="writerNickname" id="writerNickname" />
                   </div>
+
+                  <!-- 이미지 업로드 -->
                   <label class="block mt-4 text-sm form-label">
                     <span class="block text-gray-700 dark:text-gray-400">Image Files</span>
                     <input
@@ -47,6 +49,7 @@
                         </li>
                     --></ul>
                   </div>
+
                   <div class="mb-3">
                     <label for="content" class="form-label">내용</label>
                     <textarea class="form-control" type="text" name="content" id="content" rows="10"></textarea>
@@ -65,10 +68,10 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
-    <!-- <script>
+    <script>
       // csrf 토큰 설정
       const csrfValue = "[[${_csrf.token}]]";
-    </script> -->
+    </script>
     <script th:src="@{/noticejs/noticeCreate.js}"></script>
     <script th:src="@{/noticejs/noticeUpload.js}"></script>
   </th:block>
