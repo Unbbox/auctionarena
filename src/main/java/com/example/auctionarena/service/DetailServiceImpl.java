@@ -12,6 +12,7 @@ import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -78,5 +79,19 @@ public class DetailServiceImpl implements DetailService {
     Long reviewCnt = (Long) result.get(0)[2];
 
     return entityToDto(product, productImages, reviewCnt);
+  }
+
+  @Override
+  public Long productRegister(ProductDto productDto) {
+
+    Map<String, Object> entityMap = dtoToEntity(productDto);
+
+    Product product = (Product) entityMap.get("product");
+    productRepository.save(product);
+
+    List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
+    productImages.forEach(image -> productImageRepository.save(image));
+
+    return product.getPno();
   }
 }

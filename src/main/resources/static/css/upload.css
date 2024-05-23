@@ -1,5 +1,5 @@
 .product_image {
-  display: flex;
+  /* display: flex; */
 }
 
 .upload_image {
@@ -17,6 +17,7 @@
 
 .product_sale {
   display: flex;
+
   flex-direction: column;
 }
 
@@ -24,12 +25,37 @@
   width: 150px;
 }
 
-.upload_image_preview {
+/* 원래 이미지 미리보기 css */
+/* .upload_image_preview {
   width: 580px;
   height: 220px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+} */
+
+.upload_image_preview {
+  width: 580px;
+  height: 220px;
+  gap: 20px;
+  position: relative;
+}
+
+.upload_image_preview ul {
+  display: flex;
+  /* flex-flow: row; */
+  flex-wrap: wrap;
+  /* overflow: auto; */
+}
+
+.upload_image_preview ul li {
+  list-style: none;
+  padding: 10px;
+  margin-left: 2em;
+}
+
+.upload_image_preview ul li img {
+  width: 100px;
 }
 
 /*  */

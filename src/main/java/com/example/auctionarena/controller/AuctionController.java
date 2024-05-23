@@ -5,6 +5,8 @@ import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
+
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("auctionArena")
 @Log4j2
@@ -27,9 +32,8 @@ public class AuctionController {
   // 전체 상품
   @GetMapping("/categories")
   public void getAllCategory(
-    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-    Model model
-  ) {
+      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+      Model model) {
     log.info("전체 상품 목록 페이지 요청");
 
     model.addAttribute("result", service.getList(requestDto));
@@ -38,9 +42,8 @@ public class AuctionController {
 
   @GetMapping("/fashion-category")
   public void getFashionCategory(
-    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-    Model model
-  ) {
+      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+      Model model) {
     log.info("전체 상품 목록 페이지 요청");
     model.addAttribute("result", service.getList(requestDto));
   }
@@ -76,10 +79,9 @@ public class AuctionController {
   // 제품 상세 페이지
   @GetMapping("/product_details")
   public void getDetails(
-    @RequestParam Long pno,
-    Model model,
-    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto
-  ) {
+      @RequestParam Long pno,
+      Model model,
+      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
     ProductDto dto = detailService.getRow(pno);
@@ -93,4 +95,22 @@ public class AuctionController {
   public void getProductSale() {
     log.info("제품 판매 페이지 요청");
   }
+
+  // 제품 판매 등록 POST
+  @PostMapping("/product_sale")
+  public String postMethodName(ProductDto productDto, @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+      RedirectAttributes rttr) {
+    log.info("제품 판매 등록 {}", productDto);
+
+    Long pno = detailService.productRegister(productDto);
+
+    rttr.addFlashAttribute("msg", pno);
+    rttr.addAttribute("page", pageRequestDto.getPage());
+    rttr.addAttribute("size", pageRequestDto.getSize());
+    rttr.addAttribute("type", pageRequestDto.getType());
+    rttr.addAttribute("keyword", pageRequestDto.getKeyword());
+
+    return "redirect:/auctionarena/categories";
+  }
+
 }

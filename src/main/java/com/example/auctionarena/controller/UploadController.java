@@ -50,8 +50,8 @@ public class UploadController {
 
             String oriName = multipartFile.getOriginalFilename();
             String fileName = oriName.substring(oriName.lastIndexOf("//") + 1);
-            log.info("파일정보 - 전체경로: {}", oriName);
-            log.info("파일정보 - 전체경로: {}", fileName);
+            // log.info("파일정보 - 전체경로: {}", oriName);
+            // log.info("파일정보 - 전체경로: {}", fileName);
 
             // 폴더 생성
             if (folderType.contains("notice")) {
