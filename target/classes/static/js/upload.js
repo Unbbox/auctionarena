@@ -24,13 +24,13 @@ function showUploadImages(arr) {
   arr.forEach((obj, idx) => {
     tags += `<li data-name="${obj.fileName}" data-path="${obj.folderPath}" data-uuid="${obj.uuid}">`;
     tags += `<div>`;
-    tags += `<a href=""><img src="/upload/display?fileName=${obj.thumbImageURL}" class="block"></a>`;
+    tags += `<a href=""><img src="/upload/display?fileName=${obj.imageURL}" class="block"></a>`;
     tags += `<span class="text-sm d-inline-block mx-1">${obj.fileName}</span>`;
     tags += `<a href="#" data-file="${obj.imageURL}">`;
     tags += `<i class="fa-solid fa-xmark"></i></a>`;
     tags += `</div></li>`;
   });
-  uploadResult.insertAdjacentHTML("beforeend", tags);
+  imagePreview.insertAdjacentHTML("beforeend", tags);
 }
 
 upload_image.addEventListener("change", (e) => {
@@ -55,9 +55,9 @@ upload_image.addEventListener("change", (e) => {
 
   fetch("/upload/uploadAjax", {
     method: "post",
-    // headers: {
-    //   "X-CSRF-TOKEN": csrfValue,
-    // },
+    headers: {
+      "X-CSRF-TOKEN": csrfValue,
+    },
     body: formData,
   })
     .then((response) => response.json())
@@ -68,32 +68,33 @@ upload_image.addEventListener("change", (e) => {
     });
 });
 
-// register, modify 중복 사용
-// form submit 기능 중지
+// register, modify 둘 다 사용
 // uploadResult ul li 태그 요소 가져오기
-// document.querySelector("#register-form").addEventListener("submit", (e) => {
-//   e.preventDefault();
+document.querySelector("#register_form").addEventListener("submit", (e) => {
+  e.preventDefault();
 
-//   const form = e.target;
+  const form = e.target;
 
-//   //첨부파일 정보 수집
-//   const attachInfos = document.querySelectorAll(".uploadResult ul li");
-//   console.log(attachInfos);
+  //첨부파일 정보 수집
+  const attachInfos = imagePreview.querySelectorAll("li");
+  console.log(attachInfos);
 
-//   //수집된 정보를  폼 태그 자식으로 붙여넣기
-//   let result = "";
-//   attachInfos.forEach((obj, idx) => {
-//     // hidden 3개 => MovieImageDto 객체 하나로 변경
-//     result += `<input type='hidden' value='${obj.dataset.path}' name='movieImageDtos[${idx}].path'>`;
-//     result += `<input type='hidden' value='${obj.dataset.uuid}' name='movieImageDtos[${idx}].uuid'>`;
-//     result += `<input type='hidden' value='${obj.dataset.name}' name='movieImageDtos[${idx}].imgName'>`;
-//   });
-//   form.insertAdjacentHTML("beforeend", result);
+  //수집된 정보를  폼 태그 자식으로 붙여넣기
+  let result = "";
+  attachInfos.forEach((obj, idx) => {
+    // ProductImageDto 객체 하나로 변경
+    result += `<input type='hidden' value='${obj.dataset.path}' name='productImageDtos[${idx}].path'>`;
+    result += `<input type='hidden' value='${obj.dataset.uuid}' name='productImageDtos[${idx}].uuid'>`;
+    result += `<input type='hidden' value='${obj.dataset.name}' name='productImageDtos[${idx}].imgName'>`;
+  });
+  form.insertAdjacentHTML("beforeend", result);
 
-//   console.log(form.innerHTML);
+  console.log(form.innerHTML);
 
-//   form.submit();
-// });
+  form.submit();
+});
+
+// 이미지 갯수 확인 후 10개 이상이면 에러 출력
 // upload_image.addEventListener("change", (e) => {
 //   const uploadFiles = [];
 //   const files = e.currentTarget.files;

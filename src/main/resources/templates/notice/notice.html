@@ -64,7 +64,9 @@
                 </li>
               </div>
             </div>
+            <div sec:authorize="hasRole('ADMIN')">
             <a class="notice-details-btn" th:href="@{notice-create}">작성</a>
+            </div>
           </div>
         </div>
       </div>

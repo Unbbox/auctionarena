@@ -11,7 +11,10 @@ import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public interface DetailService {
@@ -23,66 +26,104 @@ public interface DetailService {
   // 제품 상세 페이지 요청
   ProductDto getRow(Long pno);
 
+  // 제품 등록
+  Long productRegister(ProductDto productDto);
+
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
   public default ProductDto entityToDto(
-    Product product,
-    List<ProductImage> productImages,
-    Long replyCnt
-  ) {
+      Product product,
+      List<ProductImage> productImages,
+      Long replyCnt) {
     ProductDto productDto = ProductDto
-      .builder()
-      .pno(product.getPno())
-      .title(product.getTitle())
-      .content(product.getContent())
-      .writerName(product.getMember().getNickname())
-      .replyCnt(replyCnt != null ? replyCnt : 0)
-      .startPrice(product.getStartPrice())
-      .biddingDate(product.getBiddingDate())
-      .category(product.getCategory().getCategoryName())
-      .createdDate(product.getCreatedDate())
-      .lastModifiedDate(product.getLastModifiedDate())
-      .build();
+        .builder()
+        .pno(product.getPno())
+        .title(product.getTitle())
+        .content(product.getContent())
+        .writerName(product.getMember().getNickname())
+        .replyCnt(replyCnt != null ? replyCnt : 0)
+        .startPrice(product.getStartPrice())
+        .biddingDate(product.getBiddingDate())
+        .category(product.getCategory().getCategoryName())
+        .createdDate(product.getCreatedDate())
+        .lastModifiedDate(product.getLastModifiedDate())
+        .build();
 
     // 제품 상세 페이지의 이미지
     List<ProductImageDto> productImageDtos = productImages
-      .stream()
-      .map(productImage -> {
-        return ProductImageDto
-          .builder()
-          .inum(productImage.getInum())
-          .uuid(productImage.getUuid())
-          .imgName(productImage.getImgName())
-          .path(productImage.getPath())
-          .build();
-      })
-      .collect(Collectors.toList());
+        .stream()
+        .map(productImage -> {
+          return ProductImageDto
+              .builder()
+              .inum(productImage.getInum())
+              .uuid(productImage.getUuid())
+              .imgName(productImage.getImgName())
+              .path(productImage.getPath())
+              .build();
+        })
+        .collect(Collectors.toList());
 
     productDto.setProductImageDtos(productImageDtos);
     return productDto;
   }
 
   // dto => entity
-  public default Product dtoToEntity(ProductDto dto) {
-    Member member = Member.builder().nickname(dto.getWriterName()).build();
-    // bidding을 꼭 넣어야하는가?
-    // Bidding bidding = Bidding.builder().build();
-    Category category = Category
-      .builder()
-      .categoryName(dto.getCategory())
-      .build();
+  public default Map<String, Object> dtoToEntity(ProductDto dto) {
 
-    return Product
-      .builder()
-      .pno(dto.getPno())
-      .title(dto.getTitle())
-      .content(dto.getContent())
-      .startPrice(dto.getStartPrice())
-      .biddingDate(dto.getBiddingDate())
-      .member(member)
-      // .bidding(bidding)
-      .category(category)
-      .build();
+    Map<String, Object> entityMap = new HashMap<>();
+
+    Member member = Member.builder().nickname(dto.getWriterName()).build();
+    Category category = Category.builder().categoryName(dto.getCategory()).build();
+
+    Product product = Product.builder()
+        .pno(dto.getPno())
+        .title(dto.getTitle())
+        .content(dto.getContent())
+        .startPrice(dto.getStartPrice())
+        .biddingDate(dto.getBiddingDate())
+        .member(member)
+        .category(category)
+        .build();
+    entityMap.put("product", product);
+
+    List<ProductImageDto> productImageDtos = dto.getProductImageDtos();
+
+    if (productImageDtos != null && productImageDtos.size() > 0) {
+      List<ProductImage> productImages = productImageDtos.stream().map(pDto -> {
+        ProductImage productImage = ProductImage.builder()
+            .imgName(pDto.getImgName())
+            .uuid(pDto.getUuid())
+            .path(pDto.getPath())
+            .product(product)
+            .build();
+        return productImage;
+      }).collect(Collectors.toList());
+
+      entityMap.put("imgList", productImages);
+    }
+
+    return entityMap;
+
+    // ** Map<String,Object>가 아닌 Product일 때의 코드
+    // Member member = Member.builder().nickname(dto.getWriterName()).build();
+    // // bidding을 꼭 넣어야하는가?
+    // // Bidding bidding = Bidding.builder().build();
+    // Category category = Category
+    // .builder()
+    // .categoryName(dto.getCategory())
+    // .build();
+
+    // return Product
+    // .builder()
+    // .pno(dto.getPno())
+    // .title(dto.getTitle())
+    // .content(dto.getContent())
+    // .startPrice(dto.getStartPrice())
+    // .biddingDate(dto.getBiddingDate())
+    // .member(member)
+    // // .bidding(bidding)
+    // .category(category)
+    // .build();
   }
 }

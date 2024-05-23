@@ -37,6 +37,7 @@
                   <a
                     class="notice-details-btn"
                     th:href="@{notice-modify(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                    sec:authorize="hasRole('ADMIN')"
                     >수정</a
                   >
                 </div>
