@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <div layout:fragment="content">  
         <!-- Product Sale Section Begin -->
+        <h3>제품 등록</h3>
         <form action="post" id="register_form" th:action="@{product_sale}">
             <!-- 이미지 업로드 칸 -->
             <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
@@ -13,7 +14,7 @@
                 <div class="upload_image_preview">
                     <h5>이미지 미리보기</h5>
                     <ul>
-                        <!--  -->
+                        <!-- 이미지 미리보기 div -->
                     </ul>
                 </div>
             </div>

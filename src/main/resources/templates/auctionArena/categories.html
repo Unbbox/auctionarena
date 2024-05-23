@@ -131,5 +131,11 @@
     </div>
     </section>
     <!-- Product Section End -->
-    
+    <th:block layout:fragment="script">
+      <script>
+        const msg = "[[${msg}]]"
+
+        if (msg) alert(msg + "번 제품 등록 완료");
+      </script>
+    </th:block>
 </html>

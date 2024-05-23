@@ -26,7 +26,7 @@
 
               <!-- 로그인 후 -->
               <li sec:authorize="isAuthenticated"><a th:href="@{/}"><b>마이페이지</b></a></li>
-              <li sec:authorize="isAuthenticated"><a th:href="@{/}"><b>판매하기</b></a></li>
+              <li sec:authorize="isAuthenticated"><a th:href="@{/auctionArena/product_sale}"><b>판매하기</b></a></li>
               <li sec:authorize="isAuthenticated"><a th:href="@{/member/logout}"><b>로그아웃</b></a></li>
 
             </ul>

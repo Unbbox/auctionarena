@@ -3,7 +3,7 @@ const upload_image = document.querySelector(".upload_product_image"); // file up
 const imagePreview = document.querySelector(".upload_image_preview ul"); // 이미지 파일 미리보기 ul
 
 // div 클릭 시 파일 등록
-upload_div.addEventListener("click", (e) => {
+upload_div.addEventListener("click", () => {
   upload_image.click();
 });
 

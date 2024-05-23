@@ -92,7 +92,7 @@ public class AuctionController {
 
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
-  public void getProductSale() {
+  public void getProductSale(@ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
     log.info("제품 판매 페이지 요청");
   }
 

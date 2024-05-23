@@ -63,6 +63,7 @@
                     <!-- <div> -->
                       <ul>
                         <li>경매시작가:<span> [[${dto.startPrice}]]원</span></li>
+                        <!-- 추가 해야함 -->
                         <li>현재경매가:<span> 원</span></li>
                         <li>입찰인원:<span> 1,000명</span></li>
                         <li>남은 시간: <span class="date_now"></span></li>
@@ -208,15 +209,15 @@
     </section>
     <!-- Anime Section End -->
     <th:block layout:fragment="script">
-    <script>
-      // 제품 번호 가져오기
-      const pno = "[[${dto.pno}]]";
-      // 제품 등록 일자 가져오기
-      const sale_date = "[[${dto.createdDate}]]"
-      const biddingDate = `[[${dto.biddingDate}]]`
-      
-    </script>
-    <script th:src="@{/js/product_detail.js}"></script>
-    <script th:src="@{/js/comments.js}"></script>
+      <script>
+        // 제품 번호 가져오기
+        const pno = "[[${dto.pno}]]";
+        // 제품 등록 일자 가져오기
+        const sale_date = "[[${dto.createdDate}]]"
+        const biddingDate = `[[${dto.biddingDate}]]`
+        
+      </script>
+      <script th:src="@{/js/product_detail.js}"></script>
+      <script th:src="@{/js/comments.js}"></script>
   </th:block>
 </html>
