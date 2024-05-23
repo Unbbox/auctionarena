@@ -4,6 +4,8 @@ import com.example.auctionarena.dto.CategoryDto;
 import com.example.auctionarena.entity.Category;
 
 public interface CategoryService {
+  CategoryDto getRow(Long id);
+
   public default CategoryDto entityToDto(Category category) {
     return CategoryDto
       .builder()

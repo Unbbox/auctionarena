@@ -60,25 +60,25 @@
    <div class="header__nav">
         <nav class="category__menu mobile-menu" >
           <ul>
-            <li th:each="dto : ${result.dtoList}">
-              <a th:href="@{/auctionArena/categories}" th:text="${dto.category}"></a>
+            <li>
+              <a th:href="@{/auctionArena/categories}">전체</a>
             </li>
-            <!-- <li>
-              <a a th:href="@{/auctionArena/categories(cno=1,page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">패션 의류/잡화</a>
+            <li>
+              <a a th:href="@{/auctionArena/categories}">패션 의류/잡화</a>
             </li>      
             <li>
-              <a th:href="@{/auctionArena/mobile-category}">모바일/태블릿</a>
+              <a th:href="@{/auctionArena/categories}">모바일/태블릿</a>
             </li>
             <li>
-              <a th:href="@{/auctionArena/electronic-category}">가전제품</a>
+              <a th:href="@{/auctionArena/categories}">가전제품</a>
             </li>
             <li>
-              <a th:href="@{/auctionArena/game-category}">게임</a>
+              <a th:href="@{/auctionArena/categories}">게임</a>
             </li>
             <li>
-              <a th:href="@{/auctionArena/trib-category}">레저/여행</a>
+              <a th:href="@{/auctionArena/categories}">레저/여행</a>
             </li>         
-           </ul> -->
+           </ul>
         </nav>
       </div>
       <form action="" role="search" id="searchForm">
@@ -104,13 +104,13 @@
               <div class="row">
                 <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${result.dtoList}">
                   <div class="products__item" >  
-                    <div class="products__item__pic set-bg link" data-setbg="/img/fashion/신발2.png">
+                    <div class="products__item__pic set-bg link" data-setbg="https://via.placeholder.com/175x250">
                       <div class="wish"><i class="fa-regular fa-heart"></i></div>
                     </div>
                     <div class="products__item__text">
                       <h5><a th:href="@{product_details(pno=${dto.pno},cno=${dto.cno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a></h5>
                       <ul>
-                        <li><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword},cno=${dto.cno})}"fmt:formatNumber type="number" maxFractionDigits="3" th:value="${dto.startPrice}">[[${dto.startPrice}]] 원~</a></li>
+                        <li><a th:href="@{product_details(pno=${dto.pno},cno=${dto.cno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"fmt:formatNumber type="number" maxFractionDigits="3" th:value="${dto.startPrice}">[[${dto.startPrice}]] 원~</a></li>
                       </ul>
                     </div>
                   </div>
