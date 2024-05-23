@@ -16,35 +16,40 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize
-                // 전체 접근
-                // .anyRequest().permitAll()
-                .requestMatchers("/", "/css/**", "/fonts/**", "/img/**", "/js/**", "/noticejs/**", "/saas/**",
-                        "/videos/**", "/auth")
-                .permitAll()
-                .requestMatchers("/auctionArena/product_details", "/auctionArena/categories").permitAll()
-                .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
-                .requestMatchers("/member/signup").permitAll()
-                .anyRequest().authenticated());
+        @Bean
+        SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http.authorizeHttpRequests(authorize -> authorize
+                                // 전체 접근
+                                .anyRequest().permitAll()
 
-        http.formLogin(login -> login.loginPage("/member/login").permitAll()
-                .defaultSuccessUrl("/", true));
+                // 접근 제한
+                // .requestMatchers("/", "/css/**", "/fonts/**", "/img/**", "/js/**",
+                // "/noticejs/**", "/saas/**",
+                // "/videos/**", "/auth")
+                // .permitAll()
+                // .requestMatchers("/auctionArena/product_details",
+                // "/auctionArena/categories").permitAll()
+                // .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
+                // .requestMatchers("/member/signup").permitAll()
+                // .anyRequest().authenticated()
+                );
 
-        http.logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-                .logoutSuccessUrl("/"));
+                http.formLogin(login -> login.loginPage("/member/login").permitAll()
+                                .defaultSuccessUrl("/", true));
 
-        // 토큰 비활성화
-        // http.csrf(csrf -> csrf.disable());
+                http.logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                                .logoutSuccessUrl("/"));
 
-        http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
+                // 토큰 비활성화
+                // http.csrf(csrf -> csrf.disable());
 
-        return http.build();
-    }
+                http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
+                return http.build();
+        }
+
+        @Bean
+        PasswordEncoder passwordEncoder() {
+                return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        }
 }
