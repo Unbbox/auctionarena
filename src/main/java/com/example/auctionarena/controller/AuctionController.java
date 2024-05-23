@@ -36,43 +36,6 @@ public class AuctionController {
     // return "auctionArena/categories";
   }
 
-  @GetMapping("/fashion-category")
-  public void getFashionCategory(
-    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-    Model model
-  ) {
-    log.info("전체 상품 목록 페이지 요청");
-    model.addAttribute("result", service.getList(requestDto));
-  }
-
-  @GetMapping("/mobile-category")
-  public String getMobileCategory() {
-    log.info("전체 상품 목록 페이지 요청");
-
-    return "auctionArena/mobile-category";
-  }
-
-  @GetMapping("/electronic-category")
-  public String getElectronicCategory() {
-    log.info("전체 상품 목록 페이지 요청");
-
-    return "auctionArena/electronic-category";
-  }
-
-  @GetMapping("/game-category")
-  public String getGameCategory() {
-    log.info("전체 상품 목록 페이지 요청");
-
-    return "auctionArena/game-category";
-  }
-
-  @GetMapping("/trib-category")
-  public String getTribCategory() {
-    log.info("전체 상품 목록 페이지 요청");
-
-    return "auctionArena/trib-category";
-  }
-
   // 제품 상세 페이지
   @GetMapping("/product_details")
   public void getDetails(
