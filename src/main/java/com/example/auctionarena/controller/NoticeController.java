@@ -41,7 +41,13 @@ public class NoticeController {
             @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("read or modify 요청");
 
-        model.addAttribute("dto", service.getRow(nno));
+        NoticeDto dto = service.getRow(nno);
+        Long preNno = service.getPreNo(nno);
+        Long nextNno = service.getNextNo(nno);
+
+        model.addAttribute("dto", dto);
+        model.addAttribute("preNno", preNno);
+        model.addAttribute("nextNno", nextNno);
     }
 
     @PostMapping("/notice-modify")

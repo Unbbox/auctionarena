@@ -26,6 +26,10 @@ public interface NoticeService {
 
     Long noticeCreate(NoticeDto noticeDto);
 
+    Long getPreNo(Long nno);
+
+    Long getNextNo(Long nno);
+
     public default NoticeDto entityToDto(Notice notice, Member member, List<NoticeImage> noticeImages) {
         NoticeDto noticeDto = NoticeDto.builder()
                 .nno(notice.getNno())
