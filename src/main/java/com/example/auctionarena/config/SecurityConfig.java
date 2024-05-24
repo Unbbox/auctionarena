@@ -28,8 +28,10 @@ public class SecurityConfig {
                 // "/videos/**", "/auth")
                 // .permitAll()
                 // .requestMatchers("/auctionArena/product_details",
-                // "/auctionArena/categories").permitAll()
+                // "/auctionArena/categories")
+                // .permitAll()
                 // .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
+                // .requestMatchers("/upload/display").permitAll()
                 // .requestMatchers("/member/signup").permitAll()
                 // .anyRequest().authenticated()
                 );

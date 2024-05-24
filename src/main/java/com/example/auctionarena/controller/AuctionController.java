@@ -6,9 +6,7 @@ import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
-
 import jakarta.validation.Valid;
-
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +58,9 @@ public class AuctionController {
 
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
-  public void getProductSale(ProductDto productDto, Model model,
+  public void getProductSale(
+      ProductDto productDto,
+      Model model,
       @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
     log.info("제품 판매 페이지 요청");
 
