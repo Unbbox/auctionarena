@@ -2277,7 +2277,7 @@ ol {
   float: right;
 }
 
-.login__form form .input__item #post {
+.login__form form .input__item #zonecode {
   height: 50px;
   width: 62%;
   font-size: 15px;

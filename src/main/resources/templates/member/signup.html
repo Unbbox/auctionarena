@@ -23,38 +23,44 @@
           <div class="col-lg-6">
             <div class="login__form">
               <h3>회원가입</h3>
-              <form action="#">
+              <form th:action="@{signup}" method="post" th:object="${memberDto}">
                 <div class="input__item">
-                  <input type="text" placeholder="이메일" id="email" name="email" />
+                  <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}"/>
                   <span class="icon_mail"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                  <div class="text-danger" th:if="${error}" th:text="${error}"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="비밀번호" id="password" name="password" />
+                  <input type="text" placeholder="비밀번호" id="password" name="password" th:value="${memberDto.password}"/>
                   <span class="icon_lock"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="이름" id="name" name="name" />
+                  <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
                   <span class="icon_profile"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="닉네임" id="nickname" name="nickname" />
+                  <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
                   <span class="icon_profile"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
                 </div>
                 <div class="input__item post">
-                  <input type="text" placeholder="우편번호" id="post" name="post" maxlength="15" />
+                  <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" readonly/>
                   <span class="icon_pin_alt"></span>
-                  <button class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
+                  <button type="button" class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="주소" id="adress" name="adress" />
+                  <input type="text" placeholder="주소" id="addr" name="addr" />
                   <span class="icon_house_alt"></span>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" />
+                  <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"/>
                   <span class="icon_phone"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                 </div>
-                <button type="submit" class="site-btn">Login Now</button>
-                <h5>Already have an account? <a href="#">Log In!</a></h5>
+                <button type="submit" class="site-btn">회원가입</button>
+                <h5>Already have an account? <a th:href="@{login}">Log In!</a></h5>
             </div>
         </div>
         <div class="col-lg-6">
@@ -467,42 +473,43 @@
     <!-- CDN 방식 사용 -->
     <script>
       function execDaumPostcode() {
-        new daum.Postcode({
-          oncomplete: function (data) {
-            // 팝업을 통한 검색 결과 항목 클릭 시 실행
-            var addr = ""; // 주소_결과값이 없을 경우 공백
-            var extraAddr = ""; // 참고항목
+  new daum.Postcode({
+    oncomplete: function (data) {
+      // 팝업을 통한 검색 결과 항목 클릭 시 실행
+      var addr = ""; // 주소_결과값이 없을 경우 공백
+      var extraAddr = ""; // 참고항목
 
-            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-            if (data.userSelectedType === "R") {
-              // 도로명 주소를 선택
-              addr = data.roadAddress;
-            } else {
-              // 지번 주소를 선택
-              addr = data.jibunAddress;
-            }
-
-            if (data.userSelectedType === "R") {
-              if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-                extraAddr += data.bname;
-              }
-              if (data.buildingName !== "" && data.apartment === "Y") {
-                extraAddr += extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
-              }
-              if (extraAddr !== "") {
-                extraAddr = " (" + extraAddr + ")";
-              }
-            } else {
-              document.getElementById("UserAdd1").value = "";
-            }
-
-            // 선택된 우편번호와 주소 정보를 input 박스에 넣는다.
-            document.getElementById("post").value = data.zonecode;
-            document.getElementById("address").value = addr;
-            // document.getElementById("UserAdd1").value += extraAddr;
-            document.getElementById("phoneNumber").focus(); // 우편번호 + 주소 입력이 완료되었음으로 상세주소로 포커스 이동
-          },
-        }).open();
+      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+      if (data.userSelectedType === "R") {
+        // 도로명 주소를 선택
+        addr = data.roadAddress;
+      } else {
+        // 지번 주소를 선택
+        addr = data.jibunAddress;
       }
+
+      if (data.userSelectedType === "R") {
+        if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+          extraAddr += data.bname;
+        }
+        if (data.buildingName !== "" && data.apartment === "Y") {
+          extraAddr += extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+        }
+        if (extraAddr !== "") {
+          extraAddr = " (" + extraAddr + ")";
+        }
+      } else {
+        document.getElementById("UserAdd1").value = "";
+      }
+
+      // 선택된 우편번호와 주소 정보를 input 박스에 넣는다.
+      document.getElementById("zonecode").value = data.zonecode;
+      document.getElementById("addr").value = addr;
+      // document.getElementById("UserAdd1").value += extraAddr;
+      document.getElementById("phoneNumber").focus(); // 우편번호 + 주소 입력이 완료되었음으로 상세주소로 포커스 이동
+    },
+  }).open();
+}
+
     </script>
    </div>
