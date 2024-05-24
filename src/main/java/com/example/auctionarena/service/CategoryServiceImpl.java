@@ -36,4 +36,20 @@ public class CategoryServiceImpl implements CategoryService {
     Category entity = categoryRepository.findById(id).get();
     return entityToDto(entity);
   }
+  // @Override
+  // public CategoryPageResultDto<CategoryDto, Object[]> getList(
+  //   CategoryPageRequestDto requestDto
+  // ) {
+  //   Page<Object[]> result = categoryRepository.list(
+  //     requestDto.getType(),
+  //     requestDto.getKeyword(),
+  //     // requestDto.getCno(),
+  //     // requestDto.getCategory(),
+  //     requestDto.getPageable(Sort.by("pno").descending())
+  //   );
+
+  //   Function<Object[], CategoryDto> fn =
+  //     (entity -> entityToDto((Category) entity[0]));
+  //   return new CategoryPageResultDto<>(result, fn);
+  // }
 }
