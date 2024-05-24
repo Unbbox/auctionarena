@@ -10,11 +10,13 @@ import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.CategoryRepository;
+import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class DetailServiceImpl implements DetailService {
   private final ProductRepository productRepository;
   private final ProductImageRepository productImageRepository;
   private final CategoryRepository categoryRepository;
+  private final MemberRepository memberRepository;
 
   // @Override
   // public List<ProductDto> getList() {
@@ -86,23 +89,41 @@ public class DetailServiceImpl implements DetailService {
 
   @Override
   public Long productRegister(ProductDto productDto) {
+    // log.info("dto 전달 받음 : {}", productDto);
+
+    // Optional<Member> member =
+    // memberRepository.findById(productDto.getWriterEmail());
+
+    // if (member.isPresent()) {
+    // 닉네임 있을 때 진행
+    Category category = categoryRepository.findByCategoryName(productDto.getCategory()).get();
+    Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
+    log.info("매핑은 됐나? : {}", entityMap);
 
+    // 제품 등록
     Product product = (Product) entityMap.get("product");
-    productRepository.save(product);
+    product.setCategory(category);
+    product.setMember(member);
     log.info("제품 등록 한다 이제 : {}", product);
+    productRepository.save(product);
+    // log.info("제품 저장했다 : {}", product);
 
+    // 이미지 등록
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
     productImages.forEach(image -> productImageRepository.save(image));
 
     return product.getPno();
+    // }
+    // log.info("로그인 안되어있음");
+    // return null;
   }
 
   // 카테고리 리스트 반환
   @Override
-  public List<Category> categoryNameList() {
+  public List<String> categoryNameList() {
     List<Category> list = categoryRepository.findAll();
-    return list.stream().map(entity -> entity).collect(Collectors.toList());
+    return list.stream().map(entity -> entity.getCategoryName()).collect(Collectors.toList());
   }
 }

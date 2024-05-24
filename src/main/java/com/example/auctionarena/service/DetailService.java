@@ -30,7 +30,7 @@ public interface DetailService {
   Long productRegister(ProductDto productDto);
 
   // 카테고리 리스트 반환
-  List<Category> categoryNameList();
+  List<String> categoryNameList();
 
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
@@ -79,6 +79,7 @@ public interface DetailService {
     Member member = Member.builder().nickname(dto.getWriterName()).build();
     Category category = Category.builder().categoryName(dto.getCategory()).build();
 
+    // product entity 생성
     Product product = Product.builder()
         .pno(dto.getPno())
         .title(dto.getTitle())
@@ -89,6 +90,7 @@ public interface DetailService {
         .category(category)
         .build();
     entityMap.put("product", product);
+    // entityMap.put("member", member);
 
     List<ProductImageDto> productImageDtos = dto.getProductImageDtos();
 

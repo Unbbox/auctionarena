@@ -60,14 +60,8 @@ public class AuctionController {
 
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
-<<<<<<< HEAD
   public void getProductSale(ProductDto productDto, Model model,
       @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
-=======
-  public void getProductSale(
-    @ModelAttribute("requestDto") PageRequestDto pageRequestDto
-  ) {
->>>>>>> cd7a0e77d751d0652511a177da478d2ddc2c273d
     log.info("제품 판매 페이지 요청");
 
     // 카테고리 리스트 보여주기

@@ -34,8 +34,8 @@
                         <option value="레저/여행">레저/여행</option>
                         <option value="기타">기타</option> -->
                         <option value="" th:selected="${productDto.category} == ''">선택</option>
-                        <option th:each="cate  : ${categories}" th:value="${cate.categoryName}" th:text="${cate.categoryName}" th:selected="${productDto.category} == ${cate.categoryName}">
-                            <input type="hidden" name="cno" id="cno" th:value="${productDto.cno} == ${cate.cno}">
+                        <option th:each="cate  : ${categories}" th:value="${cate}" th:text="${cate}" th:selected="${productDto.category} == ${cate}">
+                            <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno} == ${cate.cno}"> -->
                         </option>
                     </select>
                 </div>

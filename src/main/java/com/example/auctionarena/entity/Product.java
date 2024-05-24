@@ -1,5 +1,6 @@
 package com.example.auctionarena.entity;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,15 +26,8 @@ import lombok.ToString;
 @Entity
 public class Product extends BaseEntity {
 
-  @SequenceGenerator(
-    name = "product_seq_gen",
-    sequenceName = "product_seq",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "product_seq_gen"
-  )
+  @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
   @Id
   private Long pno;
 
@@ -47,7 +41,7 @@ public class Product extends BaseEntity {
 
   // 멤버 관련
   // member.nickname
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY) // , cascade = CascadeType.ALL
   private Member member;
 
   // 응찰 관련
@@ -56,7 +50,7 @@ public class Product extends BaseEntity {
   // private Bidding bidding;
 
   // 카테고리 관련
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY) // , cascade = CascadeType.ALL
   private Category category;
   // 이미지 관련 리스트
   // private ProductImage productImage;
