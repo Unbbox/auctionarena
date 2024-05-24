@@ -29,6 +29,9 @@ public interface DetailService {
   // 제품 등록
   Long productRegister(ProductDto productDto);
 
+  // 카테고리 리스트 반환
+  List<Category> categoryNameList();
+
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {

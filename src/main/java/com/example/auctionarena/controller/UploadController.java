@@ -51,7 +51,7 @@ public class UploadController {
             String oriName = multipartFile.getOriginalFilename();
             String fileName = oriName.substring(oriName.lastIndexOf("//") + 1);
             // log.info("파일정보 - 전체경로: {}", oriName);
-            // log.info("파일정보 - 전체경로: {}", fileName);
+            log.info("파일정보 - 전체경로: {}", fileName);
 
             // 폴더 생성
             if (folderType.contains("notice")) {
@@ -72,6 +72,7 @@ public class UploadController {
             }
             // 저장된 파일 정보 객체 생성 후 리스트에 추가
             uploadResultDtos.add(new UploadResultDto(saveFolderPath, uuid, fileName));
+            log.info("파일 등록 완료{}", fileName);
         }
         return new ResponseEntity<>(uploadResultDtos, HttpStatus.OK);
     }

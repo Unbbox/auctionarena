@@ -5,9 +5,11 @@ import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
@@ -29,6 +31,7 @@ public class DetailServiceImpl implements DetailService {
 
   private final ProductRepository productRepository;
   private final ProductImageRepository productImageRepository;
+  private final CategoryRepository categoryRepository;
 
   // @Override
   // public List<ProductDto> getList() {
@@ -88,10 +91,18 @@ public class DetailServiceImpl implements DetailService {
 
     Product product = (Product) entityMap.get("product");
     productRepository.save(product);
+    log.info("제품 등록 한다 이제 : {}", product);
 
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
     productImages.forEach(image -> productImageRepository.save(image));
 
     return product.getPno();
+  }
+
+  // 카테고리 리스트 반환
+  @Override
+  public List<Category> categoryNameList() {
+    List<Category> list = categoryRepository.findAll();
+    return list.stream().map(entity -> entity).collect(Collectors.toList());
   }
 }

@@ -25,15 +25,8 @@ import lombok.ToString;
 @Entity
 public class Category extends BaseEntity {
 
-  @SequenceGenerator(
-    name = "category_seq_gen",
-    sequenceName = "category_seq",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "category_seq_gen"
-  )
+  @SequenceGenerator(name = "category_seq_gen", sequenceName = "category_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "category_seq_gen")
   @Id
   private Long cno;
 
