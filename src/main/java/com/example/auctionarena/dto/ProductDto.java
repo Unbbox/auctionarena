@@ -29,7 +29,7 @@ public class ProductDto {
 
   // 카테고리 관계
   private String category; // 카테고리 분류
-  private Long cno;
+  // private Long cno;
 
   // 멤버 관계
   private String writerName; // 작성자 이름

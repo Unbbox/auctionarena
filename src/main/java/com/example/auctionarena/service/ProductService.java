@@ -35,7 +35,7 @@ public interface ProductService {
         .startPrice(product.getStartPrice())
         .biddingDate(product.getBiddingDate())
         .category(product.getCategory().getCategoryName())
-        .cno(product.getCategory().getCno())
+        // .cno(product.getCategory().getCno())
         .createdDate(product.getCreatedDate())
         .lastModifiedDate(product.getLastModifiedDate())
         .build();
