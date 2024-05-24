@@ -6,9 +6,7 @@ import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
-
 import jakarta.validation.Valid;
-
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +34,9 @@ public class AuctionController {
   // 전체 상품
   @GetMapping("/categories")
   public void getAllCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
 
     model.addAttribute("result", service.getList(requestDto));
@@ -47,9 +46,10 @@ public class AuctionController {
   // 제품 상세 페이지
   @GetMapping("/product_details")
   public void getDetails(
-      @RequestParam Long pno,
-      Model model,
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
+    @RequestParam Long pno,
+    Model model,
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto
+  ) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
     ProductDto dto = detailService.getRow(pno);
@@ -60,14 +60,11 @@ public class AuctionController {
 
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
-<<<<<<< HEAD
-  public void getProductSale(ProductDto productDto, Model model,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
-=======
   public void getProductSale(
+    ProductDto productDto,
+    Model model,
     @ModelAttribute("requestDto") PageRequestDto pageRequestDto
   ) {
->>>>>>> cd7a0e77d751d0652511a177da478d2ddc2c273d
     log.info("제품 판매 페이지 요청");
 
     // 카테고리 리스트 보여주기
@@ -77,10 +74,11 @@ public class AuctionController {
   // 제품 판매 등록 POST
   @PostMapping("/product_sale")
   public String postMethodName(
-      // @Valid // 나중에 다 완료 되면 추가
-      ProductDto productDto,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-      RedirectAttributes rttr) {
+    // @Valid // 나중에 다 완료 되면 추가
+    ProductDto productDto,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+    RedirectAttributes rttr
+  ) {
     log.info("제품 판매 등록 {}", productDto);
 
     Long pno = detailService.productRegister(productDto);
