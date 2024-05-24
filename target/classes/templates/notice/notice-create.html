@@ -21,7 +21,14 @@
                   </div>
                   <div class="mb-3">
                     <label for="writerNickname" class="form-label">작성자</label>
-                    <input class="form-control" type="text" name="writerNickname" id="writerNickname" />
+                    <input
+                      class="form-control"
+                      type="text"
+                      name="writerNickname"
+                      id="writerNickname"
+                      th:value="${#authentication.principal.memberDto.nickname}"
+                      readonly
+                    />
                   </div>
 
                   <!-- 이미지 업로드 -->
