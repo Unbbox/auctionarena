@@ -20,19 +20,21 @@ public class SecurityConfig {
         SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http.authorizeHttpRequests(authorize -> authorize
                                 // 전체 접근
-                                // .anyRequest().permitAll()
+                                .anyRequest().permitAll()
 
-                                // 접근 제한
-                                .requestMatchers("/", "/css/**", "/fonts/**", "/img/**", "/js/**",
-                                                "/noticejs/**", "/saas/**",
-                                                "/videos/**", "/auth")
-                                .permitAll()
-                                .requestMatchers("/auctionArena/product_details",
-                                                "/auctionArena/categories")
-                                .permitAll()
-                                .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
-                                .requestMatchers("/member/signup").permitAll()
-                                .anyRequest().authenticated());
+                // 접근 제한
+                // .requestMatchers("/", "/css/**", "/fonts/**", "/img/**", "/js/**",
+                // "/noticejs/**", "/saas/**",
+                // "/videos/**", "/auth")
+                // .permitAll()
+                // .requestMatchers("/auctionArena/product_details",
+                // "/auctionArena/categories")
+                // .permitAll()
+                // .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
+                // .requestMatchers("/upload/display").permitAll()
+                // .requestMatchers("/member/signup").permitAll()
+                // .anyRequest().authenticated()
+                );
 
                 http.formLogin(login -> login.loginPage("/member/login").permitAll()
                                 .defaultSuccessUrl("/", true));
