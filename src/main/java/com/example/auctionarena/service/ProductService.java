@@ -10,12 +10,14 @@ import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import java.util.List;
 
 public interface ProductService {
   // List<ProductDto> getList();
 
   CategoryPageResultDto<ProductDto, Object[]> getList(
-      CategoryPageRequestDto requestDto);
+    CategoryPageRequestDto requestDto
+  );
 
   // ProductDto getRow(Long cno);
 
@@ -27,18 +29,18 @@ public interface ProductService {
   // replyCount) {
   public default ProductDto entityToDto(Product product) {
     return ProductDto
-        .builder()
-        .pno(product.getPno())
-        .title(product.getTitle())
-        .content(product.getContent())
-        .writerName(product.getMember().getNickname())
-        .startPrice(product.getStartPrice())
-        .biddingDate(product.getBiddingDate())
-        .category(product.getCategory().getCategoryName())
-        // .cno(product.getCategory().getCno())
-        .createdDate(product.getCreatedDate())
-        .lastModifiedDate(product.getLastModifiedDate())
-        .build();
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      .writerName(product.getMember().getNickname())
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .category(product.getCategory().getCategoryName())
+      // .cno(product.getCategory().getCno())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
   }
 
   // dto => entity
@@ -47,20 +49,20 @@ public interface ProductService {
     // bidding을 꼭 넣어야하는가?
     // Bidding bidding = Bidding.builder().build();
     Category category = Category
-        .builder()
-        .categoryName(dto.getCategory())
-        .build();
+      .builder()
+      .categoryName(dto.getCategory())
+      .build();
 
     return Product
-        .builder()
-        .pno(dto.getPno())
-        .title(dto.getTitle())
-        .content(dto.getContent())
-        .startPrice(dto.getStartPrice())
-        .biddingDate(dto.getBiddingDate())
-        .member(member)
-        // .bidding(bidding)
-        .category(category)
-        .build();
+      .builder()
+      .pno(dto.getPno())
+      .title(dto.getTitle())
+      .content(dto.getContent())
+      .startPrice(dto.getStartPrice())
+      .biddingDate(dto.getBiddingDate())
+      .member(member)
+      // .bidding(bidding)
+      .category(category)
+      .build();
   }
 }
