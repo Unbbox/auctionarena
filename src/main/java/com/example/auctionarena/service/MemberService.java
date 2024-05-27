@@ -7,8 +7,6 @@ public interface MemberService {
     // 회원가입
     String signup(MemberDto insertDto) throws IllegalStateException;
 
-    // 닉네임 수정
-    // void nickNameUpdatae(MemberDto upNickDto);
     // 주소 수정
     // void addrUpdate(MemberDto upAddrDto);
     // 비밀번호 수정
