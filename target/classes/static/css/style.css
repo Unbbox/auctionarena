@@ -2521,6 +2521,31 @@ ol {
   transition: all, 0.3s;
 }
 
+.sign-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background: #b7b7b7;
+  font-weight: 700;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+}
+
+.signupActive {
+  background: #e53637;
+}
+
+.agreeActive {
+}
+
+.input__item input:focus {
+  outline: 1px solid #555555;
+  color: #555555;
+}
+
 /*----------------------------------------*/
 /* 이나 end */
 /*----------------------------------------*/

@@ -51,7 +51,6 @@ public class MemberController {
             rttr.addFlashAttribute("error", e.getMessage());
             return "redirect:/member/signup";
         }
-
         rttr.addFlashAttribute("email", email);
         return "redirect:/member/login";
     }
