@@ -23,7 +23,7 @@
           <div class="col-lg-6">
             <div class="login__form">
               <h3>회원가입</h3>
-              <form th:action="@{signup}" method="post" th:object="${memberDto}">
+              <form th:action="@{signup}" method="post" th:object="${memberDto}" class="signupForm">
                 <div class="input__item">
                   <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}"/>
                   <span class="icon_mail"></span>
@@ -46,37 +46,41 @@
                   <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
                 </div>
                 <div class="input__item post">
-                  <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" readonly/>
+                  <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" th:value="${memberDto.zonecode}" readonly/>
                   <span class="icon_pin_alt"></span>
                   <button type="button" class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
+                  <div class="text-danger" th:if="${#fields.hasErrors('zonecode')}" th:errors="*{zonecode}"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="주소" id="addr" name="addr" />
+                  <input type="text" placeholder="주소" id="addr" name="addr" th:value="${memberDto.addr}"/>
                   <span class="icon_house_alt"></span>
+                  <div class="text-danger" th:if="${#fields.hasErrors('addr')}" th:errors="*{addr}"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"/>
                   <span class="icon_phone"></span>
                   <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
                 </div>
-                <button type="submit" class="site-btn">회원가입</button>
+                <button type="submit" class="sign-btn">회원가입</button>
                 <h5>Already have an account? <a th:href="@{login}">Log In!</a></h5>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="agree">
                 <h3>약관 동의</h3>
-                <div class="chk_all" id="chk_all">
-                <input type="checkbox" name="chk_all" id="chk_all" />
+                <div class="chk_all" >
+                <input type="checkbox" name="chk_all" id="chk_all"/>
                 <label for="chk_all">회원가입 약관에 모두 동의합니다</label>
               </div>
               <section id="agree_term">
                 <div class="registerAgree check1" id="registerAgree">
-                  <input type="checkbox" name="agree1" id="agree1" />
+                  <input type="checkbox" class="checkbox" name="agree1" id="agree1" />
                   <label for="agree1">이용약관 동의<span>(필수)</span></label>
                 </div>
                 <textarea readonly>
-                        제1조(목적) 이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
+제1조(목적) 
+
+  이 약관은 업체 회사(전자상거래 사업자)가 운영하는 업체 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
  
   ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
  
@@ -318,11 +322,11 @@
               </section>
               <section id="agree_private">
                 <div class="registerAgree check2" id="privateAgree">
-                  <input type="checkbox" name="agree2" id="agree2" />
+                  <input type="checkbox" class="checkbox" name="agree2" id="agree2" />
                   <label for="agree2">개인정보 수집 및 이용 동의<span>(필수)</span></label>
                 </div>
                 <textarea readonly>
-                    개인정보처리방침
+개인정보처리방침
 
 [차례]
 1. 총칙
@@ -468,48 +472,11 @@
     </section>
     <!-- Signup Section End -->
 
-    <!-- 우편번호 검색 -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
+  </div>
+  <th:block layout:fragment="script">
+      <!-- 우편번호 검색 -->
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <!-- CDN 방식 사용 -->
-    <script>
-      function execDaumPostcode() {
-  new daum.Postcode({
-    oncomplete: function (data) {
-      // 팝업을 통한 검색 결과 항목 클릭 시 실행
-      var addr = ""; // 주소_결과값이 없을 경우 공백
-      var extraAddr = ""; // 참고항목
-
-      //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-      if (data.userSelectedType === "R") {
-        // 도로명 주소를 선택
-        addr = data.roadAddress;
-      } else {
-        // 지번 주소를 선택
-        addr = data.jibunAddress;
-      }
-
-      if (data.userSelectedType === "R") {
-        if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
-          extraAddr += data.bname;
-        }
-        if (data.buildingName !== "" && data.apartment === "Y") {
-          extraAddr += extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
-        }
-        if (extraAddr !== "") {
-          extraAddr = " (" + extraAddr + ")";
-        }
-      } else {
-        document.getElementById("UserAdd1").value = "";
-      }
-
-      // 선택된 우편번호와 주소 정보를 input 박스에 넣는다.
-      document.getElementById("zonecode").value = data.zonecode;
-      document.getElementById("addr").value = addr;
-      // document.getElementById("UserAdd1").value += extraAddr;
-      document.getElementById("phoneNumber").focus(); // 우편번호 + 주소 입력이 완료되었음으로 상세주소로 포커스 이동
-    },
-  }).open();
-}
-
-    </script>
-   </div>
+    <script th:src="@{/memberjs/signup.js}"></script>
+      </th:block>
