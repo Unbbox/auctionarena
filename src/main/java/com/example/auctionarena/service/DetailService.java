@@ -1,5 +1,6 @@
 package com.example.auctionarena.service;
 
+import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
@@ -17,6 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public interface DetailService {
   // List<ProductDto> getList();
 
@@ -35,12 +39,9 @@ public interface DetailService {
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(
-      Product product,
-      List<ProductImage> productImages,
+  public default ProductDto entityToDto(Product product, List<ProductImage> productImages, List<Bidding> biddings,
       Long replyCnt) {
-    ProductDto productDto = ProductDto
-        .builder()
+    ProductDto productDto = ProductDto.builder()
         .pno(product.getPno())
         .title(product.getTitle())
         .content(product.getContent())
@@ -54,20 +55,32 @@ public interface DetailService {
         .build();
 
     // 제품 상세 페이지의 이미지
-    List<ProductImageDto> productImageDtos = productImages
-        .stream()
-        .map(productImage -> {
-          return ProductImageDto
-              .builder()
-              .inum(productImage.getInum())
-              .uuid(productImage.getUuid())
-              .imgName(productImage.getImgName())
-              .path(productImage.getPath())
-              .build();
-        })
-        .collect(Collectors.toList());
+    List<ProductImageDto> productImageDtos = productImages.stream().map(productImage -> {
+      return ProductImageDto.builder()
+          .inum(productImage.getInum())
+          .uuid(productImage.getUuid())
+          .imgName(productImage.getImgName())
+          .path(productImage.getPath())
+          .build();
+    }).collect(Collectors.toList());
+
+    // 제품 상세 페이지의 응찰 내역
+    // Member member =
+    // Member.builder().nickname(product.getMember().getNickname()).build();
+
+    List<BiddingDto> biddingDtos = biddings.stream().map(bidding -> {
+      return BiddingDto.builder()
+          .bno(bidding.getBno())
+          .biddingPrice(bidding.getBiddingPrice())
+          .biddingTime(bidding.getCreatedDate().toString())
+          .pno(product.getPno())
+          .mid(product.getMember().getMid())
+          .build();
+    }).collect(Collectors.toList());
 
     productDto.setProductImageDtos(productImageDtos);
+    productDto.setBiddingDtos(biddingDtos);
+
     return productDto;
   }
 
@@ -78,6 +91,8 @@ public interface DetailService {
 
     Member member = Member.builder().nickname(dto.getWriterName()).build();
     Category category = Category.builder().categoryName(dto.getCategory()).build();
+    // Bidding bidding =
+    // Bidding.builder().biddingPrice(dto.getBiddingPrice()).build();
 
     // product entity 생성
     Product product = Product.builder()
@@ -92,6 +107,7 @@ public interface DetailService {
     entityMap.put("product", product);
     // entityMap.put("member", member);
 
+    // 제품 이미지 부분
     List<ProductImageDto> productImageDtos = dto.getProductImageDtos();
 
     if (productImageDtos != null && productImageDtos.size() > 0) {
@@ -106,6 +122,21 @@ public interface DetailService {
       }).collect(Collectors.toList());
 
       entityMap.put("imgList", productImages);
+    }
+
+    // 응찰 부분
+    List<BiddingDto> biddingDtos = dto.getBiddingDtos();
+
+    if (biddingDtos != null && biddingDtos.size() > 0) {
+      List<Bidding> biddings = biddingDtos.stream().map(bDto -> {
+        Bidding bidding = Bidding.builder()
+            .biddingPrice(bDto.getBiddingPrice())
+            .member(member)
+            .build();
+        return bidding;
+      }).collect(Collectors.toList());
+
+      entityMap.put("imgList", biddings);
     }
 
     return entityMap;

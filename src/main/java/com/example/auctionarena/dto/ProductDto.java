@@ -48,9 +48,11 @@ public class ProductDto {
   @Builder.Default
   private List<ProductImageDto> productImageDtos = new ArrayList<>();
 
-  // 응찰 관련
-  private Long biddingPrice;
-  private LocalDateTime biddingTime;
+  // 응찰 관련 리스트
+  // private Long biddingPrice;
+  // private LocalDateTime biddingTime;
+  @Builder.Default
+  private List<BiddingDto> biddingDtos = new ArrayList<>();
 
   // 응찰 개수
   private Long biddingCnt;

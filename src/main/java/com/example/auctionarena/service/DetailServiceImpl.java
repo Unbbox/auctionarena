@@ -5,14 +5,19 @@ import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.repository.BiddingRepository;
 import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
+// import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
+import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +40,8 @@ public class DetailServiceImpl implements DetailService {
   private final ProductImageRepository productImageRepository;
   private final CategoryRepository categoryRepository;
   private final MemberRepository memberRepository;
+  // private final BiddingRepository biddingRepository;
+  private final BiddingDetailRepository biddingDetailRepository;
 
   // @Override
   // public List<ProductDto> getList() {
@@ -70,9 +77,11 @@ public class DetailServiceImpl implements DetailService {
   @Override
   public ProductDto getRow(Long pno) {
     List<Object[]> result = productImageRepository.getProductRow(pno);
+    List<Object[]> bid_result = biddingDetailRepository.getBiddingRow(pno);
 
     // result의 값 첫번째 == product
     Product product = (Product) result.get(0)[0];
+    // Bidding bidding = (Bidding) bid_result;
 
     // result 길이만큼 반복
     List<ProductImage> productImages = new ArrayList<>();
@@ -82,15 +91,21 @@ public class DetailServiceImpl implements DetailService {
       productImages.add(productImage);
     });
 
+    // 응찰
+    List<Bidding> biddings = new ArrayList<>();
+    bid_result.forEach(arr -> {
+      Bidding bidding = (Bidding) arr[1];
+      biddings.add(bidding);
+      log.info("응찰 관련 데이터?: {}", bidding);
+    });
+
     Long reviewCnt = (Long) result.get(0)[2];
 
-    return entityToDto(product, productImages, reviewCnt);
+    return entityToDto(product, productImages, biddings, reviewCnt);
   }
 
   @Override
   public Long productRegister(ProductDto productDto) {
-    // log.info("dto 전달 받음 : {}", productDto);
-
     // Optional<Member> member =
     // memberRepository.findById(productDto.getWriterEmail());
 

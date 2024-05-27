@@ -50,8 +50,8 @@ public class AuctionController {
       @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
-    ProductDto dto = detailService.getRow(pno);
-    log.info("제품 상세 출력 >> {}", dto);
+    // ProductDto dto = detailService.getRow(pno);
+    // log.info("제품 상세 출력 >> {}", dto);
 
     model.addAttribute("dto", detailService.getRow(pno));
   }

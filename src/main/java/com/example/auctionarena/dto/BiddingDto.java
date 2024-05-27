@@ -24,5 +24,6 @@ public class BiddingDto {
 
     private Long biddingPrice;
 
-    private Long biddingTime;
+    // createdDate
+    private String biddingTime;
 }

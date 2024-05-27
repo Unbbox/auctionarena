@@ -5,6 +5,7 @@ import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+// import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 import com.example.auctionarena.entity.Comment;
 
 import java.time.LocalDateTime;
