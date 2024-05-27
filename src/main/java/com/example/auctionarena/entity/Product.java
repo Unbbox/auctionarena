@@ -45,7 +45,7 @@ public class Product extends BaseEntity {
   private Member member;
 
   // 응찰 관련
-  // bidding.startPrice , bidding.biddingDate
+  // bidding.biddingPrice , bidding.biddingDate
   // @ManyToOne(fetch = FetchType.LAZY)
   // private Bidding bidding;
 

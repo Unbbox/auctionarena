@@ -1,6 +1,7 @@
 package com.example.auctionarena.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -40,6 +41,22 @@ public class CommentServiceImpl implements CommentService {
         Comment comment = dtoToEntity(commentDto);
 
         return repository.save(comment).getCommentNo();
+    }
+
+    @Override
+    public Long updateComment(CommentDto commentDto) {
+        log.info("{}번 댓글 수정", commentDto.getCommentNo());
+
+        Optional<Comment> result = repository.findById(commentDto.getCommentNo());
+
+        if (result.isPresent()) {
+            Comment comment = result.get();
+            comment.setText(commentDto.getText());
+            repository.save(dtoToEntity(commentDto));
+            // repository.save(comment);
+        }
+
+        return commentDto.getCommentNo();
     }
 
 }

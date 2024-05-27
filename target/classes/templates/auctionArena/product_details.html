@@ -158,14 +158,16 @@
                 <h5>상품평 작성</h5>
               </div>
               <!-- th:action="@{/comments/product/}" -->
-              <form method="post" class="comment-form">
+              <form th:action="@{/comments/}" method="post" class="comment-form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
                 <input type="hidden" name="commentNo" id="commentNo" />
                 <!-- 로그인 연결 후 th:value 추가 -->
-                <!-- <input type="hidden" name="mid" id="mid">
-                <input type="hidden" name="nickname" id="nickname"> -->
+                <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
+                <input type="hidden" name="nickname" id="nickname" th:value="${#authentication.principal.memberDto.nickname}">
+                <input type="hidden" name="email" id="email" th:value="${#authentication.principal.memberDto.email}">
                 <!-- 나중에 로그인 후 닉네임 가져오기 -->
                 <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
-                <textarea id="comments" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
+                <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
+                <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
                 <button type="submit"><i class="fa-regular fa-comments"></i> 작성</button>
               </form>
             </div>
@@ -173,6 +175,7 @@
         </div>
         <!-- 관련 상품 form -->
         <form class="relation_categori_form">
+
           <div class="row item_nav">
             <div class="section-title">
               <h5>관련 상품</h5>
@@ -215,7 +218,8 @@
         // 제품 등록 일자 가져오기
         const sale_date = "[[${dto.createdDate}]]"
         const biddingDate = `[[${dto.biddingDate}]]`
-        
+        // csrf 토큰
+        const csrfValue = '[[${_csrf.token}]]';
       </script>
       <script th:src="@{/js/product_detail.js}"></script>
       <script th:src="@{/js/comments.js}"></script>

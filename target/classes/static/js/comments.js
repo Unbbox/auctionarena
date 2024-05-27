@@ -1,14 +1,24 @@
 // 날짜 포맷 변경
 const formatDate = (data) => {
   const date = new Date(data);
-  return date.getFullYear() + "/" + (date.getMonth() + 1) + "/" + date.getDate() + " " + date.getHours() + ":" + date.getMinutes();
+  return (
+    date.getFullYear() +
+    "/" +
+    (date.getMonth() + 1) +
+    "/" +
+    date.getDate() +
+    " " +
+    String(date.getHours()).padStart(2, "0") +
+    ":" +
+    String(date.getMinutes()).padStart(2, "0")
+  );
 };
 
 // 댓글 목록 가져오기
 const commentList = document.querySelector(".comments");
 
 const commentLoaded = () => {
-  fetch(`/comments/product/${pno}`)
+  fetch(`/comments/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -37,26 +47,32 @@ const commentLoaded = () => {
     });
 };
 
-// 리뷰 등록
+// 리뷰 등록, 수정
 const commentForm = document.querySelector(".comment-form");
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const text = commentForm.querySelector("#comments");
-  //   const nickname = commentForm.querySelector("#nickname");
+  const text = commentForm.querySelector("#text");
+  const mid = commentForm.querySelector("#mid");
+  const nickname = commentForm.querySelector("#nickname");
+  const email = commentForm.querySelector("#email");
   const commentNo = commentForm.querySelector("#commentNo"); // 수정일 경우
 
   const body = {
-    // nickname: nickname,
+    pno: pno,
     text: text.value,
+    nickname: nickname.value,
+    email: email.value,
+    mid: mid.value,
     commentNo: commentNo.value,
   };
 
+  // 리뷰 등록
   if (!commentNo.value) {
-    fetch(`/comments/product/${pno}`, {
+    fetch(`/comments/${pno}`, {
       headers: {
         "content-type": "application/json",
-        // "X-CSRF-TOKEN": csrfValue,
+        "X-CSRF-TOKEN": csrfValue,
       },
       body: JSON.stringify(body),
       method: "post",
@@ -67,8 +83,29 @@ commentForm.addEventListener("submit", (e) => {
 
         text.value = ""; // 작성한 댓글 내용 지우기
 
-        if (data) alert(data + "번 댓글 등록 완료");
+        if (data) console.log(data + "번 댓글 등록 완료");
         commentLoaded();
+      });
+  } else {
+    // 리뷰 수정
+    fetch(`/comments/${pno}/${reviewNo.value}`, {
+      headers: {
+        "content-type": "application/json",
+        "X-CSRF-TOKEN": csrfValue,
+      },
+      body: JSON.stringify(body),
+      method: "put",
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        console.log(data);
+
+        text.value = "";
+        reviewNo.value = "";
+        reviewForm.querySelector(".starrr a:nth-child(" + grade + ")").click();
+
+        if (data) alert(data + " 번 리뷰가 수정되었습니다.");
+        reviewsLoaded(); // 댓글 리스트 다시 가져오기
       });
   }
 });
