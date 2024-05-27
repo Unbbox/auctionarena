@@ -23,45 +23,45 @@
           <div class="col-lg-6">
             <div class="login__form">
               <h3>회원가입</h3>
-              <form th:action="@{signup}" method="post" th:object="${memberDto}" class="signupForm">
+              <form th:action="@{signup}" method="post" th:object="${memberDto}" id="signupForm">
                 <div class="input__item">
                   <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}"/>
                   <span class="icon_mail"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                   <div class="text-danger" th:if="${error}" th:text="${error}"></div>
+                  <div class="text-danger" id="emailError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="비밀번호" id="password" name="password" th:value="${memberDto.password}"/>
                   <span class="icon_lock"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                  <div class="text-danger" id="passwordError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
                   <span class="icon_profile"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                  <div class="text-danger" id="nameError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
                   <span class="icon_profile"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
+                  <div class="text-danger" id="nicknameError"></div>
                 </div>
                 <div class="input__item post">
                   <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" th:value="${memberDto.zonecode}" readonly/>
                   <span class="icon_pin_alt"></span>
                   <button type="button" class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
-                  <div class="text-danger" th:if="${#fields.hasErrors('zonecode')}" th:errors="*{zonecode}"></div>
+                  <div class="text-danger" id="zonecodeError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="주소" id="addr" name="addr" th:value="${memberDto.addr}"/>
                   <span class="icon_house_alt"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('addr')}" th:errors="*{addr}"></div>
+                  <div class="text-danger" id="addrError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"/>
                   <span class="icon_phone"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></div>
+                  <div class="text-danger" id="phoneError"></div>
                 </div>
-                <button type="submit" class="sign-btn">회원가입</button>
+                <button type="submit" class="sign-btn" disabled>회원가입</button>
                 <h5>Already have an account? <a th:href="@{login}">Log In!</a></h5>
             </div>
         </div>
