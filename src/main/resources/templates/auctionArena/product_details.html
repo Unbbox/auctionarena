@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
+    
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -23,11 +24,31 @@
         <div class="anime__details__content">
           <div class="row">
             <div class="col-lg-3">
-              <div class="anime__details__pic set-bg" data-setbg="/img/anime/item1.jpg">
-                <img src="/img/anime/left.png" class="arrows left_arrow" onclick="imgChange(-1)"></img>
-                <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"></img>
+              <div>
+                <!-- <div class="anime__details__pic set-bg" th:style=" 'background-image: url('|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|')'"> -->
+                <!-- <script>console.log(th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|")</script> -->
+                <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|">
+                  <img src="/img/anime/left.png" class="arows left_arrow" onclick="imgChange(-1)">
+                  <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)">
+                </img>
               </div>
-              <div class="item__details__pic__sub">
+
+              <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
+                <!-- <script>
+                  image_url_src = "[[${image.getImageURL()}]]";
+                  image_url_src = image_url_src.replaceAll("%", "/");
+                  console.log(image_url_src)
+                  </script>
+                  [[${image.getImageURL()}]]
+                <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
+                <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+              </div>
+
+              
+
+
+              <!-- 원본 이미지 데이터 -->
+              <!-- <div class="item__details__pic__sub">
                 <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
                 <div class="set-bg" data-setbg="/img/anime/item2.jpg"></div>
                 <div class="set-bg" data-setbg="/img/anime/item3.jpg"></div>
@@ -38,7 +59,7 @@
                 <div class="set-bg" data-setbg="/img/anime/item8.jpg"></div>
                 <div class="set-bg" data-setbg="/img/anime/item9.jpg"></div>
                 <div class="set-bg" data-setbg="/img/anime/item10.jpg"></div>
-              </div>
+              </div> -->
               <!-- <img class="anime__details__pic__sub" src="img/anime/item1.jpg"></img> -->
               
             </div>
@@ -220,6 +241,10 @@
         // 제품 등록 일자 가져오기
         const sale_date = "[[${dto.createdDate}]]"
         const biddingDate = `[[${dto.biddingDate}]]`
+
+        // 제품 이미지 가져오기
+        const images = "[[${dto.productImageDtos}]]"
+
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';
 

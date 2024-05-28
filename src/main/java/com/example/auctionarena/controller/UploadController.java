@@ -88,7 +88,7 @@ public class UploadController {
         return folderStr;
     }
 
-    // 이미지 전송
+    // 이미지 전송 후 보여주기
     @GetMapping("/display")
     public ResponseEntity<byte[]> getFile(String fileName) {
         ResponseEntity<byte[]> result = null;
@@ -97,16 +97,17 @@ public class UploadController {
             String srcFileName = URLDecoder.decode(fileName, "utf-8");
 
             File file = new File(uploadPath + File.separator + srcFileName);
+            log.info("file >> {}", file);
 
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", Files.probeContentType(file.toPath()));
             result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+
         } catch (Exception e) {
             e.printStackTrace();
-            ;
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
+        log.info("result >> {}", result);
         return result;
     }
 

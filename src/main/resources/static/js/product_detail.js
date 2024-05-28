@@ -55,19 +55,20 @@ items_nav.forEach((nav) => {
   });
 });
 
-// 이미지 변경
-const img_obj = [
-  "/img/anime/item1.jpg",
-  "/img/anime/item2.jpg",
-  "/img/anime/item3.jpg",
-  "/img/anime/item4.jpg",
-  "/img/anime/item5.jpg",
-  "/img/anime/item6.jpg",
-  "/img/anime/item7.jpg",
-  "/img/anime/item8.jpg",
-  "/img/anime/item9.jpg",
-  "/img/anime/item10.jpg",
-];
+// 이미지 변경 => images로 대체
+console.log(images);
+// const img_obj = [
+//   "/img/anime/item1.jpg",
+//   "/img/anime/item2.jpg",
+//   "/img/anime/item3.jpg",
+//   "/img/anime/item4.jpg",
+//   "/img/anime/item5.jpg",
+//   "/img/anime/item6.jpg",
+//   "/img/anime/item7.jpg",
+//   "/img/anime/item8.jpg",
+//   "/img/anime/item9.jpg",
+//   "/img/anime/item10.jpg",
+// ];
 num = 0;
 function imgChange(cnt) {
   // 현재 이미지 주소 가져오기
@@ -94,11 +95,14 @@ function getTime() {
   bed = bid_end_date.getTime() + parseInt(biddingDate) * 1000 * 60 * 60 * 24;
 
   // 경매 종료 일자 표시
-  end_year = bid_end_date.getFullYear();
-  end_month = bid_end_date.getMonth() + 1;
-  end_day = bid_end_date.getDate() + parseInt(biddingDate);
-  end_hour = bid_end_date.getHours();
-  end_min = bid_end_date.getMinutes();
+  let endBidding = new Date(sale_date);
+  endBidding.setDate(endBidding.getDate() + parseInt(biddingDate));
+
+  end_year = endBidding.getFullYear();
+  end_month = endBidding.getMonth() + 1;
+  end_day = endBidding.getDate();
+  end_hour = endBidding.getHours();
+  end_min = endBidding.getMinutes();
   end_date = end_year + "년 " + end_month + "월 " + end_day + "일 " + end_hour + "시 " + end_min + "분 ";
   document.querySelector(".end_date").innerText = end_date;
 
