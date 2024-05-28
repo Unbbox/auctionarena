@@ -217,20 +217,3 @@ signupBtn.addEventListener("click", (e) => {
     form.submit();
   }
 });
-
-// ========================================== //
-// 비밀번호 가리기
-const pwdInput = document.querySelector("#password");
-const togglePwd = document.querySelector(".fa-eye");
-
-pwdInput.type = "password";
-
-togglePwd.addEventListener("click", () => {
-  if (pwdInput.type == "password") {
-    console.log(pwdInput.type);
-    pwdInput.type = "text";
-  } else {
-    console.log(pwdInput.type);
-    pwdInput.type = "password";
-  }
-});

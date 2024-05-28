@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.example.auctionarena.constant.MemberRole;
 import com.example.auctionarena.dto.AuthMemberDto;
 import com.example.auctionarena.dto.MemberDto;
+import com.example.auctionarena.dto.PasswordChangeDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.repository.MemberRepository;
 
@@ -82,6 +83,13 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         }
     }
 
+    @Override
+    public void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException {
+        Member member = memberRepository.findByEmail(pDto.getEmail()).get();
+        member.setPassword(passwordEncoder.encode(pDto.getNewPassword()));
+        memberRepository.save(member);
+    }
+
     // 중복 이메일 검사
     public void validateDuplicateEmail(String email) throws IllegalStateException {
         Optional<Member> result = memberRepository.findByEmail(email);
@@ -99,4 +107,5 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
             throw new IllegalStateException("닉네임");
         }
     }
+
 }
