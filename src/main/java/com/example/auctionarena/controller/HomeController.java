@@ -1,5 +1,6 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.service.ProductService;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;

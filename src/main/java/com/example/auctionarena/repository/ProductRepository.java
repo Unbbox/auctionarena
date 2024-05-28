@@ -11,9 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository
   extends JpaRepository<Product, Long>, SearchProductRepository {
-  @Query(
-    value = "SELECT * FROM PRODUCT p WHERE rownum <= 6 ORDER BY pno desc",
-    nativeQuery = true
-  )
+  // @Query(
+  //   value = "SELECT * FROM PRODUCT p WHERE rownum <= 6 ORDER BY pno desc",
+  //   nativeQuery = true
+  // )
   List<Product> findTop6ByOrderByPnoDesc();
 }
