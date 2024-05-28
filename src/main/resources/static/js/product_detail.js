@@ -84,8 +84,6 @@ function imgChange(cnt) {
 
 // 현재 시간 표시
 function getTime() {
-  today = new Date();
-
   /* sale_date도 date로 입력해서 날짜만 비교 */
   // 현재 시간과 제품 등록 시간 가져오기
   new_tody = new Date();
@@ -94,6 +92,15 @@ function getTime() {
   // (제품 등록시간 + 응찰 기간) 후 각 시간을 ms 단위로 가져오기
   nt = new_tody.getTime();
   bed = bid_end_date.getTime() + parseInt(biddingDate) * 1000 * 60 * 60 * 24;
+
+  // 경매 종료 일자 표시
+  end_year = bid_end_date.getFullYear();
+  end_month = bid_end_date.getMonth() + 1;
+  end_day = bid_end_date.getDate() + parseInt(biddingDate);
+  end_hour = bid_end_date.getHours();
+  end_min = bid_end_date.getMinutes();
+  end_date = end_year + "년 " + end_month + "월 " + end_day + "일 " + end_hour + "시 " + end_min + "분 ";
+  document.querySelector(".end_date").innerText = end_date;
 
   // 응찰 기간이 현재 시간보다 클 경우 일, 시, 분, 초 저장
   if (nt < bed) {
@@ -105,9 +112,9 @@ function getTime() {
     min = parseInt(sec / 60);
     sec = parseInt(sec - min * 60);
 
-    if (hour < 10) {
-      hour = "0" + hour;
-    }
+    // if (hour < 10) {
+    //   hour = "0" + hour;
+    // }
     if (min < 10) {
       min = "0" + min;
     }
