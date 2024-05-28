@@ -22,7 +22,7 @@
           <div class="col-lg-6">
             <div class="login__form">
               <h3>로그인</h3>
-              <form th:action="@{/member/login}" method="post">
+              <form th:action="@{login}" method="post">
                 <div class="input__item">
                   <input type="text" placeholder="Email address" id="username" name="username" />
                   <span class="icon_mail"></span>
@@ -34,7 +34,7 @@
                 <div class="text-danger small" th:if="${param.error}">이메일이나 비밀번호를 확인해 주세요</div>
                 <button type="submit" class="site-btn">로그인</button>
               </form>
-              <a href="#" class="forget_pass">비밀번호 찾기</a>
+              <a th:href="@{find-password}" class="forget_pass">비밀번호 찾기</a>
             </div>
           </div>
           <div class="col-lg-6">

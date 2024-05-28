@@ -44,15 +44,6 @@ public class MemberController {
             return "/member/signup";
         }
 
-        // String email = "";
-        // try {
-        // email = service.signup(dto);
-        // } catch (Exception e) {
-        // rttr.addFlashAttribute("error", e.getMessage());
-        // return "redirect:/member/signup";
-        // }
-        // rttr.addFlashAttribute("email", email);
-        // return "redirect:/member/login";
         try {
             String email = service.signup(dto);
             rttr.addFlashAttribute("email", email);
@@ -62,20 +53,32 @@ public class MemberController {
                 result.rejectValue("email", "duplicate", "이미 가입된 이메일입니다.");
             } else if (e.getMessage().contains("닉네임")) {
                 result.rejectValue("nickname", "duplicate", "이미 사용중인 닉네임입니다.");
-            } else {
-                rttr.addFlashAttribute("error", e.getMessage());
             }
             return "/member/signup";
         }
     }
 
-    @GetMapping("/edit-password")
-    public String editProfile() {
-        return "member/edit-password";
+    @GetMapping("/find-password")
+    public void passwordFind(MemberDto memberDto) {
+        log.info("비밀번호 찾기 요청");
     }
 
-    @GetMapping("/find-password")
-    public String findProfile() {
-        return "member/find-password";
+    @PostMapping("/find-password")
+    public String postPasswordFind(MemberDto dto, RedirectAttributes rttr, Model model) {
+        log.info("비밀번호 찾기 {}", dto);
+
+        try {
+            service.passwordFind(dto);
+            return "/member/edit-password";
+        } catch (IllegalStateException e) {
+            rttr.addFlashAttribute("error", e.getMessage());
+            rttr.addFlashAttribute("memberDto", dto);
+            return "redirect:/member/find-password";
+        }
+    }
+
+    @GetMapping("/edit-password")
+    public String editProfile() {
+        return "/member/edit-password";
     }
 }

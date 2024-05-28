@@ -1,3 +1,4 @@
+// ========================================== //
 // 우편번호 찾기
 function execDaumPostcode() {
   new daum.Postcode({
@@ -39,6 +40,7 @@ function execDaumPostcode() {
   }).open();
 }
 
+// ========================================== //
 // 약관동의
 const form = document.querySelector("#signupForm");
 const checkAll = document.querySelector("#chk_all"); // 모두동의 버튼
@@ -167,6 +169,7 @@ phoneNumber.addEventListener("change", () => {
   }
 });
 
+// 회원가입 버튼 클릭 시 유효성 검사 (빈 칸)
 signupBtn.addEventListener("click", (e) => {
   e.preventDefault();
   console.log("폼 요청");
@@ -212,5 +215,22 @@ signupBtn.addEventListener("click", (e) => {
     exit;
   } else {
     form.submit();
+  }
+});
+
+// ========================================== //
+// 비밀번호 가리기
+const pwdInput = document.querySelector("#password");
+const togglePwd = document.querySelector(".fa-eye");
+
+pwdInput.type = "password";
+
+togglePwd.addEventListener("click", () => {
+  if (pwdInput.type == "password") {
+    console.log(pwdInput.type);
+    pwdInput.type = "text";
+  } else {
+    console.log(pwdInput.type);
+    pwdInput.type = "password";
   }
 });
