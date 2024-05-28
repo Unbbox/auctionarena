@@ -145,20 +145,20 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                    <div class="products__item">
+                  <div class="col-lg-2 col-md-4 col-sm-6" >
+                    <div class="products__item"th:each="dto : ${list}">
                       <div>
                         <a href=""> <img src="./img/popular/다운로드.jpg" alt="" class="products__item__pic set-bg" /></a>
                       </div>
                       <div class="products__item__text">
-                        <h5><a href="">상품명</a></h5>
+                        <h5><a href="" th:text="${dto.title}"></a></h5>
                         <ul>
-                          <li><a href="">가격</a></li>
+                          <li><a href="" th:text="${dto.startPrice}"></a></li>
                         </ul>
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
+                  <!--<div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
                     <div class="product__item">
                       <div>
                         <a href=""> <img src="./img/popular/다운로드.jpg" alt="" class="products__item__pic set-bg" /></a>
@@ -171,7 +171,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
+                   <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
                     <div class="products__item">
                       <div>
                         <a href=""> <img src="./img/popular/다운로드.jpg" alt="" class="products__item__pic set-bg" /></a>
@@ -222,7 +222,7 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>                
                 </div>
               </div>              

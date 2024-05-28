@@ -109,4 +109,14 @@ public class SearchProductRepositoryImpl
 
     return new PageImpl<>(list, pageable, count);
   }
+  // @Override
+  // public List<Object[]> getDescList(Long pno) {
+  //   QProduct product = QProduct.product;
+
+  //   JPQLQuery<Product> query = from(product);
+  //   JPQLQuery<Product> tuple = query
+  //     .select(product)
+  //     .where(product.pno.)
+  //     .orderBy(product.pno.desc());
+  // }
 }

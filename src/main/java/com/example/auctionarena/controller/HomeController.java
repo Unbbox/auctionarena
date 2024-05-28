@@ -1,32 +1,40 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.service.ProductService;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-
-import lombok.extern.log4j.Log4j2;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Log4j2
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
-    @GetMapping("/")
-    public String Home() {
-        log.info("메인화면 요청");
-        return "index";
-    }
+  private final ProductService service;
 
-    @ResponseBody
-    @GetMapping("/auth")
-    public Authentication getAuthentication() {
-        SecurityContext context = SecurityContextHolder.getContext();
-        Authentication authentication = context.getAuthentication();
+  @GetMapping("/index")
+  public void Home(Model model) {
+    log.info("메인화면 요청");
+    List<ProductDto> list = service.descList();
+    model.addAttribute("list", list);
+  }
 
-        return authentication;
-    }
+  @ResponseBody
+  @GetMapping("/auth")
+  public Authentication getAuthentication() {
+    SecurityContext context = SecurityContextHolder.getContext();
+    Authentication authentication = context.getAuthentication();
 
+    return authentication;
+  }
 }
