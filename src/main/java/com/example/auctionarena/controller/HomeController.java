@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,15 +23,16 @@ public class HomeController {
 
   private final ProductService service;
 
-  @GetMapping("/index")
-  public void Home(Model model) {
+  @GetMapping("/")
+  public String Home(Model model) {
     log.info("메인화면 요청");
     List<ProductDto> list = service.descList();
     model.addAttribute("list", list);
+    return "/index";
   }
 
   @ResponseBody
-  @GetMapping("/auth")
+  @GetMapping("auth")
   public Authentication getAuthentication() {
     SecurityContext context = SecurityContextHolder.getContext();
     Authentication authentication = context.getAuthentication();
