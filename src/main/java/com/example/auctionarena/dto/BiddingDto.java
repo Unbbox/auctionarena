@@ -1,5 +1,7 @@
 package com.example.auctionarena.dto;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,9 +23,10 @@ public class BiddingDto {
     private Long pno; // 제품 번호
 
     private Long mid; // 멤버 번호
+    private String mNickName;
 
     private Long biddingPrice;
 
     // createdDate
-    private String biddingTime;
+    private LocalDateTime biddingTime;
 }

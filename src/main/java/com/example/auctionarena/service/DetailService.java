@@ -64,17 +64,16 @@ public interface DetailService {
           .build();
     }).collect(Collectors.toList());
 
-    // 제품 상세 페이지의 응찰 내역
-    // Member member =
-    // Member.builder().nickname(product.getMember().getNickname()).build();
-
     List<BiddingDto> biddingDtos = biddings.stream().map(bidding -> {
+      // 제품 상세 페이지의 응찰 내역
+      // Member member = Member.builder().mid(bidding.getMember().getMid()).build();
+
       return BiddingDto.builder()
           .bno(bidding.getBno())
           .biddingPrice(bidding.getBiddingPrice())
-          .biddingTime(bidding.getCreatedDate().toString())
+          .biddingTime(bidding.getCreatedDate())
           .pno(product.getPno())
-          .mid(product.getMember().getMid())
+          .mNickName(bidding.getMember().getNickname())
           .build();
     }).collect(Collectors.toList());
 
@@ -125,13 +124,16 @@ public interface DetailService {
     }
 
     // 응찰 부분
+    // 응찰 부분도 dtoToEntity를 해야하나? => 어차피 현재 제품 등록할 때 말고 안씀
     List<BiddingDto> biddingDtos = dto.getBiddingDtos();
 
     if (biddingDtos != null && biddingDtos.size() > 0) {
       List<Bidding> biddings = biddingDtos.stream().map(bDto -> {
+        Member bid_member = Member.builder().mid(bDto.getMid()).build();
+
         Bidding bidding = Bidding.builder()
             .biddingPrice(bDto.getBiddingPrice())
-            .member(member)
+            .member(bid_member)
             .build();
         return bidding;
       }).collect(Collectors.toList());

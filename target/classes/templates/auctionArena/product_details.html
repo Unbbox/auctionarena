@@ -126,7 +126,7 @@
                 <tr
                   class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                 >
-                  <th class="px-4 py-3">번호</th>
+                  <!-- <th class="px-4 py-3">번호</th> -->
                   <th class="px-4 py-3">닉네임</th>
                   <th class="px-4 py-3">입찰가</th>
                   <th class="px-4 py-3">입찰시간</th>
@@ -134,10 +134,10 @@
               </thead>
               <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
                 <tr class="text-gray-700 dark:text-white-400" th:each="bidding : ${dto.biddingDtos}">
-                  <td class="px-4 py-3">1</td>
-                  <td class="px-4 py-3" th:text="${bidding.mid}">입찰자1</td>
-                  <td class="px-4 py-3">[[${bidding.biddingPrice}]]</td>
-                  <td class="px-4 py-3" th:text="${bidding.biddingTime}"></td>
+                  <!-- <td class="px-4 py-3" th:text="${loop.index}">1</td> -->
+                  <td class="px-4 py-3" th:text="${bidding.mNickName}">입찰자1</td>
+                  <td class="px-4 py-3">[[${#numbers.formatInteger(bidding.biddingPrice, 3, 'COMMA')}]]원</td>
+                  <td class="px-4 py-3" th:text="${#temporals.format(bidding.biddingTime,'yyyy-MM-dd HH:mm:ss')}"></td>
                 </tr>
               </tbody>
             </table>
