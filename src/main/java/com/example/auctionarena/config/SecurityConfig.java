@@ -32,7 +32,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
                                 .requestMatchers("/upload/display").permitAll()
-                                .requestMatchers("/member/signup").permitAll()
+                                .requestMatchers("/member/signup", "/member/find-password", "/member/edit-password")
+                                .permitAll()
                                 .anyRequest().authenticated());
 
                 http.formLogin(login -> login.loginPage("/member/login").permitAll()

@@ -7,10 +7,15 @@ public interface MemberService {
     // 회원가입
     String signup(MemberDto insertDto) throws IllegalStateException;
 
-    // 주소 수정
-    // void addrUpdate(MemberDto upAddrDto);
+    // 비밀번호 찾기
+    void passwordFind(MemberDto findDto) throws IllegalStateException;
+
     // 비밀번호 수정
     // void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
+
+    // 주소 수정
+    // void addrUpdate(MemberDto upAddrDto);
+
     // 회원탈퇴
     // void leave(MemberDto leavMemberDto);
 
