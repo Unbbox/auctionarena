@@ -7,12 +7,15 @@ import org.springframework.validation.BindingResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.auctionarena.dto.MemberDto;
+import com.example.auctionarena.dto.PasswordChangeDto;
 import com.example.auctionarena.service.MemberService;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,10 +69,12 @@ public class MemberController {
     @PostMapping("/find-password")
     public String postPasswordFind(MemberDto dto, RedirectAttributes rttr, Model model) {
         log.info("비밀번호 찾기 {}", dto);
+        // String email = dto.getEmail();
 
         try {
             service.passwordFind(dto);
-            return "/member/edit-password";
+            rttr.addFlashAttribute("email", dto.getEmail());
+            return "redirect:/member/edit-password";
         } catch (IllegalStateException e) {
             rttr.addFlashAttribute("error", e.getMessage());
             rttr.addFlashAttribute("memberDto", dto);
@@ -78,7 +83,32 @@ public class MemberController {
     }
 
     @GetMapping("/edit-password")
-    public String editProfile() {
+    public String editPassword(@ModelAttribute("email") String email, Model model, PasswordChangeDto pDto) {
+        pDto.setEmail(email);
+        model.addAttribute("pDto", pDto);
+        log.info("비밀번호 변경 요청 {}", pDto);
         return "/member/edit-password";
     }
+
+    @PostMapping("/edit-password")
+    public String postEditPassword(@ModelAttribute PasswordChangeDto pDto, RedirectAttributes rttr,
+            HttpSession session) {
+        log.info("변경 요청 {}", pDto);
+        if (!pDto.getNewPassword().equals(pDto.getCheckPassword())) {
+            rttr.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
+            return "redirect:/member/edit-password";
+        }
+
+        try {
+            // 비밀번호가 일치하는 경우 비밀번호를 업데이트하고 로그인 페이지로 리다이렉트합니다.
+            service.passwordUpdate(pDto);
+            session.invalidate();
+            return "redirect:/member/login";
+        } catch (IllegalStateException e) {
+            // 비밀번호 업데이트 중에 발생한 예외가 있는 경우 해당 예외 메시지를 에러로 추가하고 비밀번호 변경 페이지로 리다이렉트합니다.
+            rttr.addFlashAttribute("error", e.getMessage());
+            return "redirect:/member/edit-password";
+        }
+    }
+
 }

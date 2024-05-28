@@ -1,6 +1,7 @@
 package com.example.auctionarena.service;
 
 import com.example.auctionarena.dto.MemberDto;
+import com.example.auctionarena.dto.PasswordChangeDto;
 import com.example.auctionarena.entity.Member;
 
 public interface MemberService {
@@ -11,7 +12,7 @@ public interface MemberService {
     void passwordFind(MemberDto findDto) throws IllegalStateException;
 
     // 비밀번호 수정
-    // void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
+    void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
 
     // 주소 수정
     // void addrUpdate(MemberDto upAddrDto);
