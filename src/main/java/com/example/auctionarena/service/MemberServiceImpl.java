@@ -43,6 +43,8 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 
         // 중복 이메일 확인
         validateDuplicateEmail(insertDto.getEmail());
+        // 중복 닉네임 확인
+        validateDuplicateNickname(insertDto.getNickname());
         // 비밀번호 암호화
         insertDto.setPassword(passwordEncoder.encode(insertDto.getPassword()));
         // 권한 부여
@@ -67,7 +69,16 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         Optional<Member> result = memberRepository.findByEmail(email);
 
         if (result.isPresent()) {
-            throw new IllegalStateException("이미 가입된 회원입니다.");
+            throw new IllegalStateException("이미 가입된 이메일입니다.");
+        }
+    }
+
+    // 중복 닉네임 검사
+    public void validateDuplicateNickname(String nickname) throws IllegalStateException {
+        Optional<Member> result = memberRepository.findOptionalByNickname(nickname);
+
+        if (result.isPresent()) {
+            throw new IllegalStateException("이미 사용중인 닉네임입니다.");
         }
     }
 }

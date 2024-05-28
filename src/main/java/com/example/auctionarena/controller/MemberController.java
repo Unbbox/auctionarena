@@ -44,15 +44,29 @@ public class MemberController {
             return "/member/signup";
         }
 
-        String email = "";
+        // String email = "";
+        // try {
+        // email = service.signup(dto);
+        // } catch (Exception e) {
+        // rttr.addFlashAttribute("error", e.getMessage());
+        // return "redirect:/member/signup";
+        // }
+        // rttr.addFlashAttribute("email", email);
+        // return "redirect:/member/login";
         try {
-            email = service.signup(dto);
-        } catch (Exception e) {
-            rttr.addFlashAttribute("error", e.getMessage());
-            return "redirect:/member/signup";
+            String email = service.signup(dto);
+            rttr.addFlashAttribute("email", email);
+            return "redirect:/member/login";
+        } catch (IllegalStateException e) {
+            if (e.getMessage().contains("이메일")) {
+                result.rejectValue("email", "duplicate", "이미 가입된 이메일입니다.");
+            } else if (e.getMessage().contains("닉네임")) {
+                result.rejectValue("nickname", "duplicate", "이미 사용중인 닉네임입니다.");
+            } else {
+                rttr.addFlashAttribute("error", e.getMessage());
+            }
+            return "/member/signup";
         }
-        rttr.addFlashAttribute("email", email);
-        return "redirect:/member/login";
     }
 
     @GetMapping("/edit-password")
