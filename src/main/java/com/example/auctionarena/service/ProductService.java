@@ -19,6 +19,8 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
+  List<ProductDto> descList();
+
   // ProductDto getRow(Long cno);
 
   // 제품 상세 페이지 요청

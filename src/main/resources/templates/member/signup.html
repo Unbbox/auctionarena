@@ -27,13 +27,13 @@
                 <div class="input__item">
                   <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}"/>
                   <span class="icon_mail"></span>
-                  <!-- <div class="text-danger" th:if="${error}" th:text="${error}"></div> -->
                   <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                   <div class="text-danger" id="emailError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="비밀번호" id="password" name="password" th:value="${memberDto.password}"/>
                   <span class="icon_lock"></span>
+                  <i class="fa fa-eye fa-lg" style="color: #a0a3ab;"></i>
                   <div class="text-danger" id="passwordError"></div>
                 </div>
                 <div class="input__item">
@@ -44,7 +44,6 @@
                 <div class="input__item">
                   <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
                   <span class="icon_profile"></span>
-                  <!-- <div class="text-danger" th:if="${error}" th:text="${error}"></div> -->
                   <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
                   <div class="text-danger" id="nicknameError"></div>
                 </div>

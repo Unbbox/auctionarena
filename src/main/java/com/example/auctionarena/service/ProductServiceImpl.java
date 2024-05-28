@@ -58,38 +58,13 @@ public class ProductServiceImpl implements ProductService {
       (entity -> entityToDto((Product) entity[0]));
     return new CategoryPageResultDto<>(result, fn);
   }
-  // @Override
-  // public ProductDto getRow(Long cno) {
-  //   // Product entitiy = productRepository.findByCno(cno).get();
-  //   // return entityToDto(entitiy);
-  //   Object[] row = productRepository.findByCno(cno);
-  //   return entityToDto((Product) row[0]);
-  // }
-  // 제품 상세 페이지
-  // @Override
-  // public ProductDto getRow(Long pno) {
-  // Product entity = productRepository.findById(pno).get();
 
-  // return entityToDto(entity, null, null);
-  // }
-
-  // @Override
-  // public ProductDto getRow(Long pno) {
-  // List<Object[]> result = productImageRepository.getProductRow(pno);
-
-  // // result의 값 첫번째 == product
-  // Product product = (Product) result.get(0)[0];
-
-  // // result 길이만큼 반복
-  // List<ProductImage> productImages = new ArrayList<>();
-  // result.forEach(arr -> {
-  // // productImage 개수 만큼 이미지 가져오기
-  // ProductImage productImage = (ProductImage) arr[1];
-  // productImages.add(productImage);
-  // });
-
-  // Long reviewCnt = (Long) result.get(0)[2];
-
-  // return entityToDto(product, null, reviewCnt);
-  // }
+  @Override
+  public List<ProductDto> descList() {
+    List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+    return list
+      .stream()
+      .map(entity -> entityToDto(entity))
+      .collect(Collectors.toList());
+  }
 }

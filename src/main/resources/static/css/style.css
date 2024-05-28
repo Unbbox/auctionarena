@@ -1739,7 +1739,7 @@ ol {
   color: #b7b7b7;
   display: inline-block;
   position: absolute;
-  right: 50px;
+  right: 52px;
   bottom: 12px;
 }
 
@@ -2065,6 +2065,9 @@ ol {
   .login__form form .input__item {
     width: auto;
   }
+  .login__form .forget_pass {
+    right: 10px;
+  }
   .login__register {
     padding-left: 0;
   }
@@ -2195,6 +2198,9 @@ ol {
   .login__form form .input__item {
     width: auto;
   }
+  .login__form .forget_pass {
+    right: 10px;
+  }
   .signup .login__social__links {
     padding-left: 0;
   }
@@ -2271,6 +2277,9 @@ ol {
     left: 0;
     bottom: 0;
     margin-top: 25px;
+  }
+  .login__form .forget_pass {
+    right: 10px;
   }
   .header__right a {
     margin-right: 10px;
@@ -2544,6 +2553,13 @@ ol {
 .input__item input:focus {
   outline: 1px solid #555555;
   color: #555555;
+}
+
+.input__item i {
+  position: absolute;
+  left: 90%;
+  top: 27px;
+  columns: orange;
 }
 
 /*----------------------------------------*/

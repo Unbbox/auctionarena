@@ -64,12 +64,30 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         return memberRepository.save(dtoToEntity(insertDto)).getEmail();
     }
 
+    @Override
+    public void passwordFind(MemberDto findDto) throws IllegalStateException {
+        // 이메일 확인
+        log.info("비밀번호 찾기 요청 {}", findDto);
+
+        Optional<Member> email = memberRepository.findByEmail(findDto.getEmail());
+        if (email.isEmpty()) {
+            throw new IllegalStateException("일치하는 회원이 없습니다.");
+        } else {
+            Member member = email.get();
+            if (!member.getName().equals(findDto.getName())) {
+                throw new IllegalStateException("이름이 다릅니다.");
+            } else if (!member.getPhoneNumber().equals(findDto.getPhoneNumber())) {
+                throw new IllegalStateException("전화번호가 다릅니다.");
+            }
+        }
+    }
+
     // 중복 이메일 검사
     public void validateDuplicateEmail(String email) throws IllegalStateException {
         Optional<Member> result = memberRepository.findByEmail(email);
 
         if (result.isPresent()) {
-            throw new IllegalStateException("이미 가입된 이메일입니다.");
+            throw new IllegalStateException("이메일");
         }
     }
 
@@ -78,7 +96,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         Optional<Member> result = memberRepository.findOptionalByNickname(nickname);
 
         if (result.isPresent()) {
-            throw new IllegalStateException("이미 사용중인 닉네임입니다.");
+            throw new IllegalStateException("닉네임");
         }
     }
 }
