@@ -20,6 +20,7 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("member")
 @RequiredArgsConstructor
@@ -109,6 +110,25 @@ public class MemberController {
             rttr.addFlashAttribute("error", e.getMessage());
             return "redirect:/member/edit-password";
         }
+    }
+
+    @GetMapping("/leave")
+    public void getLeaveForm() {
+        log.info("회원탈퇴");
+    }
+
+    @PostMapping("/leave")
+    public String postLeave(MemberDto leaveMemberDto, RedirectAttributes rttr, HttpSession session) {
+        log.info("회원탈퇴 {}", leaveMemberDto);
+
+        try {
+            service.leave(leaveMemberDto);
+        } catch (Exception e) {
+            rttr.addFlashAttribute("error", "이메일이나 비밀번호를 확인해 주세요");
+        }
+        session.invalidate();
+
+        return "redirect:/";
     }
 
 }
