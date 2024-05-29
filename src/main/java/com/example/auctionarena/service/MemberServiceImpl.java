@@ -15,6 +15,7 @@ import com.example.auctionarena.dto.PasswordChangeDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.repository.MemberRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -88,6 +89,21 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         Member member = memberRepository.findByEmail(pDto.getEmail()).get();
         member.setPassword(passwordEncoder.encode(pDto.getNewPassword()));
         memberRepository.save(member);
+    }
+
+    @Transactional
+    @Override
+    public void leave(MemberDto leaveMemberDto) {
+        Member member = memberRepository.findByEmail(leaveMemberDto.getEmail()).get();
+
+        // 이메일과 비밀번호 일치 시
+        if (!passwordEncoder.matches(leaveMemberDto.getPassword(), member.getPassword())) {
+            throw new IllegalStateException("비밀번호를 확인해주세요.");
+        } else {
+            // Review, Product 판매 글 삭제
+            // reviewRepository.deleteByMember(member);
+            memberRepository.delete(member);
+        }
     }
 
     // 중복 이메일 검사

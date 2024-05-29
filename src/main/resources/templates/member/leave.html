@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <div layout:fragment="content">
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="normal__breadcrumb__text">
+              <h2>회원탈퇴</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- 회원탈퇴 Begin -->
+    <section class="signup spad edit-password">
+      <div class="container">
+            <div class="login__form">
+              <h3>회원탈퇴</h3>
+              <form th:action="@{leave}" method="post">
+                <div class="input__item">
+                  <input type="text" placeholder="이메일" id="email" name="email" />
+                  <span class="icon_mail"></span>
+                </div>
+                <div class="input__item">
+                  <input type="password" class="password" placeholder="비밀번호" id="password" name="password" />
+                  <span class="icon_lock"></span>
+                  <i class="fa fa-eye fa-lg" style="color: #a0a3ab;"></i>
+                </div>
+                <div class="text-danger small" th:if="${param.error}">이메일이나 비밀번호를 확인해 주세요</div>
+                <button type="submit" class="site-btn">확인</button>
+            </div>
+        </form>
+        </div>
+    </section>
+    <!-- 회원탈퇴 End -->
+
+   </div>
+   <th:block layout:fragment="script">
+    <script th:src="@{/memberjs/password.js}"></script>
+      </th:block>

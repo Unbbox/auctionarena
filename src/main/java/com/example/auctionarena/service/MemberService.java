@@ -18,7 +18,7 @@ public interface MemberService {
     // void addrUpdate(MemberDto upAddrDto);
 
     // 회원탈퇴
-    // void leave(MemberDto leavMemberDto);
+    void leave(MemberDto leaveMemberDto);
 
     public default Member dtoToEntity(MemberDto dto) {
         return Member.builder()
