@@ -38,7 +38,6 @@ const commentLoaded = () => {
 
         // 로그인 user(email) == 작성자(reply.writerEmail)
         // if (`${email}` == `${reply.writerEmail}`) {
-        //   result += `<div><button class="btn btn-outline-success btn-sm">수정</button></div>`;
         //   result += `<div><button class="btn btn-outline-danger btn-sm">삭제</button></div>`;
         // }
         result += `</div></div>`;
@@ -105,7 +104,7 @@ commentForm.addEventListener("submit", (e) => {
         reviewForm.querySelector(".starrr a:nth-child(" + grade + ")").click();
 
         if (data) alert(data + " 번 리뷰가 수정되었습니다.");
-        reviewsLoaded(); // 댓글 리스트 다시 가져오기
+        commentLoaded(); // 댓글 리스트 다시 가져오기
       });
   }
 });

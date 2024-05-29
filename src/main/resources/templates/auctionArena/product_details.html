@@ -32,16 +32,18 @@
                   <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)">
                 </img>
               </div>
-
+              <script>
+                let img_arr = [];
+              </script>
               <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
-                <!-- <script>
+                <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
+                <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                <script>
                   image_url_src = "[[${image.getImageURL()}]]";
                   image_url_src = image_url_src.replaceAll("%", "/");
-                  console.log(image_url_src)
-                  </script>
-                  [[${image.getImageURL()}]]
-                <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
-                <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                  img_arr.push(image_url_src);
+                  // console.log(image_url_src)
+                </script>
               </div>
 
               
@@ -97,20 +99,24 @@
                 <div class="anime__details__btn">
                   <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
                   <div class="bidding_form">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-4 col-sm-4">
-                        <input type="text" placeholder="가격을 입력하세요" />
+                    <form th:action="@{/bidding/}" method="post" class="biddingForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+                      <input type="hidden" name="mid" id="mid"  th:value="${#authentication.principal.memberDto.mid}">
+                      <input type="hidden" name="mNickName" id="mNickName"  th:value="${#authentication.principal.memberDto.nickname}">
+                      <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4">
+                          <input type="text" name="biddingPrice" id="biddingPrice" placeholder="가격을 입력하세요" />
+                        </div>
+                        <div>
+                          <button type="submit" class="bid-btn btn">입찰하기</button>
+                          <!-- <i class="fa fa-angle-right"></i> -->
+                        </div>
                       </div>
-                      <div>
-                        <a href="#" class="watch-btn"><span>입찰하기</span> </a>
-                        <!-- <i class="fa fa-angle-right"></i> -->
+                      </form>
+                      <div class="row">
+                        <div class="anime__details__btn wish_list">
+                          <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
+                        </div>
                       </div>
-                    </div>
-                    <div class="row">
-                      <div class="anime__details__btn wish_list">
-                        <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -155,13 +161,8 @@
                   <th class="px-4 py-3">입찰시간</th>
                 </tr>
               </thead>
-              <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800">
-                <tr class="text-gray-700 dark:text-white-400" th:each="bidding : ${dto.biddingDtos}">
-                  <!-- <td class="px-4 py-3" th:text="${loop.index}">1</td> -->
-                  <td class="px-4 py-3" th:text="${bidding.mNickName}">입찰자1</td>
-                  <td class="px-4 py-3">[[${#numbers.formatInteger(bidding.biddingPrice, 3, 'COMMA')}]]원</td>
-                  <td class="px-4 py-3" th:text="${#temporals.format(bidding.biddingTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-                </tr>
+              <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800 biddingList">
+                <!-- js 에서 출력 -->
               </tbody>
             </table>
           </div>
@@ -245,11 +246,15 @@
         // 제품 이미지 가져오기
         const images = "[[${dto.productImageDtos}]]"
 
+        // 경매 영역
+        const biddingList = document.querySelector(".biddingList");
+
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';
 
       </script>
       <script th:src="@{/js/product_detail.js}"></script>
+      <script th:src="@{/js/bidding.js}"></script>
       <script th:src="@{/js/comments.js}"></script>
   </th:block>
 </html>

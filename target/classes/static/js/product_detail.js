@@ -56,7 +56,7 @@ items_nav.forEach((nav) => {
 });
 
 // 이미지 변경 => images로 대체
-console.log(images);
+console.log(img_arr);
 // const img_obj = [
 //   "/img/anime/item1.jpg",
 //   "/img/anime/item2.jpg",
@@ -69,6 +69,11 @@ console.log(images);
 //   "/img/anime/item9.jpg",
 //   "/img/anime/item10.jpg",
 // ];
+// const img_obj = [];
+// images.forEach((image) => {
+//   img_obj.add(image);
+// });
+// console.log(img_obj);
 num = 0;
 function imgChange(cnt) {
   // 현재 이미지 주소 가져오기
@@ -82,6 +87,8 @@ function imgChange(cnt) {
   }
   imageBtn.style.backgroundImage = `url(${img_obj[num]})`;
 }
+
+function chgImage(cnt) {}
 
 // 현재 시간 표시
 function getTime() {

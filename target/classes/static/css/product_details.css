@@ -58,6 +58,10 @@
   height: 55px;
 }
 
+/* .sub_pic {
+  display: flex;
+} */
+
 .item_nav_sub {
   margin-top: 25px;
 }
@@ -85,6 +89,18 @@
 /* width만 추가 */
 .header__menu ul li {
   width: 15%;
+}
+
+.bid-btn {
+  font-size: 13px;
+  color: #ffffff;
+  background: #e53637;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: 4px 0 0 4px;
 }
 
 /* 테두리만 변경 */

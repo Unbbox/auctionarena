@@ -4,6 +4,7 @@ import com.example.auctionarena.dto.CategoryDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
 import jakarta.validation.Valid;
