@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
     <!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="img/normal-breadcrumb.jpg">
+    <section class="normal-breadcrumb set-bg" data-setbg="/img/normal-breadcrumb.jpg">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <div class="normal__breadcrumb__text">
-              <h2>로그인</h2>
+              <h2>Login</h2>
             </div>
           </div>
         </div>
@@ -28,8 +28,9 @@
                   <span class="icon_mail"></span>
                 </div>
                 <div class="input__item">
-                  <input type="Password" placeholder="Password" id="password" name="password" />
+                  <input type="Password" class="password" placeholder="Password" id="password" name="password" />
                   <span class="icon_lock"></span>
+                  <i class="fa fa-eye fa-lg" style="color: #a0a3ab"></i>
                 </div>
                 <div class="text-danger small" th:if="${param.error}">이메일이나 비밀번호를 확인해 주세요</div>
                 <button type="submit" class="site-btn">로그인</button>
@@ -69,3 +70,6 @@
     <!-- Login Section End -->
   </div>
 </html>
+<th:block layout:fragment="script">
+  <script th:src="@{/memberjs/password.js}"></script>
+</th:block>
