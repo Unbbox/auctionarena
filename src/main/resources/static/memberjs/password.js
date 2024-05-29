@@ -1,4 +1,3 @@
-// ========================================== //
 // 비밀번호 가리기
 const pwdInput = document.querySelectorAll(".password");
 const togglePwd = document.querySelectorAll(".fa-eye");

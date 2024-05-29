@@ -17,8 +17,8 @@ function showUploadImages(arr) {
 
   arr.forEach((obj, idx) => {
     tags += `<li data-name="${obj.fileName}" data-path="${obj.folderPath}" data-uuid="${obj.uuid}">`;
-    tags += `<div>`;
     tags += `<a href=""><img src="/upload/display?fileName=${obj.imageURL}" class="block"></a>`;
+    tags += `<div>`;
     tags += `<span class="text-sm d-inline-block mx-1">${obj.fileName}</span>`;
     tags += `<a href="#" data-file="${obj.imageURL}">`;
     tags += `<i class="fa-solid fa-xmark"></i>`;

@@ -10,6 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.example.auctionarena.constant.MemberRole;
 import com.example.auctionarena.entity.Member;
 
+import jakarta.transaction.Transactional;
+
 @SpringBootTest
 public class MemberRepositoryTest {
 
@@ -49,5 +51,18 @@ public class MemberRepositoryTest {
                 .role(MemberRole.ADMIN)
                 .build();
         memberRepository.save(member);
+    }
+
+    @Transactional
+    @Test
+    public void leaveMemberTest() {
+        Member member = Member.builder()
+                .mid(1L)
+                .build();
+
+        // review, product 삭제
+
+        // 회원 삭제
+        memberRepository.delete(member);
     }
 }

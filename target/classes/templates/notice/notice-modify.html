@@ -22,17 +22,14 @@
                     <label for="writerNickname" class="form-label">작성자</label>
                     <input class="form-control" type="text" name="writerNickname" id="writerNickname" th:value="${dto.writerNickname}" readonly>
                   </div>
-                  <label class="block mt-4 text-sm form-label">
-                    <span class="block text-gray-700 dark:text-gray-400">Image Files</span>
-                    <input
-                      type="file"
-                      class="block w-full mt-1 form-control text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                      id="fileInput"
-                      multiple
-                    />
-                  </label>
 
-                  <div class="uploadResult">
+                  <!-- 이미지 업로드 -->
+                  <label class="block text-sm notice-form-label">
+                    <span class="block text-gray-700 dark:text-gray-400">Image Files</span>
+                    <input type="file" class="notice-form-control" id="fileInput" multiple />
+
+
+                  <div class="uploadResult notice-upload">
                     <ul>
                       <!-- 
                         <li data-name="" data-path="" data-uuid="">
@@ -52,14 +49,16 @@
                         <a href="">
                           <img class="block" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}"/>
                         </a>
+                      </div>
                         <span class="text-sm d-inline-block mx-1" th:text="${image.imgName}"></span>
                         <a href="#">
                           <i class="fa-solid fa-xmark"></i>
                         </a>
-                      </div>
                     </li>
                   </ul>
                   </div>
+                </label>
+
                   <div class="mb-3">
                     <label for="content" class="form-label">내용</label>
                     <textarea class="form-control" type="text" name="content" id="content" rows="10">[[${dto.content}]]</textarea>

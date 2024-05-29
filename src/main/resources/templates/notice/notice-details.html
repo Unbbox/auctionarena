@@ -14,14 +14,17 @@
               </h6>
             </div>
           </div>
-          <div class="col-lg-12">
-            <div class="blog__details__pic">
-              <ul>
-                <li th:each="image : ${dto.noticeImageDtos}" data-bs-toggle="modal" data-bs-target="#imgModal" th:attr="data-file=${image.getImageURL()}">
-                  <img class="block" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
-                </li>
-              </ul>
-            </div>
+          <div class="notice-image">
+            <ul>
+              <li
+                th:each="image : ${dto.noticeImageDtos}"
+                data-bs-toggle="modal"
+                data-bs-target="#imgModal"
+                th:attr="data-file=${image.getImageURL()}"
+              >
+                <img class="block" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}" />
+              </li>
+            </ul>
           </div>
           <div class="col-lg-8">
             <div class="blog__details__content notice__details">
@@ -46,17 +49,21 @@
               <!-- 페이지 나누기 -->
               <div class="blog__details__btns">
                 <div class="row">
-                  <div class="col-lg-6" >
+                  <div class="col-lg-6">
                     <div class="blog__details__btns__item">
                       <h5 th:if="${preNno != null}">
-                        <a th:href="@{notice-details(nno=${preNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"><span class="arrow_left"></span>이전글</a>
+                        <a th:href="@{notice-details(nno=${preNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                          ><span class="arrow_left"></span>이전글</a
+                        >
                       </h5>
                     </div>
                   </div>
-                  <div class="col-lg-6" >
+                  <div class="col-lg-6">
                     <div class="blog__details__btns__item next__btn">
                       <h5 th:if="${nextNno != null}">
-                        <a th:href="@{notice-details(nno=${nextNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">다음글<span class="arrow_right"></span></a>
+                        <a th:href="@{notice-details(nno=${nextNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                          >다음글<span class="arrow_right"></span
+                        ></a>
                       </h5>
                     </div>
                   </div>
@@ -69,26 +76,4 @@
     </section>
     <!-- Blog Details Section End -->
   </div>
-
-        <!--원본 이미지 보기 모달 창-->
-        <div class="modal fade" id="imgModal" tabindex="-1" aria-labelledby="imgModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="imgModalLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <img
-                  src="https://search.pstatic.net/common?type=f&size=518x522&quality=95&direct=true&src=http%3A%2F%2Fshop1.phinf.naver.net%2F20200724_215%2F1595581349044jAHJA_JPEG%2F31716943718608376_1431937637.jpeg"
-                  alt=""
-                />
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 </html>
