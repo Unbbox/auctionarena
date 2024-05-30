@@ -1962,15 +1962,19 @@ ol {
   /* footer */
   .footer__logo img {
     height: 100%;
-    width: 100%;
+    width: 80%;
   }
 
   .footer__nav ul {
-    margin-top: 5%;
+    margin-top: 2%;
   }
 
   .footer__div {
-    margin-top: 13%;
+    margin-top: 8%;
+  }
+
+  .footer__logo {
+    text-align: center;
   }
 }
 
@@ -1985,15 +1989,19 @@ ol {
   /* footer */
   .footer__logo img {
     height: 100%;
-    width: 100%;
+    width: 80%;
   }
 
   .footer__nav ul {
-    margin-top: 5%;
+    margin-top: 2%;
   }
 
   .footer__div {
-    margin-top: 13%;
+    margin-top: 8%;
+  }
+
+  .footer__logo {
+    text-align: center;
   }
 }
 
@@ -2023,15 +2031,19 @@ ol {
   /* footer */
   .footer__logo img {
     height: 100%;
-    width: 100%;
+    width: 80%;
   }
 
   .footer__nav ul {
-    margin-top: 5%;
+    margin-top: 2%;
   }
 
   .footer__div {
-    margin-top: 13%;
+    margin-top: 8%;
+  }
+
+  .footer__logo {
+    text-align: center;
   }
 }
 
@@ -2139,8 +2151,13 @@ ol {
 
   /* footer */
   .footer__logo img {
-    height: 50%;
-    width: 40%;
+    height: 100%;
+    width: 30%;
+  }
+
+  .footer__logo {
+    text-align: center;
+    margin-bottom: 20px;
   }
 }
 
