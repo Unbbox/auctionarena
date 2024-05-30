@@ -62,9 +62,7 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
         if (type.contains("c")) {
             conditionBuilder.or(notice.content.contains(keyword));
         }
-        if (type.contains("w")) {
-            conditionBuilder.or(member.nickname.contains(keyword));
-        }
+
         builder.and(conditionBuilder);
         tuple.where(builder);
 

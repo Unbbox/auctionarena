@@ -1,4 +1,4 @@
-document.querySelector("#searchForm").addEventListener("submit", (e) => {
+document.querySelector("#noticeSearchForm").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const type = document.querySelector("#search_type");
