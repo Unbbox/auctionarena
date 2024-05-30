@@ -34,7 +34,6 @@ public class NoticeController {
         log.info("list 요청");
 
         if (requestDto.getType() == "t") {
-
             requestDto.setType("t");
         } else {
             requestDto.setType("c");

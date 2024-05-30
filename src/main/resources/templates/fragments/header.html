@@ -8,10 +8,10 @@
           <a th:href="@{/}"><img class="header__logo" th:src="@{/img/logo.png}" alt="" /></a>
         </div>
         <!-- 검색 -->
-        <form action="" role="search" id="searchForm">
+        <form th:action="@{/auctionArena/categories}" role="search" id="searchForm">
           <input type="hidden" name="page" value="1" class="form-control">
           <div class="search-bar">
-            <input class="search-bar__input" type="search" placeholder="검색" aria-label="Search" />
+            <input class="search-bar__input" type="search" placeholder="검색" aria-label="Search"/>
             <button class="search-btn" type="submit"><i class="fas fa-search"></i></button>
           </div>
         </form>
