@@ -2425,7 +2425,8 @@ ol {
 
 /* 공지사항 */
 /* notice */
-#searchForm {
+.notice-search-form {
+  width: 100% !important;
   float: none;
 }
 
@@ -2513,8 +2514,8 @@ ol {
 .notice-image img {
   margin: 0 auto 5px;
   display: block;
-  width: auto;
-  height: auto;
+  width: 50%;
+  height: 50%;
   float: none;
   vertical-align: top;
 }
