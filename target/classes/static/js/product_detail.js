@@ -95,17 +95,23 @@ console.log(typeof images);
 
 // 이미지 누르는대로 메인 이미지 변경
 // 원본 이미지 div
-const imgMain = document.querySelector(".product_details_pic");
+const imgMain = document.querySelector(".product_detail_img");
 
 // 서브 이미지 div
-const imgSub = document.querySelector(".product_details_pic_sub > img");
+const imgSub = document.querySelectorAll(".product_details_pic_sub");
 
-if (imgSub) {
-  imgSub.addEventListener("click", (e) => {
-    // const
+imgSub.forEach((img) => {
+  img.addEventListener("click", (e) => {
+    const imgImg = e.currentTarget;
+    console.log("imgImg", imgImg);
+
+    const file = imgImg.getAttribute("data-file");
+    console.log("file", file);
+
+    // 이미지 경로 변경
+    imgMain.innerHTML = `<img class="product_details_pic set-bg" src="/upload/display?fileName=${file}">`;
   });
-}
-// console.log(imggg);
+});
 
 // 현재 시간 표시
 function getTime() {
