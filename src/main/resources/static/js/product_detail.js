@@ -74,18 +74,21 @@ console.log(img_arr);
 //   img_obj.add(image);
 // });
 // console.log(img_obj);
+
+// 현재 이미지 위치 저장용
 num = 0;
+// 작은 이미지 클릭 시 메인 이미지 변경
 function imgChange(cnt) {
   // 현재 이미지 주소 가져오기
-  const idx = img_obj.findIndex((obj) => `url("${obj}")` == imageBtn.style.backgroundImage);
+  const idx = img_arr.findIndex((obj) => `url("${obj}")` == imageBtn.style.backgroundImage);
 
   num = idx + cnt;
   if (num < 0) {
-    num = img_obj.length + num;
-  } else if (num >= img_obj.length) {
-    num = num - img_obj.length;
+    num = img_arr.length + num;
+  } else if (num >= img_arr.length) {
+    num = num - img_arr.length;
   }
-  imageBtn.style.backgroundImage = `url(${img_obj[num]})`;
+  imageBtn.style.backgroundImage = `url(${img_arr[num]})`;
 }
 
 function chgImage(cnt) {}

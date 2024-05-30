@@ -13,4 +13,7 @@ public interface BiddingRepository extends JpaRepository<Bidding, Long> {
     // 추후 응찰 내역 비교 시 사용(최고가 가져와서 출력)
     @EntityGraph(attributePaths = { "member" }, type = EntityGraphType.FETCH)
     List<Bidding> findByProductOrderByCreatedDateDesc(Product product);
+
+    // 최고가 출력
+    Bidding findTop1ByProductOrderByBiddingPriceDesc(Product product);
 }

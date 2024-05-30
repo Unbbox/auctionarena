@@ -1,5 +1,6 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.CategoryDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.PageRequestDto;
@@ -31,6 +32,7 @@ public class AuctionController {
 
   private final ProductService service;
   private final DetailService detailService;
+  private final BiddingService biddingService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -51,10 +53,9 @@ public class AuctionController {
       @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
-    // ProductDto dto = detailService.getRow(pno);
-    // log.info("제품 상세 출력 >> {}", dto);
-
-    model.addAttribute("dto", detailService.getRow(pno));
+    // 제품 dto
+    ProductDto dto = detailService.getRow(pno);
+    model.addAttribute("dto", dto);
   }
 
   // 제품 판매 등록 페이지

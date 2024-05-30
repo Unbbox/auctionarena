@@ -39,4 +39,15 @@ public class BiddingServiceImpl implements BiddingService {
         Bidding bidding = dtoToEntity(biddingDto);
         return repository.save(bidding).getBno();
     }
+
+    @Override
+    public BiddingDto getBestBidding(Long pno) {
+        log.info("{}번 응찰 기록 조회", pno);
+
+        Product product = Product.builder().pno(pno).build();
+        Bidding bidding = repository.findTop1ByProductOrderByBiddingPriceDesc(product);
+
+        log.info("최고 응찰 기록 {}", bidding);
+        return entityToDto(bidding);
+    }
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,9 @@ public class BiddingController {
 
     // 제품 입찰 기록 get
     @GetMapping("/{pno}/all")
-    public ResponseEntity<List<BiddingDto>> getBiddings(@PathVariable("pno") Long pno) {
+    public ResponseEntity<List<BiddingDto>> getBiddings(@PathVariable("pno") Long pno, Model model) {
         log.info("{}번 제품 응찰 리스트 출력 : ", pno);
+        // model.addAttribute("biddingDto", biddingService.getBestBidding(pno));
         return new ResponseEntity<>(biddingService.getBiddingList(pno), HttpStatus.OK);
     }
 

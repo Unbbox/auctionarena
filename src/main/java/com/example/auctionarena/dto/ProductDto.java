@@ -54,6 +54,9 @@ public class ProductDto {
   @Builder.Default
   private List<BiddingDto> biddingDtos = new ArrayList<>();
 
+  // 최고 입찰가
+  private Long bestPrice;
+
   // 응찰 개수
   private Long biddingCnt;
 

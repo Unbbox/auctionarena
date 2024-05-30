@@ -15,7 +15,6 @@ import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
-// import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class DetailServiceImpl implements DetailService {
   private final ProductImageRepository productImageRepository;
   private final CategoryRepository categoryRepository;
   private final MemberRepository memberRepository;
-  // private final BiddingRepository biddingRepository;
+  private final BiddingRepository biddingRepository;
   private final BiddingDetailRepository biddingDetailRepository;
 
   // @Override
@@ -78,6 +77,9 @@ public class DetailServiceImpl implements DetailService {
   public ProductDto getRow(Long pno) {
     List<Object[]> result = productImageRepository.getProductRow(pno);
     List<Object[]> bid_result = biddingDetailRepository.getBiddingRow(pno);
+
+    // Long bestPrice =
+    // biddingRepository.findTop1ByProductOrderByBiddingPriceDesc(pno)
 
     // result의 값 첫번째 == product
     Product product = (Product) result.get(0)[0];

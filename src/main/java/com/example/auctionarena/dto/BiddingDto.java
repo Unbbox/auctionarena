@@ -25,6 +25,7 @@ public class BiddingDto {
     private Long mid; // 멤버 번호
     private String mNickName;
 
+    @NotBlank(message = "입찰 금액을 입력해주세요.")
     private Long biddingPrice;
 
     // createdDate

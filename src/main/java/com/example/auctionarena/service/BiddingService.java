@@ -15,6 +15,9 @@ public interface BiddingService {
     // 응찰 리스트 가져오기
     List<BiddingDto> getBiddingList(Long pno);
 
+    // 응찰 최고기록 가져오기
+    BiddingDto getBestBidding(Long pno);
+
     // 입찰 등록
     Long bidRegister(BiddingDto biddingDto);
 
@@ -22,7 +25,7 @@ public interface BiddingService {
     public default BiddingDto entityToDto(Bidding bidding) {
 
         return BiddingDto.builder()
-                .biddingPrice(bidding.getBiddingPrice())
+                .biddingPrice(bidding.getBiddingPrice() != null ? bidding.getBiddingPrice() : 0L)
                 .biddingTime(bidding.getCreatedDate())
                 .pno(bidding.getProduct().getPno())
                 .mid(bidding.getMember().getMid())

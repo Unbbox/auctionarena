@@ -26,8 +26,11 @@
             <div class="col-lg-3">
               <div>
                 <!-- <div class="anime__details__pic set-bg" th:style=" 'background-image: url('|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|')'"> -->
+                <div class="anime__details__pic set-bg" data-setbg="/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]">
+                </div>
                 <!-- <script>console.log(th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|")</script> -->
                 <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|">
+                <script>console.log("/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]")</script>
                   <img src="/img/anime/left.png" class="arows left_arrow" onclick="imgChange(-1)">
                   <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)">
                 </img>
@@ -88,8 +91,9 @@
                         <li>경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span></li>
                         
                         <!-- 추가 해야함 -->
-                        <li>현재경매가:<span> 원</span></li>
-                        <li>입찰인원:<span> 1,000명</span></li>
+                        
+                        <li>현재경매가: <span class="currPrice"></span></li>
+                        <li>입찰 수:<span> 1,000번</span></li>
                         <li>종료 기간: <span class="end_date"></span></li>
                         <li>남은 시간: <span class="date_now"></span></li>
                       </ul>
@@ -248,6 +252,9 @@
 
         // 경매 영역
         const biddingList = document.querySelector(".biddingList");
+
+        // 최고가 영역
+        
 
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';

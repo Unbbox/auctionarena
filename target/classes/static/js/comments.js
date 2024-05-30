@@ -78,7 +78,7 @@ commentForm.addEventListener("submit", (e) => {
     })
       .then((response) => response.text())
       .then((data) => {
-        console.log(data);
+        console.log("comment >> " + data);
 
         text.value = ""; // 작성한 댓글 내용 지우기
 
