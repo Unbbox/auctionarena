@@ -47,7 +47,8 @@ const getBiddingList = () => {
       });
 
       // 현재 경매가 업데이트
-      console.log("현재 최고가 : ", data[0].biddingPrice);
+      // console.log("현재 최고가 : ", data[0].biddingPrice);
+      if (data[0].biddingPrice == null) data[0].biddingPrice = "0";
       document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
 
       biddingList.innerHTML = result;

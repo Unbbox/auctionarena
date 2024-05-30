@@ -37,9 +37,9 @@ const commentLoaded = () => {
         // 추후 추가
 
         // 로그인 user(email) == 작성자(reply.writerEmail)
-        // if (`${email}` == `${reply.writerEmail}`) {
-        //   result += `<div><button class="btn btn-outline-danger btn-sm">삭제</button></div>`;
-        // }
+        if (user == `${comment.nickname}`) {
+          result += `<div><button class="btn btn-outline-danger btn-sm">삭제</button></div>`;
+        }
         result += `</div></div>`;
       });
       commentList.innerHTML = result;

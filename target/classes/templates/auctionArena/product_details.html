@@ -24,29 +24,27 @@
         <div class="anime__details__content">
           <div class="row">
             <div class="col-lg-3">
-              <div>
+              <div class="product_detail_img">
                 <!-- <div class="anime__details__pic set-bg" th:style=" 'background-image: url('|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|')'"> -->
-                <div class="anime__details__pic set-bg" data-setbg="/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]">
-                </div>
-                <!-- <script>console.log(th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|")</script> -->
-                <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|">
-                <script>console.log("/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]")</script>
-                  <img src="/img/anime/left.png" class="arows left_arrow" onclick="imgChange(-1)">
-                  <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)">
-                </img>
+                <!-- <div class="anime__details__pic set-bg" data-setbg="/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]">
+                </div> -->
+                
+                <!-- <script>console.log("/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]")</script> -->
+                <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
+                
+                <!-- <img src="/img/anime/left.png" class="arows left_arrow" onclick="imgChange(-1)">
+                <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"> -->
               </div>
-              <script>
-                let img_arr = [];
-              </script>
               <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
                 <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
+                <!-- 제품 이미지 리스트 출력 -->
                 <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
-                <script>
+                <!-- <script>
                   image_url_src = "[[${image.getImageURL()}]]";
                   image_url_src = image_url_src.replaceAll("%", "/");
                   img_arr.push(image_url_src);
                   // console.log(image_url_src)
-                </script>
+                </script> -->
               </div>
 
               
@@ -244,17 +242,20 @@
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";
         // 제품 등록 일자 가져오기
-        const sale_date = "[[${dto.createdDate}]]"
-        const biddingDate = `[[${dto.biddingDate}]]`
+        const sale_date = "[[${dto.createdDate}]]";
+        const biddingDate = `[[${dto.biddingDate}]]`;
 
         // 제품 이미지 가져오기
-        const images = "[[${dto.productImageDtos}]]"
+        // const images = '[[${dto.productImageDtos}]]';
 
         // 경매 영역
         const biddingList = document.querySelector(".biddingList");
 
-        // 최고가 영역
-        
+        // 이미지 리스트 가져오기
+        // const imgList
+
+        // 로그인 유저 => 댓글 삭제 버튼 유무
+        const user = '[[${#authentication.name}]]';
 
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';

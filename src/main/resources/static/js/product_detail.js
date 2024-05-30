@@ -56,7 +56,7 @@ items_nav.forEach((nav) => {
 });
 
 // 이미지 변경 => images로 대체
-console.log(img_arr);
+// console.log(img_arr);
 // const img_obj = [
 //   "/img/anime/item1.jpg",
 //   "/img/anime/item2.jpg",
@@ -78,20 +78,34 @@ console.log(img_arr);
 // 현재 이미지 위치 저장용
 num = 0;
 // 작은 이미지 클릭 시 메인 이미지 변경
-function imgChange(cnt) {
-  // 현재 이미지 주소 가져오기
-  const idx = img_arr.findIndex((obj) => `url("${obj}")` == imageBtn.style.backgroundImage);
+// function imgChange(cnt) {
+//   // 현재 이미지 주소 가져오기
+//   const idx = img_arr.findIndex((obj) => `url("${obj}")` == imageBtn.style.backgroundImage);
 
-  num = idx + cnt;
-  if (num < 0) {
-    num = img_arr.length + num;
-  } else if (num >= img_arr.length) {
-    num = num - img_arr.length;
-  }
-  imageBtn.style.backgroundImage = `url(${img_arr[num]})`;
+//   num = idx + cnt;
+//   if (num < 0) {
+//     num = img_arr.length + num;
+//   } else if (num >= img_arr.length) {
+//     num = num - img_arr.length;
+//   }
+//   imageBtn.style.backgroundImage = `url(${img_arr[num]})`;
+// }
+
+console.log(typeof images);
+
+// 이미지 누르는대로 메인 이미지 변경
+// 원본 이미지 div
+const imgMain = document.querySelector(".product_details_pic");
+
+// 서브 이미지 div
+const imgSub = document.querySelector(".product_details_pic_sub > img");
+
+if (imgSub) {
+  imgSub.addEventListener("click", (e) => {
+    // const
+  });
 }
-
-function chgImage(cnt) {}
+// console.log(imggg);
 
 // 현재 시간 표시
 function getTime() {
