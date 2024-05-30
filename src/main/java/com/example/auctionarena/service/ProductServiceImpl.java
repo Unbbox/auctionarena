@@ -13,6 +13,7 @@ import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -57,7 +58,26 @@ public class ProductServiceImpl implements ProductService {
     Function<Object[], ProductDto> fn =
       (entity -> entityToDto((Product) entity[0]));
     return new CategoryPageResultDto<>(result, fn);
+    // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
+
+  // @Override
+  // public List<ProductDto> descList() {
+  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+  //   return list
+  //     .stream()
+  //     .map(entity -> entityToDto(entity))
+  //     .collect(Collectors.toList());
+  // }
+
+  // @Override
+  // public List<ProductDto> descList() {
+  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+  //   return list
+  //     .stream()
+  //     .map(entity -> entityToDto(entity))
+  //     .collect(Collectors.toList());
+  // }
 
   @Override
   public List<ProductDto> descList() {

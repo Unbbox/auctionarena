@@ -110,6 +110,7 @@
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
   padding: 20px;
+  font-family: "Noto Sans KR", sans-serif;
 }
 
 .category__menu ul li a span {
