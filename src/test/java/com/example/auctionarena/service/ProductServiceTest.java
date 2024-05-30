@@ -26,6 +26,6 @@ public class ProductServiceTest {
   @Transactional
   @Test
   public void serviceRead() {
-    System.out.println(service.descList());
+    System.out.println(service.BiddingDescList());
   }
 }

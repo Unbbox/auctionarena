@@ -207,6 +207,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-family: "Oswald", sans-serif;
 }
 
 .products__item__text ul {
@@ -235,7 +236,8 @@
   font-weight: 700;
   display: inline-block;
   text-decoration: none;
-  padding-top: 20px;
+  /* padding-top: 20px; */
+  font-family: "Oswald", sans-serif;
 }
 
 .products__item__text h5 a {

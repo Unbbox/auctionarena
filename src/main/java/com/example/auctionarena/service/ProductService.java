@@ -21,6 +21,8 @@ public interface ProductService {
 
   List<ProductDto> descList();
 
+  List<ProductDto> BiddingDescList();
+
   // ProductDto getRow(Long cno);
 
   // 제품 상세 페이지 요청

@@ -67,4 +67,13 @@ public class ProductServiceImpl implements ProductService {
       .map(entity -> entityToDto(entity))
       .collect(Collectors.toList());
   }
+
+  @Override
+  public List<ProductDto> BiddingDescList() {
+    List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
+    return list
+      .stream()
+      .map(entity -> entityToDto(entity))
+      .collect(Collectors.toList());
+  }
 }

@@ -50,92 +50,25 @@
                   </div>
                 </div>
               </div>
-              <!-- <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
+               <div class="row">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${biddinglist}">
+                  <div class="products__item">
+                    <div>
+                      <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}"> <img src="https://via.placeholder.com/175x250" alt="" class="products__item__pic set-bg" /></a>
+                    </div>
+                    <div class="products__item__text">
+                      <h5><a th:href="@{/auctionArena/product_details(pno=${dto.pno})}" th:text="${dto.title}"></a></h5>
+                      <ul>
+                        <li><a th:href="@{/auctionArena/product_details(pno=${dto.pno})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a></li>
+                      </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6" onclick="location.href='/auctionArena/product_details'">
-                  <div class="product__item">
-                    <div class="product__item__pic set-bg" data-setbg="./img/popular/다운로드.jpg"></div>
-                    <div class="product__item__text">
-                      상품명
-                      <div class="product__item__text" style="padding: 0; display: flex; justify-content: space-between">
-                        가격
-                        <div>
-                          <span>날짜</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
+              
+
+
+              </div> 
               <div class="popular__product">
                 <div class="row">
                   <div class="col-lg-8 col-md-8 col-sm-8">
@@ -148,7 +81,7 @@
                   <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}">
                     <div class="products__item">
                       <div>
-                        <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}"> <img src="./img/popular/다운로드.jpg" alt="" class="products__item__pic set-bg" /></a>
+                        <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}"> <img src="https://via.placeholder.com/175x250" alt="" class="products__item__pic set-bg" /></a>
                       </div>
                       <div class="products__item__text">
                         <h5><a th:href="@{/auctionArena/product_details(pno=${dto.pno})}" th:text="${dto.title}"></a></h5>

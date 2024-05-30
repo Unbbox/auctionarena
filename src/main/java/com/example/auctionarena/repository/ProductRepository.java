@@ -16,4 +16,12 @@ public interface ProductRepository
   //   nativeQuery = true
   // )
   List<Product> findTop6ByOrderByPnoDesc();
+
+  @Query(
+    value = "SELECT * FROM PRODUCT p LEFT JOIN " +
+    " (SELECT b.product_pno,count(b.PRODUCT_PNO) AS cnt, ROW_NUMBER() OVER (ORDER BY count(b.PRODUCT_PNO) DESC) AS RankNo FROM BIDDING b GROUP BY b.PRODUCT_PNO)b1 oN p.pno = b1.product_pno " +
+    " WHERE b1.product_pno IS NOT NULL AND RankNo < 7 ORDER BY b1.cnt desc",
+    nativeQuery = true
+  )
+  List<Product> findTop6ByOrderByBiddingCntDesc();
 }
