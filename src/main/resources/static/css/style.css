@@ -1928,6 +1928,20 @@ ol {
   .header__menu.mobile-menu {
     display: none;
   }
+
+  /* footer */
+  .footer__logo img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .footer__nav ul {
+    margin-top: 5%;
+  }
+
+  .footer__div {
+    margin-top: 13%;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -1936,6 +1950,20 @@ ol {
   }
   .header__menu.mobile-menu {
     display: none;
+  }
+
+  /* footer */
+  .footer__logo img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .footer__nav ul {
+    margin-top: 5%;
+  }
+
+  .footer__div {
+    margin-top: 13%;
   }
 }
 
@@ -1960,6 +1988,20 @@ ol {
   }
   .header__menu.mobile-menu {
     display: none;
+  }
+
+  /* footer */
+  .footer__logo img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .footer__nav ul {
+    margin-top: 5%;
+  }
+
+  .footer__div {
+    margin-top: 13%;
   }
 }
 
@@ -2063,6 +2105,12 @@ ol {
   }
   .signup .login__social__links {
     padding-left: 0;
+  }
+
+  /* footer */
+  .footer__logo img {
+    height: 50%;
+    width: 40%;
   }
 }
 
@@ -2209,6 +2257,12 @@ ol {
   .search-model-form input {
     width: 100%;
   }
+
+  /* footer */
+  .footer__logo img {
+    height: 50%;
+    width: 40%;
+  }
 }
 
 /* Small Device = 320px */
@@ -2279,6 +2333,12 @@ ol {
   }
   .anime__review__item__text {
     padding: 18px 20px 20px;
+  }
+
+  /* footer */
+  .footer__logo img {
+    height: 50%;
+    width: 40%;
   }
 }
 
@@ -2677,6 +2737,33 @@ input[type="file"]::file-selector-button {
   float: right;
 }
 
+/* footer */
+.footer__div {
+  text-align: center;
+  margin-bottom: 0 !important;
+  font-size: 15px;
+  font-family: "Mulish", sans-serif;
+  color: #3d3d3d;
+  font-weight: 400;
+  line-height: 25px;
+}
+
+.btn-home {
+  display: inline-block;
+
+  background: #e53637;
+  padding: 12px;
+  letter-spacing: 2px;
+  border-radius: 5px;
+  -webkit-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+
+.btn-home a {
+  color: #e4e4e4 !important;
+}
+
 /*----------------------------------------*/
 /* 이나 end */
 /*----------------------------------------*/
@@ -2722,10 +2809,6 @@ input[type="file"]::file-selector-button {
 
 .item_nav_sub {
   margin-top: 25px;
-}
-
-.footer__logo img {
-  height: 60px;
 }
 
 .anime__details__text {
