@@ -5,12 +5,14 @@ import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.dto.ProductImageDto;
 import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public interface ProductService {
   // List<ProductDto> getList();
@@ -31,8 +33,11 @@ public interface ProductService {
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
-  public default ProductDto entityToDto(Product product) {
-    return ProductDto
+  public default ProductDto entityToDto(
+    Product product
+    // List<ProductImage> productImages
+  ) {
+    ProductDto productDto = ProductDto
       .builder()
       .pno(product.getPno())
       .title(product.getTitle())
@@ -45,6 +50,21 @@ public interface ProductService {
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();
+
+    // List<ProductImageDto> productImageDtos = productImages
+    //   .stream()
+    //   .map(productImage -> {
+    //     return ProductImageDto
+    //       .builder()
+    //       .inum(productImage.getInum())
+    //       .uuid(productImage.getUuid())
+    //       .imgName(productImage.getImgName())
+    //       .path(productImage.getPath())
+    //       .build();
+    //   })
+    //   .collect(Collectors.toList());
+    // productDto.setProductImageDtos(productImageDtos);
+    return productDto;
   }
 
   // dto => entity
