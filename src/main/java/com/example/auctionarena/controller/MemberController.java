@@ -37,6 +37,10 @@ public class MemberController {
     }
 
     // 소셜로그인
+    @GetMapping("/socialSignup")
+    public void socialSignup(MemberDto memberDto) {
+        log.info("소셜회원가입 폼 요청");
+    }
 
     @GetMapping("/signup")
     public void signup(MemberDto memberDto) {
