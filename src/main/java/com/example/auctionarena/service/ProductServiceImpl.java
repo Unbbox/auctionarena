@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
   public CategoryPageResultDto<ProductDto, Object[]> getList(
     CategoryPageRequestDto requestDto
   ) {
-    Page<Object[]> result = productRepository.list(
+    Page<Object[]> result = productImageRepository.list(
       requestDto.getType(),
       requestDto.getKeyword(),
       // requestDto.getCno(),
@@ -56,11 +56,16 @@ public class ProductServiceImpl implements ProductService {
     );
 
     Function<Object[], ProductDto> fn =
-      (entity -> entityToDto((Product) entity[0]));
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
-
   // @Override
   // public List<ProductDto> descList() {
   //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
@@ -79,21 +84,21 @@ public class ProductServiceImpl implements ProductService {
   //     .collect(Collectors.toList());
   // }
 
-  @Override
-  public List<ProductDto> descList() {
-    List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
-    return list
-      .stream()
-      .map(entity -> entityToDto(entity))
-      .collect(Collectors.toList());
-  }
+  // @Override
+  // public List<ProductDto> descList() {
+  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+  //   return list
+  //     .stream()
+  //     .map(entity -> entityToDto(entity))
+  //     .collect(Collectors.toList());
+  // }
 
-  @Override
-  public List<ProductDto> BiddingDescList() {
-    List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
-    return list
-      .stream()
-      .map(entity -> entityToDto(entity))
-      .collect(Collectors.toList());
-  }
+  // @Override
+  // public List<ProductDto> BiddingDescList() {
+  //   List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
+  //   return list
+  //     .stream()
+  //     .map(entity -> entityToDto(entity))
+  //     .collect(Collectors.toList());
+  // }
 }

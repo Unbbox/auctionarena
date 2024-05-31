@@ -2,9 +2,12 @@ package com.example.auctionarena.repository.productSearch;
 
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Product;
+import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.entity.QCategory;
+import com.example.auctionarena.entity.QComment;
 import com.example.auctionarena.entity.QMember;
 import com.example.auctionarena.entity.QProduct;
+import com.example.auctionarena.entity.QProductImage;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Order;
@@ -27,7 +30,8 @@ public class SearchProductRepositoryImpl
   implements SearchProductRepository {
 
   public SearchProductRepositoryImpl() {
-    super(Product.class);
+    // super(Product.class);
+    super(ProductImage.class);
     // TODO Auto-generated constructor stub
   }
 
@@ -41,17 +45,39 @@ public class SearchProductRepositoryImpl
     QProduct product = QProduct.product;
     QMember member = QMember.member;
     QCategory category = QCategory.category;
+    QProductImage productImage = QProductImage.productImage;
+    QComment comment = QComment.comment;
 
-    JPQLQuery<Product> query = from(product);
-    query.leftJoin(product.member, member);
+    // JPQLQuery<Product> query = from(product);
+    // query.leftJoin(product.member, member);
+
+    // JPQLQuery<Tuple> tuple = query.select(
+    //   product,
+    //   member,
+    //   JPAExpressions
+    //     .select(category.cno)
+    //     .from(category)
+    //     .where(category.category.eq(product.category))
+    // );
+
+    JPQLQuery<ProductImage> query = from(productImage);
+    query.leftJoin(product).on(productImage.product.eq(product));
 
     JPQLQuery<Tuple> tuple = query.select(
       product,
-      member,
+      productImage,
       JPAExpressions
-        .select(category.cno)
-        .from(category)
-        .where(category.category.eq(product.category))
+        .select(comment.countDistinct())
+        .from(comment)
+        .where(comment.product.eq(productImage.product))
+        .where(
+          productImage.inum.in(
+            JPAExpressions
+              .select(productImage.inum.min())
+              .from(productImage)
+              .groupBy(productImage.product)
+          )
+        )
     );
 
     BooleanBuilder builder = new BooleanBuilder();

@@ -12,7 +12,6 @@ public class ProductServiceTest {
 
   @Autowired
   private ProductService service;
-
   //   @Test
   //   public void serviceList() {
   //     System.out.println(service.getList());
@@ -23,9 +22,9 @@ public class ProductServiceTest {
   // public void getRow() {
   //   Object[] row = productRepository.
   // }
-  @Transactional
-  @Test
-  public void serviceRead() {
-    System.out.println(service.BiddingDescList());
-  }
+  // @Transactional
+  // @Test
+  // public void serviceRead() {
+  //   System.out.println(service.BiddingDescList());
+  // }
 }

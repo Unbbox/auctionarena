@@ -21,9 +21,9 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
-  List<ProductDto> descList();
+  // List<ProductDto> descList();
 
-  List<ProductDto> BiddingDescList();
+  // List<ProductDto> BiddingDescList();
 
   // ProductDto getRow(Long cno);
 
@@ -34,8 +34,8 @@ public interface ProductService {
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
   public default ProductDto entityToDto(
-    Product product
-    // List<ProductImage> productImages
+    Product product,
+    List<ProductImage> productImages
   ) {
     ProductDto productDto = ProductDto
       .builder()
@@ -51,19 +51,19 @@ public interface ProductService {
       .lastModifiedDate(product.getLastModifiedDate())
       .build();
 
-    // List<ProductImageDto> productImageDtos = productImages
-    //   .stream()
-    //   .map(productImage -> {
-    //     return ProductImageDto
-    //       .builder()
-    //       .inum(productImage.getInum())
-    //       .uuid(productImage.getUuid())
-    //       .imgName(productImage.getImgName())
-    //       .path(productImage.getPath())
-    //       .build();
-    //   })
-    //   .collect(Collectors.toList());
-    // productDto.setProductImageDtos(productImageDtos);
+    List<ProductImageDto> productImageDtos = productImages
+      .stream()
+      .map(productImage -> {
+        return ProductImageDto
+          .builder()
+          .inum(productImage.getInum())
+          .uuid(productImage.getUuid())
+          .imgName(productImage.getImgName())
+          .path(productImage.getPath())
+          .build();
+      })
+      .collect(Collectors.toList());
+    productDto.setProductImageDtos(productImageDtos);
     return productDto;
   }
 
