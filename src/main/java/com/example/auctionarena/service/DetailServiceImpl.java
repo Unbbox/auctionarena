@@ -143,4 +143,12 @@ public class DetailServiceImpl implements DetailService {
     List<Category> list = categoryRepository.findAll();
     return list.stream().map(entity -> entity.getCategoryName()).collect(Collectors.toList());
   }
+
+  // 관련 제품 리스트 반환(카테고리 기준)
+  @Override
+  public List<ProductDto> getRelationList(Long pno) {
+    // List<ProductDto> list = entityToDto(productRepository.fincByProductList());
+    // return list.stream().map(entity -> entity.get)
+    return null;
+  }
 }

@@ -36,6 +36,9 @@ public interface DetailService {
   // 카테고리 리스트 반환
   List<String> categoryNameList();
 
+  // 관련 제품 리스트 반환
+  List<ProductDto> getRelationList(Long pno);
+
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
