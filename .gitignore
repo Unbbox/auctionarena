@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,java
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,java
 
+## 프로젝트마다 생성되는 .gitignore 제외 ##
+*/.gitignore
+languageServers-log
+club/src/main/resources/application-oauth.properties
+
 ### Java ###
 # Compiled class file
 *.class

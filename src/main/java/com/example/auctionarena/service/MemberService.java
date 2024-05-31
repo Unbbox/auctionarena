@@ -20,6 +20,8 @@ public interface MemberService {
     // 회원탈퇴
     void leave(MemberDto leaveMemberDto);
 
+    // social 로그인 정보 연결
+
     public default Member dtoToEntity(MemberDto dto) {
         return Member.builder()
                 .email(dto.getEmail())

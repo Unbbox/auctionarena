@@ -1,5 +1,6 @@
 package com.example.auctionarena.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,8 +20,8 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("member")
 @RequiredArgsConstructor
@@ -34,6 +35,8 @@ public class MemberController {
     public void login() {
         log.info("로그인 폼 요청");
     }
+
+    // 소셜로그인
 
     @GetMapping("/signup")
     public void signup(MemberDto memberDto) {
@@ -129,6 +132,11 @@ public class MemberController {
         session.invalidate();
 
         return "redirect:/";
+    }
+
+    @GetMapping("/mypage")
+    public void mypage() {
+        log.info("마이페이지 요청");
     }
 
 }

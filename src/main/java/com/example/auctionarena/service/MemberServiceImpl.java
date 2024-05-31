@@ -124,4 +124,6 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         }
     }
 
+    // 소셜로그인 연결
+
 }
