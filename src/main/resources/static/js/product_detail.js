@@ -18,7 +18,7 @@ wishBtn.addEventListener("click", (e) => {
 const items_nav = document.querySelectorAll(".items_nav li");
 const items = document.querySelectorAll(".item_nav_sub");
 
-const detail = document.querySelector(".item_detail");
+const details = document.querySelectorAll(".item_detail");
 const bidding = document.querySelector(".item-bidding-record");
 const review = document.querySelector(".item_review");
 const commentRegister = document.querySelector(".item_review_register");
@@ -37,7 +37,9 @@ items_nav.forEach((nav) => {
     items.forEach((item) => {
       item.style.display = "none";
       if (nav.classList.contains("detail")) {
-        detail.style.display = "block";
+        details.forEach((detail) => {
+          detail.style.display = "block";
+        });
       } else if (nav.classList.contains("bidding")) {
         bidding.style.display = "block";
       } else if (nav.classList.contains("review")) {

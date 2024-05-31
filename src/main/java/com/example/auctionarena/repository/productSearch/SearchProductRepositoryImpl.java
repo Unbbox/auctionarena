@@ -52,12 +52,12 @@ public class SearchProductRepositoryImpl
     // query.leftJoin(product.member, member);
 
     // JPQLQuery<Tuple> tuple = query.select(
-    //   product,
-    //   member,
-    //   JPAExpressions
-    //     .select(category.cno)
-    //     .from(category)
-    //     .where(category.category.eq(product.category))
+    // product,
+    // member,
+    // JPAExpressions
+    // .select(category.cno)
+    // .from(category)
+    // .where(category.category.eq(product.category))
     // );
 
     JPQLQuery<ProductImage> query = from(productImage);
@@ -100,7 +100,7 @@ public class SearchProductRepositoryImpl
     // 카테고리가 지정된 경우
     // BooleanBuilder cateBuilder = new BooleanBuilder();
     // if (cno != null) {
-    //   cateBuilder.or(product.category.eq(category));
+    // cateBuilder.or(product.category.eq(category));
     // }
     // builder.and(cateBuilder);
     tuple.where(builder);
@@ -138,12 +138,12 @@ public class SearchProductRepositoryImpl
   }
   // @Override
   // public List<Object[]> getDescList(Long pno) {
-  //   QProduct product = QProduct.product;
+  // QProduct product = QProduct.product;
 
-  //   JPQLQuery<Product> query = from(product);
-  //   JPQLQuery<Product> tuple = query
-  //     .select(product)
-  //     .where(product.pno.)
-  //     .orderBy(product.pno.desc());
+  // JPQLQuery<Product> query = from(product);
+  // JPQLQuery<Product> tuple = query
+  // .select(product)
+  // .where(product.pno.)
+  // .orderBy(product.pno.desc());
   // }
 }
