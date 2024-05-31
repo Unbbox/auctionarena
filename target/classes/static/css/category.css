@@ -135,7 +135,7 @@
   transition-duration: 0.5s;
   overflow: hidden;
   /* overflow: hidden; */
-  /* object-fit: cover; */
+  object-fit: cover;
 }
 
 .products__item__pic:hover {

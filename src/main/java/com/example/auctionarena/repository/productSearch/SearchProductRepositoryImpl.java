@@ -63,22 +63,23 @@ public class SearchProductRepositoryImpl
     JPQLQuery<ProductImage> query = from(productImage);
     query.leftJoin(product).on(productImage.product.eq(product));
 
-    JPQLQuery<Tuple> tuple = query.select(
-      product,
-      productImage,
-      JPAExpressions
-        .select(comment.countDistinct())
-        .from(comment)
-        .where(comment.product.eq(productImage.product))
-        .where(
-          productImage.inum.in(
-            JPAExpressions
-              .select(productImage.inum.min())
-              .from(productImage)
-              .groupBy(productImage.product)
-          )
+    JPQLQuery<Tuple> tuple = query
+      .select(
+        product,
+        productImage,
+        JPAExpressions
+          .select(comment.countDistinct())
+          .from(comment)
+          .where(comment.product.eq(productImage.product))
+      )
+      .where(
+        productImage.inum.in(
+          JPAExpressions
+            .select(productImage.inum.min())
+            .from(productImage)
+            .groupBy(productImage.product.pno)
         )
-    );
+      );
 
     BooleanBuilder builder = new BooleanBuilder();
     builder.and(product.pno.gt(0L));
