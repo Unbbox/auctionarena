@@ -15,8 +15,8 @@ public interface CommentService {
     // 해당 판매글의 댓글 등록
     Long insertComment(CommentDto commentDto);
 
-    // 댓글 수정
-    Long updateComment(CommentDto commentDto);
+    // 댓글 삭제
+    void removeComment(Long commentNo);
 
     public default CommentDto entityToDto(Comment comment) {
         return CommentDto.builder()

@@ -23,7 +23,7 @@ const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
-      console.log("bid =>", data);
+      console.log("bid : ", data);
 
       // 입찰 내역이 없을 시 출력
       if (data.length <= 0) biddingList.innerText = "입찰 기록이 없습니다.";

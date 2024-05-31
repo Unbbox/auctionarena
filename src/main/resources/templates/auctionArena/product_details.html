@@ -24,32 +24,16 @@
         <div class="anime__details__content">
           <div class="row">
             <div class="col-lg-3">
-              <div class="product_detail_img">
-                <!-- <div class="anime__details__pic set-bg" th:style=" 'background-image: url('|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|')'"> -->
-                <!-- <div class="anime__details__pic set-bg" data-setbg="/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]">
-                </div> -->
-                
-                <!-- <script>console.log("/upload/display?fileName=[[${dto.productImageDtos[0].getImageURL()}]]")</script> -->
-                <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
-                
-                <!-- <img src="/img/anime/left.png" class="arows left_arrow" onclick="imgChange(-1)">
-                <img src="/img/anime/right.png" class="arrows right_arrow" onclick="imgChange(+1)"> -->
+              <div class="product_div">
+                <div class="product_detail_img">
+                  <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
+                </div>
+                <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
+                  <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
+                  <!-- 제품 이미지 리스트 출력 -->
+                  <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                </div>
               </div>
-              <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
-                <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
-                <!-- 제품 이미지 리스트 출력 -->
-                <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
-                <!-- <script>
-                  image_url_src = "[[${image.getImageURL()}]]";
-                  image_url_src = image_url_src.replaceAll("%", "/");
-                  img_arr.push(image_url_src);
-                  // console.log(image_url_src)
-                </script> -->
-              </div>
-
-              
-
-
               <!-- 원본 이미지 데이터 -->
               <!-- <div class="item__details__pic__sub">
                 <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
@@ -169,34 +153,35 @@
             </table>
           </div>
         </div>
+        <!-- 댓글 영역 -->
         <div class="row item_nav_sub item_review" style="display: none">
-          <div class="col-lg-12 col-md-8">
-            <div class="product_details_comment">
-              <div class="section-title">
-                <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
-              </div>
-              <div class="comments">
-                <!-- JS에서 댓글 처리 -->
-              </div>
+          <div class="product_details_comment">
+            <div class="section-title">
+              <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
             </div>
-            <div class="anime__details__form">
-              <div class="section-title">
-                <h5>상품평 작성</h5>
-              </div>
-              <!-- th:action="@{/comments/product/}" -->
-              <form th:action="@{/comments/}" method="post" class="comment-form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
-                <input type="hidden" name="commentNo" id="commentNo" />
-                <!-- 로그인 연결 후 th:value 추가 -->
-                <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
-                <input type="hidden" name="nickname" id="nickname" th:value="${#authentication.principal.memberDto.nickname}">
-                <input type="hidden" name="email" id="email" th:value="${#authentication.principal.memberDto.email}">
-                <!-- 나중에 로그인 후 닉네임 가져오기 -->
-                <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
-                <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
-                <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
-                <button type="submit"><i class="fa-regular fa-comments"></i> 작성</button>
-              </form>
+            <div class="comments">
+              <!-- JS에서 댓글 처리 -->
             </div>
+          </div>
+        </div>
+        <div class="row item_nav_sub item_review_register" style="display: none">
+          <div class="product_comment_form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+            <div class="section-title">
+              <h5>상품평 작성</h5>
+            </div>
+            <!-- th:action="@{/comments/product/}" -->
+            <form th:action="@{/comments/}" method="post" class="comment-form">
+              <input type="hidden" name="commentNo" id="commentNo" />
+              <!-- 로그인 연결 후 th:value 추가 -->
+              <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
+              <input type="hidden" name="nickname" id="nickname" th:value="${#authentication.principal.memberDto.nickname}">
+              <input type="hidden" name="email" id="email" th:value="${#authentication.principal.memberDto.email}">
+              <!-- 나중에 로그인 후 닉네임 가져오기 -->
+              <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
+              <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
+              <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
+              <button type="submit"><i class="fa-regular fa-comments"></i> 작성</button>
+            </form>
           </div>
         </div>
         <!-- 관련 상품 form -->
@@ -253,6 +238,9 @@
 
         // 이미지 리스트 가져오기
         // const imgList
+
+        // 댓글 영역 가져오기
+        const commentList = document.querySelector(".comments");
 
         // 로그인 유저 => 댓글 삭제 버튼 유무
         const user = '[[${#authentication.name}]]';

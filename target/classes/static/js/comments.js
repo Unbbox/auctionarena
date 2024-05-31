@@ -15,8 +15,6 @@ const formatDate = (data) => {
 };
 
 // 댓글 목록 가져오기
-const commentList = document.querySelector(".comments");
-
 const commentLoaded = () => {
   fetch(`/comments/${pno}/all`)
     .then((response) => response.json())
@@ -27,26 +25,28 @@ const commentLoaded = () => {
 
       let result = "";
       data.forEach((comment) => {
-        result += `<div class="product_review_item">`;
+        result += `<div class="product_review_item comment_row" data-cno="${comment.commentNo}">`;
         result += `<div class="product_review_item_pic">`;
-        result += `<img src="/img/anime/review-1.jpg" alt="" /></div>`;
-        result += `<div class="product_review_item_text">`;
+        result += `<img src="/img/anime/review-1.jpg" alt="" />`;
+        result += `</div><div class="product_review_item_text">`;
         result += `<h6>${comment.nickname} - <span>${formatDate(comment.createdDate)}</span></h6>`;
         result += `<p>${comment.text}</p>`;
 
         // 추후 추가
 
         // 로그인 user(email) == 작성자(reply.writerEmail)
-        if (user == `${comment.nickname}`) {
+        if (user.split("@")[0].toUpperCase() == `${comment.nickname}`) {
           result += `<div><button class="btn btn-outline-danger btn-sm">삭제</button></div>`;
         }
+
         result += `</div></div>`;
       });
+
       commentList.innerHTML = result;
     });
 };
 
-// 리뷰 등록, 수정
+// 댓글 등록 이벤트
 const commentForm = document.querySelector(".comment-form");
 commentForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -66,7 +66,7 @@ commentForm.addEventListener("submit", (e) => {
     commentNo: commentNo.value,
   };
 
-  // 리뷰 등록
+  // 댓글 등록
   if (!commentNo.value) {
     fetch(`/comments/${pno}`, {
       headers: {
@@ -85,26 +85,37 @@ commentForm.addEventListener("submit", (e) => {
         if (data) console.log(data + "번 댓글 등록 완료");
         commentLoaded();
       });
-  } else {
-    // 리뷰 수정
-    fetch(`/comments/${pno}/${reviewNo.value}`, {
+  }
+});
+
+// 댓글 삭제
+commentList.addEventListener("click", (e) => {
+  // 부모요소가 이벤트를 감지하는 형태로 작성 => 실제 이벤트 대상 요소가 무엇인지 찾아야 함
+  console.log("이벤트 대상 ", e.target);
+
+  const target = e.target;
+  // 리뷰 댓글 번호 가져오기
+  const commentNo = target.closest(".comment_row").dataset.cno;
+  // 컨트롤러에서 작성자와 로그인 유저가 같은지 다시 한번 비교하기 위해
+  const email = commentForm.querySelector("#email");
+
+  if (target.classList.contains("btn-outline-danger")) {
+    if (!confirm("댓글을 정말로 삭제하시겠습니까?")) return;
+
+    const form = new FormData();
+    form.append("email", email.value);
+
+    fetch(`/comments/${pno}/${commentNo}`, {
+      method: "delete",
       headers: {
-        "content-type": "application/json",
         "X-CSRF-TOKEN": csrfValue,
       },
-      body: JSON.stringify(body),
-      method: "put",
+      body: form,
     })
       .then((response) => response.text())
       .then((data) => {
-        console.log(data);
-
-        text.value = "";
-        reviewNo.value = "";
-        reviewForm.querySelector(".starrr a:nth-child(" + grade + ")").click();
-
-        if (data) alert(data + " 번 리뷰가 수정되었습니다.");
-        commentLoaded(); // 댓글 리스트 다시 가져오기
+        alert(data + " 번 댓글이 삭제되었습니다.");
+        commentLoaded();
       });
   }
 });

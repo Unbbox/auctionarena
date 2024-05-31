@@ -39,11 +39,15 @@
   bottom: 25px;
 }
 
-.product_details_pic_sub {
-  width: 300px;
-  margin-bottom: 15px;
+.product_div {
   display: flex;
+}
+
+.product_details_pic_sub {
+  width: 55px;
+  margin-bottom: 15px;
   justify-content: flex-start;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   /* flex-wrap: nowrap; */
@@ -258,4 +262,17 @@
   color: #b7b7b7;
   line-height: 23px;
   margin-bottom: 0;
+}
+
+.product_comment_form form textarea {
+  width: 100%;
+  font-size: 15px;
+  color: #b7b7b7;
+  padding-left: 20px;
+  padding-top: 12px;
+  height: 110px;
+  border: none;
+  border-radius: 5px;
+  resize: none;
+  margin-bottom: 24px;
 }

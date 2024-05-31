@@ -13,6 +13,8 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,14 +45,12 @@ public class CommentController {
         return new ResponseEntity<Long>(commentNo, HttpStatus.OK);
     }
 
-    // 댓글 수정
-    @PutMapping("/{pno}/{commentNo}")
-    public ResponseEntity<Long> putComments(@PathVariable("commentNo") Long commentNo,
-            @RequestBody CommentDto commentDto) {
-        log.info("comment 수정 {}", commentDto);
-
-        service.updateComment(commentDto);
-
+    // 댓글 삭제
+    @PreAuthorize("authentication.name == #email")
+    @DeleteMapping("/{pno}/{commentNo}")
+    public ResponseEntity<Long> deleteReview(@PathVariable("commentNo") Long commentNo, String email) {
+        log.info("리뷰 삭제 {}", email);
+        service.removeComment(commentNo);
         return new ResponseEntity<>(commentNo, HttpStatus.OK);
     }
 }

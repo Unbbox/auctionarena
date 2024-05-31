@@ -1,14 +1,5 @@
-const sub_images = document.querySelectorAll(".item__details__pic__sub div");
-const imageBtn = document.querySelector(".anime__details__pic");
-const wishBtn = document.querySelector(".anime__details__btn .wish_list");
-
-sub_images.forEach((iamge) => {
-  iamge.addEventListener("click", (e) => {
-    imageBtn.style.backgroundImage = iamge.style.backgroundImage;
-  });
-});
-
 // 찜목록 활성화 비활성화
+const wishBtn = document.querySelector(".anime__details__btn .wish_list");
 wishBtn.addEventListener("click", (e) => {
   const btn = e.target.querySelector("i");
 
@@ -30,6 +21,7 @@ const items = document.querySelectorAll(".item_nav_sub");
 const detail = document.querySelector(".item_detail");
 const bidding = document.querySelector(".item-bidding-record");
 const review = document.querySelector(".item_review");
+const commentRegister = document.querySelector(".item_review_register");
 
 items_nav.forEach((nav) => {
   nav.addEventListener("click", (e) => {
@@ -50,48 +42,11 @@ items_nav.forEach((nav) => {
         bidding.style.display = "block";
       } else if (nav.classList.contains("review")) {
         review.style.display = "block";
+        commentRegister.style.display = "block";
       }
     });
   });
 });
-
-// 이미지 변경 => images로 대체
-// console.log(img_arr);
-// const img_obj = [
-//   "/img/anime/item1.jpg",
-//   "/img/anime/item2.jpg",
-//   "/img/anime/item3.jpg",
-//   "/img/anime/item4.jpg",
-//   "/img/anime/item5.jpg",
-//   "/img/anime/item6.jpg",
-//   "/img/anime/item7.jpg",
-//   "/img/anime/item8.jpg",
-//   "/img/anime/item9.jpg",
-//   "/img/anime/item10.jpg",
-// ];
-// const img_obj = [];
-// images.forEach((image) => {
-//   img_obj.add(image);
-// });
-// console.log(img_obj);
-
-// 현재 이미지 위치 저장용
-num = 0;
-// 작은 이미지 클릭 시 메인 이미지 변경
-// function imgChange(cnt) {
-//   // 현재 이미지 주소 가져오기
-//   const idx = img_arr.findIndex((obj) => `url("${obj}")` == imageBtn.style.backgroundImage);
-
-//   num = idx + cnt;
-//   if (num < 0) {
-//     num = img_arr.length + num;
-//   } else if (num >= img_arr.length) {
-//     num = num - img_arr.length;
-//   }
-//   imageBtn.style.backgroundImage = `url(${img_arr[num]})`;
-// }
-
-console.log(typeof images);
 
 // 이미지 누르는대로 메인 이미지 변경
 // 원본 이미지 div

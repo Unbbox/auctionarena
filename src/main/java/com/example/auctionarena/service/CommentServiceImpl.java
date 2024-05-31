@@ -44,19 +44,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Long updateComment(CommentDto commentDto) {
-        log.info("{}번 댓글 수정", commentDto.getCommentNo());
-
-        Optional<Comment> result = repository.findById(commentDto.getCommentNo());
-
-        if (result.isPresent()) {
-            Comment comment = result.get();
-            comment.setText(commentDto.getText());
-            repository.save(dtoToEntity(commentDto));
-            // repository.save(comment);
-        }
-
-        return commentDto.getCommentNo();
+    public void removeComment(Long commentNo) {
+        log.info("{}번 댓글 삭제", commentNo);
+        repository.deleteById(commentNo);
     }
 
 }
