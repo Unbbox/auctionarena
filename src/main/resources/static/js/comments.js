@@ -46,6 +46,8 @@ const commentLoaded = () => {
     });
 };
 
+commentLoaded();
+
 // 댓글 등록 이벤트
 const commentForm = document.querySelector(".comment-form");
 commentForm.addEventListener("submit", (e) => {
@@ -119,5 +121,3 @@ commentList.addEventListener("click", (e) => {
       });
   }
 });
-
-commentLoaded();

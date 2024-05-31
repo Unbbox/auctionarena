@@ -26,8 +26,8 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 @Log4j2
 public class SearchProductRepositoryImpl
-  extends QuerydslRepositorySupport
-  implements SearchProductRepository {
+    extends QuerydslRepositorySupport
+    implements SearchProductRepository {
 
   public SearchProductRepositoryImpl() {
     // super(Product.class);
@@ -37,11 +37,10 @@ public class SearchProductRepositoryImpl
 
   @Override
   public Page<Object[]> list(
-    String type,
-    String keyword,
-    // Long cno,
-    Pageable pageable
-  ) {
+      String type,
+      String keyword,
+      // Long cno,
+      Pageable pageable) {
     QProduct product = QProduct.product;
     QMember member = QMember.member;
     QCategory category = QCategory.category;
@@ -52,33 +51,32 @@ public class SearchProductRepositoryImpl
     // query.leftJoin(product.member, member);
 
     // JPQLQuery<Tuple> tuple = query.select(
-    //   product,
-    //   member,
-    //   JPAExpressions
-    //     .select(category.cno)
-    //     .from(category)
-    //     .where(category.category.eq(product.category))
+    // product,
+    // member,
+    // JPAExpressions
+    // .select(category.cno)
+    // .from(category)
+    // .where(category.category.eq(product.category))
     // );
 
     JPQLQuery<ProductImage> query = from(productImage);
     query.leftJoin(product).on(productImage.product.eq(product));
 
     JPQLQuery<Tuple> tuple = query.select(
-      product,
-      productImage,
-      JPAExpressions
-        .select(comment.countDistinct())
-        .from(comment)
-        .where(comment.product.eq(productImage.product))
+        product,
+        productImage,
+        JPAExpressions
+            .select(comment.countDistinct())
+            .from(comment)
+            .where(comment.product.eq(productImage.product)))
         .where(
-          productImage.inum.in(
-            JPAExpressions
-              .select(productImage.inum.min())
-              .from(productImage)
-              .groupBy(productImage.product)
-          )
-        )
-    );
+            productImage.inum.in(
+                JPAExpressions
+                    .select(productImage.inum.min())
+                    .from(productImage)
+                    .groupBy(productImage.product))
+
+        );
 
     BooleanBuilder builder = new BooleanBuilder();
     builder.and(product.pno.gt(0L));
@@ -99,26 +97,24 @@ public class SearchProductRepositoryImpl
     // 카테고리가 지정된 경우
     // BooleanBuilder cateBuilder = new BooleanBuilder();
     // if (cno != null) {
-    //   cateBuilder.or(product.category.eq(category));
+    // cateBuilder.or(product.category.eq(category));
     // }
     // builder.and(cateBuilder);
     tuple.where(builder);
 
     Sort sort = pageable.getSort();
     sort
-      .stream()
-      .forEach(order -> {
-        Order direction = order.isAscending() ? Order.ASC : Order.DESC;
-        String prop = order.getProperty();
+        .stream()
+        .forEach(order -> {
+          Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+          String prop = order.getProperty();
 
-        PathBuilder<Product> orderByExpression = new PathBuilder<>(
-          Product.class,
-          "product"
-        );
-        tuple.orderBy(
-          new OrderSpecifier(direction, orderByExpression.get(prop))
-        );
-      });
+          PathBuilder<Product> orderByExpression = new PathBuilder<>(
+              Product.class,
+              "product");
+          tuple.orderBy(
+              new OrderSpecifier(direction, orderByExpression.get(prop)));
+        });
     // 페이지 처리
     tuple.offset(pageable.getOffset());
     tuple.limit(pageable.getPageSize());
@@ -129,20 +125,20 @@ public class SearchProductRepositoryImpl
     long count = tuple.fetchCount();
 
     List<Object[]> list = result
-      .stream()
-      .map(t -> t.toArray())
-      .collect(Collectors.toList());
+        .stream()
+        .map(t -> t.toArray())
+        .collect(Collectors.toList());
 
     return new PageImpl<>(list, pageable, count);
   }
   // @Override
   // public List<Object[]> getDescList(Long pno) {
-  //   QProduct product = QProduct.product;
+  // QProduct product = QProduct.product;
 
-  //   JPQLQuery<Product> query = from(product);
-  //   JPQLQuery<Product> tuple = query
-  //     .select(product)
-  //     .where(product.pno.)
-  //     .orderBy(product.pno.desc());
+  // JPQLQuery<Product> query = from(product);
+  // JPQLQuery<Product> tuple = query
+  // .select(product)
+  // .where(product.pno.)
+  // .orderBy(product.pno.desc());
   // }
 }
