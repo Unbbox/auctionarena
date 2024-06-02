@@ -34,20 +34,6 @@
                   <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
                 </div>
               </div>
-              <!-- 원본 이미지 데이터 -->
-              <!-- <div class="item__details__pic__sub">
-                <div class="set-bg" data-setbg="/img/anime/item1.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item2.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item3.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item4.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item5.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item6.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item7.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item8.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item9.jpg"></div>
-                <div class="set-bg" data-setbg="/img/anime/item10.jpg"></div>
-              </div> -->
-              <!-- <img class="anime__details__pic__sub" src="img/anime/item1.jpg"></img> -->
               
             </div>
             <div class="col-lg-9">
@@ -182,7 +168,7 @@
               <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
               <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
               <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
-              <button type="submit"><i class="fa-regular fa-comments"></i> 작성</button>
+              <button type="submit" class="sub_btn btn"><i class="fa-regular fa-comments"></i> 작성</button>
             </form>
           </div>
         </div>
@@ -231,6 +217,9 @@
         // 제품 등록 일자 가져오기
         const sale_date = "[[${dto.createdDate}]]";
         const biddingDate = `[[${dto.biddingDate}]]`;
+        
+        // 제품 경매 시작가 가져오기
+        const startPrice = "[[${dto.startPrice}]]";
 
         // 제품 이미지 가져오기
         // const images = '[[${dto.productImageDtos}]]';

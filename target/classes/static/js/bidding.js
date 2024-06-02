@@ -14,9 +14,11 @@ const format_Date = (data) => {
   );
 };
 
-const formatPrice = (data) => {
+function formatPrice(data) {
   // 가격 포매팅
-};
+  // data = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  // console.log(data);
+}
 
 // bidding 내역 get
 const getBiddingList = () => {
@@ -26,7 +28,14 @@ const getBiddingList = () => {
       console.log("bid : ", data);
 
       // 입찰 내역이 없을 시 출력
-      if (data.length <= 0) biddingList.innerText = "입찰 기록이 없습니다.";
+      if (data.length <= 0) {
+        biddingList.innerText = "입찰 기록이 없습니다.";
+
+        // 3자리씩 끊어서 comma 넣기
+        document.querySelector(".currPrice").innerText = startPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
+        // 입찰 기록 없으면 바로 종료
+        return;
+      }
 
       let result = "";
       data.forEach((bidding) => {
@@ -37,7 +46,7 @@ const getBiddingList = () => {
         // </tr>
 
         // 입찰가 format
-        bidPrice = `${bidding.biddingPrice}`.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         result += `<tr class="text-gray-700 dark:text-white-400">`;
         result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
@@ -48,8 +57,12 @@ const getBiddingList = () => {
 
       // 현재 경매가 업데이트
       // console.log("현재 최고가 : ", data[0].biddingPrice);
-      if (data[0].biddingPrice == null) data[0].biddingPrice = "0";
-      document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
+      if (data[0].biddingPrice == null) {
+        // document.querySelector(".currPrice").innerText = startPrice;
+        // console.log(startPrice);
+      } else {
+        document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
+      }
 
       biddingList.innerHTML = result;
     });
@@ -65,8 +78,20 @@ biddingForm.addEventListener("submit", (e) => {
   const biddingPrice = biddingForm.querySelector("#biddingPrice");
   const mid = biddingForm.querySelector("#mid");
   const mNickName = biddingForm.querySelector("#mNickName");
+  const currPrice = document.querySelector(".currPrice");
 
-  if (biddingPrice.value < currPrice) {
+  // 처음 입찰 기록 없을 때 입찰 기록 설정
+  if (currPrice.value == undefined) {
+    currPrice.value = startPrice;
+  }
+  if (biddingPrice.value == undefined) {
+    biddingPrice.value = startPrice;
+  }
+
+  // console.log("currPrice value : ", currPrice.value);
+  // console.log("biddingPrice : ", biddingPrice.value);
+
+  if (biddingPrice.value <= currPrice.value) {
     alert("입찰 금액이 현재 경매가보다 낮습니다.");
     return;
   } else {

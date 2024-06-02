@@ -88,14 +88,6 @@ public class ProductRepositoryTest {
           biddingRepository.save(bidding);
         });
   }
-  // for (int j = 0; j < count; j++) {
-  // ProductImage pImage = ProductImage.builder()
-  // .uuid(UUID.randomUUID().toString())
-  // .product(product)
-  // .imgName("img" + j + ".jpg")
-  // .build();
-  // productImageRepository.save(pImage);
-  // }
 
   @Test
   public void commentSampleTest() {

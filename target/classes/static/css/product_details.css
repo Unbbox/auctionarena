@@ -19,6 +19,18 @@
   margin-right: 11px;
 }
 
+.sub_btn {
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #e53637;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 2px;
+}
+
 /* 직접 추가한 css(재인) */
 .product_details_pic {
   width: 300px;
