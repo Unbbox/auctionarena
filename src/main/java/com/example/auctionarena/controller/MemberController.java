@@ -36,12 +36,6 @@ public class MemberController {
         log.info("로그인 폼 요청");
     }
 
-    // 소셜로그인
-    @GetMapping("/socialSignup")
-    public void socialSignup(MemberDto memberDto) {
-        log.info("소셜회원가입 폼 요청");
-    }
-
     @GetMapping("/signup")
     public void signup(MemberDto memberDto) {
         log.info("회원가입 폼 요청");
@@ -141,6 +135,11 @@ public class MemberController {
     @GetMapping("/mypage")
     public void mypage() {
         log.info("마이페이지 요청");
+    }
+
+    @GetMapping("/editMemberInfo")
+    public void editMemberInfo(MemberDto memberDto) {
+        log.info("회원정보 수정");
     }
 
 }
