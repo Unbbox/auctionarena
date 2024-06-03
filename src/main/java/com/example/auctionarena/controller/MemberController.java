@@ -1,6 +1,10 @@
 package com.example.auctionarena.controller;
 
+import java.util.Optional;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.auctionarena.dto.MemberDto;
 import com.example.auctionarena.dto.PasswordChangeDto;
+import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.service.MemberService;
 
 import jakarta.servlet.http.HttpSession;
@@ -30,6 +36,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class MemberController {
 
     private final MemberService service;
+
+    private final MemberRepository memberRepository;
 
     @GetMapping("/login")
     public void login() {
@@ -69,7 +77,7 @@ public class MemberController {
     }
 
     @PostMapping("/find-password")
-    public String postPasswordFind(MemberDto dto, RedirectAttributes rttr, Model model) {
+    public String postPasswordFind(MemberDto dto, RedirectAttributes rttr) {
         log.info("비밀번호 찾기 {}", dto);
         // String email = dto.getEmail();
 
@@ -138,8 +146,44 @@ public class MemberController {
     }
 
     @GetMapping("/editMemberInfo")
-    public void editMemberInfo(MemberDto memberDto) {
+    public String editMemberInfo(Model model, MemberDto memberDto) {
         log.info("회원정보 수정");
+
+        // 현재 로그인된 사용자의 인증 객체를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 이메일 가져오기
+        String email = authentication.getName();
+
+        // 회원 서비스를 통해 회원 정보 가져오기
+        Optional<Member> member = memberRepository.findByEmail(email);
+
+        // 모델에 회원 정보를 추가하여 뷰로 전달
+        if (member.isPresent()) {
+            MemberDto dto = service.entityToDto(member.get());
+            model.addAttribute("memberDto", dto);
+        }
+
+        return "/member/edit-member-info";
+    }
+
+    @PostMapping("/editMemberInfo")
+    public String postEditMemberInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
+        log.info("회원정보 수정 요청 {}", dto);
+
+        if (result.hasErrors()) {
+            return "/member/edit-member-info";
+        }
+
+        try {
+            service.editMemberInfo(dto);
+            rttr.addFlashAttribute("message", "회원정보가 수정되었습니다.");
+            return "redirect:/member/edit-member-info";
+        } catch (IllegalStateException e) {
+            if (e.getMessage().contains("닉네임")) {
+                result.rejectValue("nickname", "duplicate", "이미 사용중인 닉네임입니다.");
+            }
+            return "/member/edit-member-info";
+        }
     }
 
 }

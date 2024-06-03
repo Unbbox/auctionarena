@@ -106,6 +106,31 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         }
     }
 
+    @Override
+    public void editMemberInfo(MemberDto infoDto) {
+        log.info("회원정보 수정 요청 {}", infoDto);
+
+        Optional<Member> result = memberRepository.findByEmail(infoDto.getEmail());
+
+        if (result.isPresent()) {
+            Member member = result.get();
+
+            if (!infoDto.getNickname().equals(member.getNickname())) {
+                validateDuplicateNickname(infoDto.getNickname());
+            }
+
+            member.setName(infoDto.getName());
+            member.setNickname(infoDto.getNickname());
+            member.setZonecode(infoDto.getZonecode());
+            member.setAddr(infoDto.getAddr());
+            member.setPhoneNumber(infoDto.getPhoneNumber());
+
+            memberRepository.save(member);
+        } else {
+            throw new IllegalStateException("회원 정보를 찾을 수 없습니다.");
+        }
+    }
+
     // 중복 이메일 검사
     public void validateDuplicateEmail(String email) throws IllegalStateException {
         Optional<Member> result = memberRepository.findByEmail(email);
@@ -123,4 +148,5 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
             throw new IllegalStateException("닉네임");
         }
     }
+
 }

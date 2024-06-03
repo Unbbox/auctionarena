@@ -8,7 +8,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <div class="normal__breadcrumb__text">
-              <h2>Sign Up</h2>
+              <h2>Profile</h2>
             </div>
           </div>
         </div>
@@ -22,12 +22,11 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="login__form">
-              <h3>회원정보 수정</h3>
+              <h3>회원정보</h3>
               <form th:action="@{editMemberInfo}" method="post" th:object="${memberDto}" id="signupForm">
                 <div class="input__item">
                   <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly/>
                   <span class="icon_mail"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
                   <div class="text-danger" id="emailError"></div>
                 </div>
                 <div class="input__item">
@@ -37,14 +36,13 @@
                   <div class="text-danger" id="passwordError"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}" readonly/>
+                  <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
                   <span class="icon_profile"></span>
                   <div class="text-danger" id="nameError"></div>
                 </div>
                 <div class="input__item">
                   <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
                   <span class="icon_profile"></span>
-                  <div class="text-danger" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}"></div>
                   <div class="text-danger" id="nicknameError"></div>
                 </div>
                 <div class="input__item post">
@@ -59,7 +57,7 @@
                   <div class="text-danger" id="addrError"></div>
                 </div>
                 <div class="input__item">
-                  <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}" readonly/>
+                  <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"/>
                   <span class="icon_phone"></span>
                   <div class="text-danger" id="phoneError"></div>
                 </div>
