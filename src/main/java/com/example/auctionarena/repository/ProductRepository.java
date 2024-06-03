@@ -36,11 +36,11 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     "FROM PRODUCT p " +
     "WHERE p.CATEGORY_CNO = (SELECT CATEGORY_CNO " +
     "FROM product p " +
-    "WHERE PNO = 29) " +
-    "AND NOT p.pno = 29 " +
+    "WHERE PNO = ?1) " +
+    "AND NOT p.pno = ?1 " +
     "ORDER BY p.CREATED_DATE DESC)" +
     "WHERE rownum <= 5",
     nativeQuery = true
   )
-  List<Product> fincByProductList();
+  List<Product> fincByProductList(Long pno);
 }
