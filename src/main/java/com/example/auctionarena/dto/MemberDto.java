@@ -29,19 +29,15 @@ public class MemberDto {
     @NotEmpty(message = "비밀번호를 입력해주세요.")
     private String password;
 
-    @NotEmpty(message = "이름을 입력해주세요.")
     private String name;
 
     @NotEmpty(message = "닉네임을 입력해주세요.")
     private String nickname;
 
-    @NotEmpty(message = "전화번호를 입력해주세요.")
     private String phoneNumber;
 
-    @NotEmpty(message = "주소를 입력해주세요.")
     private String addr;
 
-    @NotEmpty(message = "우편번호를 입력해주세요.")
     private String zonecode;
 
     private MemberRole role;
@@ -50,4 +46,6 @@ public class MemberDto {
 
     private LocalDateTime lastModifiedDate;
 
+    // 소셜로그인
+    private boolean fromSocial;
 }

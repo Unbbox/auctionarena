@@ -153,8 +153,8 @@ const errMsg = {
 // 이메일
 const email = document.querySelector("#email");
 const emailError = document.querySelector("#emailError");
+const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 email.addEventListener("change", () => {
-  const emailRegExp = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (emailRegExp.test(email.value)) {
     emailError.textContent = "";
   } else {
@@ -165,8 +165,8 @@ email.addEventListener("change", () => {
 // 비밀번호
 const password = document.querySelector("#password");
 const passwordError = document.querySelector("#passwordError");
+const pwRegExp = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
 password.addEventListener("change", () => {
-  const pwRegExp = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
   if (pwRegExp.test(password.value)) {
     passwordError.textContent = "";
   } else {
@@ -177,8 +177,8 @@ password.addEventListener("change", () => {
 // 전화번호
 const phoneNumber = document.querySelector("#phoneNumber");
 const phoneError = document.querySelector("#phoneError");
+const phoneRegExp = /^\d{9,11}$/;
 phoneNumber.addEventListener("change", () => {
-  const phoneRegExp = /^\d{9,11}$/;
   if (phoneRegExp.test(phoneNumber.value)) {
     phoneError.textContent = "";
   } else {
@@ -206,9 +206,15 @@ signupBtn.addEventListener("click", (e) => {
     emailError.textContent = errMsg.email.empty;
     email.focus();
     exit;
+  } else if (!emailRegExp.test(email.value)) {
+    emailError.textContent = errMsg.email.notEmail;
+    exit;
   } else if (password.value == "") {
     passwordError.textContent = errMsg.password.empty;
     password.focus();
+    exit;
+  } else if (!pwRegExp.test(password.value)) {
+    passwordError.textContent = errMsg.password.notPw;
     exit;
   } else if (name.value == "") {
     nameError.textContent = errMsg.name;
@@ -229,6 +235,9 @@ signupBtn.addEventListener("click", (e) => {
   } else if (phoneNumber.value == "") {
     phoneError.textContent = errMsg.phoneNumber.empty;
     phoneNumber.focus();
+    exit;
+  } else if (!phoneRegExp.test(phoneNumber.value)) {
+    phoneError.textContent = errMsg.phoneNumber.notPhone;
     exit;
   } else {
     form.submit();

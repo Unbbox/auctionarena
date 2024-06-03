@@ -2,6 +2,7 @@ package com.example.auctionarena.dto;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,7 +15,10 @@ public class AuthMemberDto extends User {
 
     private MemberDto memberDto;
 
-    public AuthMemberDto(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    private Map<String, Object> attr;
+
+    public AuthMemberDto(String username, String password, boolean fromSocial,
+            Collection<? extends GrantedAuthority> authorities) {
         super(username, password, authorities);
     }
 
@@ -24,4 +28,13 @@ public class AuthMemberDto extends User {
         this.memberDto = memberDto;
     }
 
+    public AuthMemberDto(String username, String password, boolean fromSocial,
+            Collection<? extends GrantedAuthority> authorities, Map<String, Object> attr) {
+        this(username, password, fromSocial, authorities);
+        this.attr = attr;
+    }
+
+    public Map<String, Object> getAttributes() {
+        return this.attr;
+    }
 }
