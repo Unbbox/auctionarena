@@ -14,13 +14,11 @@ public interface MemberService {
     // 비밀번호 수정
     void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
 
-    // 주소 수정
-    // void addrUpdate(MemberDto upAddrDto);
+    // 회원정보 수정
+    void editMemberInfo(MemberDto infoDto);
 
     // 회원탈퇴
     void leave(MemberDto leaveMemberDto);
-
-    // social 로그인 정보 연결
 
     public default Member dtoToEntity(MemberDto dto) {
         return Member.builder()
