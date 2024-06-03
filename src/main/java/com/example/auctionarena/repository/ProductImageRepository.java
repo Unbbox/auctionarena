@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ProductImageRepository
-  extends
+    extends
     JpaRepository<ProductImage, Long>,
     ProductImageCommentRepository,
     SearchProductRepository {
@@ -20,9 +20,19 @@ public interface ProductImageRepository
   void deleteByProduct(Product product);
 
   // 지난 게시글의 이미지 가져오기
-  @Query(
-    value = "SELECT * FROM PRODUCT_IMAGE pi WHERE pi.PATH = TO_CHAR(SYSDATE - 1, 'yyyy\\mm\\dd')",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT * FROM PRODUCT_IMAGE pi WHERE pi.PATH = TO_CHAR(SYSDATE - 1, 'yyyy\\mm\\dd')", nativeQuery = true)
   List<ProductImage> getOldProductImages();
+
+  @Query(value = "SELECT * " +
+      "FROM PRODUCT_IMAGE pi2 " +
+      "WHERE pi2.PRODUCT_PNO in (SELECT pno " +
+      "FROM (SELECT * " +
+      "FROM PRODUCT p  " +
+      "WHERE p.CATEGORY_CNO = (SELECT CATEGORY_CNO " +
+      "FROM product p " +
+      "WHERE PNO = ?1) " +
+      "AND NOT p.pno = ?1 " +
+      "ORDER BY p.CREATED_DATE DESC) " +
+      "WHERE rownum <= 5)", nativeQuery = true)
+  List<ProductImage> getRelationRow(Long pno);
 }

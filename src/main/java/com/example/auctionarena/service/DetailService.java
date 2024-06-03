@@ -13,6 +13,8 @@ import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,13 +45,14 @@ public interface DetailService {
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {
   public default ProductDto entityToDto(Product product, List<ProductImage> productImages, List<Bidding> biddings,
-      Long replyCnt) {
+      Long replyCnt, Long biddingCnt) {
     ProductDto productDto = ProductDto.builder()
         .pno(product.getPno())
         .title(product.getTitle())
         .content(product.getContent())
         .writerName(product.getMember().getNickname())
         .replyCnt(replyCnt != null ? replyCnt : 0)
+        .biddingCnt(biddingCnt != null ? biddingCnt : 0)
         .startPrice(product.getStartPrice())
         .biddingDate(product.getBiddingDate())
         .category(product.getCategory().getCategoryName())
@@ -166,5 +169,55 @@ public interface DetailService {
     // // .bidding(bidding)
     // .category(category)
     // .build();
+  }
+
+  /*
+   ***
+   *** 제품 관련 카테고리 전용 entityToDto
+   ***
+   */
+  public default ProductDto entityToDto(List<Product> products, List<ProductImage> productImages) {
+    // ProductDto productDto = ProductDto.builder()
+    // .pno(product.getPno())
+    // .title(product.getTitle())
+    // .writerName(product.getMember().getNickname())
+    // .startPrice(product.getStartPrice())
+    // .biddingDate(product.getBiddingDate())
+    // .category(product.getCategory().getCategoryName())
+    // .createdDate(product.getCreatedDate())
+    // .lastModifiedDate(product.getLastModifiedDate())
+    // .build();
+    List<ProductDto> productDtos = products.stream().map(product -> {
+      return ProductDto.builder()
+          .pno(product.getPno())
+          .title(product.getTitle())
+          .writerName(product.getMember().getNickname())
+          .startPrice(product.getStartPrice())
+          .biddingDate(product.getBiddingDate())
+          .category(product.getCategory().getCategoryName())
+          .createdDate(product.getCreatedDate())
+          .lastModifiedDate(product.getLastModifiedDate())
+          .build();
+    }).collect(Collectors.toList());
+
+    // 제품 상세 페이지의 이미지
+    List<ProductImageDto> productImageDtos = productImages.stream().map(productImage -> {
+      return ProductImageDto.builder()
+          .inum(productImage.getInum())
+          .uuid(productImage.getUuid())
+          .imgName(productImage.getImgName())
+          .path(productImage.getPath())
+          .build();
+    }).collect(Collectors.toList());
+
+    // 이거 바꿔야함
+    productDtos.forEach(productDto -> {
+      productDto.setProductImageDtos(productImageDtos);
+    });
+
+    // productDtos.setProductImageDtos(productImageDtos);
+
+    // return productDtos;
+    return null;
   }
 }
