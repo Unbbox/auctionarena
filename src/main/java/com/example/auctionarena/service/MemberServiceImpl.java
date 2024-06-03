@@ -123,7 +123,4 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
             throw new IllegalStateException("닉네임");
         }
     }
-
-    // 소셜로그인 연결
-
 }

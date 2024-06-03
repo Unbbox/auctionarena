@@ -35,21 +35,24 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
     @Column(unique = true, nullable = false)
     private String nickname;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String phoneNumber;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String addr;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String zonecode;
 
     @Enumerated(EnumType.STRING)
     private MemberRole role;
+
+    // 소셜로그인
+    private boolean fromSocial;
 }
