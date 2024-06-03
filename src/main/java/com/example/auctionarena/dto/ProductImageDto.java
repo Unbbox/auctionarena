@@ -24,6 +24,9 @@ public class ProductImageDto {
   private String path;
   private LocalDateTime createdDate;
   private LocalDateTime lastModifiedDate;
+  private Long pno;
+  private String title;
+  private Long start_price;
 
   // 저장된 파일의 위치
   public String getImageURL() {

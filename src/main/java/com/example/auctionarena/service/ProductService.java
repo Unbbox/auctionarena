@@ -21,7 +21,7 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
-  // List<ProductDto> descList();
+  ProductDto descList();
 
   // List<ProductDto> BiddingDescList();
 

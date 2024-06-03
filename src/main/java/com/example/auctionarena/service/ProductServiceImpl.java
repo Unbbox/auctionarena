@@ -7,6 +7,7 @@ import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.entity.NoticeImage;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.CategoryRepository;
@@ -66,14 +67,6 @@ public class ProductServiceImpl implements ProductService {
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
-  // @Override
-  // public List<ProductDto> descList() {
-  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
-  //   return list
-  //     .stream()
-  //     .map(entity -> entityToDto(entity))
-  //     .collect(Collectors.toList());
-  // }
 
   // @Override
   // public List<ProductDto> descList() {
@@ -93,6 +86,19 @@ public class ProductServiceImpl implements ProductService {
   //     .collect(Collectors.toList());
   // }
 
+  @Override
+  public ProductDto descList() {
+    List<Object[]> list = productRepository.findTop6ByOrderByPnoDesc();
+
+    Product product = (Product) list.get(0)[0];
+    ProductImage productImage = (ProductImage) list.get(0)[1];
+    List<ProductImage> productImages = new ArrayList<>();
+    list.forEach(arr -> {
+      ProductImage image = (ProductImage) arr[1];
+      productImages.add(image);
+    });
+    return entityToDto(product, productImages);
+  }
   // @Override
   // public List<ProductDto> BiddingDescList() {
   //   List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();

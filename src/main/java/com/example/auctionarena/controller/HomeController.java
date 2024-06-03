@@ -2,6 +2,7 @@ package com.example.auctionarena.controller;
 
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.dto.ProductImageDto;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.service.ProductService;
 import java.util.List;
@@ -25,12 +26,14 @@ public class HomeController {
 
   private final ProductService service;
 
+  // private final ProductImageService service;
+
   @GetMapping("/")
   public String Home(Model model) {
     log.info("메인화면 요청");
-    // List<ProductDto> list = service.descList();
+    ProductDto list = service.descList();
     // List<ProductDto> biddinglist = service.BiddingDescList();
-    // model.addAttribute("list", list);
+    model.addAttribute("list", list);
     // model.addAttribute("biddinglist", biddinglist);
     return "/index";
   }

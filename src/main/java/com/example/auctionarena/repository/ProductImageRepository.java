@@ -25,4 +25,14 @@ public interface ProductImageRepository
     nativeQuery = true
   )
   List<ProductImage> getOldProductImages();
+
+  @Query(
+    value = "SELECT * FROM PRODUCT_IMAGE pi2 LEFT JOIN " +
+    " (SELECT p.pno,p.title, p.start_price, ROW_NUMBER() OVER (ORDER BY p.pno desc) AS RankNo " +
+    " FROM PRODUCT p)pi3 " +
+    " ON pi2.product_pno = pi3.pno " +
+    " WHERE RankNo <= 6 AND pi2.inum IN (SELECT min(inum) FROM PRODUCT_IMAGE GROUP BY product_pno) ORDER BY RankNo ASC",
+    nativeQuery = true
+  )
+  List<Object[]> findTop6ByOrderByPnoDesc();
 }
