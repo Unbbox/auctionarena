@@ -38,7 +38,7 @@ const getBiddingList = () => {
       }
 
       let result = "";
-      data.forEach((bidding) => {
+      data.forEach((bidding, index) => {
         // <tr class="text-gray-700 dark:text-white-400 biddingList" th:each="bidding : ${dto.biddingDtos}">
         // <td class="px-4 py-3" th:text="${bidding.mNickName}">입찰자1</td>
         // <td class="px-4 py-3">[[${#numbers.formatInteger(bidding.biddingPrice, 3, 'COMMA')}]]원</td>
@@ -49,9 +49,15 @@ const getBiddingList = () => {
         bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         result += `<tr class="text-gray-700 dark:text-white-400">`;
-        result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
-        result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
-        result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+        if (index == 0) {
+          result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
+          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
+          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+        } else {
+          result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
+          result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
+          result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+        }
         result += `</tr>`;
       });
 

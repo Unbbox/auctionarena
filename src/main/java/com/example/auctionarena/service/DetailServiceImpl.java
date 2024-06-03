@@ -18,6 +18,7 @@ import com.example.auctionarena.repository.ProductRepository;
 import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -41,37 +42,6 @@ public class DetailServiceImpl implements DetailService {
   private final MemberRepository memberRepository;
   private final BiddingRepository biddingRepository;
   private final BiddingDetailRepository biddingDetailRepository;
-
-  // @Override
-  // public List<ProductDto> getList() {
-  // List<Product> list = productRepository.findAll();
-  // List<ProductDto> productList = list
-  // .stream()
-  // .map(product -> entityToDto(product, null))
-  // .collect(Collectors.toList());
-
-  // return productList;
-  // }
-  // @Override
-  // public CategoryPageResultDto<ProductDto, Object[]> getList(
-  // CategoryPageRequestDto requestDto) {
-  // Page<Object[]> result = productRepository.list(
-  // requestDto.getType(),
-  // requestDto.getKeyword(),
-  // requestDto.getPageable(Sort.by("pno").descending()));
-
-  // Function<Object[], ProductDto> fn = (entity -> entityToDto((Product)
-  // entity[0], (Member) entity[1], null));
-  // return new CategoryPageResultDto<>(result, fn);
-  // }
-
-  // 제품 상세 페이지
-  // @Override
-  // public ProductDto getRow(Long pno) {
-  // Product entity = productRepository.findById(pno).get();
-
-  // return entityToDto(entity, null, null);
-  // }
 
   @Override
   public ProductDto getRow(Long pno) {
@@ -102,8 +72,12 @@ public class DetailServiceImpl implements DetailService {
     });
 
     Long reviewCnt = (Long) result.get(0)[2];
+    Long biddingCnt = (Long) result.get(0)[3];
+    log.info("result : {}", result);
+    log.info("응찰 개수 : {}", biddingCnt);
+    // Long biddingCnt = 0L;
 
-    return entityToDto(product, productImages, biddings, reviewCnt);
+    return entityToDto(product, productImages, biddings, reviewCnt, biddingCnt);
   }
 
   @Override
@@ -147,8 +121,35 @@ public class DetailServiceImpl implements DetailService {
   // 관련 제품 리스트 반환(카테고리 기준)
   @Override
   public List<ProductDto> getRelationList(Long pno) {
-    // List<ProductDto> list = entityToDto(productRepository.fincByProductList());
-    // return list.stream().map(entity -> entity.get)
+    log.info("{}번 제품 관련 카테고리 가져오기", pno);
+
+    // 관련 제품 정보 가져오기
+    List<Product> products = productRepository.fincByProductList(pno);
+    log.info("검색한 카테고리의 제품 {}", products);
+    // Function<Product, ProductDto> fn = prod -> entityToDto(prod);
+
+    // 관련 제품 이미지 가져오기
+    // Function<Object[], ProductDto> function = (en -> entityToDto((Product) en[0],
+    // (List<ProductImage>) Arrays.asList((ProductImage) en[1])));
+    // log.info("function : {}", function);
+
+    // result 길이만큼 반복
+    List<ProductImage> result = productImageRepository.getRelationRow(pno);
+    log.info("{}번 제품과 같은 카테고리인 제품의 이미지 {}", pno, result);
+
+    List<ProductImage> productImages = new ArrayList<>();
+    result.forEach(arr -> {
+      // productImage 개수 만큼 이미지 가져오기
+      ProductImage productImage = (ProductImage) arr;
+      productImages.add(productImage);
+    });
+
+    // return products.stream().map(fn).collect(Collectors.toList());
+
+    log.info("카테고리 관련 이미지 {}", productImages);
+
+    // return entityToDto(products, productImages);
     return null;
+
   }
 }

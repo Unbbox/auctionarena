@@ -75,6 +75,23 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
 
   const form = e.target;
 
+  // 해야함
+  const biddingDate = document.querySelector("#biddingDate");
+  console.log(typeof biddingDate.value);
+  console.log(biddingDate.value);
+  if (biddingDate.value != "") {
+    alert("경매 기간을 입력해주세요.");
+    return;
+  }
+
+  // 해야함
+  const startPrice = document.querySelector("#startPrice");
+  if (startPrice.value != null) {
+    alert("경매 시작 금액을 입력해주세요.");
+    focus.on(startPrice);
+    return;
+  }
+
   //첨부파일 정보 수집
   const attachInfos = imagePreview.querySelectorAll("li");
   console.log(attachInfos);

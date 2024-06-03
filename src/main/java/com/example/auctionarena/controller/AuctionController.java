@@ -80,16 +80,13 @@ public class AuctionController {
       // @Valid // 나중에 다 완료 되면 추가
       ProductDto productDto,
       @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+      // RedirectAttributes rttr) {
       RedirectAttributes rttr) {
     log.info("제품 판매 등록 {}", productDto);
 
     Long pno = detailService.productRegister(productDto);
 
     rttr.addFlashAttribute("msg", pno);
-    rttr.addAttribute("page", pageRequestDto.getPage());
-    rttr.addAttribute("size", pageRequestDto.getSize());
-    rttr.addAttribute("type", pageRequestDto.getType());
-    rttr.addAttribute("keyword", pageRequestDto.getKeyword());
 
     return "redirect:/auctionArena/categories";
   }

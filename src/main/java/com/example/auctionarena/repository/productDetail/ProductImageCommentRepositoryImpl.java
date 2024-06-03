@@ -16,8 +16,8 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 @Log4j2
 public class ProductImageCommentRepositoryImpl
-  extends QuerydslRepositorySupport
-  implements ProductImageCommentRepository {
+    extends QuerydslRepositorySupport
+    implements ProductImageCommentRepository {
 
   public ProductImageCommentRepositoryImpl() {
     super(ProductImage.class);
@@ -29,7 +29,7 @@ public class ProductImageCommentRepositoryImpl
     QProduct product = QProduct.product;
     QComment comment = QComment.comment;
     QProductImage productImage = QProductImage.productImage;
-    // QBidding bidding = QBidding.bidding;
+    QBidding bidding = QBidding.bidding;
 
     //
     JPQLQuery<ProductImage> query = from(productImage);
@@ -46,23 +46,27 @@ public class ProductImageCommentRepositoryImpl
     // .where(productImage.product.pno.eq(pno))
     // .orderBy(productImage.inum.desc());
     JPQLQuery<Tuple> tuple = query
-      .select(
-        product,
-        productImage,
-        JPAExpressions
-          .select(comment.countDistinct())
-          .from(comment)
-          .where(comment.product.eq(productImage.product))
+        .select(
+            product,
+            productImage,
+            JPAExpressions
+                .select(comment.countDistinct())
+                .from(comment)
+                .where(comment.product.eq(productImage.product)),
+            JPAExpressions
+                .select(bidding.count())
+                .from(bidding)
+                .where(bidding.product.eq(productImage.product))
         // 추후 경매 횟수 확인할 때 사용
         // JPAExpressions.select(bidding.countDistinct()).from(bidding)
         // .where(bidding.product.eq(product))
-      )
-      .where(productImage.product.pno.eq(pno))
-      .orderBy(productImage.inum.asc());
+        )
+        .where(productImage.product.pno.eq(pno))
+        .orderBy(productImage.inum.asc());
 
     List<Tuple> result = tuple.fetch();
-    log.info("제품 판매 페이지 tuple: {}", tuple);
-    log.info("제품 판매 페이지 result: {}", result);
+    // log.info("제품 판매 페이지 tuple: {}", tuple);
+    // log.info("제품 판매 페이지 result: {}", result);
 
     return result.stream().map(t -> t.toArray()).collect(Collectors.toList());
   }
