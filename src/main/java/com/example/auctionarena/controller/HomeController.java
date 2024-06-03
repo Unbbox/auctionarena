@@ -31,9 +31,8 @@ public class HomeController {
   @GetMapping("/")
   public String Home(Model model) {
     log.info("메인화면 요청");
-    ProductDto list = service.descList();
     // List<ProductDto> biddinglist = service.BiddingDescList();
-    model.addAttribute("list", list);
+    // model.addAttribute("list", service.descList());
     // model.addAttribute("biddinglist", biddinglist);
     return "/index";
   }

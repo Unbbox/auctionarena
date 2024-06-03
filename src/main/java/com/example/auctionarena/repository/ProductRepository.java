@@ -19,7 +19,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     " WHERE RankNo < 7 ORDER BY RankNo ASC",
     nativeQuery = true
   )
-  List<Object[]> findTop6ByOrderByPnoDesc();
+  // List<Object[]> findTop6ByOrderByPnoDesc();
+  List<Product> findTop6ByOrderByPnoDesc();
 
   @Query(
     value = "SELECT * FROM PRODUCT p LEFT JOIN " +
