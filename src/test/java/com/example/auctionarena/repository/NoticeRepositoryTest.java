@@ -27,7 +27,6 @@ public class NoticeRepositoryTest {
     @Autowired
     private NoticeImageRepository noticeImageRepository;
 
-    @Transactional
     @Test
     public void noticeInsert() {
         LongStream.rangeClosed(1, 100).forEach(i -> {
@@ -52,9 +51,6 @@ public class NoticeRepositoryTest {
                 noticeImageRepository.save(nImage);
             }
         });
-
-        // 저장 완료 메시지 출력
-        System.out.println("100개의 공지사항 및 이미지가 성공적으로 저장되었습니다.");
     }
 
     // @Test

@@ -2952,23 +2952,6 @@ input[type="file"]::file-selector-button {
   /*   background-color: #f8f8f8; */
 }
 
-/*=================== 회원정보 ==================*/
-
-.edit-btn {
-  font-family: "Noto Sans KR", sans-serif;
-  font-weight: 900;
-  font-size: 13px;
-  color: #ffffff;
-  background: #e53637;
-  font-weight: 700;
-  border: none;
-  border-radius: 2px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  display: inline-block;
-  padding: 12px 30px;
-}
-
 /*----------------------------------------*/
 /* 이나 end */
 /*----------------------------------------*/
