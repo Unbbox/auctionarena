@@ -28,7 +28,7 @@ public class CommentServiceImpl implements CommentService {
         log.info("판매 제품의 댓글 가져오기 {}", pno);
 
         Product product = Product.builder().pno(pno).build();
-        List<Comment> comments = repository.findByProduct(product);
+        List<Comment> comments = repository.findByProductOrderByCreatedDateDesc(product);
 
         // entity to dto
         Function<Comment, CommentDto> fn = comment -> entityToDto(comment);

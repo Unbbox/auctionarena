@@ -69,8 +69,17 @@ commentForm.addEventListener("submit", (e) => {
     commentNo: commentNo.value,
   };
 
+  console.log("text : ", text);
+  console.log("text value : ", text.value);
+
   // 댓글 등록
   if (!commentNo.value) {
+    if (text.value == "") {
+      alert("댓글 내용을 입력해주세요.");
+      text.focus();
+      return;
+    }
+
     fetch(`/comments/${pno}`, {
       headers: {
         "content-type": "application/json",
