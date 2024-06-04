@@ -33,11 +33,9 @@ public class NoticeController {
     public void notice(Model model, @ModelAttribute("requestDto") PageRequestDto requestDto) {
         log.info("list 요청");
 
-        if (requestDto.getType() == "t") {
-            requestDto.setType("t");
-        } else {
-            requestDto.setType("c");
-        }
+        // if (requestDto.getType() == null || requestDto.getType().isEmpty()) {
+        // requestDto.setType("t");
+        // }
         model.addAttribute("result", service.getList(requestDto));
     }
 
