@@ -1792,7 +1792,7 @@ ol {
 }
 
 .login__social__links span {
-  color: #3d3d3d;
+  color: #ffffff;
   display: block;
   font-size: 13px;
   font-weight: 700;
@@ -1817,15 +1817,29 @@ ol {
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  width: 460px;
+  width: 430px;
   padding: 14px 0;
   position: relative;
   margin: 0 auto;
 }
 
-.login__social__links ul li a img {
-  width: 60%;
-  height: 50%;
+.login__social__links ul li a.facebook {
+  background: #4267b2;
+}
+
+.login__social__links ul li a.google {
+  background: #ff4343;
+}
+
+.login__social__links ul li a.twitter {
+  background: #1da1f2;
+}
+
+.login__social__links ul li a i {
+  font-size: 20px;
+  position: absolute;
+  left: 32px;
+  top: 14px;
 }
 
 /*---------------------
@@ -2008,7 +2022,7 @@ ol {
     padding-left: 32px;
   }
   .login__social__links ul li a {
-    width: 380px;
+    width: 80%;
   }
   .blog__item__text {
     padding: 0 50px;
@@ -2279,7 +2293,7 @@ ol {
     padding-left: 0;
   }
   .login__social__links ul li a {
-    width: auto;
+    width: 80%;
   }
   .blog__item__text {
     padding: 0 30px;
