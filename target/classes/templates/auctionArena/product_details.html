@@ -167,7 +167,7 @@
               <!-- 나중에 로그인 후 닉네임 가져오기 -->
               <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
               <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
-              <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
+              <textarea class="comment_text" id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
               <button type="submit" class="sub_btn btn"><i class="fa-regular fa-comments"></i> 작성</button>
             </form>
           </div>
@@ -234,7 +234,7 @@
         const commentList = document.querySelector(".comments");
 
         // 로그인 유저 => 댓글 삭제 버튼 유무
-        const user = '[[${#authentication.name}]]';
+        const user = "[[${#authentication.principal.memberDto.nickname}]]"
 
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';

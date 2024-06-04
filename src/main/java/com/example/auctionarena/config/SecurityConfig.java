@@ -22,8 +22,7 @@ public class SecurityConfig {
 
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(authorize ->
-      authorize
+    http.authorizeHttpRequests(authorize -> authorize
         // 전체 접근
         .anyRequest()
         .permitAll()
@@ -44,32 +43,24 @@ public class SecurityConfig {
     );
 
     http
-      .formLogin(login ->
-        login
-          .loginPage("/member/login")
-          .permitAll()
-          .defaultSuccessUrl("/", true)
-      )
-      // .rememberMe(remember -> remember.rememberMeServices(remembermMeServices))
-      .oauth2Login(oauth2Login ->
-        oauth2Login
-          .loginPage("/member/login")
-          .permitAll()
-          .defaultSuccessUrl("/", true)
-      );
+        .formLogin(login -> login
+            .loginPage("/member/login")
+            .permitAll()
+            .defaultSuccessUrl("/", true))
+        // .rememberMe(remember -> remember.rememberMeServices(remembermMeServices))
+        .oauth2Login(oauth2Login -> oauth2Login
+            .loginPage("/member/login")
+            .permitAll()
+            .defaultSuccessUrl("/", true));
 
-    http.logout(logout ->
-      logout
+    http.logout(logout -> logout
         .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-        .logoutSuccessUrl("/")
-    );
+        .logoutSuccessUrl("/"));
 
     // 토큰 비활성화
     // http.csrf(csrf -> csrf.disable());
 
-    http.sessionManagement(session ->
-      session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-    );
+    http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
 
     return http.build();
   }

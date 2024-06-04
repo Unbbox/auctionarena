@@ -50,9 +50,15 @@ const getBiddingList = () => {
 
         result += `<tr class="text-gray-700 dark:text-white-400">`;
         if (index == 0) {
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          if (user == `${bidding.mnickName}`) {
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          } else {
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          }
         } else {
           result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
           result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
