@@ -4,7 +4,7 @@
 ## 프로젝트마다 생성되는 .gitignore 제외 ##
 */.gitignore
 languageServers-log
-auctionarena/src/main/resources/application-oauth.properties
+auctionArena/src/main/resources/application-oauth.properties
 
 ### Java ###
 # Compiled class file
