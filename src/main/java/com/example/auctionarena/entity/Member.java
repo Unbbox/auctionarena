@@ -55,4 +55,5 @@ public class Member extends BaseEntity {
 
     // 소셜로그인
     private boolean fromSocial;
+
 }

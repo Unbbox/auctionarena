@@ -18,6 +18,7 @@ import com.example.auctionarena.dto.AuthMemberDto;
 import com.example.auctionarena.dto.MemberDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.repository.MemberRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -33,13 +34,25 @@ public class OAuth2UserDetailService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+        // 소셜로그인 공통인증 방식으로 로그인하면 뜨는 정보들
+        String clientName = userRequest.getClientRegistration().getClientName();
         OAuth2User oauth2User = super.loadUser(userRequest);
+        log.info("========================================");
+        log.info("userRequest {}", userRequest);
+        log.info("clientName {}", clientName);
+        log.info("Token {}", userRequest.getAccessToken());
+        log.info("Client  {}", userRequest.getClientRegistration());
+        log.info("========================================");
+        try {
+            String getAttr = new ObjectMapper().writeValueAsString(oauth2User.getAttributes());
+            log.info("getAttr {}", getAttr);
+            log.info("========================================");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 소셜 로그인에서 제공되는 이메일 가져오기
         String email = oauth2User.getAttribute("email");
-
-        // 소셜 로그인에서 제공되는 액세스 토큰 가져오기
-        String accessToken = userRequest.getAccessToken().getTokenValue();
 
         // 이메일로 기존 회원 정보 확인
         Optional<Member> existingMember = memberRepository.findByEmailAndFromSocial(email, true);
@@ -52,7 +65,7 @@ public class OAuth2UserDetailService extends DefaultOAuth2UserService {
             member = new Member();
             member.setEmail(email);
             // 임시 비밀번호 생성 혹은 소셜에서 제공되는 비밀번호로 설정
-            member.setPassword(passwordEncoder.encode(accessToken));
+            member.setPassword(passwordEncoder.encode("1111"));
             // 소셜 회원은 자동 생성된 닉네임을 사용
             member.setNickname(generateNickname());
             member.setRole(MemberRole.MEMBER);

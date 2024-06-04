@@ -31,7 +31,8 @@ public class MemberRepositoryTest {
                     .nickname("USER" + i)
                     .zonecode("0000" + i)
                     .addr("서울시 종로구 종로" + i + "길")
-                    .phoneNumber("010-1111-111" + i)
+                    .phoneNumber("0101111111" + i)
+                    .fromSocial(false)
                     .role(MemberRole.MEMBER)
                     .build();
             memberRepository.save(member);
@@ -47,7 +48,8 @@ public class MemberRepositoryTest {
                 .nickname("관리자")
                 .zonecode("0000")
                 .addr("서울시 종로구 종로34길")
-                .phoneNumber("010-1234-1234")
+                .phoneNumber("01012341234")
+                .fromSocial(false)
                 .role(MemberRole.ADMIN)
                 .build();
         memberRepository.save(member);
