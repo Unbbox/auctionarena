@@ -20,11 +20,11 @@
             </div>
             <!-- 제목, 카테고리, 제품 설명 작성란 -->
             <div class="product_sale">
-                <div class="product_title section-title">
+                <div class="mb-3 product_title section-title">
                     <h5>제목</h5>
-                    <input type="text" name="title" id="title" placeholder="상품 제목 입력">
+                    <input class="form-control" type="text" name="title" id="title" placeholder="상품 제목 입력">
                 </div>
-                <div class="product_category section-title">
+                <div class="mb-3 product_category section-title">
                     <h5>카테고리</h5>
                     <select name="category" id="category" class="product_cate">
                         <!-- <option value="패션 의류/잡화">패션 의류/잡화</option>
@@ -39,17 +39,17 @@
                         </option>
                     </select>
                 </div>
-                <div class="product_text section-title">
+                <div class="mb-3 product_text section-title">
                     <h5>제품 설명</h5>
-                    <textarea name="content" id="content" th:value="${productDto.content}"></textarea>
+                    <textarea class="form-control" name="content" id="content" th:value="${productDto.content}"></textarea>
                 </div>
             </div>
             <!-- 경매 시작가, 경매 종료 일자 지정 -->
-            <div class="bidding_start_price section-title">
+            <div class="mb-3 bidding_start_price section-title">
                 <h5>경매 시작가</h5>
-                <input type="number" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
+                <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
             </div>
-            <div class="bidding_end_date section-title">
+            <div class="mb-3 bidding_end_date section-title">
                 <h5>경매 종료 일자</h5>
                 <!-- 달력을 넣는게 더 나을지 생각 -->
                 <!-- 지금 이 부분 안나옴 -->
