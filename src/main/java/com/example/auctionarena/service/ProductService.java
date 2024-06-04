@@ -24,7 +24,8 @@ public interface ProductService {
   // ProductDto descList();
   List<ProductDto> descList(Long pno);
 
-  // List<ProductDto> BiddingDescList();
+  // List<ProductDto> BiddingDescList(Long pno);
+  List<ProductDto> BiddingDescList(Long pno);
 
   // ProductDto getRow(Long cno);
 

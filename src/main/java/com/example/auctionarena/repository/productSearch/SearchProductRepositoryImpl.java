@@ -137,13 +137,24 @@ public class SearchProductRepositoryImpl
     return new PageImpl<>(list, pageable, count);
   }
   // @Override
-  // public List<Object[]> getDescList(Long pno) {
-  // QProduct product = QProduct.product;
+  // public List<ProductImage> getRow(Long pno) {
+  //   QProduct product = QProduct.product;
+  //   QProductImage productImage = QProductImage.productImage;
 
-  // JPQLQuery<Product> query = from(product);
-  // JPQLQuery<Product> tuple = query
-  // .select(product)
-  // .where(product.pno.)
-  // .orderBy(product.pno.desc());
+  //   JPQLQuery<ProductImage> query = from(productImage);
+  //   query.leftJoin(product).on(productImage.product.eq(product));
+
+  //   JPQLQuery<Tuple> tuple = query
+  //     .select(product, productImage)
+  //     .where(
+  //       productImage.inum.in(
+  //         JPAExpressions
+  //           .select(productImage.inum.min())
+  //           .from(productImage)
+  //           .groupBy(productImage.product.pno)
+  //       )
+  //     );
+  //   List<Tuple> result = tuple.fetch();
+  //   return result;
   // }
 }
