@@ -10,15 +10,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-  @Query(
-    value = "SELECT * FROM PRODUCT p LEFT JOIN" +
-    " (SELECT pi2.product_pno,pi2.PATH, pi2.uuid, ROW_NUMBER() OVER (ORDER BY pi2.product_pno desc) AS RankNo " +
-    " FROM PRODUCT_IMAGE pi2 " +
-    " WHERE pi2.inum IN (SELECT min(inum) FROM PRODUCT_IMAGE GROUP BY product_pno))pi3" +
-    " ON p.pno = pi3.product_pno" +
-    " WHERE RankNo < 7 ORDER BY RankNo ASC",
-    nativeQuery = true
-  )
+  // @Query(
+  //   value = "SELECT * FROM PRODUCT p LEFT JOIN" +
+  //   " (SELECT pi2.product_pno,pi2.PATH, pi2.uuid, ROW_NUMBER() OVER (ORDER BY pi2.product_pno desc) AS RankNo " +
+  //   " FROM PRODUCT_IMAGE pi2 " +
+  //   " WHERE pi2.inum IN (SELECT min(inum) FROM PRODUCT_IMAGE GROUP BY product_pno))pi3" +
+  //   " ON p.pno = pi3.product_pno" +
+  //   " WHERE RankNo < 7 ORDER BY RankNo ASC",
+  //   nativeQuery = true
+  // )
   // List<Object[]> findTop6ByOrderByPnoDesc();
   List<Product> findTop6ByOrderByPnoDesc();
 

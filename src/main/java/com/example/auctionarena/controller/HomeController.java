@@ -29,10 +29,10 @@ public class HomeController {
   // private final ProductImageService service;
 
   @GetMapping("/")
-  public String Home(Model model) {
+  public String Home(Model model, Long pno) {
     log.info("메인화면 요청");
     // List<ProductDto> biddinglist = service.BiddingDescList();
-    // model.addAttribute("list", service.descList());
+    model.addAttribute("list", service.descList(pno));
     // model.addAttribute("biddinglist", biddinglist);
     return "/index";
   }

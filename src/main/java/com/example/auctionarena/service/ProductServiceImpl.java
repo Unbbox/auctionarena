@@ -67,6 +67,7 @@ public class ProductServiceImpl implements ProductService {
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
+
   // @Override
   // public List<ProductDto> descList() {
   //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
@@ -84,19 +85,29 @@ public class ProductServiceImpl implements ProductService {
   //     .collect(Collectors.toList());
   // }
 
-  // @Override
-  // public ProductDto descList() {
-  //   List<Object[]> list = productRepository.findTop6ByOrderByPnoDesc();
+  @Override
+  public List<ProductDto> descList(Long pno) {
+    List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
 
-  //   Product product = (Product) list.get(0)[0];
-  //   ProductImage productImage = (ProductImage) list.get(0)[1];
-  //   List<ProductImage> productImages = new ArrayList<>();
-  //   list.forEach(arr -> {
-  //     ProductImage image = (ProductImage) arr[1];
-  //     productImages.add(image);
-  //   });
-  //   return entityToDto(product, productImages);
-  // }
+    List<ProductImage> productImages = productImageRepository.orderByPnoDesc(
+      pno
+    );
+    // List<ProductImage> productImages = new ArrayList<>();
+    // result.forEach(arr -> {
+    //   ProductImage image = (ProductImage) arr;
+    //   productImages.add(image);
+    // });
+    // List<ProductImage> productImages = new ArrayList<>();
+    // result.forEach(arr -> {
+    //   ProductImage image = (ProductImage) arr;
+    //   productImages.add(image);
+    // });
+    log.info("제품 이미지 {}", productImages);
+    return list
+      .stream()
+      .map(entity -> entityToDto(entity, productImages))
+      .collect(Collectors.toList());
+  }
   // @Override
   // public List<ProductDto> BiddingDescList() {
   //   List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();

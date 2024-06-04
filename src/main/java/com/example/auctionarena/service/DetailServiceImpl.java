@@ -16,7 +16,6 @@ import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -87,7 +86,9 @@ public class DetailServiceImpl implements DetailService {
 
     // if (member.isPresent()) {
     // 닉네임 있을 때 진행
-    Category category = categoryRepository.findByCategoryName(productDto.getCategory()).get();
+    Category category = categoryRepository
+      .findByCategoryName(productDto.getCategory())
+      .get();
     Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
@@ -102,7 +103,9 @@ public class DetailServiceImpl implements DetailService {
     // log.info("제품 저장했다 : {}", product);
 
     // 이미지 등록
-    List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
+    List<ProductImage> productImages = (List<ProductImage>) entityMap.get(
+      "imgList"
+    );
     productImages.forEach(image -> productImageRepository.save(image));
 
     return product.getPno();
@@ -115,7 +118,10 @@ public class DetailServiceImpl implements DetailService {
   @Override
   public List<String> categoryNameList() {
     List<Category> list = categoryRepository.findAll();
-    return list.stream().map(entity -> entity.getCategoryName()).collect(Collectors.toList());
+    return list
+      .stream()
+      .map(entity -> entity.getCategoryName())
+      .collect(Collectors.toList());
   }
 
   // 관련 제품 리스트 반환(카테고리 기준)
@@ -150,6 +156,5 @@ public class DetailServiceImpl implements DetailService {
 
     // return entityToDto(products, productImages);
     return null;
-
   }
 }

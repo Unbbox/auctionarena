@@ -22,7 +22,7 @@ public interface ProductService {
   );
 
   // ProductDto descList();
-  // List<ProductDto> descList();
+  List<ProductDto> descList(Long pno);
 
   // List<ProductDto> BiddingDescList();
 
