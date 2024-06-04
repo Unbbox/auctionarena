@@ -141,7 +141,9 @@ ol {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: top center;
-  /* cursor: pointer; */
+  width: 100%;
+  height: auto;
+  cursor: pointer;
 }
 
 .spad {
@@ -349,7 +351,7 @@ ol {
 }
 
 .hero__items {
-  padding: 250px 0 42px 50px;
+  padding: 30% 0% 13% 3%;
   border-radius: 5px;
 }
 
@@ -431,30 +433,10 @@ ol {
   border-radius: 0 4px 4px 0;
 }
 
-.hero__slider.owl-carousel .owl-item.active .hero__text .label {
-  top: 0;
-  opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text h2 {
-  top: 0;
-  opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text p {
-  top: 0;
-  opacity: 1;
-}
-
-.hero__slider.owl-carousel .owl-item.active .hero__text a {
-  top: 0;
-  opacity: 1;
-}
-
 .hero__slider.owl-carousel .owl-dots {
   position: absolute;
   left: 0;
-  bottom: 110px;
+  bottom: 5%;
   width: 100%;
   text-align: center;
 }
@@ -476,7 +458,7 @@ ol {
 }
 
 .hero__slider.owl-carousel .owl-nav button {
-  font-size: 36px;
+  font-size: 66px;
   height: 66px;
   width: 66px;
   line-height: 66px;
@@ -487,10 +469,10 @@ ol {
   transform: rotate(45deg);
   position: relative;
   z-index: 1;
+  margin-right: 20px;
   position: absolute;
-  left: -15px;
-  top: 50%;
-  margin-top: -100px;
+  opacity: 60%;
+  top: 40%;
 }
 
 .hero__slider.owl-carousel .owl-nav button.owl-next {
@@ -525,7 +507,7 @@ ol {
 
 .product {
   padding-bottom: 60px;
-  padding-top: 80px;
+  padding-top: 60px;
 }
 
 .product-page {
