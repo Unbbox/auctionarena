@@ -236,7 +236,7 @@
   right: -30px;
   top: 15px;
   border-top: 15px solid transparent;
-  border-left: 15px solid #1d1e39;
+  border-left: 15px solid #e53637;
   content: "";
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -255,9 +255,13 @@
 
 .product_review_item_text {
   overflow: hidden;
-  background: #1d1e39;
+  background: #e53637;
   padding: 18px 30px 16px 20px;
   border-radius: 10px;
+}
+
+.product_review_item_text > * {
+  color: #ffffff;
 }
 
 .anime__review__item__text h6 {
@@ -284,8 +288,9 @@
   padding-left: 20px;
   padding-top: 12px;
   height: 110px;
-  border: none;
+  border: 3px;
   border-radius: 5px;
+  border-color: #e53637;
   resize: none;
   margin-bottom: 24px;
 }

@@ -2,29 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <div layout:fragment="content">  
         <!-- Product Sale Section Begin -->
-        <h3>제품 등록</h3>
+        <img src="" alt="">
+        <h3 class="col-12">제품 등록</h3>
         <form method="post" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
             <!-- 이미지 업로드 칸 -->
-            <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
-            <div class="product_image section-title">
-                <h5>제품 이미지 업로드</h5>
-                <div class="upload_image" name="upload_image">
-                    <i class="fa-solid fa-camera"> 이미지 업로드</i>
+            <div class="row col-12 upload_image_form">
+                <div class="col-3 product_image section-title">
+                    <h5>제품 이미지 업로드</h5>
+                    <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
+                    <div class="upload_image" name="upload_image">
+                        <i class="fa-solid fa-camera"> 이미지 업로드</i>
+                    </div>
                 </div>
-                <div class="upload_image_preview">
-                    <h5>이미지 미리보기</h5>
-                    <ul>
-                        <!-- 이미지 미리보기 div -->
-                    </ul>
+                <div class="col-9">
+                    <div class="upload_image_preview section-title">
+                        <h5>이미지 미리보기</h5>
+                        <ul>
+                            <!-- 이미지 미리보기 div -->
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- 제목, 카테고리, 제품 설명 작성란 -->
             <div class="product_sale">
-                <div class="mb-3 product_title section-title">
+                <div class="col-12 product_title section-title">
                     <h5>제목</h5>
                     <input class="form-control" type="text" name="title" id="title" placeholder="상품 제목 입력">
                 </div>
-                <div class="mb-3 product_category section-title">
+                <div class="col-12 product_category section-title">
                     <h5>카테고리</h5>
                     <select name="category" id="category" class="product_cate">
                         <!-- <option value="패션 의류/잡화">패션 의류/잡화</option>
@@ -39,17 +44,17 @@
                         </option>
                     </select>
                 </div>
-                <div class="mb-3 product_text section-title">
+                <div class="col-12 product_text section-title">
                     <h5>제품 설명</h5>
                     <textarea class="form-control" name="content" id="content" th:value="${productDto.content}"></textarea>
                 </div>
             </div>
             <!-- 경매 시작가, 경매 종료 일자 지정 -->
-            <div class="mb-3 bidding_start_price section-title">
+            <div class="col-12 bidding_start_price section-title">
                 <h5>경매 시작가</h5>
                 <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
             </div>
-            <div class="mb-3 bidding_end_date section-title">
+            <div class="col-12 bidding_end_date section-title">
                 <h5>경매 종료 일자</h5>
                 <!-- 달력을 넣는게 더 나을지 생각 -->
                 <!-- 지금 이 부분 안나옴 -->
@@ -61,14 +66,14 @@
                     <option value="7" th:selected="${productDto.biddingDate} == 7">7일</option>
                 </select>
             </div>
-            <!-- 등록, 취소 버튼 -->
-            <div>
-                <button type="submit" class="btn btn-success">등록</button>
-                <a class="btn btn-danger">취소</a>
-            </div>
             <input type="hidden" name="writerName" id="writerName"  th:value="${#authentication.principal.memberDto.nickname}">
-            <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno}"> -->
+            <!-- 등록, 취소 버튼 -->
+            <div class="col product_register_btn d-grid gap-2">
+                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="button" class="btn btn-danger">취소</button>
+            </div>
         </form>
+        <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno}"> -->
     </div>
   </section>
   <!-- Product Section End -->

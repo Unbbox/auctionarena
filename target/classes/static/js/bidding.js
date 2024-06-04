@@ -14,12 +14,6 @@ const format_Date = (data) => {
   );
 };
 
-function formatPrice(data) {
-  // 가격 포매팅
-  // data = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  // console.log(data);
-}
-
 // bidding 내역 get
 const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
@@ -31,7 +25,7 @@ const getBiddingList = () => {
       if (data.length <= 0) {
         biddingList.innerText = "입찰 기록이 없습니다.";
 
-        // 3자리씩 끊어서 comma 넣기
+        // 가격 3자리씩 끊어서 comma 넣기
         document.querySelector(".currPrice").innerText = startPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
         // 입찰 기록 없으면 바로 종료
         return;
@@ -50,9 +44,15 @@ const getBiddingList = () => {
 
         result += `<tr class="text-gray-700 dark:text-white-400">`;
         if (index == 0) {
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
-          result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          if (user == `${bidding.mnickName}`) {
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          } else {
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
+            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          }
         } else {
           result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
           result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
@@ -69,8 +69,8 @@ const getBiddingList = () => {
       } else {
         document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
       }
-
       biddingList.innerHTML = result;
+      document.querySelector(".biddingCnt").innerText = biddingCnt + "회";
     });
 };
 
@@ -125,8 +125,7 @@ biddingForm.addEventListener("submit", (e) => {
           biddingPrice.value = "";
 
           if (data) alert("입찰 등록이 완료되었습니다.");
-
-          getBiddingList();
         });
+    getBiddingList();
   }
 });

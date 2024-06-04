@@ -61,7 +61,7 @@
                         <!-- 추가 해야함 -->
                         
                         <li>현재경매가: <span class="currPrice"></span></li>
-                        <li>입찰 수:<span> [[${dto.biddingCnt}]]회</span></li>
+                        <li>입찰 수:<span class="biddingCnt"> [[${dto.biddingCnt}]]회</span></li>
                         <li>종료 기간: <span class="end_date"></span></li>
                         <li>남은 시간: <span class="date_now"></span></li>
                       </ul>
@@ -167,7 +167,7 @@
               <!-- 나중에 로그인 후 닉네임 가져오기 -->
               <!-- <span id="nickname" th:text="${memberDto.nickname}"></span> -->
               <!-- <span id="nickname" th:text="${#authentication.principal.memberDto.nickname}"></span> -->
-              <textarea id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
+              <textarea class="comment_text" id="text" placeholder="상품에 대한 의견을 작성해주세요"></textarea>
               <button type="submit" class="sub_btn btn"><i class="fa-regular fa-comments"></i> 작성</button>
             </form>
           </div>
@@ -226,6 +226,8 @@
 
         // 경매 영역
         const biddingList = document.querySelector(".biddingList");
+        // 경매 횟수
+        const biddingCnt = "[[${dto.biddingCnt}]]";
 
         // 이미지 리스트 가져오기
         // const imgList
@@ -234,7 +236,8 @@
         const commentList = document.querySelector(".comments");
 
         // 로그인 유저 => 댓글 삭제 버튼 유무
-        const user = '[[${#authentication.name}]]';
+        const user = "[[${#authentication.name}]]";
+        // const user = "[[${#authentication}]]";
 
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';

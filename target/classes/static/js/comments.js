@@ -27,16 +27,17 @@ const commentLoaded = () => {
       data.forEach((comment) => {
         result += `<div class="product_review_item comment_row" data-cno="${comment.commentNo}">`;
         result += `<div class="product_review_item_pic">`;
-        result += `<img src="/img/anime/review-1.jpg" alt="" />`;
+        // result += `<img src="/img/anime/review-1.jpg" alt="" />`;
         result += `</div><div class="product_review_item_text">`;
         result += `<h6>${comment.nickname} - <span>${formatDate(comment.createdDate)}</span></h6>`;
         result += `<p>${comment.text}</p>`;
 
-        // 추후 추가
-
-        // 로그인 user(email) == 작성자(reply.writerEmail)
-        if (user.split("@")[0].toUpperCase() == `${comment.nickname}`) {
-          result += `<div><button class="btn btn-outline-danger btn-sm">삭제</button></div>`;
+        // 본인 확인 후 댓글 삭제 버튼 표시
+        if (user == `${comment.nickname}`) {
+          result += `<div>`;
+          // result += `<button class="recomment btn btn-outline-light btn-sm">답글</button>`;
+          result += `<button class="del_btn btn btn-outline-light btn-sm">삭제</button>`;
+          result += `</div>`;
         }
 
         result += `</div></div>`;
@@ -68,8 +69,17 @@ commentForm.addEventListener("submit", (e) => {
     commentNo: commentNo.value,
   };
 
+  console.log("text : ", text);
+  console.log("text value : ", text.value);
+
   // 댓글 등록
   if (!commentNo.value) {
+    if (text.value == "") {
+      alert("댓글 내용을 입력해주세요.");
+      text.focus();
+      return;
+    }
+
     fetch(`/comments/${pno}`, {
       headers: {
         "content-type": "application/json",
@@ -101,7 +111,7 @@ commentList.addEventListener("click", (e) => {
   // 컨트롤러에서 작성자와 로그인 유저가 같은지 다시 한번 비교하기 위해
   const email = commentForm.querySelector("#email");
 
-  if (target.classList.contains("btn-outline-danger")) {
+  if (target.classList.contains("del_btn")) {
     if (!confirm("댓글을 정말로 삭제하시겠습니까?")) return;
 
     const form = new FormData();
