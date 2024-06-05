@@ -3,6 +3,7 @@ package com.example.auctionarena.repository.productSearch;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.entity.QBidding;
 import com.example.auctionarena.entity.QCategory;
 import com.example.auctionarena.entity.QComment;
 import com.example.auctionarena.entity.QMember;
@@ -15,6 +16,8 @@ import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
+import com.querydsl.jpa.JPQLTemplates;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j2;
@@ -136,25 +139,4 @@ public class SearchProductRepositoryImpl
 
     return new PageImpl<>(list, pageable, count);
   }
-  // @Override
-  // public List<ProductImage> getRow(Long pno) {
-  //   QProduct product = QProduct.product;
-  //   QProductImage productImage = QProductImage.productImage;
-
-  //   JPQLQuery<ProductImage> query = from(productImage);
-  //   query.leftJoin(product).on(productImage.product.eq(product));
-
-  //   JPQLQuery<Tuple> tuple = query
-  //     .select(product, productImage)
-  //     .where(
-  //       productImage.inum.in(
-  //         JPAExpressions
-  //           .select(productImage.inum.min())
-  //           .from(productImage)
-  //           .groupBy(productImage.product.pno)
-  //       )
-  //     );
-  //   List<Tuple> result = tuple.fetch();
-  //   return result;
-  // }
 }

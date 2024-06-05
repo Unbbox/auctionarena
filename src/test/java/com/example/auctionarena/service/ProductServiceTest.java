@@ -1,7 +1,9 @@
 package com.example.auctionarena.service;
 
 import com.example.auctionarena.dto.CategoryPageRequestDto;
+import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.entity.Product;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,14 +14,21 @@ public class ProductServiceTest {
 
   @Autowired
   private ProductService service;
+
   // @Autowired
   // private ProductImageService service;
 
-  //   @Test
-  //   public void serviceList() {
-  //     System.out.println(service.getList());
-  //   }
+  @Transactional
+  @Test
+  public void serviceList() {
+    List<ProductDto> list = service.pnodescList();
 
+    System.out.println("테스트");
+
+    list.forEach(product -> {
+      System.out.println(product);
+    });
+  }
   // @Transactional
   // @Test
   // public void getRow() {

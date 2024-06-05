@@ -32,13 +32,13 @@ public class HomeController {
   public String Home(Model model, Long pno) {
     log.info("메인화면 요청");
     // List<ProductDto> biddinglist = service.BiddingDescList();
-    List<ProductDto> productDtos = service.descList(pno);
+    List<ProductDto> productDtos = service.pnodescList();
     for (ProductDto productDto : productDtos) {
       log.info(productDto);
       log.info("============");
     }
-    model.addAttribute("list", service.descList(pno));
-    model.addAttribute("biddinglist", service.BiddingDescList(pno));
+    model.addAttribute("list", service.pnodescList());
+    model.addAttribute("biddinglist", service.BiddingDescList());
     return "/index";
   }
 

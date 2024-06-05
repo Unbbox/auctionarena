@@ -87,29 +87,26 @@ public class ProductServiceImpl implements ProductService {
   // }
 
   @Override
-  public List<ProductDto> descList(Long pno) {
+  public List<ProductDto> pnodescList() {
     List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
 
-    List<ProductImage> productImages = productImageRepository.orderByPnoDesc(
-      pno
-    );
+    List<ProductImage> productImages = productImageRepository.orderByPnoDesc();
 
     log.info("제품 이미지 {}", productImages);
     return list
       .stream()
-      .map(entity -> entityToDto(entity, productImages))
+      .map(entity -> entityToDto2(entity, productImages))
       .collect(Collectors.toList());
   }
 
   @Override
-  public List<ProductDto> BiddingDescList(Long pno) {
+  public List<ProductDto> BiddingDescList() {
     List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
-    List<ProductImage> productImages = productImageRepository.orderByBiddingDesc(
-      pno
-    );
+    List<ProductImage> productImages = productImageRepository.orderByBiddingDesc();
+
     return list
       .stream()
-      .map(entity -> entityToDto(entity, productImages))
+      .map(entity -> entityToDto2(entity, productImages))
       .collect(Collectors.toList());
   }
 }
