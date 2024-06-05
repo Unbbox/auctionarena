@@ -93,42 +93,31 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 
     @Transactional
     @Override
-    public void leave(MemberDto leaveMemberDto) {
-        Member member = memberRepository.findByEmail(leaveMemberDto.getEmail()).get();
-
-        // 이메일과 비밀번호 일치 시
-        if (!passwordEncoder.matches(leaveMemberDto.getPassword(), member.getPassword())) {
-            throw new IllegalStateException("비밀번호를 확인해주세요.");
-        } else {
-            // Review, Product 판매 글 삭제
-            // reviewRepository.deleteByMember(member);
-            memberRepository.delete(member);
+    public void leave(String email) throws IllegalStateException {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isEmpty()) {
+            throw new IllegalStateException("일치하는 회원이 없습니다.");
         }
+        memberRepository.delete(member.get());
     }
 
     @Override
-    public void editMemberInfo(MemberDto infoDto) {
+    public void editAccountInfo(MemberDto infoDto) {
         log.info("회원정보 수정 요청 {}", infoDto);
 
-        Optional<Member> result = memberRepository.findByEmail(infoDto.getEmail());
+        Member member = memberRepository.findByEmail(infoDto.getEmail()).get();
 
-        if (result.isPresent()) {
-            Member member = result.get();
-
-            if (!infoDto.getNickname().equals(member.getNickname())) {
-                validateDuplicateNickname(infoDto.getNickname());
-            }
-
-            member.setName(infoDto.getName());
-            member.setNickname(infoDto.getNickname());
-            member.setZonecode(infoDto.getZonecode());
-            member.setAddr(infoDto.getAddr());
-            member.setPhoneNumber(infoDto.getPhoneNumber());
-
-            memberRepository.save(member);
-        } else {
-            throw new IllegalStateException("회원 정보를 찾을 수 없습니다.");
+        if (!infoDto.getNickname().equals(member.getNickname())) {
+            validateDuplicateNickname(infoDto.getNickname());
         }
+
+        member.setName(infoDto.getName());
+        member.setNickname(infoDto.getNickname());
+        member.setZonecode(infoDto.getZonecode());
+        member.setAddr(infoDto.getAddr());
+        member.setPhoneNumber(infoDto.getPhoneNumber());
+
+        memberRepository.save(member);
     }
 
     // 중복 이메일 검사
@@ -136,7 +125,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         Optional<Member> result = memberRepository.findByEmail(email);
 
         if (result.isPresent()) {
-            throw new IllegalStateException("이메일");
+            throw new IllegalStateException("이미 가입된 이메일입니다.");
         }
     }
 
@@ -145,7 +134,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         Optional<Member> result = memberRepository.findOptionalByNickname(nickname);
 
         if (result.isPresent()) {
-            throw new IllegalStateException("닉네임");
+            throw new IllegalStateException("이미 사용중인 닉네임입니다.");
         }
     }
 

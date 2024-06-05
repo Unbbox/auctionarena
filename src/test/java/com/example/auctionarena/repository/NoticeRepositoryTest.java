@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.entity.Member;
@@ -35,7 +36,7 @@ public class NoticeRepositoryTest {
             Notice notice = Notice.builder()
                     .title("Title" + i)
                     .content("Content" + i)
-                    .writer(member)
+                    .member(member)
                     .build();
             noticeRepository.save(notice);
 
@@ -95,9 +96,14 @@ public class NoticeRepositoryTest {
         }
     }
 
+    @Commit
     @Transactional
     @Test
     public void noticeRemove() {
-        noticeRepository.deleteById(299L);
+        Notice notice = Notice.builder().nno(100L).build();
+
+        // noticeImageRepository.deleteByNotice(notice);
+
+        noticeRepository.delete(notice);
     }
 }

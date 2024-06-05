@@ -6,9 +6,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.annotation.Commit;
 
 import com.example.auctionarena.constant.MemberRole;
 import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.entity.Notice;
+import com.example.auctionarena.entity.Product;
 
 import jakarta.transaction.Transactional;
 
@@ -53,14 +56,13 @@ public class MemberRepositoryTest {
         memberRepository.save(member);
     }
 
+    @Commit
     @Transactional
     @Test
     public void leaveMemberTest() {
         Member member = Member.builder()
-                .mid(1L)
+                .mid(100L)
                 .build();
-
-        // review, product 삭제
 
         // 회원 삭제
         memberRepository.delete(member);

@@ -97,7 +97,7 @@ public class NoticeServiceImpl implements NoticeService {
     public void noticeRemove(Long nno) {
         Notice notice = Notice.builder().nno(nno).build();
 
-        noticeImageRepository.deleteByNotice(notice);
+        // noticeImageRepository.deleteByNotice(notice);
         noticeRepository.delete(notice);
     }
 
@@ -125,7 +125,7 @@ public class NoticeServiceImpl implements NoticeService {
         Member writer = memberRepository.findByNickname(writerNickname);
 
         if (writer != null && writer.getNickname().equals(writerNickname)) {
-            notice.setWriter(writer);
+            notice.setMember(writer);
             noticeRepository.save(notice);
 
             List<NoticeImage> noticeImages = (List<NoticeImage>) entityMap.get("imgList");

@@ -83,7 +83,7 @@ public interface NoticeService {
                 .nno(dto.getNno())
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .writer(member)
+                .member(member)
                 .build();
 
         List<NoticeImageDto> noticeImageDtos = dto.getNoticeImageDtos();

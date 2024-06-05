@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 
 import com.example.auctionarena.entity.Bidding;
+import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 
 public interface BiddingRepository extends JpaRepository<Bidding, Long> {

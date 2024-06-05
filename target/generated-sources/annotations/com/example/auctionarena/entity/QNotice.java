@@ -32,11 +32,13 @@ public class QNotice extends EntityPathBase<Notice> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
+    public final QMember member;
+
     public final NumberPath<Long> nno = createNumber("nno", Long.class);
 
-    public final StringPath title = createString("title");
+    public final ListPath<NoticeImage, QNoticeImage> noticeImages = this.<NoticeImage, QNoticeImage>createList("noticeImages", NoticeImage.class, QNoticeImage.class, PathInits.DIRECT2);
 
-    public final QMember writer;
+    public final StringPath title = createString("title");
 
     public QNotice(String variable) {
         this(Notice.class, forVariable(variable), INITS);
@@ -56,7 +58,7 @@ public class QNotice extends EntityPathBase<Notice> {
 
     public QNotice(Class<? extends Notice> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.writer = inits.isInitialized("writer") ? new QMember(forProperty("writer")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
     }
 
 }
