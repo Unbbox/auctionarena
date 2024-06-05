@@ -13,6 +13,7 @@ import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
+import com.querydsl.core.Tuple;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -92,28 +93,23 @@ public class ProductServiceImpl implements ProductService {
     List<ProductImage> productImages = productImageRepository.orderByPnoDesc(
       pno
     );
-    // List<ProductImage> productImages = new ArrayList<>();
-    // result.forEach(arr -> {
-    //   ProductImage image = (ProductImage) arr;
-    //   productImages.add(image);
-    // });
-    // List<ProductImage> productImages = new ArrayList<>();
-    // result.forEach(arr -> {
-    //   ProductImage image = (ProductImage) arr;
-    //   productImages.add(image);
-    // });
+
     log.info("제품 이미지 {}", productImages);
     return list
       .stream()
       .map(entity -> entityToDto(entity, productImages))
       .collect(Collectors.toList());
   }
-  // @Override
-  // public List<ProductDto> BiddingDescList() {
-  //   List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
-  //   return list
-  //     .stream()
-  //     .map(entity -> entityToDto(entity))
-  //     .collect(Collectors.toList());
-  // }
+
+  @Override
+  public List<ProductDto> BiddingDescList(Long pno) {
+    List<Product> list = productRepository.findTop6ByOrderByBiddingCntDesc();
+    List<ProductImage> productImages = productImageRepository.orderByBiddingDesc(
+      pno
+    );
+    return list
+      .stream()
+      .map(entity -> entityToDto(entity, productImages))
+      .collect(Collectors.toList());
+  }
 }

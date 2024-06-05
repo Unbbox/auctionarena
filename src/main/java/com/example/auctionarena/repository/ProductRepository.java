@@ -24,6 +24,18 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   // List<Object[]> findTop6ByOrderByPnoDesc();
   List<Product> findTop6ByOrderByPnoDesc();
 
+  // @Query(
+  // value = "SELECT * " +
+  // " FROM PRODUCT p LEFT JOIN " +
+  // " (SELECT * FROM PRODUCT_IMAGE pi2 WHERE pi2.inum IN (SELECT min(inum) FROM
+  // PRODUCT_IMAGE GROUP BY product_pno)) " +
+  // " pi4 ON P.PNO = pi4.product_pno LEFT join " +
+  // " (SELECT b.product_pno,count(b.PRODUCT_PNO)AS cnt, ROW_NUMBER() OVER (ORDER
+  // BY count(b.PRODUCT_PNO) DESC) AS RankNo " +
+  // " FROM BIDDING b GROUP BY b.PRODUCT_PNO)b1 oN p.pno = b1.product_pno " +
+  // " WHERE b1.product_pno IS NOT NULL AND RankNo < 7 ORDER BY Rankno ASC",
+  // nativeQuery = true
+  // )
   @Query(value = "SELECT * FROM PRODUCT p LEFT JOIN " +
       " (SELECT b.product_pno,count(b.PRODUCT_PNO) AS cnt, ROW_NUMBER() OVER (ORDER BY count(b.PRODUCT_PNO) DESC) AS RankNo FROM BIDDING b GROUP BY b.PRODUCT_PNO)b1 oN p.pno = b1.product_pno "
       +

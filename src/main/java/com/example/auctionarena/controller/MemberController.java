@@ -145,7 +145,7 @@ public class MemberController {
         log.info("마이페이지 요청");
     }
 
-    @GetMapping("/editMemberInfo")
+    @GetMapping("/accountInfo")
     public String editMemberInfo(Model model, MemberDto memberDto) {
         log.info("회원정보 수정");
 
@@ -163,15 +163,15 @@ public class MemberController {
             model.addAttribute("memberDto", dto);
         }
 
-        return "/member/edit-member-info";
+        return "/member/accountInfo";
     }
 
-    @PostMapping("/editMemberInfo")
+    @PostMapping("/accountInfo")
     public String postEditMemberInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
         log.info("회원정보 수정 요청 {}", dto);
 
         if (result.hasErrors()) {
-            return "/member/edit-member-info";
+            return "/member/accountInfo";
         }
 
         try {

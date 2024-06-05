@@ -157,6 +157,7 @@
 
 .header {
   margin-top: 10px;
+  min-width: 400px;
   background: white;
 }
 

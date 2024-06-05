@@ -34,6 +34,7 @@
 html,
 body {
   height: 100%;
+  min-width: 400px;
   font-family: "Mulish", sans-serif;
   -webkit-font-smoothing: antialiased;
   background: #ffffff;
@@ -1244,6 +1245,7 @@ ol {
 
 .normal-breadcrumb {
   height: 300px;
+  min-width: 400px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1872,6 +1874,7 @@ ol {
 
 .footer {
   background: rgba(241, 241, 241);
+  min-width: 400px;
   padding-top: 60px;
   padding-bottom: 40px;
   position: relative;
@@ -1988,6 +1991,11 @@ ol {
   .footer__logo {
     text-align: center;
   }
+
+  .accountInfo .container {
+    width: 600px !important;
+    margin: 0 auto;
+  }
 }
 
 /* Medium Device = 1200px */
@@ -2029,6 +2037,11 @@ ol {
 
   .footer__logo {
     text-align: center;
+  }
+
+  .accountInfo .container {
+    width: 600px !important;
+    margin: 0 auto;
   }
 }
 
@@ -2143,6 +2156,11 @@ ol {
   .footer__logo {
     text-align: center;
     margin-bottom: 20px;
+  }
+
+  .accountInfo .container {
+    width: 600px !important;
+    margin: 0 auto;
   }
 }
 
@@ -2519,7 +2537,7 @@ ol {
   display: inline-block;
   color: #ffffff !important;
   font-family: "Noto Sans KR", sans-serif;
-  background: rgba(8, 12, 48, 0.705);
+  background: #b7b7b7;
   font-weight: 900;
   padding: 8px 20px;
   border: none;
@@ -2800,11 +2818,11 @@ input[type="file"]::file-selector-button {
 /* 마이페이지 */
 /* 녹색 텍스트 */
 .green {
-  color: #1c286e;
+  color: #000000;
 }
 
 .wrap {
-  background-color: rgba(241, 241, 241);
+  max-width: 1000px;
 }
 
 /* 녹색배경 */
@@ -2817,7 +2835,7 @@ input[type="file"]::file-selector-button {
 }
 
 .greenContainer .name {
-  font-family: "nanum";
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 30px;
   font-weight: 900;
   color: #000000;
@@ -2827,42 +2845,53 @@ input[type="file"]::file-selector-button {
   margin-left: auto;
 }
 
-/* 단골상점 , 상품후기 , 적립금 박스 */
+/* 찜 , 상품후기 , 리뷰 */
 .summaryContainer {
-  background-color: white;
   display: flex;
   padding: 21px 16px;
-  height: 90px;
+  height: 120px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #e53637;
 }
 
-/* 단골상점 , 상품후기 , 적립금 */
+/* 찜 , 상품후기 , 리뷰 */
 .summaryContainer .item {
   flex-grow: 1;
+  text-align: center;
 }
+
 /* 녹색 숫자 */
 .summaryContainer .number {
-  font-size: 19px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
   font-weight: bold;
-  color: #1c286e;
+  color: #000000;
+  margin-top: 10px;
 }
 /* 텍스트 */
 .summaryContainer .item > div:nth-child(2) {
-  font-size: 13px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  font-weight: 900;
 }
 
 /* ================== 주문/배송조회 박스 시작 ==================== */
 .shippingStatusContainer {
   padding: 21px 16px;
-  background-color: white;
+  height: 200px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #e53637;
 }
 
 /* 주문/배송조회 타이틀 */
 .shippingStatusContainer .title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 18px;
+  font-weight: 900;
+  margin-bottom: 30px;
 }
 
 /* 장바구니 결제완료 배송중 구매확정 [로우] */
@@ -2870,6 +2899,8 @@ input[type="file"]::file-selector-button {
   display: flex;
   justify-content: space-between;
   margin-bottom: 21px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 /* 장바구니 결제완료 배송중 구매확정 [아이템]  */
 .shippingStatusContainer .item {
@@ -2882,25 +2913,30 @@ input[type="file"]::file-selector-button {
   text-align: center;
 }
 .shippingStatusContainer .text {
-  font-size: 12px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 13px;
   font-weight: normal;
   color: #c2c2c2;
   text-align: center;
 }
+
 .shippingStatusContainer .icon {
   display: flex;
   align-items: center;
   padding: 20px;
   width: 50px;
   height: 50px;
-  color: #1c286e;
+  color: #e53637;
 }
 
 /*=================== 주문목록 ~ 찜한상품 리스트 ==================*/
 .listContainer {
   padding: 0;
   background-color: #ffffff;
+  height: 300px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #e53637;
 }
 .listContainer .item {
   display: flex;
@@ -2908,26 +2944,37 @@ input[type="file"]::file-selector-button {
   padding: 16px;
   color: black;
   text-decoration: none;
-  height: 56px;
+  height: 25%;
   box-sizing: border-box;
 }
 .listContainer .icon {
   margin-right: 14px;
 }
 .listContainer .text {
-  font-size: 16px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   position: relative;
 }
+.listContainer .text:hover {
+  color: #e53637;
+}
+
 .listContainer .right {
   margin-left: auto;
+}
+.listContainer .right:hover {
+  color: #e53637;
 }
 
 /* 공지사항 이용안내 고객센터 */
 .infoContainer {
   background-color: white;
   display: flex;
-  height: 100px;
+  height: 120px;
   margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid #e53637;
 }
 
 .infoContainer .item {
@@ -2936,12 +2983,14 @@ input[type="file"]::file-selector-button {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  font-size: 13px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
   text-decoration: none;
   color: black;
 }
 .infoContainer .item > div:first-child {
-  margin-bottom: 2px;
+  margin-bottom: 7px;
 }
 
 /*  */
@@ -2950,6 +2999,60 @@ input[type="file"]::file-selector-button {
 }
 .infoContainer .item:hover {
   /*   background-color: #f8f8f8; */
+}
+
+/*=================== 회원정보 ==================*/
+
+.accountInfo .container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.accountInfo .login__form {
+  text-align: center;
+  padding: 0;
+}
+
+.accountInfo .login__form::after {
+  display: none;
+}
+
+.accountInfo .login__form form .input__item {
+  width: 100%;
+}
+
+.edit-btn {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  background: #b7b7b7;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+  margin: 0 5px 0 5px;
+}
+
+.remove {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff;
+  background: #b7b7b7;
+  border: none;
+  width: 90px;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 12px;
+}
+
+.edit-btn:hover {
+  background: #e53637;
 }
 
 /*----------------------------------------*/
