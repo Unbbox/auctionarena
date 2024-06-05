@@ -108,8 +108,9 @@
                     <!-- data-setbg="https://via.placeholder.com/175x250" -->
                     <div><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
                       <img class="products__item__pic set-bg link"  th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|"
-                      onerror='this.src="https://via.placeholder.com/175x250"' >
+                      onerror='this.src="https://via.placeholder.com/175x250"'>
                       <!-- th:if="${dto.productImageDtos[0].path != null}" -->
+                      <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
                     </a></div>
                     <div class="products__item__text">
                       <h5><a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a></h5>

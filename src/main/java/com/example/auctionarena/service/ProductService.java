@@ -22,10 +22,10 @@ public interface ProductService {
   );
 
   // ProductDto descList();
-  List<ProductDto> descList(Long pno);
+  List<ProductDto> pnodescList();
 
   // List<ProductDto> BiddingDescList(Long pno);
-  List<ProductDto> BiddingDescList(Long pno);
+  List<ProductDto> BiddingDescList();
 
   // ProductDto getRow(Long cno);
 
@@ -65,7 +65,9 @@ public interface ProductService {
           .build();
       })
       .collect(Collectors.toList());
+
     productDto.setProductImageDtos(productImageDtos);
+
     return productDto;
   }
 
@@ -90,5 +92,38 @@ public interface ProductService {
       // .bidding(bidding)
       .category(category)
       .build();
+  }
+
+  // top6
+  public default ProductDto entityToDto2(
+    Product product,
+    List<ProductImage> productImages
+  ) {
+    ProductDto productDto = ProductDto
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      .writerName(product.getMember().getNickname())
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .category(product.getCategory().getCategoryName())
+      // .cno(product.getCategory().getCno())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
+
+    productImages.forEach(image -> {
+      ProductImageDto imageDto = null;
+      if (image.getProduct().getPno() == product.getPno()) {
+        imageDto = new ProductImageDto();
+        imageDto.setInum(image.getInum());
+        imageDto.setPath(image.getPath());
+        imageDto.setUuid(image.getUuid());
+        imageDto.setImgName(image.getImgName());
+        productDto.getProductImageDtos().add(imageDto);
+      }
+    });
+    return productDto;
   }
 }
