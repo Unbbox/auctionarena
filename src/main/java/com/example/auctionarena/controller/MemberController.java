@@ -3,7 +3,6 @@ package com.example.auctionarena.controller;
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +25,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("member")
 @RequiredArgsConstructor
@@ -163,7 +160,7 @@ public class MemberController {
 
     @GetMapping("/accountInfo")
     public String editMemberInfo(Model model, MemberDto memberDto) {
-        log.info("회원정보 수정 {}", memberDto);
+        log.info("회원정보 수정");
 
         // 현재 로그인된 사용자의 인증 객체를 가져옴
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -183,7 +180,7 @@ public class MemberController {
     }
 
     @PostMapping("/accountInfo")
-    public String postEditMemberInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
+    public String postAccountInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
         log.info("회원정보 수정 요청 {}", dto);
 
         if (result.hasErrors()) {
@@ -191,14 +188,12 @@ public class MemberController {
         }
 
         try {
-            service.editMemberInfo(dto);
+            service.editAccountInfo(dto);
             rttr.addFlashAttribute("message", "회원정보가 수정되었습니다.");
-            return "redirect:/member/edit-member-info";
+            return "redirect:/member/accountInfo";
         } catch (IllegalStateException e) {
-            if (e.getMessage().contains("닉네임")) {
-                result.rejectValue("nickname", "duplicate", "이미 사용중인 닉네임입니다.");
-            }
-            return "/member/edit-member-info";
+            rttr.addFlashAttribute("error", e.getMessage());
+            return "redirect:/member/accountInfo";
         }
     }
 

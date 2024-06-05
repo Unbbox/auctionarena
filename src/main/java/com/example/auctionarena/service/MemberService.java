@@ -15,7 +15,7 @@ public interface MemberService {
     void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
 
     // 회원정보 수정
-    void editMemberInfo(MemberDto infoDto);
+    void editAccountInfo(MemberDto infoDto);
 
     // 회원탈퇴
     void leave(MemberDto leaveMemberDto);
