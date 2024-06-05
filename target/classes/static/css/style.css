@@ -3055,6 +3055,14 @@ input[type="file"]::file-selector-button {
   background: #e53637;
 }
 
+.accountInfo #email {
+  background-color: rgba(170, 170, 170, 0.1);
+}
+
+.accountInfo #password {
+  background-color: rgba(170, 170, 170, 0.1);
+}
+
 /*----------------------------------------*/
 /* 이나 end */
 /*----------------------------------------*/
