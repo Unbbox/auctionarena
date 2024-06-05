@@ -25,12 +25,10 @@
             <div class="input__item">
               <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly/>
               <span class="icon_mail"></span>
-              <div class="text-danger" id="emailError"></div>
             </div>
             <div class="input__item">
               <input type="text" placeholder="비밀번호" class="password" id="password" name="password" value="111111111" readonly/>
               <span class="icon_lock"></span>
-              <div class="text-danger" id="passwordError"></div>
             </div>
             <div class="input__item">
               <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
@@ -40,6 +38,7 @@
             <div class="input__item">
               <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
               <span class="icon_profile"></span>
+              <div class="text-danger" th:if="${error}" th:text="${error}"></div>
               <div class="text-danger" id="nicknameError"></div>
             </div>
             <div class="input__item post">
@@ -60,19 +59,17 @@
             </div>
             <button type="submit" class="edit-btn">수정</button>
             <button type="button" class="edit-btn remove">회원탈퇴</button>
+          </form>
+          <!-- 삭제 폼 -->
+          <form th:action="@{leave}" method="post" id="removeForm">
+            <input type="hidden" name="email" th:value="${memberDto.email}">
+          </form>
         </div>
+      </div>
     </div>
-    </form>
+  </section>
+  <!-- Signup Section End -->
 
-                    <!-- 삭제 폼 -->
-                    <form action="" method="post" id="actionForm">
-                      <input type="hidden" name="nno" value="">
-                    </form>
-        </div>
-    </section>
-    <!-- Signup Section End -->
-
-    
   </div>
   <th:block layout:fragment="script">
       <!-- 우편번호 검색 -->

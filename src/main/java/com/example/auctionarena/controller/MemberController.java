@@ -3,7 +3,6 @@ package com.example.auctionarena.controller;
 import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.auctionarena.dto.MemberDto;
@@ -26,8 +26,6 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RequestMapping("member")
 @RequiredArgsConstructor
@@ -127,22 +125,38 @@ public class MemberController {
     }
 
     @PostMapping("/leave")
-    public String postLeave(MemberDto leaveMemberDto, RedirectAttributes rttr, HttpSession session) {
-        log.info("회원탈퇴 {}", leaveMemberDto);
+    public String postLeave(@RequestParam("email") String email, RedirectAttributes rttr, HttpSession session) {
+        log.info("회원탈퇴 {}", email);
 
         try {
-            service.leave(leaveMemberDto);
-        } catch (Exception e) {
-            rttr.addFlashAttribute("error", "이메일이나 비밀번호를 확인해 주세요");
+            service.leave(email);
+            session.invalidate();
+            return "redirect:/";
+        } catch (IllegalStateException e) {
+            rttr.addFlashAttribute("error", e.getMessage());
+            return "redirect:/member/mypage";
         }
-        session.invalidate();
-
-        return "redirect:/";
     }
 
     @GetMapping("/mypage")
-    public void mypage() {
-        log.info("마이페이지 요청");
+    public String mypage(Model model, MemberDto memberDto) {
+        log.info("마이페이지 요청 {}", memberDto);
+
+        // 현재 로그인된 사용자의 인증 객체를 가져옴
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // 이메일 가져오기
+        String email = authentication.getName();
+
+        // 회원 서비스를 통해 회원 정보 가져오기
+        Optional<Member> member = memberRepository.findByEmail(email);
+
+        // 모델에 회원 정보를 추가하여 뷰로 전달
+        if (member.isPresent()) {
+            MemberDto dto = service.entityToDto(member.get());
+            model.addAttribute("memberDto", dto);
+        }
+
+        return "/member/mypage";
     }
 
     @GetMapping("/accountInfo")
@@ -167,7 +181,7 @@ public class MemberController {
     }
 
     @PostMapping("/accountInfo")
-    public String postEditMemberInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
+    public String postAccountInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
         log.info("회원정보 수정 요청 {}", dto);
 
         if (result.hasErrors()) {
@@ -175,14 +189,12 @@ public class MemberController {
         }
 
         try {
-            service.editMemberInfo(dto);
+            service.editAccountInfo(dto);
             rttr.addFlashAttribute("message", "회원정보가 수정되었습니다.");
-            return "redirect:/member/edit-member-info";
+            return "redirect:/member/accountInfo";
         } catch (IllegalStateException e) {
-            if (e.getMessage().contains("닉네임")) {
-                result.rejectValue("nickname", "duplicate", "이미 사용중인 닉네임입니다.");
-            }
-            return "/member/edit-member-info";
+            rttr.addFlashAttribute("error", e.getMessage());
+            return "redirect:/member/accountInfo";
         }
     }
 

@@ -26,7 +26,11 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final NumberPath<Long> biddingDate = createNumber("biddingDate", Long.class);
 
+    public final ListPath<Bidding, QBidding> biddings = this.<Bidding, QBidding>createList("biddings", Bidding.class, QBidding.class, PathInits.DIRECT2);
+
     public final QCategory category;
+
+    public final ListPath<Comment, QComment> comments = this.<Comment, QComment>createList("comments", Comment.class, QComment.class, PathInits.DIRECT2);
 
     public final StringPath content = createString("content");
 
@@ -39,6 +43,8 @@ public class QProduct extends EntityPathBase<Product> {
     public final QMember member;
 
     public final NumberPath<Long> pno = createNumber("pno", Long.class);
+
+    public final ListPath<ProductImage, QProductImage> productImages = this.<ProductImage, QProductImage>createList("productImages", ProductImage.class, QProductImage.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> startPrice = createNumber("startPrice", Long.class);
 

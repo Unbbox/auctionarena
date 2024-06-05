@@ -1,9 +1,7 @@
 package com.example.auctionarena.controller;
 
-import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
-import com.example.auctionarena.dto.ProductImageDto;
-import com.example.auctionarena.entity.Product;
+
 import com.example.auctionarena.service.ProductService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Log4j2
 @Controller
@@ -41,6 +38,19 @@ public class HomeController {
     model.addAttribute("biddinglist", service.BiddingDescList());
     return "/index";
   }
+
+  // Access 페이지
+  @GetMapping("access-denied")
+  public void getAccess() {
+    log.info("access deniend");
+  }
+
+  // 에러페이지
+  // @GetMapping("error")
+  // public String getError() {
+  // log.info("error");
+  // return "except/url404";
+  // }
 
   @ResponseBody
   @GetMapping("auth")
