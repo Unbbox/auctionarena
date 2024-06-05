@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <div layout:fragment="content">
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="/img/normal-breadcrumb.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="normal__breadcrumb__text">
+              <h2>AccountInfo</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- Signup Section Begin -->
+    <section class="signup spad accountInfo">
+      <div class="container">
+        <div class="login__form">
+          <h3>회원정보</h3>
+          <form th:action="@{accountInfo}" method="post" th:object="${memberDto}" id="editForm">
+            <div class="input__item">
+              <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly/>
+              <span class="icon_mail"></span>
+              <div class="text-danger" id="emailError"></div>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="비밀번호" class="password" id="password" name="password" value="111111111" readonly/>
+              <span class="icon_lock"></span>
+              <div class="text-danger" id="passwordError"></div>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
+              <span class="icon_profile"></span>
+              <div class="text-danger" id="nameError"></div>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="닉네임" id="nickname" name="nickname" th:value="${memberDto.nickname}"/>
+              <span class="icon_profile"></span>
+              <div class="text-danger" id="nicknameError"></div>
+            </div>
+            <div class="input__item post">
+              <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" th:value="${memberDto.zonecode}" readonly/>
+              <span class="icon_pin_alt"></span>
+              <button type="button" class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
+              <div class="text-danger" id="zonecodeError"></div>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="주소" id="addr" name="addr" th:value="${memberDto.addr}"/>
+              <span class="icon_house_alt"></span>
+              <div class="text-danger" id="addrError"></div>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="전화번호" id="phoneNumber" name="phoneNumber" th:value="${memberDto.phoneNumber}"/>
+              <span class="icon_phone"></span>
+              <div class="text-danger" id="phoneError"></div>
+            </div>
+            <button type="submit" class="edit-btn">수정</button>
+            <button type="button" class="edit-btn remove">회원탈퇴</button>
+        </div>
+    </div>
+    </form>
+
+                    <!-- 삭제 폼 -->
+                    <form action="" method="post" id="actionForm">
+                      <input type="hidden" name="nno" value="">
+                    </form>
+        </div>
+    </section>
+    <!-- Signup Section End -->
+
+    
+  </div>
+  <th:block layout:fragment="script">
+      <!-- 우편번호 검색 -->
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <!-- CDN 방식 사용 -->
+    <script th:src="@{/memberjs/post.js}"></script>
+    <script th:src="@{/memberjs/password.js}"></script>
+    <script th:src="@{/memberjs/accountInfo.js}"></script>
+  </th:block>
