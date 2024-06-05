@@ -3063,6 +3063,43 @@ input[type="file"]::file-selector-button {
   background-color: rgba(170, 170, 170, 0.1);
 }
 
+/*=================== Access-denied ==================*/
+.w3-display-middle {
+  text-align: center;
+  padding: 100px 0 100px;
+}
+
+.w3-animate-top {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 80px;
+  color: #e53637;
+  word-wrap: break-word;
+}
+
+.w3-center {
+  padding: 20px;
+}
+
+.w3-animate-right {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: normal;
+  font-size: 30px;
+}
+
+.w3-animate-zoom {
+  font-size: 100px;
+}
+
+.error h3 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  color: #3f3f3f;
+}
+
+/*=================== 회원정보 ==================*/
+
 /*----------------------------------------*/
 /* 이나 end */
 /*----------------------------------------*/

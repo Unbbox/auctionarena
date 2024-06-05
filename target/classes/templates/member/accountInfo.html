@@ -65,8 +65,8 @@
     </form>
 
                     <!-- 삭제 폼 -->
-                    <form action="" method="post" id="actionForm">
-                      <input type="hidden" name="nno" value="">
+                    <form th:href="@{leave}" method="post" id="actionForm">
+                      <input type="hidden" name="nno" th:value="${memberDto.mno}">
                     </form>
         </div>
     </section>

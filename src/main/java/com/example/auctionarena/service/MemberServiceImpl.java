@@ -100,7 +100,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         if (!passwordEncoder.matches(leaveMemberDto.getPassword(), member.getPassword())) {
             throw new IllegalStateException("비밀번호를 확인해주세요.");
         } else {
-            // Review, Product 판매 글 삭제
+            // Review, Product 판매, bidding, notice 삭제
             // reviewRepository.deleteByMember(member);
             memberRepository.delete(member);
         }
