@@ -61,11 +61,17 @@
    <div class="header__nav">
         <nav class="category__menu mobile-menu" >
           <ul>
-            <li>
-              <a th:href="@{/auctionArena/categories}">전체</a>
+            <li class="cate_all">
+              <!-- <a th:href="@{/auctionArena/categories}"> -->
+              <a href="">
+                <input type="hidden" value="0">
+                전체</a>
             </li>
-            <li>
-              <a a th:href="@{/auctionArena/categories}">패션 의류/잡화</a>
+            <li class="cate_fashion">
+              <!-- <a a th:href="@{/auctionArena/categories}"> -->
+              <a href="">
+                <input type="hidden" value="1">
+                패션 의류/잡화</a>
             </li>      
             <li>
               <a th:href="@{/auctionArena/categories}">모바일/태블릿</a>
@@ -143,5 +149,6 @@
         if (msg) alert(msg + "번 제품 등록 완료");
       </script>
       <script th:src="@{/js/link.js}"></script>
+      <script th:src="@{/js/category.js}"></script>
     </th:block>
 </html>

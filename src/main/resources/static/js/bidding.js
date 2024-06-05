@@ -43,6 +43,7 @@ const getBiddingList = () => {
         bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         result += `<tr class="text-gray-700 dark:text-white-400">`;
+
         if (index == 0) {
           if (user == `${bidding.mnickName}`) {
             result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
@@ -94,10 +95,12 @@ biddingForm.addEventListener("submit", (e) => {
     biddingPrice.value = startPrice;
   }
 
-  // console.log("currPrice value : ", currPrice.value);
-  // console.log("biddingPrice : ", biddingPrice.value);
+  console.log("currPrice value : ", currPrice.value);
+  console.log("biddingPrice : ", biddingPrice.value);
+  console.log("currPrice type : ", typeof currPrice.value);
+  console.log("biddingPrice type : ", typeof biddingPrice.value);
 
-  if (biddingPrice.value <= currPrice.value) {
+  if (Number(biddingPrice.value) <= Number(currPrice.value)) {
     alert("입찰 금액이 현재 경매가보다 낮습니다.");
     return;
   } else {

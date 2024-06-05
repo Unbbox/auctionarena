@@ -212,6 +212,13 @@
     <!-- Anime Section End -->
     <th:block layout:fragment="script">
       <script>
+
+
+       
+       
+
+        
+
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";
         // 제품 등록 일자 가져오기
@@ -235,16 +242,14 @@
         // 댓글 영역 가져오기
         const commentList = document.querySelector(".comments");
 
-        // 로그인 유저 => 댓글 삭제 버튼 유무
-        const user = "[[${#authentication.name}]]";
-        // const user = "[[${#authentication}]]";
+        
 
         // csrf 토큰
         const csrfValue = '[[${_csrf.token}]]';
 
       </script>
       <script th:src="@{/js/product_detail.js}"></script>
-      <script th:src="@{/js/bidding.js}"></script>
-      <script th:src="@{/js/comments.js}"></script>
+      <!-- <script th:src="@{/js/bidding.js}"></script>
+      <script th:src="@{/js/comments.js}"></script> -->
   </th:block>
 </html>

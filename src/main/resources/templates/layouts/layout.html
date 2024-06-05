@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="Anime Template" />
@@ -72,6 +72,15 @@
     <!-- <script th:src="@{/js/link.js}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script th:src="@{/js/swiper.js}"></script>
+    <script>
+      
+      const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
+      
+      
+    </script>
+    <script th:src="@{/js/product_detail.js}"></script>
+    <script th:src="@{/js/comments.js}"></script>
+    <script th:src="@{/js/bidding.js}"></script>
+    <th:block layout:fragment="script"></th:block>
   </body>
-  <th:block layout:fragment="script"></th:block>
 </html>

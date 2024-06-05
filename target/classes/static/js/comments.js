@@ -14,6 +14,8 @@ const formatDate = (data) => {
   );
 };
 
+const cNickname = document.querySelector("#nickname");
+
 // 댓글 목록 가져오기
 const commentLoaded = () => {
   fetch(`/comments/${pno}/all`)
@@ -26,13 +28,19 @@ const commentLoaded = () => {
       let result = "";
       data.forEach((comment) => {
         result += `<div class="product_review_item comment_row" data-cno="${comment.commentNo}">`;
-        result += `<div class="product_review_item_pic">`;
-        // result += `<img src="/img/anime/review-1.jpg" alt="" />`;
-        result += `</div><div class="product_review_item_text">`;
+        // // result += `<img src="/img/anime/review-1.jpg" alt="" />`;
+        result += `<div class="product_review_item_text">`;
         result += `<h6>${comment.nickname} - <span>${formatDate(comment.createdDate)}</span></h6>`;
         result += `<p>${comment.text}</p>`;
 
-        // 본인 확인 후 댓글 삭제 버튼 표시
+        // 본인 확인되면 바꿔야함
+        // if (cNickname == null) {
+        //   cNickname.value = "";
+        // }
+        // 여기까지
+        console.log("user : ", user);
+
+        // cNickname 부분 수정
         if (user == `${comment.nickname}`) {
           result += `<div>`;
           // result += `<button class="recomment btn btn-outline-light btn-sm">답글</button>`;
