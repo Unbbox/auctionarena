@@ -61,7 +61,8 @@
             <button type="button" class="edit-btn remove">회원탈퇴</button>
           </form>
           <!-- 삭제 폼 -->
-          <form th:href="@{leave}" method="post" id="removeForm">
+          <form th:action="@{leave}" method="post" id="removeForm">
+            <input type="hidden" name="email" th:value="${memberDto.email}">
           </form>
         </div>
       </div>

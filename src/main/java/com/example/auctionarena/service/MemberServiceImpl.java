@@ -93,10 +93,12 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 
     @Transactional
     @Override
-    public void leave(MemberDto leaveMemberDto) {
-        Member member = memberRepository.findByEmail(leaveMemberDto.getEmail()).get();
-
-        memberRepository.delete(member);
+    public void leave(String email) throws IllegalStateException {
+        Optional<Member> member = memberRepository.findByEmail(email);
+        if (member.isEmpty()) {
+            throw new IllegalStateException("일치하는 회원이 없습니다.");
+        }
+        memberRepository.delete(member.get());
     }
 
     @Override

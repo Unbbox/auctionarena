@@ -13,6 +13,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.auctionarena.dto.MemberDto;
@@ -119,22 +120,22 @@ public class MemberController {
     }
 
     @GetMapping("/leave")
-    public void getLeaveForm(MemberDto leaveMemberDto) {
+    public void getLeaveForm() {
         log.info("회원탈퇴");
     }
 
     @PostMapping("/leave")
-    public String postLeave(MemberDto leaveMemberDto, RedirectAttributes rttr, HttpSession session) {
-        log.info("회원탈퇴 {}", leaveMemberDto);
+    public String postLeave(@RequestParam("email") String email, RedirectAttributes rttr, HttpSession session) {
+        log.info("회원탈퇴 {}", email);
 
         try {
-            service.leave(leaveMemberDto);
-        } catch (Exception e) {
-            rttr.addFlashAttribute("error", "이메일이나 비밀번호를 확인해 주세요");
+            service.leave(email);
+            session.invalidate();
+            return "redirect:/";
+        } catch (IllegalStateException e) {
+            rttr.addFlashAttribute("error", e.getMessage());
+            return "redirect:/member/mypage";
         }
-        session.invalidate();
-
-        return "redirect:/";
     }
 
     @GetMapping("/mypage")

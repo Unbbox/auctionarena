@@ -18,7 +18,7 @@ public interface MemberService {
     void editAccountInfo(MemberDto infoDto);
 
     // 회원탈퇴
-    void leave(MemberDto leaveMemberDto);
+    void leave(String email) throws IllegalStateException;;
 
     public default Member dtoToEntity(MemberDto dto) {
         return Member.builder()
