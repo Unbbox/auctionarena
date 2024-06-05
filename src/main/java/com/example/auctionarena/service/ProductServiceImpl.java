@@ -47,43 +47,36 @@ public class ProductServiceImpl implements ProductService {
   // }
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.list(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
 
   // @Override
   // public List<ProductDto> descList() {
-  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
-  //   return list
-  //     .stream()
-  //     .map(entity -> entityToDto(entity, null))
-  //     .collect(Collectors.toList());
+  // List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+  // return list
+  // .stream()
+  // .map(entity -> entityToDto(entity, null))
+  // .collect(Collectors.toList());
   // }
   // @Override
   // public List<ProductDto> descList() {
-  //   List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
-  //   return list
-  //     .stream()
-  //     .map(entity -> entityToDto(entity))
-  //     .collect(Collectors.toList());
+  // List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
+  // return list
+  // .stream()
+  // .map(entity -> entityToDto(entity))
+  // .collect(Collectors.toList());
   // }
 
   @Override
@@ -92,11 +85,12 @@ public class ProductServiceImpl implements ProductService {
 
     List<ProductImage> productImages = productImageRepository.orderByPnoDesc();
 
+    log.info("제품 정보 {}", list);
     log.info("제품 이미지 {}", productImages);
     return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
 
   @Override
@@ -105,8 +99,8 @@ public class ProductServiceImpl implements ProductService {
     List<ProductImage> productImages = productImageRepository.orderByBiddingDesc();
 
     return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
 }

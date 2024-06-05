@@ -171,53 +171,37 @@ public interface DetailService {
     // .build();
   }
 
-  /*
-   ***
-   *** 제품 관련 카테고리 전용 entityToDto
-   ***
-   */
-  public default ProductDto entityToDto(List<Product> products, List<ProductImage> productImages) {
-    // ProductDto productDto = ProductDto.builder()
-    // .pno(product.getPno())
-    // .title(product.getTitle())
-    // .writerName(product.getMember().getNickname())
-    // .startPrice(product.getStartPrice())
-    // .biddingDate(product.getBiddingDate())
-    // .category(product.getCategory().getCategoryName())
-    // .createdDate(product.getCreatedDate())
-    // .lastModifiedDate(product.getLastModifiedDate())
-    // .build();
-    List<ProductDto> productDtos = products.stream().map(product -> {
-      return ProductDto.builder()
-          .pno(product.getPno())
-          .title(product.getTitle())
-          .writerName(product.getMember().getNickname())
-          .startPrice(product.getStartPrice())
-          .biddingDate(product.getBiddingDate())
-          .category(product.getCategory().getCategoryName())
-          .createdDate(product.getCreatedDate())
-          .lastModifiedDate(product.getLastModifiedDate())
-          .build();
-    }).collect(Collectors.toList());
+  // 관련상품용 entityToDto top5
+  public default ProductDto entityToDto2(
+      Product product,
+      List<ProductImage> productImages) {
+    ProductDto productDto = ProductDto
+        .builder()
+        .pno(product.getPno())
+        .title(product.getTitle())
+        .content(product.getContent())
+        .writerName(product.getMember().getNickname())
+        .startPrice(product.getStartPrice())
+        .biddingDate(product.getBiddingDate())
+        .category(product.getCategory().getCategoryName())
+        // .cno(product.getCategory().getCno())
+        .createdDate(product.getCreatedDate())
+        .lastModifiedDate(product.getLastModifiedDate())
+        .build();
 
-    // 제품 상세 페이지의 이미지
-    List<ProductImageDto> productImageDtos = productImages.stream().map(productImage -> {
-      return ProductImageDto.builder()
-          .inum(productImage.getInum())
-          .uuid(productImage.getUuid())
-          .imgName(productImage.getImgName())
-          .path(productImage.getPath())
-          .build();
-    }).collect(Collectors.toList());
+    // System.out.println("entitytodto : ", productDto);
 
-    // 이거 바꿔야함
-    productDtos.forEach(productDto -> {
-      productDto.setProductImageDtos(productImageDtos);
+    productImages.forEach(image -> {
+      ProductImageDto imageDto = null;
+      if (image.getProduct().getPno() == product.getPno()) {
+        imageDto = new ProductImageDto();
+        imageDto.setInum(image.getInum());
+        imageDto.setPath(image.getPath());
+        imageDto.setUuid(image.getUuid());
+        imageDto.setImgName(image.getImgName());
+        productDto.getProductImageDtos().add(imageDto);
+      }
     });
-
-    // productDtos.setProductImageDtos(productImageDtos);
-
-    // return productDtos;
-    return null;
+    return productDto;
   }
 }

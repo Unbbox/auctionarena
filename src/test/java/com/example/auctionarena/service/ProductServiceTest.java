@@ -15,6 +15,9 @@ public class ProductServiceTest {
   @Autowired
   private ProductService service;
 
+  @Autowired
+  private DetailService detailService;
+
   // @Autowired
   // private ProductImageService service;
 
@@ -32,11 +35,21 @@ public class ProductServiceTest {
   // @Transactional
   // @Test
   // public void getRow() {
-  //   Object[] row = productRepository.
+  // Object[] row = productRepository.
   // }
   // @Transactional
   // @Test
   // public void serviceRead() {
-  //   System.out.println(service.descList());
+  // System.out.println(service.descList());
   // }
+
+  @Transactional
+  @Test
+  public void printCate() {
+    List<ProductDto> products = detailService.getRelationList(1L);
+
+    products.forEach(product -> {
+      System.out.println(product);
+    });
+  }
 }

@@ -187,18 +187,12 @@
         <div class="swiper">
           <div class="swiper-wrapper">
             <!-- 슬라이드 -->
-            <div class="swiper-slide">
+            <div class="swiper-slide" th:each="relation : ${relationDto}">
               <div class="category_item_pic set-bg">
-                <img src="/img/popular/popular-1.jpg">
-                <span class="categori_product_content">상품 1</span>
+                <img th:src="|/upload/display?fileName=${relation.productImageDtos[0].getImageURL()}|">
+                <span class="categori_product_content" th:text="${relation.title}">상품 1</span>
               </div>
             </div>
-            <div class="swiper-slide product__item__pic set-bg">
-              <img src="/img/popular/popular-2.jpg">상품 2
-            </div>
-            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-3.jpg">상품 3</div>
-            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-4.jpg">상품 4</div>
-            <div class="swiper-slide product__item__pic set-bg" data-setbg="/img/popular/popular-5.jpg">상품 5</div>
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
@@ -212,10 +206,6 @@
     <!-- Anime Section End -->
     <th:block layout:fragment="script">
       <script>
-
-
-       
-       
 
         
 

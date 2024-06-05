@@ -87,8 +87,8 @@ public class DetailServiceImpl implements DetailService {
     // if (member.isPresent()) {
     // 닉네임 있을 때 진행
     Category category = categoryRepository
-      .findByCategoryName(productDto.getCategory())
-      .get();
+        .findByCategoryName(productDto.getCategory())
+        .get();
     Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
@@ -104,8 +104,7 @@ public class DetailServiceImpl implements DetailService {
 
     // 이미지 등록
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get(
-      "imgList"
-    );
+        "imgList");
     productImages.forEach(image -> productImageRepository.save(image));
 
     return product.getPno();
@@ -119,42 +118,27 @@ public class DetailServiceImpl implements DetailService {
   public List<String> categoryNameList() {
     List<Category> list = categoryRepository.findAll();
     return list
-      .stream()
-      .map(entity -> entity.getCategoryName())
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entity.getCategoryName())
+        .collect(Collectors.toList());
   }
 
   // 관련 제품 리스트 반환(카테고리 기준)
   @Override
   public List<ProductDto> getRelationList(Long pno) {
-    log.info("{}번 제품 관련 카테고리 가져오기", pno);
+    // log.info("{}번 제품 관련 카테고리 가져오기", pno);
 
     // 관련 제품 정보 가져오기
-    List<Product> products = productRepository.fincByProductList(pno);
+    List<Product> products = productRepository.findByProductList(pno);
     log.info("검색한 카테고리의 제품 {}", products);
-    // Function<Product, ProductDto> fn = prod -> entityToDto(prod);
-
-    // 관련 제품 이미지 가져오기
-    // Function<Object[], ProductDto> function = (en -> entityToDto((Product) en[0],
-    // (List<ProductImage>) Arrays.asList((ProductImage) en[1])));
-    // log.info("function : {}", function);
 
     // result 길이만큼 반복
-    List<ProductImage> result = productImageRepository.getRelationRow(pno);
-    log.info("{}번 제품과 같은 카테고리인 제품의 이미지 {}", pno, result);
+    List<ProductImage> productImages = productImageRepository.getRelationRow(pno);
+    log.info("{}번 제품과 같은 카테고리인 제품의 이미지 {}", pno, productImages);
 
-    List<ProductImage> productImages = new ArrayList<>();
-    result.forEach(arr -> {
-      // productImage 개수 만큼 이미지 가져오기
-      ProductImage productImage = (ProductImage) arr;
-      productImages.add(productImage);
-    });
-
-    // return products.stream().map(fn).collect(Collectors.toList());
-
-    log.info("카테고리 관련 이미지 {}", productImages);
-
-    // return entityToDto(products, productImages);
-    return null;
+    return products
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
 }
