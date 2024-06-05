@@ -96,14 +96,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     public void leave(MemberDto leaveMemberDto) {
         Member member = memberRepository.findByEmail(leaveMemberDto.getEmail()).get();
 
-        // 이메일과 비밀번호 일치 시
-        if (!passwordEncoder.matches(leaveMemberDto.getPassword(), member.getPassword())) {
-            throw new IllegalStateException("비밀번호를 확인해주세요.");
-        } else {
-            // Review, Product 판매, bidding, notice 삭제
-            // reviewRepository.deleteByMember(member);
-            memberRepository.delete(member);
-        }
+        memberRepository.delete(member);
     }
 
     @Override

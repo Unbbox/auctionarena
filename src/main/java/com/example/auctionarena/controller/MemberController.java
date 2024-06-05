@@ -119,7 +119,7 @@ public class MemberController {
     }
 
     @GetMapping("/leave")
-    public void getLeaveForm() {
+    public void getLeaveForm(MemberDto leaveMemberDto) {
         log.info("회원탈퇴");
     }
 

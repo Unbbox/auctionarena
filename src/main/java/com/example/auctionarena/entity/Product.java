@@ -1,5 +1,8 @@
 package com.example.auctionarena.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -17,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString(exclude = { "member", "category" })
+@ToString(exclude = { "member", "category", "productImages", "comments", "biddings" })
 @Builder
 @Getter
 @Setter
@@ -54,4 +57,16 @@ public class Product extends BaseEntity {
   private Category category;
   // 이미지 관련 리스트
   // private ProductImage productImage;
+
+  @Builder.Default
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<ProductImage> productImages = new ArrayList<>();
+
+  @Builder.Default
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<Comment> comments = new ArrayList<>();
+
+  @Builder.Default
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<Bidding> biddings = new ArrayList<>();
 }

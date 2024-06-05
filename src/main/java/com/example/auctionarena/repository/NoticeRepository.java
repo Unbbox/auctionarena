@@ -6,5 +6,4 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import com.example.auctionarena.entity.Notice;
 
 public interface NoticeRepository extends JpaRepository<Notice, Long>, QuerydslPredicateExecutor<Notice> {
-
 }

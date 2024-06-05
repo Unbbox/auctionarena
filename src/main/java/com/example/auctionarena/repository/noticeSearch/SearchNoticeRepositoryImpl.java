@@ -41,7 +41,7 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
 
         // Notice와 NoticeImage, member를 조인
         JPQLQuery<Notice> query = from(notice)
-                .leftJoin(member).on(notice.writer.eq(member))
+                .leftJoin(member).on(notice.member.eq(member))
                 .leftJoin(noticeImage).on(notice.eq(noticeImage.notice));
 
         JPQLQuery<Tuple> tuple = query.select(notice, member, noticeImage)
@@ -99,7 +99,7 @@ public class SearchNoticeRepositoryImpl extends QuerydslRepositorySupport implem
 
         // Notice와 NoticeImage를 조인
         JPQLQuery<Notice> query = from(notice)
-                .leftJoin(member).on(notice.writer.eq(member))
+                .leftJoin(member).on(notice.member.eq(member))
                 .leftJoin(noticeImage).on(notice.eq(noticeImage.notice));
 
         // 쿼리 생성
