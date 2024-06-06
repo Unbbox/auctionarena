@@ -35,7 +35,7 @@
                 </div>
               </div>
                <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${biddinglist}">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${biddinglist}" th:title="${dto.title}">
                   <div class="products__item">
                     <div>
                       <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}"> <img th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" alt="" class="products__item__pic set-bg" /></a>
@@ -62,7 +62,7 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}">
+                  <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}" th:title="${dto.title}">
                     <div class="products__item">
                       <div>
                         <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}"> <img th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" alt="" class="products__item__pic set-bg" /></a>

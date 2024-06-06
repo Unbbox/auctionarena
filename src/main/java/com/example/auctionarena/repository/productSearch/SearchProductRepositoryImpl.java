@@ -92,12 +92,13 @@ public class SearchProductRepositoryImpl
 
     // 검색 타입이 있는 경우
     BooleanBuilder conditionBuilder = new BooleanBuilder();
-    if (type.contains("t")) {
-      conditionBuilder.or(product.title.contains(keyword));
-    }
-    if (type.contains("c")) {
-      conditionBuilder.or(product.content.contains(keyword));
-    }
+    conditionBuilder.or(product.title.contains(keyword));
+    // if (type.contains("t")) {
+    //   conditionBuilder.or(product.title.contains(keyword));
+    // }
+    // if (type.contains("c")) {
+    //   conditionBuilder.or(product.content.contains(keyword));
+    // }
     builder.and(conditionBuilder);
 
     // 카테고리가 지정된 경우
