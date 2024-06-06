@@ -35,6 +35,12 @@ public interface DetailService {
   // 제품 등록
   Long productRegister(ProductDto productDto);
 
+  // 제품 수정
+  Long productUpdate(ProductDto productDto);
+
+  // 제품 삭제
+  void productRemove(Long pno);
+
   // 카테고리 리스트 반환
   List<String> categoryNameList();
 

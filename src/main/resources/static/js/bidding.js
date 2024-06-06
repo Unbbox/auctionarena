@@ -63,6 +63,7 @@ const getBiddingList = () => {
         document.querySelector(".currPrice").value = data[0].biddingPrice;
       }
       biddingList.innerHTML = result;
+      // console.log("biddingCnt : ", biddingCnt);
       document.querySelector(".biddingCnt").innerText = biddingCnt + "회";
     });
 };
@@ -127,6 +128,6 @@ biddingForm.addEventListener("submit", (e) => {
 
           if (data) alert("입찰 등록이 완료되었습니다.");
         });
-    getBiddingList();
   }
+  getBiddingList();
 });

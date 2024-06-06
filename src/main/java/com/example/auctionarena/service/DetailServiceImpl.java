@@ -78,7 +78,34 @@ public class DetailServiceImpl implements DetailService {
 
     return entityToDto(product, productImages, biddings, reviewCnt, biddingCnt);
   }
+  
+  // 제품 수정
+  @Override
+  public Long productUpdate(ProductDto productDto) {
+    Map<String, Object> entityMap = dtoToEntity(productDto);
+    log.info("entity : {}", entityMap);
+    
+    Product product = (Product) entityMap.get("product");
+    log.info("product : {}", product);
 
+    productImageRepository.deleteByProduct(product.getPno());
+
+    List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
+    log.info("product Image : {}", productImages);
+    productImages.forEach(image -> productImageRepository.save(image));
+
+    return product.getPno();
+  }
+
+  // 제품 삭제
+  @Override
+  public void productRemove(Long pno) {
+    Product product = Product.builder().pno(pno).build();
+
+    productRepository.delete(product);
+  }
+
+  // 제품 등록
   @Override
   public Long productRegister(ProductDto productDto) {
     // Optional<Member> member =
@@ -92,13 +119,13 @@ public class DetailServiceImpl implements DetailService {
     Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
-    log.info("매핑은 됐나? : {}", entityMap);
+    // log.info("매핑은 됐나? : {}", entityMap);
 
     // 제품 등록
     Product product = (Product) entityMap.get("product");
     product.setCategory(category);
     product.setMember(member);
-    log.info("제품 등록 한다 이제 : {}", product);
+    // log.info("제품 등록 한다 이제 : {}", product);
     productRepository.save(product);
     // log.info("제품 저장했다 : {}", product);
 
@@ -141,4 +168,7 @@ public class DetailServiceImpl implements DetailService {
         .map(entity -> entityToDto2(entity, productImages))
         .collect(Collectors.toList());
   }
+
+  
+
 }

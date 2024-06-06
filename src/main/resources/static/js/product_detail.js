@@ -126,3 +126,13 @@ function getTime() {
 }
 
 getTime();
+
+// 삭제 버튼
+const deleteForm = document.querySelector("#deleteForm");
+
+document.querySelector(".btn-danger").addEventListener("click", () => {
+  if (!confirm("정말 삭제하시겠습니까?")) {
+    return;
+  }
+  deleteForm.submit();
+});

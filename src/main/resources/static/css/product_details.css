@@ -31,6 +31,12 @@
   border-radius: 2px;
 }
 
+.product_details_title h3 {
+  color: black;
+  font-weight: 700;
+  margin-bottom: 13px;
+}
+
 /* 직접 추가한 css(재인) */
 .product_details_pic {
   width: 300px;

@@ -4,20 +4,28 @@ import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.productDetail.ProductImageCommentRepository;
 import com.example.auctionarena.repository.productSearch.SearchProductRepository;
+
+import jakarta.transaction.Transactional;
+
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface ProductImageRepository
   extends
     JpaRepository<ProductImage, Long>,
     ProductImageCommentRepository,
     SearchProductRepository {
+
   // 제품 상세 페이지 삭제 시
+  @Transactional
   @Modifying
-  @Query("delete from ProductImage pi where pi.product = :product")
-  void deleteByProduct(Product product);
+  // @Query("delete from ProductImage pi where pi.product = :product")
+  @Query(value = "DELETE FROM PRODUCT_IMAGE pi WHERE pi.PRODUCT_PNO = ?1",
+  nativeQuery = true)
+  void deleteByProduct(Long pno);
 
   // 지난 게시글의 이미지 가져오기
   @Query(
