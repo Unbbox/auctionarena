@@ -74,6 +74,39 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   e.preventDefault();
 
   const form = e.target;
+  console.log(form);
+
+  // 제목 입력 확인
+  const title = document.querySelector("#title");
+  if (title.value == "") {
+    alert("제목을 입력해주세요.");
+    title.focus();
+    return;
+  }
+
+  const cate = document.querySelector("#category");
+  if (cate.value == "") {
+    alert("카테고리를 선택해주세요.");
+    cate.focus();
+    return;
+  }
+
+  const content = document.querySelector("#content");
+  if (content.value == "") {
+    alert("제품 설명을 작성해주세요.");
+    content.focus();
+    return;
+  }
+
+  // 해야함
+  const startPrice = document.querySelector("#startPrice");
+  if (startPrice.value == "") {
+    alert("경매 시작 금액을 입력해주세요.");
+    focus.on(startPrice);
+    return;
+  }
+
+  console.log("price = ", startPrice.value);
 
   // 해야함
   const biddingDate = document.querySelector("#biddingDate");
@@ -81,14 +114,6 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   console.log(biddingDate.value);
   if (biddingDate.value == "") {
     alert("경매 기간을 입력해주세요.");
-    return;
-  }
-
-  // 해야함
-  const startPrice = document.querySelector("#startPrice");
-  if (startPrice.value == null) {
-    alert("경매 시작 금액을 입력해주세요.");
-    focus.on(startPrice);
     return;
   }
 
@@ -141,13 +166,3 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
 //     }
 //   });
 // });
-
-// function createElement(e, file) {
-//   const li = document.createElement("li");
-//   const img = document.createElement("img");
-//   img.setAttribute("src", e.target.result);
-//   img.setAttribute("data-file", file.name);
-//   li.appendChild(img);
-
-//   return li;
-// }

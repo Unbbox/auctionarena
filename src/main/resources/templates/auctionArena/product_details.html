@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html> -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
     
@@ -42,7 +42,7 @@
                   <h3 th:text="${dto.title}">제목</h3>
                   <!-- [[${dto.title}]] -->
                   판매자 : <span th:text="${dto.writerName}">판매자</span>
-                  배송방법 : <span>착불</span>
+                  경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
                 </div>
                 
                 <!-- <p>
@@ -56,7 +56,7 @@
                     <div class="col-lg-8 col-md-8">
                     <!-- <div> -->
                       <ul>
-                        <li>경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span></li>
+                        <!-- <li>경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span></li> -->
                         
                         <!-- 추가 해야함 -->
                         
@@ -189,8 +189,10 @@
             <!-- 슬라이드 -->
             <div class="swiper-slide" th:each="relation : ${relationDto}">
               <div class="category_item_pic set-bg">
+                <a th:href="@{/auctionArena/product_details(pno=${relation.pno})}">
                 <img th:src="|/upload/display?fileName=${relation.productImageDtos[0].getImageURL()}|">
                 <span class="categori_product_content" th:text="${relation.title}">상품 1</span>
+                </a>
               </div>
             </div>
           </div>
@@ -207,7 +209,9 @@
     <th:block layout:fragment="script">
       <script>
 
-        
+        // 유저 정보 가져오기
+        const user = [[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]];
+        console.log("user info : ", user);
 
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";
@@ -239,7 +243,7 @@
 
       </script>
       <script th:src="@{/js/product_detail.js}"></script>
-      <!-- <script th:src="@{/js/bidding.js}"></script>
-      <script th:src="@{/js/comments.js}"></script> -->
+      <script th:src="@{/js/bidding.js}"></script>
+      <script th:src="@{/js/comments.js}"></script>
   </th:block>
 </html>

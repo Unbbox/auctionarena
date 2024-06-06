@@ -21,7 +21,7 @@ const commentLoaded = () => {
   fetch(`/comments/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      console.log("data : ", data);
 
       document.querySelector(".commentCnt").innerHTML = data.length;
 

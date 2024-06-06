@@ -33,12 +33,6 @@ const getBiddingList = () => {
 
       let result = "";
       data.forEach((bidding, index) => {
-        // <tr class="text-gray-700 dark:text-white-400 biddingList" th:each="bidding : ${dto.biddingDtos}">
-        // <td class="px-4 py-3" th:text="${bidding.mNickName}">입찰자1</td>
-        // <td class="px-4 py-3">[[${#numbers.formatInteger(bidding.biddingPrice, 3, 'COMMA')}]]원</td>
-        // <td class="px-4 py-3" th:text="${#temporals.format(bidding.biddingTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-        // </tr>
-
         // 입찰가 format
         bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -63,12 +57,10 @@ const getBiddingList = () => {
       });
 
       // 현재 경매가 업데이트
-      // console.log("현재 최고가 : ", data[0].biddingPrice);
       if (data[0].biddingPrice == null) {
-        // document.querySelector(".currPrice").innerText = startPrice;
-        // console.log(startPrice);
       } else {
         document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
+        document.querySelector(".currPrice").value = data[0].biddingPrice;
       }
       biddingList.innerHTML = result;
       document.querySelector(".biddingCnt").innerText = biddingCnt + "회";
@@ -95,10 +87,10 @@ biddingForm.addEventListener("submit", (e) => {
     biddingPrice.value = startPrice;
   }
 
-  console.log("currPrice value : ", currPrice.value);
-  console.log("biddingPrice : ", biddingPrice.value);
-  console.log("currPrice type : ", typeof currPrice.value);
-  console.log("biddingPrice type : ", typeof biddingPrice.value);
+  // console.log("currPrice value : ", currPrice.value);
+  // console.log("biddingPrice : ", biddingPrice.value);
+  // console.log("currPrice type : ", typeof currPrice.value);
+  // console.log("biddingPrice type : ", typeof biddingPrice.value);
 
   if (Number(biddingPrice.value) <= Number(currPrice.value)) {
     alert("입찰 금액이 현재 경매가보다 낮습니다.");
