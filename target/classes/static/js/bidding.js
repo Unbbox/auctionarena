@@ -79,6 +79,12 @@ biddingForm.addEventListener("submit", (e) => {
   const mNickName = biddingForm.querySelector("#mNickName");
   const currPrice = document.querySelector(".currPrice");
 
+  // 입찰 마감되었을 때 입찰 안되게 해야함
+  const bidding_date = document.querySelector(".date_now");
+  if (bidding_date.classList.contains("finish_sale")) {
+    alert("경매가 마감되었습니다.");
+    return;
+  }
   // 처음 입찰 기록 없을 때 입찰 기록 설정
   if (currPrice.value == undefined) {
     currPrice.value = startPrice;

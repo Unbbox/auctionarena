@@ -210,7 +210,7 @@
       <script>
 
         // 유저 정보 가져오기
-        const user = [[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]];
+        const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
         console.log("user info : ", user);
 
         // 제품 번호 가져오기
