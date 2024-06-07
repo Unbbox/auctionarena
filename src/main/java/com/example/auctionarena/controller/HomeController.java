@@ -46,11 +46,11 @@ public class HomeController {
   }
 
   // 에러페이지
-  // @GetMapping("error")
-  // public String getError() {
-  // log.info("error");
-  // return "except/url404";
-  // }
+  @GetMapping("error")
+  public String getError() {
+    log.info("error");
+    return "except/url404";
+  }
 
   @ResponseBody
   @GetMapping("auth")
