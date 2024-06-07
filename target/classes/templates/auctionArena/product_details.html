@@ -203,21 +203,21 @@
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
         </div>
-        <div class="flex flex-col flex-wrap mb-8 space-y-4 md:flex-row md:items-end md:space-x-5 product_btn_list">
-          <a th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-            <button type="button" class="btn btn-success flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white" sec:authorize="hasRole('MEMBER')">수정</button>
-          </a>
-          <div class="" sec:authorize="hasRole('MEMBER')">
-              <button type="button" class="btn btn-danger flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white product_modify">
+        <div class="product_btn_list">
+            <a th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+              <button type="button" class="btn btn-success product_modify" sec:authorize="hasRole('MEMBER')">
+                수정
+              </button>
+            </a>
+            <div class="product_btn_list" sec:authorize="hasRole('MEMBER')">
+              <button type="button" class="btn btn-danger product_remove">
                 삭제
               </button>
-          </div>
-          <div class="mx-1">
+            </div>
             <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-              <button type="button" class="btn btn-primary flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white product_list">목록</button>
+              <button type="button" class="btn btn-primary product_list">목록</button>
             </a>
           </div>
-          <!-- 삭제용 폼 -->
           <form method="post" id="deleteForm" th:action="@{remove}">
             <input type="hidden" name="pno" th:value="${dto.pno}" />
             <input type="hidden" name="page" th:value="${requestDto.page}" />

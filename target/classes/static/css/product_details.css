@@ -300,3 +300,25 @@
   resize: none;
   margin-bottom: 24px;
 }
+
+.product_btn_list {
+  display: flex;
+  height: 40px;
+}
+
+.product_btn_list > div {
+  width: 100px;
+}
+
+.product_modify,
+.product_remove,
+.product_list {
+  font-size: 15px;
+  margin-right: 5px;
+  width: 100px;
+  height: 40px;
+}
+
+.product_list {
+  margin-top: 0px;
+}
