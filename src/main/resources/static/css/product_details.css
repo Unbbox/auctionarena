@@ -322,3 +322,8 @@
 .product_list {
   margin-top: 0px;
 }
+
+.relation_product > h5 {
+  margin-left: 0;
+  margin-bottom: 5px;
+}

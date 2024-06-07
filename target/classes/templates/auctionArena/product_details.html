@@ -10,7 +10,7 @@
           <div class="col-lg-12">
             <div class="breadcrumb__links">
               <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-home"></i> 전체</a>
-              <a href="">[[${dto.category}]]</a>
+              <span href="">[[${dto.category}]]</span>
             </div>
           </div>
         </div>
@@ -177,11 +177,11 @@
         <!-- 관련 상품 form -->
         <form class="relation_categori_form">
 
-          <div class="row item_nav">
-            <div class="section-title">
+          <!-- <div class="row"> -->
+            <div class="row item_nav section-title relation_product">
               <h5>관련 상품</h5>
             </div>
-          </div>
+          <!-- </div> -->
           <div class="row relative__products">
           </div>
         </form>
