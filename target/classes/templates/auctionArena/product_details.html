@@ -206,12 +206,18 @@
           <div class="swiper-button-prev"></div>
         </div>
         <div class="product_btn_list">
-            <a th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+          <script>
+          </script>
+            <a 
+              th:if="${dto.writerEmail == #authentication.name}"
+              th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
               <button type="button" class="btn btn-success product_modify" sec:authorize="hasRole('MEMBER')">
                 수정
               </button>
             </a>
-            <div class="product_btn_list" sec:authorize="hasRole('MEMBER')">
+            <div class="product_btn_list" 
+              th:if="${dto.writerEmail == #authentication.name}"
+              sec:authorize="hasRole('MEMBER')">
               <button type="button" class="btn btn-danger product_remove">
                 삭제
               </button>
@@ -236,6 +242,12 @@
         // 유저 정보 가져오기
         const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
         console.log("user info : ", user);
+        const user2 = "[[${dto.writerName}]]";
+
+        // 페이지 정보 가져오기
+        // const page="${requestDto.page}";
+        // const type="${requestDto.type}";
+        // const keyword="${requestDto.keyword}";
 
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";

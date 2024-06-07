@@ -57,6 +57,7 @@ public interface DetailService {
         .title(product.getTitle())
         .content(product.getContent())
         .writerName(product.getMember().getNickname())
+        .writerEmail(product.getMember().getEmail())
         .replyCnt(replyCnt != null ? replyCnt : 0)
         .biddingCnt(biddingCnt != null ? biddingCnt : 0)
         .startPrice(product.getStartPrice())
