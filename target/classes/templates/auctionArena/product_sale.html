@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <div layout:fragment="content">  
         <!-- Product Sale Section Begin -->
-        <div class="col-12 product_sale_head">
+        <div class="col-8 product_sale_head">
             <img src="/img/logo_icon2.png" alt="">
             <h3 class="col-12">제품 등록</h3>
         </div>
@@ -72,7 +72,7 @@
             </div>
             <input type="hidden" name="writerName" id="writerName"  th:value="${#authentication.principal.memberDto.nickname}">
             <!-- 등록, 취소 버튼 -->
-            <div class="col product_register_btn d-grid gap-2">
+            <div class="col-8 product_register_btn d-grid gap-2">
                 <button type="submit" class="btn btn-primary">등록</button>
                 <button type="button" class="btn btn-danger">취소</button>
             </div>

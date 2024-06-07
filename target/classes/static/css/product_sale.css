@@ -42,8 +42,13 @@
   margin: 5px;
 }
 
-* {
+/* * {
   margin: 0 auto;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.product_sale_head {
   margin-left: auto;
   margin-right: auto;
 }
@@ -65,4 +70,14 @@
   width: 580px;
   white-space: nowrap;
   overflow-x: scroll;
+}
+
+.section-title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.product_register_btn {
+  margin-left: auto;
+  margin-right: auto;
 }
