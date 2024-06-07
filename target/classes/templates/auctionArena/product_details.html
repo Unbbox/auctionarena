@@ -41,7 +41,7 @@
                 <div class="product_details_title">
                   <h3 th:text="${dto.title}">제목</h3>
                   <!-- [[${dto.title}]] -->
-                  판매자 : <span th:text="${dto.writerName}">판매자</span>
+                  판매자 : <span th:text="${dto.writerName}">판매자</span><br>
                   경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
                 </div>
                 
@@ -218,7 +218,7 @@
             </a>
           </div>
           <!-- 삭제용 폼 -->
-          <form method="post" id="deleteForm" action="@{remove}">
+          <form method="post" id="deleteForm" th:action="@{remove}">
             <input type="hidden" name="pno" th:value="${dto.pno}" />
             <input type="hidden" name="page" th:value="${requestDto.page}" />
             <input type="hidden" name="type" th:value="${requestDto.type}" />

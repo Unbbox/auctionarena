@@ -35,7 +35,8 @@ public class SecurityConfig {
                                                 "/videos/**", "/auth")
                                 .permitAll()
                                 .requestMatchers("/auctionArena/product_details",
-                                                "/auctionArena/categories", "/auctionArena/product_modify", "auctionArena/remove")
+                                                "/auctionArena/categories", "/auctionArena/product_modify",
+                                                "/auctionArena/remove")
                                 .permitAll()
                                 .requestMatchers("/notice/notice", "/notice/notice-details").permitAll()
                                 .requestMatchers("/upload/display").permitAll()
