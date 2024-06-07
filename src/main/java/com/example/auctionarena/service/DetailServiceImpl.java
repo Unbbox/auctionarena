@@ -78,13 +78,13 @@ public class DetailServiceImpl implements DetailService {
 
     return entityToDto(product, productImages, biddings, reviewCnt, biddingCnt);
   }
-  
+
   // 제품 수정
   @Override
   public Long productUpdate(ProductDto productDto) {
     Map<String, Object> entityMap = dtoToEntity(productDto);
     log.info("entity : {}", entityMap);
-    
+
     Product product = (Product) entityMap.get("product");
     log.info("product : {}", product);
 
@@ -168,7 +168,5 @@ public class DetailServiceImpl implements DetailService {
         .map(entity -> entityToDto2(entity, productImages))
         .collect(Collectors.toList());
   }
-
-  
 
 }

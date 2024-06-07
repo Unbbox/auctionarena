@@ -47,7 +47,7 @@ public class SecurityConfig {
           "/auctionArena/product_details",
           "/auctionArena/categories",
           "/auctionArena/product_modify",
-          "auctionArena/remove"
+          "/auctionArena/remove"
         )
         .permitAll()
         .requestMatchers("/notice/notice", "/notice/notice-details")

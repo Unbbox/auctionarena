@@ -71,17 +71,17 @@ public class AuctionController {
 
   // 제품 수정 페이지 Get
   @GetMapping("/product_modify")
-  public void getProductModify(@RequestParam Long pno, Model model, 
-        @ModelAttribute("requestDto") PageRequestDto pageRequestDto) { 
-      log.info("{}번 제품 정보", pno);
+  public void getProductModify(@RequestParam Long pno, Model model,
+      @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
+    log.info("{}번 제품 정보", pno);
 
-      model.addAttribute("dto", detailService.getRow(pno));
+    model.addAttribute("dto", detailService.getRow(pno));
   }
 
   // 제품 수정 페이지 Post
   @PostMapping("/product_modify")
   public String postPorductModify(ProductDto productDto, @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-  RedirectAttributes rttr) {
+      RedirectAttributes rttr) {
     log.info("제품 수정 요청: {}", productDto);
 
     Long pno = detailService.productUpdate(productDto);
@@ -91,24 +91,24 @@ public class AuctionController {
     rttr.addAttribute("size", pageRequestDto.getSize());
     rttr.addAttribute("type", pageRequestDto.getType());
     rttr.addAttribute("keyword", pageRequestDto.getKeyword());
-      
+
     return "redirect:/auctionArena/product_details";
   }
-  
+
   // 등록된 제품 삭제 페이지
   @PostMapping("/remove")
   public String postRemove(Long pno, @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-    RedirectAttributes rttr) {
-      log.info("{}번 제품 삭제 요청", pno);
-      detailService.productRemove(pno);
-      
-      rttr.addAttribute("page", pageRequestDto.getPage());
-      rttr.addAttribute("size", pageRequestDto.getSize());
-      rttr.addAttribute("type", pageRequestDto.getType());
-      rttr.addAttribute("keyword", pageRequestDto.getKeyword());
-      return "redirect:/auctionArena/categories";
+      RedirectAttributes rttr) {
+    log.info("{}번 제품 삭제 요청", pno);
+    detailService.productRemove(pno);
+
+    rttr.addAttribute("page", pageRequestDto.getPage());
+    rttr.addAttribute("size", pageRequestDto.getSize());
+    rttr.addAttribute("type", pageRequestDto.getType());
+    rttr.addAttribute("keyword", pageRequestDto.getKeyword());
+    return "redirect:/auctionArena/categories";
   }
-  
+
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
   public void getProductSale(

@@ -57,8 +57,7 @@ const getBiddingList = () => {
       });
 
       // 현재 경매가 업데이트
-      if (data[0].biddingPrice == null) {
-      } else {
+      if (data[0].biddingPrice != null) {
         document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
         document.querySelector(".currPrice").value = data[0].biddingPrice;
       }
@@ -126,8 +125,8 @@ biddingForm.addEventListener("submit", (e) => {
 
           biddingPrice.value = "";
 
+          getBiddingList();
           if (data) alert("입찰 등록이 완료되었습니다.");
         });
   }
-  getBiddingList();
 });

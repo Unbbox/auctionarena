@@ -2,21 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
     <div layout:fragment="content">  
         <!-- Product Sale Section Begin -->
-        <div class="col-12 product_sale_head">
+        <div class="col-8 product_sale_head">
             <img src="/img/logo_icon2.png" alt="">
             <h3 class="col-12">제품 등록</h3>
         </div>
         <form method="post" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
             <!-- 이미지 업로드 칸 -->
-            <div class="row col-12 upload_image_form">
-                <div class="col-3 product_image section-title">
+            <div class="row col-8 upload_image_form">
+                <div class="col product_image section-title">
                     <h5>제품 이미지 업로드</h5>
                     <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
                     <div class="upload_image" name="upload_image">
                         <i class="fa-solid fa-camera"> 이미지 업로드</i>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col">
                     <div class="upload_image_preview section-title">
                         <h5>이미지 미리보기</h5>
                         <div>
@@ -29,11 +29,11 @@
             </div>
             <!-- 제목, 카테고리, 제품 설명 작성란 -->
             <div class="product_sale">
-                <div class="col-12 product_title section-title">
+                <div class="col-8 product_title section-title">
                     <h5>제목</h5>
                     <input class="form-control" type="text" name="title" id="title" placeholder="상품 제목 입력">
                 </div>
-                <div class="col-12 product_category section-title">
+                <div class="col-8 product_category section-title">
                     <h5>카테고리</h5>
                     <select name="category" id="category" class="product_cate">
                         <!-- <option value="패션 의류/잡화">패션 의류/잡화</option>
@@ -48,17 +48,17 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-12 product_text section-title">
+                <div class="col-8 product_text section-title">
                     <h5>제품 설명</h5>
                     <textarea class="form-control" name="content" id="content" th:value="${productDto.content}"></textarea>
                 </div>
             </div>
             <!-- 경매 시작가, 경매 종료 일자 지정 -->
-            <div class="col-12 bidding_start_price section-title">
+            <div class="col-8 bidding_start_price section-title">
                 <h5>경매 시작가</h5>
                 <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
             </div>
-            <div class="col-12 bidding_end_date section-title">
+            <div class="col-8 bidding_end_date section-title">
                 <h5>경매 종료 일자</h5>
                 <!-- 달력을 넣는게 더 나을지 생각 -->
                 <!-- 지금 이 부분 안나옴 -->
@@ -72,7 +72,7 @@
             </div>
             <input type="hidden" name="writerName" id="writerName"  th:value="${#authentication.principal.memberDto.nickname}">
             <!-- 등록, 취소 버튼 -->
-            <div class="col product_register_btn d-grid gap-2">
+            <div class="col-8 product_register_btn d-grid gap-2">
                 <button type="submit" class="btn btn-primary">등록</button>
                 <button type="button" class="btn btn-danger">취소</button>
             </div>
