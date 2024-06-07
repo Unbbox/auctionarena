@@ -28,10 +28,12 @@
                 <div class="product_detail_img">
                   <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
                 </div>
-                <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
+                <div class="product_details_pic_div" >
                   <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
                   <!-- 제품 이미지 리스트 출력 -->
-                  <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                  <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
+                    <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                  </div>
                 </div>
               </div>
               
