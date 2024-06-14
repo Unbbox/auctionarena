@@ -102,6 +102,22 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     }
 
     @Override
+    public void accountCheck(MemberDto checkDto) throws IllegalStateException {
+        // 이메일 확인
+        log.info("비밀번호 찾기 요청 {}", checkDto);
+
+        Optional<Member> email = memberRepository.findByEmail(checkDto.getEmail());
+        Member member = email.get();
+        if (email.isEmpty()) {
+            throw new IllegalStateException("이메일이 다릅니다.");
+        } else {
+            if (!passwordEncoder.matches(checkDto.getPassword(), member.getPassword())) {
+                throw new IllegalStateException("비밀번호가 다릅니다.");
+            }
+        }
+    }
+
+    @Override
     public void editAccountInfo(MemberDto infoDto) {
         log.info("회원정보 수정 요청 {}", infoDto);
 
