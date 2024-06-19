@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+  <div layout:fragment="content">
+    <!-- Normal Breadcrumb Begin -->
+    <section class="normal-breadcrumb set-bg" data-setbg="/img/normal-breadcrumb.jpg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <div class="normal__breadcrumb__text">
+              <h2>Find Password</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Normal Breadcrumb End -->
+
+    <!-- 네이버 지도 -->
+    <h1>NAVER MAP</h1>
+    <div id="map" style="width: 1000px; height: 400px"></div>
+
+    <!-- 네이버 지도 -->
+  </div>
+
+  <th:block layout:fragment="script">
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9qli8vlzqv"></script>
+    <script>
+      const locations = [
+        { place: "건대입구역", lat: 37.539922, lng: 127.070609 },
+        { place: "어린이대공원역", lat: 37.547263, lng: 127.074181 },
+      ];
+
+      var mapOptions = {
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        zoom: 10,
+      };
+
+      var map = new naver.maps.Map("map", {
+        center: new naver.maps.LatLng(37.3595704, 127.105399),
+        zoom: 10,
+      });
+
+      for (var i = 0; i < locations.length; i++) {
+        var marker = new naver.maps.Marker({
+          map: map,
+          title: locations[i].place,
+          position: new naver.maps.LatLng(locations[i].lat, locations[i].lng),
+        });
+      }
+
+      window.navermap_authFailure = function () {
+        // 인증 실패 시 처리 코드 작성
+        console.log("인증 실패");
+      };
+    </script>
+  </th:block>
+</html>
