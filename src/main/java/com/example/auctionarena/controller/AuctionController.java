@@ -137,4 +137,11 @@ public class AuctionController {
 
     return "redirect:/auctionArena/categories";
   }
+
+  // 고객센터
+  @GetMapping("/customer-service")
+  public void customerService() {
+    log.info("고객센터 요청");
+  }
+
 }
