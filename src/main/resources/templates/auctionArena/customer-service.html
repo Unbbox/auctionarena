@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
+    <link rel="stylesheet" th:href="@{/css/customer-service.css}" type="text/css" />
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="/img/normal-breadcrumb.jpg">
       <div class="container">
@@ -14,26 +15,50 @@
       </div>
     </section>
     <!-- Normal Breadcrumb End -->
+    <section id="services" class="section section-padded">
+      <div class="container">
+        <div class="row text-center title">
+          <h2>고객센터</h2>
+          <h4 class="light muted">Achieve the best results with our wide variety of training options!</h4>
+        </div>
+        <div class="services">
+          <div class="">
+            <div class="service">
+              <div class="icon-holder">
+                <i class="fa-solid fa-paper-plane fa-2xl" style="color: #e53637;"></i>
+              </div>
+              <h4 class="heading">대표번호</h4>
+              <p class="description">
+                <a href="https://github.com/Unbbox/auctionarena.git">https://github.com/Unbbox/auctionarena.git</a>
+              </p>
+            </div>
+          </div>
+          <div class="">
+            <div class="service">
+              <div class="icon-holder">
+                <i class="fa-solid fa-map-location-dot fa-2xl" style="color: #e53637;"></i>
+              </div>
+              <h4 class="heading">오시는길</h4>
+              <p class="description">
+                주소
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    
     <!-- 네이버 지도 -->
-     <div class="container">
-    <div class="company">
-      <div>
-        <h1>고객센터</h1>
+    <section id="team" class="section gray-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div id="map"></div>
+          </div>
+        </div>
       </div>
-      <div>
-        <p>대표번호</p>
-      </div>
-    </div>
-    <div class="company-map">
-      <div>
-        <h1>오시는길</h1>
-        <p>AuctionArena</p>
-        <p>주소</p>
-      </div>
-      <div id="map"></div>
-    </div>
-  </div>
+    </section>
     <!-- 네이버 지도 -->
 
   <th:block layout:fragment="script">
