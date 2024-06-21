@@ -3108,7 +3108,28 @@ input[type="file"]::file-selector-button {
   color: #3f3f3f;
 }
 
-/*=================== 회원정보 ==================*/
+/*=================== 고객센터 ==================*/
+
+.company {
+  margin: 30px 0 30px;
+  padding: 10px 0 10px;
+  border-top: 1px solid #000;
+  align-items: center;
+  text-align: center;
+}
+
+.company-map {
+  margin: 30px 0 30px;
+  padding: 10px 0 10px;
+  border-top: 1px solid #000;
+  align-items: center;
+  text-align: center;
+}
+
+#map {
+  width: 1000px;
+  height: 400px;
+}
 
 /*----------------------------------------*/
 /* 이나 end */

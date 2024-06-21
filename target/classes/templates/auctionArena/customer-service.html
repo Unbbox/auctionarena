@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <div class="normal__breadcrumb__text">
-              <h2>Find Password</h2>
+              <h2>Customer Service</h2>
             </div>
           </div>
         </div>
@@ -16,30 +16,63 @@
     <!-- Normal Breadcrumb End -->
 
     <!-- 네이버 지도 -->
-    <h1>NAVER MAP</h1>
-    <div id="map" style="width: 1000px; height: 400px"></div>
-
-    <!-- 네이버 지도 -->
+     <div class="container">
+    <div class="company">
+      <div>
+        <h1>고객센터</h1>
+      </div>
+      <div>
+        <p>대표번호</p>
+      </div>
+    </div>
+    <div class="company-map">
+      <div>
+        <h1>오시는길</h1>
+        <p>AuctionArena</p>
+        <p>주소</p>
+      </div>
+      <div id="map"></div>
+    </div>
   </div>
+    <!-- 네이버 지도 -->
 
   <th:block layout:fragment="script">
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=9qli8vlzqv"></script>
     <script>
-      const locations = [
-        { place: "건대입구역", lat: 37.539922, lng: 127.070609 },
-        { place: "어린이대공원역", lat: 37.547263, lng: 127.074181 },
-      ];
-
-      var mapOptions = {
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
-        zoom: 10,
-      };
+      const locations = [{ place: "AuctionArena", lat: 37.5693402, lng: 126.9859964 }];
 
       var map = new naver.maps.Map("map", {
-        center: new naver.maps.LatLng(37.3595704, 127.105399),
-        zoom: 10,
+        mapTypeControl: true,
+        mapTypeControlOptions: {
+          style: naver.maps.MapTypeControlStyle.BUTTON,
+          position: naver.maps.Position.TOP_RIGHT,
+        },
+        scaleControl: true,
+        scaleControlOptions: {
+          position: naver.maps.Position.RIGHT_CENTER,
+        },
+        scaleControl: false,
+        logoControl: false,
+        mapDataControl: false,
+        zoomControl: true,
+        minZoom: 6,
+        center: new naver.maps.LatLng(37.5693402, 126.9859964),
+        zoom: 18,
       });
 
+      var HOME_PATH = window.HOME_PATH || ".";
+      // var markerOptions = {
+      //   position: position.destinationPoint(37.5693402, 126.9859964),
+      //   map: map,
+      //   icon: {
+      //     url: HOME_PATH + "/img/logo_icon.png",
+      //     size: new naver.maps.Size(50, 52),
+      //     origin: new naver.maps.Point(0, 0),
+      //     anchor: new naver.maps.Point(25, 26),
+      //   },
+      // };
+
+      // 마커 반복
       for (var i = 0; i < locations.length; i++) {
         var marker = new naver.maps.Marker({
           map: map,
@@ -47,6 +80,31 @@
           position: new naver.maps.LatLng(locations[i].lat, locations[i].lng),
         });
       }
+
+      var contentString = [
+        '<div class="iw_inner">',
+        "   <h3>AuctionArena</h3>",
+        "   <p>서울 종로구 종로12길 15 코아빌딩 5층<br />",
+        '       <img src="' + HOME_PATH + '/img/logo.png" width="55" height="55" class="thumb" /><br />',
+        "       03190 | 010-1234-5678 <br />",
+        '       <a href="https://github.com/Unbbox/auctionarena.git" target="_blank">https://github.com/Unbbox/auctionarena.git/</a>',
+        "   </p>",
+        "</div>",
+      ].join("");
+
+      var infowindow = new naver.maps.InfoWindow({
+        content: contentString,
+      });
+
+      naver.maps.Event.addListener(marker, "click", function (e) {
+        if (infowindow.getMap()) {
+          infowindow.close();
+        } else {
+          infowindow.open(map, marker);
+        }
+      });
+
+      infowindow.open(map, marker);
 
       window.navermap_authFailure = function () {
         // 인증 실패 시 처리 코드 작성
