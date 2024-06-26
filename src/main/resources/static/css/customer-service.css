@@ -18,7 +18,15 @@ h6 {
 }
 
 .row.title {
+  margin-top: 50px;
   padding: 0 20px;
+}
+
+.title h1 {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 800;
+
+  margin: 0 auto;
 }
 
 .services {
@@ -94,31 +102,33 @@ h6 {
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.07);
 }
 
-.team .cover .overlay {
-  height: 250px;
-  padding-top: 60px;
-  opacity: 0;
-  background: #e53637;
-  -webkit-transition: opacity 0.45s ease;
-  transition: opacity 0.45s ease;
-}
-
-.team:hover .cover .overlay {
-  opacity: 1;
-}
-
-.team .avatar {
-  position: relative;
-  z-index: 2;
-  margin-top: -60px;
-  border-radius: 50%;
-}
-
-.team .title {
-  margin: 50px 0;
+.map {
+  height: 500px;
 }
 
 #map {
-  width: 1000px;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 70%;
   height: 400px;
+}
+
+.iw_inner {
+  text-align: center;
+}
+
+.iw_inner h2 {
+  font-family: "Mulish", sans-serif;
+  font-weight: 900;
+}
+
+.iw_inner p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.iw_inner img {
+  width: 100px;
+  height: 50px;
 }
