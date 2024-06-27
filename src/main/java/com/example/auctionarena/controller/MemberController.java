@@ -49,7 +49,7 @@ public class MemberController {
 
     @PostMapping("/signup")
     public String postSignup(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
-        log.info("회원가입 요청");
+        log.info("회원가입 요청 {}", dto);
 
         if (result.hasErrors()) {
             return "/member/signup";
@@ -76,7 +76,7 @@ public class MemberController {
 
     @PostMapping("/find-password")
     public String postPasswordFind(MemberDto dto, RedirectAttributes rttr) {
-        log.info("비밀번호 찾기");
+        log.info("비밀번호 찾기 {}", dto);
         // String email = dto.getEmail();
 
         try {
@@ -94,14 +94,14 @@ public class MemberController {
     public String editPassword(@ModelAttribute("email") String email, Model model, PasswordChangeDto pDto) {
         pDto.setEmail(email);
         model.addAttribute("pDto", pDto);
-        log.info("비밀번호 변경 요청");
+        log.info("비밀번호 변경 요청 {}", pDto);
         return "/member/edit-password";
     }
 
     @PostMapping("/edit-password")
     public String postEditPassword(@ModelAttribute PasswordChangeDto pDto, RedirectAttributes rttr,
             HttpSession session) {
-        log.info("변경 요청");
+        log.info("변경 요청 {}", pDto);
         if (!pDto.getNewPassword().equals(pDto.getCheckPassword())) {
             rttr.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
             return "redirect:/member/edit-password";
@@ -126,7 +126,7 @@ public class MemberController {
 
     @PostMapping("/leave")
     public String postLeave(@RequestParam("email") String email, RedirectAttributes rttr, HttpSession session) {
-        log.info("회원탈퇴");
+        log.info("회원탈퇴 {}", email);
 
         try {
             service.leave(email);
@@ -140,7 +140,7 @@ public class MemberController {
 
     @GetMapping("/mypage")
     public String mypage(Model model, MemberDto memberDto) {
-        log.info("마이페이지 요청");
+        log.info("마이페이지 요청 {}", memberDto);
 
         // 현재 로그인된 사용자의 인증 객체를 가져옴
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -159,45 +159,8 @@ public class MemberController {
         return "/member/mypage";
     }
 
-    @GetMapping("/accountCheck")
-    public String accountCheck(Model model, MemberDto memberDto) {
-        log.info("회원정보 확인");
-
-        // 현재 로그인된 사용자의 인증 객체를 가져옴
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // 이메일 가져오기
-        String email = authentication.getName();
-
-        // 회원 서비스를 통해 회원 정보 가져오기
-        Optional<Member> member = memberRepository.findByEmail(email);
-
-        // 모델에 회원 정보를 추가하여 뷰로 전달
-        if (member.isPresent()) {
-            MemberDto dto = service.entityToDto(member.get());
-            model.addAttribute("memberDto", dto);
-        }
-
-        return "/member/accountCheck";
-    }
-
-    @PostMapping("/accountCheck")
-    public String postAccountCheck(@Valid @ModelAttribute MemberDto dto, BindingResult result,
-            RedirectAttributes rttr) {
-        log.info("회원정보 확인");
-
-        try {
-            service.accountCheck(dto);
-            rttr.addFlashAttribute("memberDto", dto);
-            return "redirect:/member/accountInfo";
-        } catch (IllegalStateException e) {
-            rttr.addFlashAttribute("error", e.getMessage());
-            rttr.addFlashAttribute("memberDto", dto);
-            return "redirect:/member/accountCheck";
-        }
-    }
-
     @GetMapping("/accountInfo")
-    public String accountInfo(Model model, MemberDto memberDto) {
+    public String editMemberInfo(Model model, MemberDto memberDto) {
         log.info("회원정보 수정");
 
         // 현재 로그인된 사용자의 인증 객체를 가져옴
@@ -219,7 +182,7 @@ public class MemberController {
 
     @PostMapping("/accountInfo")
     public String postAccountInfo(@Valid MemberDto dto, BindingResult result, RedirectAttributes rttr) {
-        log.info("회원정보 수정 요청");
+        log.info("회원정보 수정 요청 {}", dto);
 
         if (result.hasErrors()) {
             return "/member/accountInfo";
