@@ -6,7 +6,7 @@
             <img src="/img/logo_icon2.png" alt="">
             <h3 class="col-12">제품 등록</h3>
         </div>
-        <form method="post" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
+        <form method="post" name="register_form" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
             <!-- 이미지 업로드 칸 -->
             <div class="row col-8 upload_image_form">
                 <div class="col product_image section-title">
@@ -74,7 +74,9 @@
             <!-- 등록, 취소 버튼 -->
             <div class="col-8 product_register_btn d-grid gap-2">
                 <button type="submit" class="btn btn-primary">등록</button>
-                <button type="button" class="btn btn-danger">취소</button>
+                <a th:href="@{/auctionArena/categories}">
+                    <button type="button" class="btn btn-danger">취소</button>
+                </a>
             </div>
         </form>
         <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno}"> -->
