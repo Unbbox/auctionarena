@@ -89,6 +89,10 @@
   margin-top: 25px;
 }
 
+.item_detail_content {
+  padding-left: 20px;
+}
+
 .footer__logo img {
   height: 60px;
 }
