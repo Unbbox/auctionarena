@@ -80,15 +80,16 @@ public class AuctionController {
 
   // 제품 수정 페이지 Post
   @PostMapping("/product_modify")
-  public String postPorductModify(ProductDto productDto, @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+  public String postPorductModify(ProductDto productDto,
+      @ModelAttribute("requestDto") CategoryPageRequestDto pageRequestDto,
       RedirectAttributes rttr) {
     log.info("제품 수정 요청: {}", productDto);
 
     Long pno = detailService.productUpdate(productDto);
 
     rttr.addFlashAttribute("msg", pno);
+    rttr.addAttribute("pno", productDto.getPno());
     rttr.addAttribute("page", pageRequestDto.getPage());
-    rttr.addAttribute("size", pageRequestDto.getSize());
     rttr.addAttribute("type", pageRequestDto.getType());
     rttr.addAttribute("keyword", pageRequestDto.getKeyword());
 

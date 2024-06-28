@@ -1,100 +1,96 @@
 <!-- <!DOCTYPE html> -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-    <div layout:fragment="content">  
-        <!-- Product Sale Section Begin -->
-        <div class="col-12 product_sale_head">
-            <img src="/img/logo_icon2.png" alt="">
-            <h3 class="col-12">제품 수정</h3>
-        </div>
-        <form method="post" th:action="@{product_modify}">
-            <!-- 이미지 업로드 칸 -->
-            <div class="row col-12 upload_image_form">
-                <div class="col-3 product_image section-title">
-                    <h5>제품 이미지 업로드</h5>
-                    <input type="file" class="upload_product_image" accept="image/*" multiple style="display: none;"> <!-- required 써져있어서 그럼 -->
-                    <div class="upload_image" name="upload_image">
-                        <i class="fa-solid fa-camera"> 이미지 업로드</i>
-                    </div>
-                </div>
-                <div class="col-9">
-                    <div class="upload_image_preview section-title">
-                        <h5>이미지 미리보기</h5>
-                        <div>
-                            <ul>
-                                <li th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}, data-name=${image.getImgName()}, data-path=${image.getPath()}, data-uuid=${image.getUuid()}">
-                                    <div>
-                                        <a href="">
-                                            <img th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" class="block">
-                                        </a>
-                                        <span class="text-sm d-inline-block mx-1">[[${image.imgName}]]</span>
-                                        <a href="#">
-                                            <i class="fa-solid fa-xmark"></i>
-                                        </a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 제목, 카테고리, 제품 설명 작성란 -->
-            <div class="product_sale">
-                <div class="col-12 product_title section-title">
-                    <h5>제목</h5>
-                    <input class="form-control" type="text" name="title" id="title" th:value="${dto.title}">
-                </div>
-                <div class="col-12 product_category section-title">
-                    <h5>카테고리</h5>
-                    <select name="category" id="category" class="product_cate">
-                        <option value="" th:selected="${dto.category} == ${dto.category}" th:value="${dto.category}" th:text="${dto.category}">선택</option>
-                        
-                    </select>
-                </div>
-                <div class="col-12 product_text section-title">
-                    <h5>제품 설명</h5>
-                    <textarea class="form-control" name="content" id="content" th:text="${dto.content}"></textarea>
-                </div>
-            </div>
-            <!-- 경매 시작가, 경매 종료 일자 지정 -->
-            <div class="col-12 bidding_start_price section-title">
-                <h5>경매 시작가</h5>
-                <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${dto.startPrice}" readonly>
-            </div>
-            <!-- <div class="col-12 bidding_end_date section-title">
-                <h5>경매 종료 일자</h5> -->
-                <!-- 달력을 넣는게 더 나을지 생각 -->
-                <!-- 지금 이 부분 안나옴 -->
-                <!-- <select name="biddingDate" id="biddingDate" class="bidding_date" readonly>
-                    <option value=`${dto.biddingDate}` th:selected="${dto.biddingDate} == ${dto.biddingDate}">[[${dto.biddingDate}]]</option> -->
-                    <!-- <option value="" th:selected="${dto.biddingDate} == ''">기간 선택</option>
-                    <option value="1" th:selected="${dto.biddingDate} == 1">1일</option>
-                    <option value="3" th:selected="${dto.biddingDate} == 3">3일</option>
-                    <option value="5" th:selected="${dto.biddingDate} == 5">5일</option>
-                    <option value="7" th:selected="${dto.biddingDate} == 7">7일</option> -->
-                <!-- </select> -->
-            <!-- </div> -->
-            <input type="hidden" name="pno" id="pno"  th:value="${dto.pno}">
-            <input type="hidden" name="biddingDate" id="biddingDate"  th:value="${dto.biddingDate}">
-            <input type="hidden" name="writerName" id="writerName"  th:value="${#authentication.principal.memberDto.nickname}">
-            
-            <!-- 등록, 취소 버튼 -->
-            <div class="col product_register_btn d-grid gap-2">
-                <button type="submit" class="btn btn-primary">수정</button>
-                <!-- <button type="button" class="btn btn-primary">삭제</button> -->
-                <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                    <button type="button" class="btn btn-danger">취소</button>
-                </a>
-            </div>
-        </form>
+  <div layout:fragment="content">
+    <!-- Product Sale Section Begin -->
+    <div class="col-12 product_sale_head">
+      <img src="/img/logo_icon2.png" alt="">
+      <h3 class="col-12">제품 수정</h3>
     </div>
-  </section>
-  <!-- Product Section End -->
-  <th:block layout:fragment="script">
-    <script>
-        // csrf 토큰 설정
-        const csrfValue = '[[${_csrf.token}]]';
-    </script>
-    <script th:src="@{/js/modify.js}"></script>
-    <script th:src="@{/js/upload.js}"></script>
-  </th:block>
+    <form method="post" th:action="@{product_modify}" id="register_form">
+      <!-- 이미지 업로드 칸 -->
+      <div class="row col-12 upload_image_form">
+        <div class="col-3 product_image section-title">
+          <h5>제품 이미지 업로드</h5>
+          <input type="file" class="upload_product_image" accept="image/*" multiple="multiple" style="display: none;">
+          <!-- required 써져있어서 그럼 -->
+          <div class="upload_image" name="upload_image">
+            <i class="fa-solid fa-camera">
+              이미지 업로드</i>
+          </div>
+        </div>
+        <div class="col-9">
+          <div class="upload_image_preview section-title">
+            <h5>이미지 미리보기</h5>
+            <div>
+              <ul>
+                <li th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}, data-name=${image.getImgName()}, data-path=${image.getPath()}, data-uuid=${image.getUuid()}">
+                  <div>
+                    <a href="">
+                      <img th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" class="block">
+                    </a>
+                    <span class="text-sm d-inline-block mx-1">[[${image.imgName}]]</span>
+                    <a href="#">
+                      <i class="fa-solid fa-xmark"></i>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 제목, 카테고리, 제품 설명 작성란 -->
+      <div class="product_sale">
+        <div class="col-12 product_title section-title">
+          <h5>제목</h5>
+          <input class="form-control" type="text" name="title" id="title" th:value="${dto.title}">
+        </div>
+        <div class="col-12 product_category section-title">
+          <h5>카테고리</h5>
+          <select name="category" id="category" class="product_cate">
+            <option value="" th:selected="${dto.category} == ${dto.category}" th:value="${dto.category}" th:text="${dto.category}">선택</option>
+
+          </select>
+        </div>
+        <div class="col-12 product_text section-title">
+          <h5>제품 설명</h5>
+          <textarea class="form-control" name="content" id="content" th:text="${dto.content}"></textarea>
+        </div>
+      </div>
+      <!-- 경매 시작가, 경매 종료 일자 지정 -->
+      <div class="col-12 bidding_start_price section-title">
+        <h5>경매 시작가</h5>
+        <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${dto.startPrice}" readonly="readonly">
+      </div>
+      <!-- <div class="col-12 bidding_end_date section-title"> <h5>경매 종료 일자</h5> -->
+      <!-- 달력을 넣는게 더 나을지 생각 -->
+      <!-- 지금 이 부분 안나옴 -->
+      <!-- <select name="biddingDate" id="biddingDate" class="bidding_date" readonly> <option value=`${dto.biddingDate}` th:selected="${dto.biddingDate} == ${dto.biddingDate}">[[${dto.biddingDate}]]</option> -->
+      <!-- <option value="" th:selected="${dto.biddingDate} == ''">기간 선택</option> <option value="1" th:selected="${dto.biddingDate} == 1">1일</option> <option value="3" th:selected="${dto.biddingDate} == 3">3일</option> <option value="5" th:selected="${dto.biddingDate} == 5">5일</option> <option value="7" th:selected="${dto.biddingDate} == 7">7일</option> -->
+      <!-- </select> -->
+      <!-- </div> -->
+      <input type="hidden" name="pno" id="pno" th:value="${dto.pno}">
+      <input type="hidden" name="biddingDate" id="biddingDate" th:value="${dto.biddingDate}">
+      <input type="hidden" name="writerName" id="writerName" th:value="${#authentication.principal.memberDto.nickname}">
+
+      <!-- 등록, 취소 버튼 -->
+      <div class="col product_register_btn d-grid gap-2">
+        <button type="submit" class="btn btn-primary">수정</button>
+        <!-- <button type="button" class="btn btn-primary">삭제</button> -->
+        <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+          <button type="button" class="btn btn-danger">취소</button>
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- Product Section End -->
+<th:block layout:fragment="script">
+  <script>
+    // csrf 토큰 설정
+    const csrfValue = '[[${_csrf.token}]]';
+  </script>
+  <script th:src="@{/js/modify.js}"></script>
+  <script th:src="@{/js/upload.js}"></script>
+</th:block>
 </html>
