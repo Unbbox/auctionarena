@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-    <div layout:fragment="content">
+  <div layout:fragment="content">
     <!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="/img/normal-breadcrumb.jpg">
       <div class="container">
@@ -23,13 +22,19 @@
           <h3>회원정보</h3>
           <form th:action="@{accountInfo}" method="post" th:object="${memberDto}" id="editForm">
             <div class="input__item">
-              <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly/>
+              <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly="readonly"/>
               <span class="icon_mail"></span>
             </div>
             <div class="input__item">
-              <input type="text" placeholder="비밀번호" class="password" id="password" name="password" value="111111111" readonly/>
+              <input type="text" placeholder="비밀번호" class="password" id="password" name="password" value="111111111" readonly="readonly"/>
               <span class="icon_lock"></span>
             </div>
+            <a th:href="@{accountCheck}" class="item">
+              <div class="text">비밀번호 수정</div>
+              <div class="right">
+                <i class="fa-solid fa-angle-right fa-xl"></i>
+              </div>
+            </a>
             <div class="input__item">
               <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
               <span class="icon_profile"></span>
@@ -42,7 +47,7 @@
               <div class="text-danger" id="nicknameError"></div>
             </div>
             <div class="input__item post">
-              <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" th:value="${memberDto.zonecode}" readonly/>
+              <input type="text" placeholder="우편번호" id="zonecode" name="zonecode" maxlength="15" th:value="${memberDto.zonecode}" readonly="readonly"/>
               <span class="icon_pin_alt"></span>
               <button type="button" class="btn-post" onclick="execDaumPostcode()">우편번호 찾기</button>
               <div class="text-danger" id="zonecodeError"></div>
@@ -70,12 +75,12 @@
   </section>
   <!-- Signup Section End -->
 
-  </div>
-  <th:block layout:fragment="script">
-      <!-- 우편번호 검색 -->
-      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <!-- CDN 방식 사용 -->
-    <script th:src="@{/memberjs/post.js}"></script>
-    <script th:src="@{/memberjs/password.js}"></script>
-    <script th:src="@{/memberjs/accountInfo.js}"></script>
-  </th:block>
+</div>
+<th:block layout:fragment="script">
+  <!-- 우편번호 검색 -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <!-- CDN 방식 사용 -->
+  <script th:src="@{/memberjs/post.js}"></script>
+  <script th:src="@{/memberjs/password.js}"></script>
+  <script th:src="@{/memberjs/accountInfo.js}"></script>
+</th:block>

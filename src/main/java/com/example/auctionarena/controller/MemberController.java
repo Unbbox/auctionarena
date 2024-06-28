@@ -189,8 +189,8 @@ public class MemberController {
 
         try {
             service.accountCheck(dto);
-            rttr.addFlashAttribute("memberDto", dto);
-            return "redirect:/member/accountInfo";
+            rttr.addFlashAttribute("email", dto.getEmail());
+            return "redirect:/member/edit-password";
         } catch (IllegalStateException e) {
             rttr.addFlashAttribute("error", e.getMessage());
             rttr.addFlashAttribute("memberDto", dto);
