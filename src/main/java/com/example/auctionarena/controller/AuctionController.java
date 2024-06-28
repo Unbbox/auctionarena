@@ -97,7 +97,7 @@ public class AuctionController {
 
   // 등록된 제품 삭제 페이지
   @PostMapping("/remove")
-  public String postRemove(Long pno, @ModelAttribute("requestDto") CategoryPageRequestDto pageRequestDto,
+  public String postRemove(Long pno, @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
       RedirectAttributes rttr) {
     log.info("{}번 제품 삭제 요청", pno);
     detailService.productRemove(pno);
@@ -137,4 +137,11 @@ public class AuctionController {
 
     return "redirect:/auctionArena/categories";
   }
+
+  // 고객센터
+  @GetMapping("/customer-service")
+  public void customerService() {
+    log.info("고객센터 요청");
+  }
+
 }

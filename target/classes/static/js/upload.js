@@ -76,8 +76,6 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   const form = e.target;
   console.log(form);
 
-  // 이미지 입력 확인
-
   // 제목 입력 확인
   const title = document.querySelector("#title");
   if (title.value == "") {

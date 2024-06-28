@@ -121,8 +121,8 @@
           </div>
         </div>
         <!-- </div> -->
-        <div class="item_nav_sub item-bidding-record" style="display: none">
-          <div class="row section-title">
+        <div class="row item_nav_sub item-bidding-record" style="display: none">
+          <div class="section-title">
             <h5>경매기록</h5>
           </div>
           <div>
@@ -147,7 +147,7 @@
         <div class="row item_nav_sub item_review" style="display: none">
           <div class="product_details_comment">
             <div class="section-title">
-              <h5>상품 댓글 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
+              <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
             </div>
             <div class="comments">
               <!-- JS에서 댓글 처리 -->
@@ -157,7 +157,7 @@
         <div class="row item_nav_sub item_review_register" style="display: none">
           <div class="product_comment_form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
             <div class="section-title">
-              <h5>댓글 작성</h5>
+              <h5>상품평 작성</h5>
             </div>
             <!-- th:action="@{/comments/product/}" -->
             <form th:action="@{/comments/}" method="post" class="comment-form">
@@ -208,13 +208,13 @@
         <div class="product_btn_list">
           <script>
           </script>
-            <!-- <a 
+            <a 
               th:if="${dto.writerEmail == #authentication.name}"
               th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
               <button type="button" class="btn btn-success product_modify" sec:authorize="hasRole('MEMBER')">
                 수정
               </button>
-            </a> -->
+            </a>
             <div class="product_btn_list" 
               th:if="${dto.writerEmail == #authentication.name}"
               sec:authorize="hasRole('MEMBER')">

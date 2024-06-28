@@ -14,6 +14,9 @@ public interface MemberService {
     // 비밀번호 수정
     void passwordUpdate(PasswordChangeDto pDto) throws IllegalStateException;
 
+    // 회원정보 찾기
+    void accountCheck(MemberDto checkDto) throws IllegalStateException;
+
     // 회원정보 수정
     void editAccountInfo(MemberDto infoDto);
 

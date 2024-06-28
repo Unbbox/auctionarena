@@ -24,11 +24,11 @@
               <h3>로그인</h3>
               <form th:action="@{login}" method="post">
                 <div class="input__item">
-                  <input type="text" placeholder="Email address" id="username" name="username" />
+                  <input type="text" placeholder="Email address" id="username" name="username"/>
                   <span class="icon_mail"></span>
                 </div>
                 <div class="input__item">
-                  <input type="Password" class="password" placeholder="Password" id="password" name="password" />
+                  <input type="Password" class="password" placeholder="Password" id="password" name="password"/>
                   <span class="icon_lock"></span>
                   <i class="fa fa-eye fa-lg" style="color: #a0a3ab"></i>
                 </div>
@@ -52,9 +52,16 @@
                 <span>or</span>
                 <ul>
                   <li>
-                    <a href="/oauth2/authorization/google" class="google"
-                      ><i class="fa-brands fa-google" style="color: #ffffff"></i>Sign in With Google</a
-                    >
+                    <a href="/oauth2/authorization/google" class="google">
+                      <img src="/img/login/web_neutral_sq_SI@4x.png" alt=""></a>
+                  </li>
+                  <li>
+                    <a href="/oauth2/authorization/naver" class="naver">
+                      <img src="/img/login/btnG_official.png" alt=""></a>
+                  </li>
+                  <li>
+                    <a href="/oauth2/authorization/kakao" class="kakao">
+                      <img src="/img/login/kakao_login_large_narrow.png" alt=""></a>
                   </li>
                 </ul>
               </div>
@@ -65,6 +72,7 @@
     </section>
     <!-- Login Section End -->
   </div>
+
 </html>
 <th:block layout:fragment="script">
   <script th:src="@{/memberjs/password.js}"></script>
