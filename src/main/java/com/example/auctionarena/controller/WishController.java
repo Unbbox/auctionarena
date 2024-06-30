@@ -30,6 +30,8 @@ public class WishController {
 
         Long wno = service.addWish(wishDto);
 
+        log.info("찜 완료 : {}", wno);
+
         return new ResponseEntity<Long>(wno, HttpStatus.OK);
     }
     
