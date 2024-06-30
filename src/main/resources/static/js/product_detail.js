@@ -1,17 +1,24 @@
-// 찜목록 활성화 비활성화
-const wishBtn = document.querySelector(".anime__details__btn .wish_list");
+// 찜목록 표기
+const wishBtn = document.querySelector(".follow-btn");
+const wishForm = document.querySelector(".wishForm");
+const mid = wishForm.querySelector("#mid");
+
 wishBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   const btn = e.target.querySelector("i");
 
-  if (btn.classList.contains("fa-heart")) {
-    if (btn.classList.contains("fa-regular")) {
-      btn.classList.remove("fa-regular");
-      btn.classList.add("fa-solid");
-    } else {
-      btn.classList.remove("fa-solid");
-      btn.classList.add("fa-regular");
-    }
-  }
+  console.log("wish_mid : ", wish_mid);
+  console.log("mid : ", mid);
+
+  // if (btn.classList.contains("fa-heart")) {
+  //   if (btn.classList.contains("fa-regular")) {
+  //     btn.classList.remove("fa-regular");
+  //     btn.classList.add("fa-solid");
+  //   } else {
+  //     btn.classList.remove("fa-solid");
+  //     btn.classList.add("fa-regular");
+  //   }
+  // }
 });
 
 // 탭별 활성화 표시 및 해당 내용 출력

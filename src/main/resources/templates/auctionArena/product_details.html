@@ -88,12 +88,15 @@
                           <!-- <i class="fa fa-angle-right"></i> -->
                         </div>
                       </div>
-                      </form>
+                    </form>
+                    <form action="@{/wish/}" method="post" class="wishForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
                       <div class="row">
                         <div class="anime__details__btn wish_list">
+                          <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
                           <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
                         </div>
                       </div>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -253,6 +256,10 @@
 
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";
+
+        // 제품을 찜한 멤버 id 가져오기
+        const wish_mid = "[[$wishDto.MemberMid]]";
+
         // 제품 등록 일자 가져오기
         const sale_date = "[[${dto.createdDate}]]";
         const biddingDate = `[[${dto.biddingDate}]]`;
@@ -283,5 +290,6 @@
       <script th:src="@{/js/product_detail.js}"></script>
       <script th:src="@{/js/bidding.js}"></script>
       <script th:src="@{/js/comments.js}"></script>
+      <script th:src="@{/js/wish.js}"></script>
   </th:block>
 </html>
