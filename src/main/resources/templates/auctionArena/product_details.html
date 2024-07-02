@@ -1,6 +1,7 @@
 <!-- <!DOCTYPE html> -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
+    
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -8,9 +9,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__links">
-              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                <i class="fa fa-home"></i>
-                전체</a>
+              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-home"></i> 전체</a>
               <span href="">[[${dto.category}]]</span>
             </div>
           </div>
@@ -27,27 +26,25 @@
             <div class="col-lg-3">
               <div class="product_div">
                 <div class="product_detail_img">
-                  <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|"/>
+                  <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
                 </div>
-                <div class="product_details_pic_div">
+                <div class="product_details_pic_div" >
                   <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
                   <!-- 제품 이미지 리스트 출력 -->
                   <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
-                    <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|"/>
+                    <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
                   </div>
                 </div>
               </div>
-
+              
             </div>
             <div class="col-lg-9">
               <div class="anime__details__text">
                 <div class="product_details_title">
                   <h3 th:text="${dto.title}">제목</h3>
                   <!-- [[${dto.title}]] -->
-                  판매자 :
-                  <span th:text="${dto.writerName}">판매자</span><br>
-                  경매시작가:<span>
-                    [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
+                  판매자 : <span th:text="${dto.writerName}">판매자</span><br>
+                  경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
                 </div>
                 
                 <!-- <p>
@@ -88,15 +85,12 @@
                           <!-- <i class="fa fa-angle-right"></i> -->
                         </div>
                       </div>
-                    </form>
-                    <form action="@{/wish/}" method="post" class="wishForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+                      </form>
                       <div class="row">
                         <div class="anime__details__btn wish_list">
-                          <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
                           <a href="#" class="follow-btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
               </div>
@@ -122,13 +116,13 @@
           <!-- <div class="section-title"> -->
             <h5>상품설명</h5>
           </div>
-          <div class="row item_nav_sub item_detail_content">
+          <div class="row item_nav_sub item_detail">
             [[${dto.content}]]
           </div>
         </div>
         <!-- </div> -->
-        <div class="item_nav_sub item-bidding-record" style="display: none">
-          <div class="row section-title">
+        <div class="row item_nav_sub item-bidding-record" style="display: none">
+          <div class="section-title">
             <h5>경매기록</h5>
           </div>
           <div>
@@ -153,7 +147,7 @@
         <div class="row item_nav_sub item_review" style="display: none">
           <div class="product_details_comment">
             <div class="section-title">
-              <h5>상품 댓글 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
+              <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
             </div>
             <div class="comments">
               <!-- JS에서 댓글 처리 -->
@@ -163,7 +157,7 @@
         <div class="row item_nav_sub item_review_register" style="display: none">
           <div class="product_comment_form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
             <div class="section-title">
-              <h5>댓글 작성</h5>
+              <h5>상품평 작성</h5>
             </div>
             <!-- th:action="@{/comments/product/}" -->
             <form th:action="@{/comments/}" method="post" class="comment-form">
@@ -182,10 +176,11 @@
         </div>
         <!-- 관련 상품 form -->
         <form class="relation_categori_form">
+
           <!-- <div class="row"> -->
-          <div class="row item_nav section-title relation_product">
-            <h5>관련 상품</h5>
-          </div>
+            <div class="row item_nav section-title relation_product">
+              <h5>관련 상품</h5>
+            </div>
           <!-- </div> -->
           <div class="row relative__products">
           </div>
@@ -256,9 +251,6 @@
 
         // 제품 번호 가져오기
         const pno = "[[${dto.pno}]]";
-
-        // 제품을 찜한 멤버 id 가져오기
-
         // 제품 등록 일자 가져오기
         const sale_date = "[[${dto.createdDate}]]";
         const biddingDate = `[[${dto.biddingDate}]]`;
@@ -289,6 +281,5 @@
       <script th:src="@{/js/product_detail.js}"></script>
       <script th:src="@{/js/bidding.js}"></script>
       <script th:src="@{/js/comments.js}"></script>
-      <script th:src="@{/js/wish.js}"></script>
   </th:block>
 </html>

@@ -13,6 +13,8 @@ import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +52,6 @@ public interface DetailService {
   // replyCount) {
   public default ProductDto entityToDto(Product product, List<ProductImage> productImages, List<Bidding> biddings,
       Long replyCnt, Long biddingCnt) {
-
     ProductDto productDto = ProductDto.builder()
         .pno(product.getPno())
         .title(product.getTitle())
@@ -100,7 +101,6 @@ public interface DetailService {
 
     Map<String, Object> entityMap = new HashMap<>();
 
-    // Member Entity
     Member member = Member.builder().nickname(dto.getWriterName()).build();
     Category category = Category.builder().categoryName(dto.getCategory()).build();
     // Bidding bidding =
@@ -121,7 +121,6 @@ public interface DetailService {
 
     // 제품 이미지 부분
     List<ProductImageDto> productImageDtos = dto.getProductImageDtos();
-    System.out.println("prodImageDtos : " + dto);
 
     if (productImageDtos != null && productImageDtos.size() > 0) {
       List<ProductImage> productImages = productImageDtos.stream().map(pDto -> {
@@ -152,7 +151,7 @@ public interface DetailService {
         return bidding;
       }).collect(Collectors.toList());
 
-      entityMap.put("bidList", biddings);
+      entityMap.put("imgList", biddings);
     }
 
     return entityMap;

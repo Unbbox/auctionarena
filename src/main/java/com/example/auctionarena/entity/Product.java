@@ -64,10 +64,9 @@ public class Product extends BaseEntity {
   // 이미지 관련 리스트
   // private ProductImage productImage;
 
-  // @Builder.Default
-  // @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval
-  // = true)
-  // private List<ProductImage> productImages = new ArrayList<>();
+  @Builder.Default
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<ProductImage> productImages = new ArrayList<>();
 
   @Builder.Default
   @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)

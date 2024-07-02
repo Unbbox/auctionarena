@@ -1,93 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-  <div layout:fragment="content">
-    <!-- Product Sale Section Begin -->
-    <div class="col-8 product_sale_head">
-      <img src="/img/logo_icon2.png" alt="">
-      <h3 class="col-12">제품 등록</h3>
-    </div>
-    <form method="post" name="register_form" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
-      <!-- 이미지 업로드 칸 -->
-      <div class="row col-8 upload_image_form">
-        <div class="col product_image section-title">
-          <h5>제품 이미지 업로드</h5>
-          <input type="file" class="upload_product_image" accept="image/*" required="required" multiple="multiple" style="display: none;">
-          <div class="upload_image" name="upload_image">
-            <i class="fa-solid fa-camera">
-              이미지 업로드</i>
-          </div>
+    <div layout:fragment="content">  
+        <!-- Product Sale Section Begin -->
+        <div class="col-8 product_sale_head">
+            <img src="/img/logo_icon2.png" alt="">
+            <h3 class="col-12">제품 등록</h3>
         </div>
-        <div class="col">
-          <div class="upload_image_preview section-title">
-            <h5>이미지 미리보기</h5>
-            <div>
-              <ul>
-                <!-- 이미지 미리보기 div -->
-              </ul>
+        <form method="post" id="register_form" th:action="@{product_sale}" th:object="${productDto}">
+            <!-- 이미지 업로드 칸 -->
+            <div class="row col-8 upload_image_form">
+                <div class="col product_image section-title">
+                    <h5>제품 이미지 업로드</h5>
+                    <input type="file" class="upload_product_image" accept="image/*" required multiple style="display: none;">
+                    <div class="upload_image" name="upload_image">
+                        <i class="fa-solid fa-camera"> 이미지 업로드</i>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="upload_image_preview section-title">
+                        <h5>이미지 미리보기</h5>
+                        <div>
+                            <ul>
+                                <!-- 이미지 미리보기 div -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- 제목, 카테고리, 제품 설명 작성란 -->
-      <div class="product_sale">
-        <div class="col-8 product_title section-title">
-          <h5>제목</h5>
-          <input class="form-control" type="text" name="title" id="title" placeholder="상품 제목 입력">
-        </div>
-        <div class="col-8 product_category section-title">
-          <h5>카테고리</h5>
-          <select name="category" id="category" class="product_cate">
-            <!-- <option value="패션 의류/잡화">패션 의류/잡화</option> <option value="모바일/태블릿">모바일/태블릿</option> <option value="가전제품">가전제품</option> <option value="게임">게임</option> <option value="레저/여행">레저/여행</option> <option value="기타">기타</option> -->
-            <option value="" th:selected="${productDto.category} == ''">선택</option>
-            <option th:each="cate  : ${categories}" th:value="${cate}" th:text="${cate}" th:selected="${productDto.category} == ${cate}">
-              <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno} == ${cate.cno}"> -->
-            </option>
-          </select>
-        </div>
-        <div class="col-8 product_text section-title">
-          <h5>제품 설명</h5>
-          <textarea class="form-control" name="content" id="content" th:value="${productDto.content}"></textarea>
-        </div>
-      </div>
-      <!-- 경매 시작가, 경매 종료 일자 지정 -->
-      <div class="col-8 bidding_start_price section-title">
-        <h5>경매 시작가</h5>
-        <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
-      </div>
-      <div class="col-8 bidding_end_date section-title">
-        <h5>경매 종료 일자</h5>
-        <!-- 달력을 넣는게 더 나을지 생각 -->
-        <!-- 지금 이 부분 안나옴 -->
-        <select name="biddingDate" id="biddingDate" class="bidding_date">
-          <option value="" th:selected="${productDto.biddingDate} == ''">기간 선택</option>
-          <option value="1" th:selected="${productDto.biddingDate} == 1">1일</option>
-          <option value="3" th:selected="${productDto.biddingDate} == 3">3일</option>
-          <option value="5" th:selected="${productDto.biddingDate} == 5">5일</option>
-          <option value="7" th:selected="${productDto.biddingDate} == 7">7일</option>
-        </select>
-      </div>
-      <input type="hidden" name="writerName" id="writerName" th:value="${#authentication.principal.memberDto.nickname}">
-      <!-- 등록, 취소 버튼 -->
-      <div class="col-8 product_register_btn d-grid gap-2">
-
-        <button type="submit" class="btn btn-success">등록</button>
-        {% comment %} <button type="button" class="btn btn-primary">임시저장</button> {% endcomment %}
-
-        <a th:href="@{/auctionArena/categories}">
-          <button type="button" class="btn btn-danger">취소</button>
-        </a>
-      </div>
-    </form>
-    <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno}"> -->
-  </div>
-</section>
-<!-- Product Section End -->
-<th:block layout:fragment="script">
-  <script>
-    // csrf 토큰 설정
-    const csrfValue = '[[${_csrf.token}]]';
-  </script>
-  <script th:src="@{/js/register.js}"></script>
-  <script th:src="@{/js/upload.js}"></script>
-</th:block>
+            <!-- 제목, 카테고리, 제품 설명 작성란 -->
+            <div class="product_sale">
+                <div class="col-8 product_title section-title">
+                    <h5>제목</h5>
+                    <input class="form-control" type="text" name="title" id="title" placeholder="상품 제목 입력">
+                </div>
+                <div class="col-8 product_category section-title">
+                    <h5>카테고리</h5>
+                    <select name="category" id="category" class="product_cate">
+                        <!-- <option value="패션 의류/잡화">패션 의류/잡화</option>
+                        <option value="모바일/태블릿">모바일/태블릿</option>
+                        <option value="가전제품">가전제품</option>
+                        <option value="게임">게임</option>
+                        <option value="레저/여행">레저/여행</option>
+                        <option value="기타">기타</option> -->
+                        <option value="" th:selected="${productDto.category} == ''">선택</option>
+                        <option th:each="cate  : ${categories}" th:value="${cate}" th:text="${cate}" th:selected="${productDto.category} == ${cate}">
+                            <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno} == ${cate.cno}"> -->
+                        </option>
+                    </select>
+                </div>
+                <div class="col-8 product_text section-title">
+                    <h5>제품 설명</h5>
+                    <textarea class="form-control" name="content" id="content" th:value="${productDto.content}"></textarea>
+                </div>
+            </div>
+            <!-- 경매 시작가, 경매 종료 일자 지정 -->
+            <div class="col-8 bidding_start_price section-title">
+                <h5>경매 시작가</h5>
+                <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${productDto.startPrice}">
+            </div>
+            <div class="col-8 bidding_end_date section-title">
+                <h5>경매 종료 일자</h5>
+                <!-- 달력을 넣는게 더 나을지 생각 -->
+                <!-- 지금 이 부분 안나옴 -->
+                <select name="biddingDate" id="biddingDate" class="bidding_date">
+                    <option value="" th:selected="${productDto.biddingDate} == ''">기간 선택</option>
+                    <option value="1" th:selected="${productDto.biddingDate} == 1">1일</option>
+                    <option value="3" th:selected="${productDto.biddingDate} == 3">3일</option>
+                    <option value="5" th:selected="${productDto.biddingDate} == 5">5일</option>
+                    <option value="7" th:selected="${productDto.biddingDate} == 7">7일</option>
+                </select>
+            </div>
+            <input type="hidden" name="writerName" id="writerName"  th:value="${#authentication.principal.memberDto.nickname}">
+            <!-- 등록, 취소 버튼 -->
+            <div class="col-8 product_register_btn d-grid gap-2">
+                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="button" class="btn btn-danger">취소</button>
+            </div>
+        </form>
+        <!-- <input type="hidden" name="cno" id="cno" th:value="${productDto.cno}"> -->
+    </div>
+  </section>
+  <!-- Product Section End -->
+  <th:block layout:fragment="script">
+    <script>
+        // csrf 토큰 설정
+        const csrfValue = '[[${_csrf.token}]]';
+    </script>
+    <script th:src="@{/js/register.js}"></script>
+    <script th:src="@{/js/upload.js}"></script>
+  </th:block>
 </html>

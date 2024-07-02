@@ -30,18 +30,18 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("로그인 요청 {}", username);
+        log.info("로그인 요청");
         Optional<Member> result = memberRepository.findByEmail(username);
         if (!result.isPresent())
             throw new UsernameNotFoundException("Check Email");
         Member member = result.get();
 
-        return new AuthMemberDto(entityToDto(member));
+        return new AuthMemberDto(entityToDto(member), false);
     }
 
     @Override
     public String signup(MemberDto insertDto) throws IllegalStateException {
-        log.info("회원가입 요청 {}", insertDto);
+        log.info("회원가입 요청");
 
         // 중복 이메일 확인
         validateDuplicateEmail(insertDto.getEmail());
@@ -69,7 +69,7 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     @Override
     public void passwordFind(MemberDto findDto) throws IllegalStateException {
         // 이메일 확인
-        log.info("비밀번호 찾기 요청 {}", findDto);
+        log.info("비밀번호 찾기 요청");
 
         Optional<Member> email = memberRepository.findByEmail(findDto.getEmail());
         if (email.isEmpty()) {
@@ -102,8 +102,24 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
     }
 
     @Override
+    public void accountCheck(MemberDto checkDto) throws IllegalStateException {
+        // 이메일 확인
+        log.info("비밀번호 찾기 요청");
+
+        Optional<Member> email = memberRepository.findByEmail(checkDto.getEmail());
+        Member member = email.get();
+        if (email.isEmpty()) {
+            throw new IllegalStateException("이메일이 다릅니다.");
+        } else {
+            if (!passwordEncoder.matches(checkDto.getPassword(), member.getPassword())) {
+                throw new IllegalStateException("비밀번호가 다릅니다.");
+            }
+        }
+    }
+
+    @Override
     public void editAccountInfo(MemberDto infoDto) {
-        log.info("회원정보 수정 요청 {}", infoDto);
+        log.info("회원정보 수정 요청");
 
         Member member = memberRepository.findByEmail(infoDto.getEmail()).get();
 

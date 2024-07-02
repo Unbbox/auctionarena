@@ -1504,6 +1504,18 @@ ol {
   top: 8px;
 }
 
+.blog__details__btns__item h5 a:hover {
+  border-radius: 0;
+  background: transparent;
+  color: red;
+}
+
+.blog__details__btns__item h5 a span:hover {
+  border-radius: 0;
+  background: transparent;
+  color: red;
+}
+
 .blog__details__comment {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 30px;
@@ -1776,7 +1788,7 @@ ol {
 }
 
 .login__social__links span {
-  color: #ffffff;
+  color: #000000;
   display: block;
   font-size: 13px;
   font-weight: 700;
@@ -1802,28 +1814,14 @@ ol {
   letter-spacing: 2px;
   text-transform: uppercase;
   width: 430px;
-  padding: 14px 0;
+  padding: 3px 0;
   position: relative;
   margin: 0 auto;
 }
 
-.login__social__links ul li a.facebook {
-  background: #4267b2;
-}
-
-.login__social__links ul li a.google {
-  background: #ff4343;
-}
-
-.login__social__links ul li a.twitter {
-  background: #1da1f2;
-}
-
-.login__social__links ul li a i {
-  font-size: 20px;
-  position: absolute;
-  left: 32px;
-  top: 14px;
+.login__social__links ul li a img {
+  width: 230px;
+  height: 50px;
 }
 
 /*---------------------
@@ -3107,8 +3105,6 @@ input[type="file"]::file-selector-button {
   font-size: 40px;
   color: #3f3f3f;
 }
-
-/*=================== 회원정보 ==================*/
 
 /*----------------------------------------*/
 /* 이나 end */

@@ -37,6 +37,10 @@ public class Bidding extends BaseEntity {
     // @Column(nullable = false)
     private Long biddingPrice;
 
+    // BaseEntity 있어서 안해도 될듯?
+    // @Column(nullable = false)
+    // private String biddingTime;
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
 
