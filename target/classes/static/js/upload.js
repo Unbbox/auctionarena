@@ -98,17 +98,15 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
     return;
   }
 
-  // 해야함
   const startPrice = document.querySelector("#startPrice");
   if (startPrice.value == "") {
     alert("경매 시작 금액을 입력해주세요.");
-    focus.on(startPrice);
+    startPrice.focus();
     return;
   }
 
   console.log("price = ", startPrice.value);
 
-  // 해야함
   const biddingDate = document.querySelector("#biddingDate");
   console.log(typeof biddingDate.value);
   console.log(biddingDate.value);

@@ -119,7 +119,7 @@ public class DetailServiceImpl implements DetailService {
     Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
-    // log.info("매핑은 됐나? : {}", entityMap);
+    // log.info("매핑 확인 : {}", entityMap);
 
     // 제품 등록
     Product product = (Product) entityMap.get("product");

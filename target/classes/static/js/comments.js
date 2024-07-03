@@ -102,7 +102,7 @@ commentForm.addEventListener("submit", (e) => {
 
         text.value = ""; // 작성한 댓글 내용 지우기
 
-        if (data) console.log(data + "번 댓글 등록 완료");
+        if (data) console.log("댓글 등록 완료");
         commentLoaded();
       });
   }
@@ -134,7 +134,7 @@ commentList.addEventListener("click", (e) => {
     })
       .then((response) => response.text())
       .then((data) => {
-        alert(data + " 번 댓글이 삭제되었습니다.");
+        alert("댓글이 삭제되었습니다.");
         commentLoaded();
       });
   }
