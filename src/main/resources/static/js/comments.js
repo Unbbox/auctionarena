@@ -83,7 +83,8 @@ commentForm.addEventListener("submit", (e) => {
   // 댓글 등록
   if (!commentNo.value) {
     if (text.value == "") {
-      alert("댓글 내용을 입력해주세요.");
+      // alert("댓글 내용을 입력해주세요.");
+      swal("댓글 내용을 입력해주세요.", { icon: "warning" });
       text.focus();
       return;
     }
@@ -134,7 +135,7 @@ commentList.addEventListener("click", (e) => {
     })
       .then((response) => response.text())
       .then((data) => {
-        alert("댓글이 삭제되었습니다.");
+        swal("댓글이 삭제되었습니다.", { icon: "success" });
         commentLoaded();
       });
   }
