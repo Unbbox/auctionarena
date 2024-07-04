@@ -5,13 +5,15 @@
     <section class="blog-details spad">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-lg-11">
+          <div class="col-lg-10">
             <div class="blog__details__title">
               <h2>[[${dto.title}]]</h2>
-              <h6>
-                [[${dto.writerNickname}]]
-                <span>- [[${#temporals.format(dto.createdDate, 'yyyy/MM/dd')}]]</span>
+              <div class="text-right">
+                <h6>
+                  [[${dto.writerNickname}]]
+                  <span>- [[${#temporals.format(dto.createdDate, 'yyyy/MM/dd')}]]</span>
               </h6>
+            </div>
             </div>
           </div>
           <div class="notice-image">

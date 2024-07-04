@@ -1356,6 +1356,10 @@ ol {
   margin-bottom: 50px;
 }
 
+.text-right {
+  text-align: right;
+}
+
 .blog__details__title h6 {
   font-size: 15px;
   color: #000000;
