@@ -83,8 +83,13 @@ commentForm.addEventListener("submit", (e) => {
   // 댓글 등록
   if (!commentNo.value) {
     if (text.value == "") {
-      // alert("댓글 내용을 입력해주세요.");
-      swal("댓글 내용을 입력해주세요.", { icon: "warning" });
+      // alert
+      Swal.fire({
+        icon: "warning",
+        title: "댓글 내용을 입력해주세요.",
+        showConfirmButton: false,
+        timer: 1000,
+      });
       text.focus();
       return;
     }
@@ -121,22 +126,64 @@ commentList.addEventListener("click", (e) => {
   const email = commentForm.querySelector("#email");
 
   if (target.classList.contains("del_btn")) {
-    if (!confirm("댓글을 정말로 삭제하시겠습니까?")) return;
+    // if (!confirm("댓글을 정말로 삭제하시겠습니까?")) return;
+    Swal.fire({
+      title: "댓글 삭제",
+      text: "댓글을 정말로 삭제하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const form = new FormData();
+        form.append("email", email.value);
 
-    const form = new FormData();
-    form.append("email", email.value);
+        fetch(`/comments/${pno}/${commentNo}`, {
+          method: "delete",
+          headers: {
+            "X-CSRF-TOKEN": csrfValue,
+          },
+          body: form,
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            // alert
+            Swal.fire({
+              icon: "success",
+              title: "댓글이 삭제되었습니다.",
+              showConfirmButton: false,
+              timer: 1000,
+            });
 
-    fetch(`/comments/${pno}/${commentNo}`, {
-      method: "delete",
-      headers: {
-        "X-CSRF-TOKEN": csrfValue,
-      },
-      body: form,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        swal("댓글이 삭제되었습니다.", { icon: "success" });
-        commentLoaded();
-      });
+            commentLoaded();
+          });
+      }
+    });
+
+    // const form = new FormData();
+    // form.append("email", email.value);
+
+    // fetch(`/comments/${pno}/${commentNo}`, {
+    //   method: "delete",
+    //   headers: {
+    //     "X-CSRF-TOKEN": csrfValue,
+    //   },
+    //   body: form,
+    // })
+    //   .then((response) => response.text())
+    //   .then((data) => {
+    //     // alert
+    //     Swal.fire({
+    //       icon: "success",
+    //       title: "댓글이 삭제되었습니다.",
+    //       showConfirmButton: false,
+    //       timer: 1000,
+    //     });
+
+    //     commentLoaded();
+    //   });
   }
 });
