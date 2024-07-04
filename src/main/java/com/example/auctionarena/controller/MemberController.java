@@ -194,11 +194,12 @@ public class MemberController {
 
     @PostMapping("/accountCheck")
     public String postAccountCheck(@Valid @ModelAttribute MemberDto dto, BindingResult result,
-            RedirectAttributes rttr) {
+            RedirectAttributes rttr, HttpSession session) {
         log.info("회원정보 확인");
 
         try {
             service.accountCheck(dto);
+            session.setAttribute("passwordResetCompleted", true);
             rttr.addFlashAttribute("email", dto.getEmail());
             return "redirect:/member/edit-password";
         } catch (IllegalStateException e) {

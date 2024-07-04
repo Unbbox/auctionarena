@@ -1347,13 +1347,18 @@ ol {
   Blog Details
 -----------------------*/
 
+.notice-details-title {
+  border-bottom: 1px solid #7e7e7e;
+  margin-bottom: 40px;
+}
+
 .blog-details {
   padding-top: 70px;
 }
 
 .blog__details__title {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .text-right {
@@ -1365,7 +1370,7 @@ ol {
   color: #000000;
   font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .blog__details__title h6 span {
@@ -2567,6 +2572,10 @@ ol {
   float: right;
 }
 
+.notice-list-btn:hover {
+  background: #000000 !important;
+}
+
 .notice-details-btn:hover {
   background: #e53637;
 }
@@ -3107,7 +3116,7 @@ input[type="file"]::file-selector-button {
 }
 
 .mypage-btn:hover {
-  background: #e53637;
+  background: #000000;
 }
 
 /*=================== Access-denied ==================*/

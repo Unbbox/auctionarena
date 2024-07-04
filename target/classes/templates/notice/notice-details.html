@@ -5,7 +5,7 @@
     <section class="blog-details spad">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-lg-10">
+          <div class="col-lg-10 notice-details-title">
             <div class="blog__details__title">
               <h2>[[${dto.title}]]</h2>
               <div class="text-right">
@@ -34,7 +34,7 @@
                 <p>[[${dto.content}]]</p>
                 <div class="blog__details__text notice__details_btn">
                   <a
-                    class="notice-details-btn"
+                    class="notice-details-btn notice-list-btn"
                     th:href="@{notice(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
                   >
                     목록

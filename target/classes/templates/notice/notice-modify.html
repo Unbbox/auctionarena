@@ -54,7 +54,7 @@
                     <textarea class="form-control" type="text" name="content" id="content" rows="10">[[${dto.content}]]</textarea>
                   </div>
                   <div class="blog__details__text">
-                    <a class="notice-details-btn" th:href="@{notice-details(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">
+                    <a class="notice-details-btn notice-list-btn" th:href="@{notice-details(nno=${dto.nno}, page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">
                       취소
                     </a>
                     <button class="notice-details-btn remove" type="button">삭제</button>
