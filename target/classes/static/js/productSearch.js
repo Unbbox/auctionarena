@@ -5,7 +5,13 @@ document.querySelector("#productSearchForm").addEventListener("submit", (e) => {
   const keyword = document.querySelector("#keyword");
 
   if (keyword.value == "") {
-    alert("검색어를 확인해 주세요");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "검색어를 확인해 주세요",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     keyword.focus();
     return;
   }

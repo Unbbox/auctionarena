@@ -1,48 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
   <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Anime Template" />
-    <meta name="keywords" content="Anime, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Anime Template"/>
+    <meta name="keywords" content="Anime, unica, creative, html"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>AuctionArena</title>
 
     <!-- 브라우저 로고 -->
-    <link rel="icon" href="/img/logo_icon.png" />
+    <link rel="icon" href="/img/logo_icon.png"/>
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 
     <!-- Css Styles -->
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css"/>
     <!-- <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css" /> -->
-     
+
     <!-- Sweet Alert -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css">
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/plyr.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/category.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/header.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/product_details.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/upload.css}" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/product_sale.css}" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/plyr.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/category.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/header.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/product_details.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/upload.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/product_sale.css}" type="text/css"/>
 
     <!-- swiper 사용(이미지 슬라이더) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" th:href="@{/css/swiper.css}" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/swiper.css}" type="text/css"/>
     <th:block layout:fragment="css"></th:block>
   </head>
 
@@ -63,9 +59,9 @@
     <footer th:replace="~{fragments/footer::footer}"></footer>
     <!-- Footer Section End -->
 
-    <!-- Sweet Alert JS -->
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    
+    <!-- Sweet Alert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.all.min.js"></script>
+
     <!-- Js Plugins -->
     <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
     <script th:src="@{/js/bootstrap.min.js}"></script>
@@ -78,7 +74,8 @@
     <!-- <script th:src="@{/js/link.js}"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script th:src="@{/js/swiper.js}"></script>
-    
+
     <th:block layout:fragment="script"></th:block>
   </body>
+
 </html>

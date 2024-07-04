@@ -76,31 +76,69 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   const form = e.target;
   console.log(form);
 
+  // 이미지 삽입 확인
+  const image = document.querySelector(".upload_product_image");
+  if (image.value == "") {
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "이미지를 삽입해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    // image.focus();
+    return;
+  }
+
   // 제목 입력 확인
   const title = document.querySelector("#title");
   if (title.value == "") {
-    alert("제목을 입력해주세요.");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "제목을 입력해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     title.focus();
     return;
   }
 
   const cate = document.querySelector("#category");
   if (cate.value == "") {
-    alert("카테고리를 선택해주세요.");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "카테고리를 선택해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     cate.focus();
     return;
   }
 
   const content = document.querySelector("#content");
   if (content.value == "") {
-    alert("제품 설명을 작성해주세요.");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "제품 설명을 입력해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     content.focus();
     return;
   }
 
   const startPrice = document.querySelector("#startPrice");
   if (startPrice.value == "") {
-    alert("경매 시작 금액을 입력해주세요.");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "경매 시작 금액을 입력해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     startPrice.focus();
     return;
   }
@@ -111,7 +149,13 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   console.log(typeof biddingDate.value);
   console.log(biddingDate.value);
   if (biddingDate.value == "") {
-    alert("경매 기간을 입력해주세요.");
+    // alert
+    Swal.fire({
+      icon: "warning",
+      title: "경매 기간을 입력해주세요.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     return;
   }
 

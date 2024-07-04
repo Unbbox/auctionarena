@@ -82,7 +82,12 @@ biddingForm.addEventListener("submit", (e) => {
   // 입찰 마감되었을 때 입찰 안되게 해야함
   const bidding_date = document.querySelector(".date_now");
   if (bidding_date.classList.contains("finish_sale")) {
-    alert("경매가 마감되었습니다.");
+    Swal.fire({
+      icon: "warning",
+      title: "경매가 마감되었습니다.",
+      showConfirmButton: false,
+      timer: 1000,
+    });
     return;
   }
   // 처음 입찰 기록 없을 때 입찰 기록 설정
@@ -99,7 +104,12 @@ biddingForm.addEventListener("submit", (e) => {
   // console.log("biddingPrice type : ", typeof biddingPrice.value);
 
   if (Number(biddingPrice.value) <= Number(currPrice.value)) {
-    alert("입찰 금액이 현재 경매가보다 낮습니다.");
+    Swal.fire({
+      icon: "error",
+      text: "입찰 금액이 현재 경매가보다 낮습니다.",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     return;
   } else {
     const body = {
@@ -126,7 +136,14 @@ biddingForm.addEventListener("submit", (e) => {
           biddingPrice.value = "";
 
           getBiddingList();
-          if (data) alert("입찰 등록이 완료되었습니다.");
+          if (data) {
+            Swal.fire({
+              icon: "success",
+              title: "입찰 등록이 완료되었습니다.",
+              showConfirmButton: false,
+              timer: 1000,
+            });
+          }
         });
   }
 });
