@@ -1,7 +1,6 @@
 <!-- <!DOCTYPE html> -->
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
-    
 
     <!-- Breadcrumb Begin -->
     <div class="breadcrumb-option">
@@ -9,7 +8,9 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="breadcrumb__links">
-              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}"><i class="fa fa-home"></i> 전체</a>
+              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                <i class="fa fa-home"></i>
+                전체</a>
               <span href="">[[${dto.category}]]</span>
             </div>
           </div>
@@ -26,25 +27,27 @@
             <div class="col-lg-3">
               <div class="product_div">
                 <div class="product_detail_img">
-                  <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" />
+                  <img class="product_details_pic set-bg" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|"/>
                 </div>
-                <div class="product_details_pic_div" >
+                <div class="product_details_pic_div">
                   <!-- <div class="set-bg" data-setbg="image.getImageURL()"></div> -->
                   <!-- 제품 이미지 리스트 출력 -->
                   <div class="product_details_pic_sub" th:each="image : ${dto.productImageDtos}" th:attr="data-file=${image.getImageURL()}">
-                    <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|" />
+                    <img class="sub_pic" th:if="${image.path != null}" th:src="|/upload/display?fileName=${image.getImageURL()}|"/>
                   </div>
                 </div>
               </div>
-              
+
             </div>
             <div class="col-lg-9">
               <div class="anime__details__text">
                 <div class="product_details_title">
                   <h3 th:text="${dto.title}">제목</h3>
                   <!-- [[${dto.title}]] -->
-                  판매자 : <span th:text="${dto.writerName}">판매자</span><br>
-                  경매시작가:<span> [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
+                  판매자 :
+                  <span th:text="${dto.writerName}">판매자</span><br>
+                  경매시작가:<span>
+                    [[${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')}]]원</span>
                 </div>
                 
                 <!-- <p>
@@ -116,15 +119,15 @@
           <!-- <div class="section-title"> -->
             <h5>상품설명</h5>
           </div>
-          <div class="row item_nav_sub item_detail">
+          <div class="item_nav_sub item_detail_content">
             [[${dto.content}]]
           </div>
         </div>
         <!-- </div> -->
-        <div class="row item_nav_sub item-bidding-record" style="display: none">
-          <div class="section-title">
+        <div class="row item_nav_sub item-bidding-record section-title" style="display: none">
+          <!-- <div class="section-title"> -->
             <h5>경매기록</h5>
-          </div>
+          <!-- </div> -->
           <div>
             <table class="w-full whitespace-no-wrap">
               <thead>
@@ -144,21 +147,23 @@
           </div>
         </div>
         <!-- 댓글 영역 -->
-        <div class="row item_nav_sub item_review" style="display: none">
+        <div class="row item_nav_sub item_review section-title" style="display: none">
           <div class="product_details_comment">
-            <div class="section-title">
+            <!-- <div class="section-title"> -->
               <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
-            </div>
+            <!-- </div> -->
+          </div>
+          <div>
             <div class="comments">
               <!-- JS에서 댓글 처리 -->
             </div>
           </div>
         </div>
-        <div class="row item_nav_sub item_review_register" style="display: none">
+        <div class="row item_nav_sub item_review_register section-title" style="display: none">
           <div class="product_comment_form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
-            <div class="section-title">
+            <!-- <div class="section-title"> -->
               <h5>상품평 작성</h5>
-            </div>
+            <!-- </div> -->
             <!-- th:action="@{/comments/product/}" -->
             <form th:action="@{/comments/}" method="post" class="comment-form">
               <input type="hidden" name="commentNo" id="commentNo" />
@@ -192,8 +197,14 @@
             <div class="swiper-slide" th:each="relation : ${relationDto}">
               <div class="category_item_pic set-bg">
                 <a th:href="@{/auctionArena/product_details(pno=${relation.pno})}">
-                <img th:src="|/upload/display?fileName=${relation.productImageDtos[0].getImageURL()}|">
-                <span class="categori_product_content" th:text="${relation.title}">상품 1</span>
+                <div class="product_swiper">
+                  <div>
+                    <img th:src="|/upload/display?fileName=${relation.productImageDtos[0].getImageURL()}|">
+                  </div>
+                  <div>
+                    <span class="categori_product_content" th:text="${relation.title}">상품 1</span>
+                  </div>
+                </div>
                 </a>
               </div>
             </div>
@@ -208,24 +219,28 @@
         <div class="product_btn_list">
           <script>
           </script>
-            <a 
-              th:if="${dto.writerEmail == #authentication.name}"
-              th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-              <button type="button" class="btn btn-success product_modify" sec:authorize="hasRole('MEMBER')">
-                수정
-              </button>
-            </a>
-            <div class="product_btn_list" 
-              th:if="${dto.writerEmail == #authentication.name}"
-              sec:authorize="hasRole('MEMBER')">
-              <button type="button" class="btn btn-danger product_remove">
-                삭제
-              </button>
+            <div class="col product_modify_btn">
+              <a 
+                th:if="${dto.writerEmail == #authentication.name}"
+                th:href="@{product_modify(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                <button type="button" class="btn btn-success product_modify" sec:authorize="hasRole('MEMBER')">
+                  수정
+                </button>
+              </a>
+              <div class="product_btn_list" 
+                th:if="${dto.writerEmail == #authentication.name}"
+                sec:authorize="hasRole('MEMBER')">
+                <button type="button" class="btn btn-danger product_remove">
+                  삭제
+                </button>
+              </div>
             </div>
-            <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-              <button type="button" class="btn btn-primary product_list">목록</button>
-            </a>
-          </div>
+            <div class="col product_list_btn">
+              <a th:href="@{categories(page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                <button type="button" class="btn btn_cancle product_list">목록</button>
+              </a>
+            </div>
+          <!-- </div> -->
           <form method="post" id="deleteForm" th:action="@{remove}">
             <input type="hidden" name="pno" th:value="${dto.pno}" />
             <input type="hidden" name="page" th:value="${requestDto.page}" />

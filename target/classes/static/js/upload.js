@@ -1,11 +1,11 @@
 const upload_div = document.querySelector(".upload_image"); // upload div
 const upload_image = document.querySelector(".upload_product_image"); // file upload button
-const imagePreview = document.querySelector(".upload_image_preview ul"); // 이미지 파일 미리보기 ul
+const imagePreview = document.querySelector(".image_preview ul"); // 이미지 파일 미리보기 ul
 
 // div 클릭 시 파일 등록
-upload_div.addEventListener("click", () => {
-  upload_image.click();
-});
+// upload_div.addEventListener("click", () => {
+//   upload_image.click();
+// });
 
 function checkExtension(fileName) {
   // 정규식 사용
@@ -23,14 +23,15 @@ function showUploadImages(arr) {
 
   arr.forEach((obj, idx) => {
     tags += `<li data-name="${obj.fileName}" data-path="${obj.folderPath}" data-uuid="${obj.uuid}">`;
-    tags += `<div>`;
+    tags += `<div class="img_title">`;
     tags += `<a href=""><img src="/upload/display?fileName=${obj.imageURL}" class="block"></a>`;
-    tags += `<span class="text-sm d-inline-block mx-1">${obj.fileName}</span>`;
-    tags += `<a href="#" data-file="${obj.imageURL}">`;
-    tags += `<i class="fa-solid fa-xmark"></i></a>`;
+    tags += `<div><span class="text-sm d-inline-block mx-1">${obj.fileName}</span>`;
+    tags += `<a href="#" class="" data-file="${obj.imageURL}">`;
+    tags += `<i class="fa-solid fa-xmark"></i></a></div>`;
     tags += `</div></li>`;
   });
-  imagePreview.insertAdjacentHTML("beforeend", tags);
+  // imagePreview.insertAdjacentHTML("beforeend", tags);
+  document.querySelector(".upload_image_preview div ul").insertAdjacentHTML("beforeend", tags);
 }
 
 upload_image.addEventListener("change", (e) => {
@@ -50,7 +51,7 @@ upload_image.addEventListener("change", (e) => {
   }
 
   for (const value of formData.values()) {
-    console.log(value);
+    console.log("value : " + value);
   }
 
   fetch("/upload/uploadAjax", {
@@ -78,7 +79,8 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
 
   // 이미지 삽입 확인
   const image = document.querySelector(".upload_product_image");
-  if (image.value == "") {
+  console.log("image: " + image.value);
+  if (image.value == null) {
     // alert
     Swal.fire({
       icon: "warning",
@@ -86,7 +88,6 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
       showConfirmButton: false,
       timer: 1000,
     });
-    // image.focus();
     return;
   }
 
@@ -117,18 +118,18 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
     return;
   }
 
-  const content = document.querySelector("#content");
-  if (content.value == "") {
-    // alert
-    Swal.fire({
-      icon: "warning",
-      title: "제품 설명을 입력해주세요.",
-      showConfirmButton: false,
-      timer: 1000,
-    });
-    content.focus();
-    return;
-  }
+  // const content = document.querySelector("#content");
+  // if (content.value == "") {
+  //   // alert
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "제품 설명을 입력해주세요.",
+  //     showConfirmButton: false,
+  //     timer: 1000,
+  //   });
+  //   content.focus();
+  //   return;
+  // }
 
   const startPrice = document.querySelector("#startPrice");
   if (startPrice.value == "") {

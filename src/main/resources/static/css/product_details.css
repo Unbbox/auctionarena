@@ -191,19 +191,27 @@
 }
 
 .category_item_pic {
-  width: 300px;
-  height: 400px;
+  width: 250px;
+  height: 200px;
 }
 
 .category_item_pic img {
-  margin-top: 50px;
-  width: 300px;
-  height: 300px;
+  margin-top: 10px;
+  width: 150px;
+  height: 150px;
 }
 
 .categori_product_content {
   font-size: 20px;
 }
+
+/* 관련 상품 css */
+.product_swiper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* 관련 상품 css 종료 */
 /* css 추가 완료(재인) */
 
@@ -256,18 +264,21 @@
 }
 
 .product_details_comment {
-  margin-bottom: 55px;
+  margin-bottom: 15px;
 }
 
 .product_review_item_text {
   overflow: hidden;
-  background: #e53637;
+  background: #f1f1f1;
+  /* border-color: #e53637; */
+  border: 2px solid #e53637;
   padding: 18px 30px 16px 20px;
   border-radius: 10px;
 }
 
 .product_review_item_text > * {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: black;
 }
 
 .anime__review__item__text h6 {
@@ -286,7 +297,7 @@
   line-height: 23px;
   margin-bottom: 0;
 }
-
+/* form textarea */
 .product_comment_form form textarea {
   width: 100%;
   font-size: 15px;
@@ -300,6 +311,19 @@
   resize: none;
   margin-bottom: 24px;
 }
+
+/* 댓글 css */
+.comment_text {
+  overflow: hidden;
+  background: #f1f1f1;
+  padding: 18px 30px 16px 20px;
+  border-radius: 10px;
+}
+
+.product_comment_form h5 {
+  margin-bottom: 15px;
+}
+/* 댓글 css 완료 */
 
 .product_btn_list {
   display: flex;
@@ -327,3 +351,55 @@
   margin-left: 0;
   margin-bottom: 5px;
 }
+.item_detail_content {
+  background-color: #f1f1f1 !important;
+  padding: 10px;
+  min-height: 200px;
+  border-radius: 5px;
+}
+
+/* 버튼 css */
+.product_modify_btn {
+  display: flex;
+}
+
+.product_list_btn {
+  text-align: right;
+}
+
+.btn-success,
+.btn-danger,
+.btn_cancle {
+  color: white !important;
+  background-color: #b7b7b7;
+  border-color: #b7b7b7;
+}
+
+.btn-success:hover {
+  color: white;
+  background-color: #198754;
+  border-color: #198754;
+}
+.btn-danger:hover {
+  color: white;
+  background-color: #e53637;
+  border-color: #e53637;
+}
+
+.btn_cancle:hover {
+  background-color: black;
+  border-color: black;
+  color: white;
+}
+
+.del_btn {
+  color: black;
+  border-color: black;
+}
+
+.del_btn:hover {
+  background-color: #e53637;
+  color: white !important;
+  border-color: red;
+}
+/* 버튼 css 종료 */
