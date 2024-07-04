@@ -37,6 +37,12 @@
                   <div class="text-danger" id="passwordError"></div>
                 </div>
                 <div class="input__item">
+                  <input type="password" class="password" placeholder="비밀번호 확인" id="checkPassword" name="checkPassword"/>
+                  <span class="icon_lock"></span>
+                  <i class="fa fa-eye fa-lg" style="color: #a0a3ab;"></i>
+                  <div class="text-danger" id="chkPasswordError"></div>
+                </div>
+                <div class="input__item">
                   <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
                   <span class="icon_profile"></span>
                   <div class="text-danger" id="nameError"></div>
@@ -63,8 +69,7 @@
                   <span class="icon_phone"></span>
                   <div class="text-danger" id="phoneError"></div>
                 </div>
-                <button type="submit" class="sign-btn" disabled>회원가입</button>
-                <h5>Already have an account? <a th:href="@{login}">Log In!</a></h5>
+
             </div>
         </div>
         <div class="col-lg-6">
@@ -466,6 +471,10 @@
 2) 시행일자 : 2018년 05월 01일 
                 </textarea>
               </section>
+                <div class="signup-button">
+                  <button type="submit" class="sign-btn" disabled>회원가입</button>
+                  <h5>Already have an account? <a th:href="@{login}">Log In!</a></h5>
+                </div>
             </div>
           </div>
         </form>

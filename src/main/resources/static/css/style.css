@@ -1727,11 +1727,12 @@ ol {
   width: 100%;
   font-family: "Noto Sans KR", sans-serif;
   font-size: 15px;
-  color: #b7b7b7;
+  color: #000000;
   background: #ffffff;
   border: 1px solid #e8e8e8;
   padding-left: 76px;
 }
+
 
 .login__form form .input__item input::-webkit-input-placeholder {
   color: #b7b7b7;
@@ -1761,10 +1762,10 @@ ol {
   top: 13px;
 }
 
-.login__form form button {
+/* .login__form form button {
   border-radius: 0;
   margin-top: 1px;
-}
+} */
 
 .login__form .forget_pass {
   font-family: "Noto Sans KR", sans-serif;
@@ -1851,17 +1852,29 @@ ol {
 }
 
 .signup .login__form:after {
-  height: 100%;
+  height: 120%;
+  margin-top: 10px;
   margin-right: 3%;
 }
 
-.signup .login__form h5 {
-  font-size: 15px;
-  color: #0f0f0f;
-  margin-top: 36px;
+.signup-button {
+  padding-top: 15px;
+  float: right;
 }
 
-.signup .login__form h5 a {
+.signup-button button {
+  border-radius: 0;
+  margin-top: 1px;
+  margin-left: 110px;
+}
+
+.signup-button h5 {
+  font-size: 15px;
+  color: #0f0f0f;
+  margin-top: 20px;
+}
+
+.signup-button h5 a {
   color: #e53637;
   font-weight: 700;
 }
@@ -2773,6 +2786,10 @@ input[type="file"]::file-selector-button {
 }
 
 .agreeActive {
+}
+
+.input__item input {
+
 }
 
 .input__item input:focus {
