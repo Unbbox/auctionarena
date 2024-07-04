@@ -52,17 +52,6 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         // 권한 부여
         insertDto.setRole(MemberRole.MEMBER);
 
-        // Member member = Member.builder()
-        // .email(insertDto.getEmail())
-        // .password(passwordEncoder.encode(insertDto.getPassword()))
-        // .name(insertDto.getName())
-        // .nickname(insertDto.getNickname())
-        // .phoneNumber(insertDto.getPhoneNumber())
-        // .addr(insertDto.getAddr())
-        // .zonecode(insertDto.getZonecode())
-        // .role(MemberRole.MEMBER)
-        // .build();
-
         return memberRepository.save(dtoToEntity(insertDto)).getEmail();
     }
 
