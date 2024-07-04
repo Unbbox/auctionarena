@@ -141,13 +141,17 @@ password.addEventListener("change", () => {
   }
 });
 
-checkPassword.addEventListener("change", () => {
-  if (checkPassword.equals(password)) {
+function validatePassword() {
+  if (checkPassword.value === password.value) {
     chkPasswordError.textContent = "";
   } else {
     chkPasswordError.textContent = errMsg.checkPassword.notPw;
   }
-});
+}
+
+// 두 입력 필드에 이벤트 리스너 추가
+password.addEventListener("input", validatePassword);
+checkPassword.addEventListener("input", validatePassword);
 
 // 전화번호
 const phoneNumber = document.querySelector("#phoneNumber");
@@ -180,40 +184,46 @@ signupBtn.addEventListener("click", (e) => {
   if (email.value == "") {
     emailError.textContent = errMsg.email.empty;
     email.focus();
-    exit;
+    return;
   } else if (!emailRegExp.test(email.value)) {
     emailError.textContent = errMsg.email.notEmail;
-    exit;
+    return;
   } else if (password.value == "") {
     passwordError.textContent = errMsg.password.empty;
     password.focus();
-    exit;
+    return;
   } else if (!pwRegExp.test(password.value)) {
-    passwordError.textContent = errMsg.password.notPw;
-    exit;
+   passwordError.textContent = errMsg.password.notPw;
+   return;
+  }else if (checkPassword.value == "") {
+    chkPasswordError.textContent = errMsg.checkPassword.empty;
+    checkPassword.focus();
+    return;
+  } else if (checkPassword.value != password.value) {
+    chkPasswordError.textContent = errMsg.checkPassword.notPw;
   } else if (name.value == "") {
     nameError.textContent = errMsg.name;
     name.focus();
-    exit;
+    return;
   } else if (nickname.value == "") {
     nicknameError.textContent = errMsg.nickname;
     nickname.focus();
-    exit;
+    return;
   } else if (zonecode.value == "") {
     zonecodeError.textContent = errMsg.zonecode;
     zonecode.focus();
-    exit;
+    return;
   } else if (addr.value == "") {
     addrError.textContent = errMsg.addr;
     addr.focus();
-    exit;
+    return;
   } else if (phoneNumber.value == "") {
     phoneError.textContent = errMsg.phoneNumber.empty;
     phoneNumber.focus();
-    exit;
+    return;
   } else if (!phoneRegExp.test(phoneNumber.value)) {
     phoneError.textContent = errMsg.phoneNumber.notPhone;
-    exit;
+    return;
   } else {
     form.submit();
   }
