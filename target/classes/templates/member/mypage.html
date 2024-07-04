@@ -88,7 +88,7 @@
           </div>
         </a>
         <a href="#" class="item">
-          <div class="text">고객문의</div>
+          <div class="text">상품문의</div>
           <div class="right">
             <i class="fa-solid fa-angle-right fa-xl"></i>
           </div>
@@ -99,24 +99,17 @@
             <i class="fa-solid fa-angle-right fa-xl"></i>
           </div>
         </a>
-      </div>
-      <div class="infoContainer">
         <a th:href="@{/auctionArena/customer-service}" class="item">
-          <div>
-            <i class="fa-solid fa-clipboard-question fa-2xl" style="color: #e53637"></i>
+          <div class="text">고객센터</div>
+          <div class="right">
+            <i class="fa-solid fa-angle-right fa-xl"></i>
           </div>
-          <div>고객센터</div>
-        </a>
-        <a th:href="@{/notice/notice}" class="item">
-          <div>
-            <i class="fa-solid fa-flag fa-2xl" style="color: #e53637"></i>
-          </div>
-          <div>공지사항</div>
         </a>
       </div>
     </div>
-    <!-- 비밀번호 변경 End -->
   </div>
+  <!-- 마이페이지 End -->
+
   <th:block layout:fragment="script">
     <script th:src="@{/memberjs/password.js}"></script>
   </th:block>

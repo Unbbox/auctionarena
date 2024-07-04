@@ -1372,7 +1372,6 @@ ol {
 
 .blog__details__title h2 {
   color: #000;
-  font-size: 48px;
   font-weight: 700;
   line-height: 60px;
   margin-bottom: 38px;
@@ -1421,6 +1420,10 @@ ol {
 
 .blog__details__text {
   margin-bottom: 40px;
+}
+
+.notice-textarea {
+  text-align: center;
 }
 
 .blog__details__text p {
@@ -1703,6 +1706,11 @@ ol {
   width: 1px;
   background: #b7b7b7;
   content: "";
+}
+
+.account-info-password input {
+  width: 62% !important;
+  margin-right: 2%;
 }
 
 .login__form form .input__item input {
@@ -2516,6 +2524,7 @@ ol {
   margin: 0 auto 5px;
   display: block;
   width: 70%;
+  max-width: 1000px;
   height: 70%;
   float: none;
   vertical-align: top;
@@ -2931,7 +2940,7 @@ input[type="file"]::file-selector-button {
 .listContainer {
   padding: 0;
   background-color: #ffffff;
-  height: 300px;
+  height: 350px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 2px solid #e53637;
@@ -2942,7 +2951,7 @@ input[type="file"]::file-selector-button {
   padding: 16px;
   color: black;
   text-decoration: none;
-  height: 25%;
+  height: 20%;
   box-sizing: border-box;
 }
 .listContainer .icon {
@@ -3059,6 +3068,42 @@ input[type="file"]::file-selector-button {
 
 .accountInfo #password {
   background-color: rgba(170, 170, 170, 0.1);
+}
+
+.account-check-btn {
+  display: inline-block;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #575757;
+  background: rgba(59, 59, 59, 0.1);
+  padding: 13px;
+  font-size: 14px;
+  width: 36%;
+  border: 1px solid #e8e8e8;
+  letter-spacing: 2px;
+  border-radius: 2px;
+  -webkit-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  float: right;
+}
+
+.mypage-btn {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #ffffff !important;
+  background: #b7b7b7;
+  border: none;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  padding: 12px 30px;
+  margin: 0 5px 0 5px;
+}
+
+.mypage-btn:hover {
+  background: #e53637;
 }
 
 /*=================== Access-denied ==================*/

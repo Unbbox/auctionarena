@@ -25,16 +25,13 @@
               <input type="text" placeholder="이메일" id="email" name="email" th:value="${memberDto.email}" readonly="readonly"/>
               <span class="icon_mail"></span>
             </div>
-            <div class="input__item">
+            <div class="input__item post account-info-password">
               <input type="text" placeholder="비밀번호" class="password" id="password" name="password" value="111111111" readonly="readonly"/>
               <span class="icon_lock"></span>
+              <a th:href="@{accountCheck}" class="account-check-btn">
+                <div class="text">비밀번호 수정</div>
+              </a>
             </div>
-            <a th:href="@{accountCheck}" class="item">
-              <div class="text">비밀번호 수정</div>
-              <div class="right">
-                <i class="fa-solid fa-angle-right fa-xl"></i>
-              </div>
-            </a>
             <div class="input__item">
               <input type="text" placeholder="이름" id="name" name="name" th:value="${memberDto.name}"/>
               <span class="icon_profile"></span>
@@ -64,6 +61,7 @@
             </div>
             <button type="submit" class="edit-btn">수정</button>
             <button type="button" class="edit-btn remove">회원탈퇴</button>
+            <a th:href="@{/member/mypage}" class="mypage-btn">취소</a>
           </form>
           <!-- 삭제 폼 -->
           <form th:action="@{leave}" method="post" id="removeForm">

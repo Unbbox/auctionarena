@@ -16,39 +16,22 @@
                 <form th:action="@{notice-create}" method="post" th:object="${noticeDto}" id="create-form">
                   <div class="mb-3">
                     <label for="title" class="form-label">제목</label>
-                    <input class="form-control" type="text" name="title" id="title" th:value="${noticeDto.title}" />
+                    <input class="form-control" type="text" name="title" id="title" th:value="${noticeDto.title}"/>
                     <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                   </div>
                   <div class="mb-3">
                     <label for="writerNickname" class="form-label">작성자</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      name="writerNickname"
-                      id="writerNickname"
-                      th:value="${#authentication.principal.memberDto.nickname}"
-                      readonly
-                    />
+                    <input class="form-control" type="text" name="writerNickname" id="writerNickname" th:value="${#authentication.principal.memberDto.nickname}" readonly="readonly"/>
                   </div>
 
                   <!-- 이미지 업로드 -->
                   <label class="block text-sm notice-form-label">
                     <span class="block text-gray-700 dark:text-gray-400">Image Files</span>
-                    <input type="file" class="notice-form-control" id="fileInput" multiple />
+                    <input type="file" class="notice-form-control" id="fileInput" multiple="multiple"/>
 
                     <div class="uploadResult notice-upload">
                       <ul>
-                        <!-- 
-                        <li data-name="" data-path="" data-uuid="">
-                            <div>
-                                <a href=""><img src="" class="block"></a>
-                                <span class="text-sm d-inline-block mx-1"></span>
-                                <a href="#" data-file="">
-                                    <i class="fa-solid fa-xmark" data-file=""></i>
-                                </a>
-                            </div>
-                        </li>
-                    -->
+                        <!-- <li data-name="" data-path="" data-uuid=""> <div> <a href=""><img src="" class="block"></a> <span class="text-sm d-inline-block mx-1"></span> <a href="#" data-file=""> <i class="fa-solid fa-xmark" data-file=""></i> </a> </div> </li> -->
                       </ul>
                     </div>
                   </label>
@@ -59,6 +42,9 @@
                     <div class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
                   </div>
                   <div class="blog__details__text">
+                    <a class="notice-details-btn" th:href="@{notice}">
+                      목록
+                    </a>
                     <button class="notice-details-btn" type="submit">작성</button>
                   </div>
                 </form>
