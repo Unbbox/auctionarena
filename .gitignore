@@ -52,3 +52,5 @@ replay_pid*
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,java
+src/main/resources/application-oauth.properties
+target/classes/application-oauth.properties
