@@ -42,7 +42,7 @@
                     <div class="text-danger" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
                   </div>
                   <div class="blog__details__text">
-                    <a class="notice-details-btn" th:href="@{notice}">
+                    <a class="notice-details-btn notice-list-btn" th:href="@{notice}">
                       목록
                     </a>
                     <button class="notice-details-btn" type="submit">작성</button>

@@ -92,15 +92,19 @@ pwdInput.forEach((pwdInput, index) => {
 const errMsg = {
   email: {
     notEmail: "이메일 형식이 아닙니다.",
-    empty: "이메일을 입력해주세요",
+    empty: "이메일을 입력해주세요.",
   },
   password: {
     notPw: "8~20자의 영문, 숫자, 특수문자(!@#$%^&*)를 모두 포함한 비밀번호를 입력해주세요.",
     empty: "비밀번호를 입력해주세요",
   },
+  checkPassword: {
+    notPw: "비밀번호가 다릅니다.",
+    empty: "비밀번호 확인을 입력해주세요.",
+  },
   phoneNumber: {
     notPhone: "'-'를 제외한 숫자 11자리를 입력해주세요.",
-    empty: "전화번호를 입력해주세요",
+    empty: "전화번호를 입력해주세요.",
   },
   name: "이름을 입력해주세요.",
   nickname: "닉네임을 입력해주세요.",
@@ -120,15 +124,28 @@ email.addEventListener("change", () => {
   }
 });
 
+// ========================================== //
+// 비밀번호 확인
 // 비밀번호
 const password = document.querySelector("#password");
 const passwordError = document.querySelector("#passwordError");
+const checkPassword = document.querySelector("#checkPassword");
+const chkPasswordError = document.querySelector("#chkPasswordError");
 const pwRegExp = /^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+
 password.addEventListener("change", () => {
   if (pwRegExp.test(password.value)) {
     passwordError.textContent = "";
   } else {
     passwordError.textContent = errMsg.password.notPw;
+  }
+});
+
+checkPassword.addEventListener("change", () => {
+  if (checkPassword.equals(password)) {
+    chkPasswordError.textContent = "";
+  } else {
+    chkPasswordError.textContent = errMsg.checkPassword.notPw;
   }
 });
 
