@@ -25,27 +25,33 @@
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/mobile-category}">
               <input type="hidden" value="2">
               모바일/태블릿</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/electric-category}">
               <input type="hidden" value="3">
               가전제품</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/game-category}">
               <input type="hidden" value="4">
               게임</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/trib-category}">
               <input type="hidden" value="5">
               레저/여행</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/etc-category}">
+              <input type="hidden" value="5">
+              기타</a>
           </li>
         </ul>
       </nav>
@@ -55,8 +61,7 @@
       <input type="hidden" name="page" value="1" class="form-control">
       <div class="search product-search">
         <!-- <select name="search_type" id="search_type"> <option value="t" th:selected="${requestDto.type == 't'}">상품명</option> <option value="c" th:selected="${requestDto.type == 'c'}">내용</option> </select> -->
-        <input class="from-control" type="search" placeholder="검색" name="keyword" id="keyword"/>
-        <!-- th:value="${requestDto.keyword}"-->
+        <input class="from-control" type="search" placeholder="검색" name="keyword" id="keyword" th:value="${requestDto.keyword}"/>
         <button class="search-btn" type="submit">검색</button>
       </div>
     </form>
@@ -69,11 +74,11 @@
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${list}">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${fashion.dtoList}">
                   <div class="products__item" th:title="${dto.title}">
                     <!-- data-setbg="https://via.placeholder.com/175x250" -->
                     <div>
-                      <a th:href="@{product_details(pno=${dto.pno})}">
+                      <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
                         <img class="products__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'>
                         <!-- th:if="${dto.productImageDtos[0].path != null}" -->
                         <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
@@ -81,12 +86,12 @@
                     </div>
                     <div class="products__item__text">
                       <h5>
-                        <a th:href="@{product_details(pno=${dto.pno})}" th:text="${dto.title}"></a>
+                        <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a>
                       </h5>
                       <!-- <div class="wish"><i class="fa-regular fa-heart"></i></div> -->
                       <ul>
                         <li>
-                          <a th:href="@{product_details(pno=${dto.pno})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
+                          <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
                         </li>
                       </ul>
                     </div>
@@ -95,8 +100,21 @@
               </div>
             </div>
 
-            <!--<div class="products__pagination justify-content-center"> <td th:if="${result.prev}"> <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-left"></i> </a> </td> <td th:each="page : ${result.pageList}"> <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a> </td> <td th:if="${result.next}"> <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-right"></i> </a> </td> </div>-->
-
+            <div class="products__pagination justify-content-center">
+              <td th:if="${fashion.prev}">
+                <a th:href="@{fashion-category(page=${fashion.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                  <i class="fa fa-angle-double-left"></i>
+                </a>
+              </td>
+              <td th:each="page : ${fashion.pageList}">
+                <a th:href="@{fashion-category(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
+              </td>
+              <td th:if="${fashion.next}">
+                <a th:href="@{fashion-category(page=${fashion.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                  <i class="fa fa-angle-double-right"></i>
+                </a>
+              </td>
+            </div>
           </div>
 
         </div>

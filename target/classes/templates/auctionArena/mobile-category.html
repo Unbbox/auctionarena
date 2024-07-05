@@ -25,27 +25,33 @@
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/mobile-category}">
               <input type="hidden" value="2">
               모바일/태블릿</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/electric-category}">
               <input type="hidden" value="3">
               가전제품</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/game-category}">
               <input type="hidden" value="4">
               게임</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/trib-category}">
               <input type="hidden" value="5">
               레저/여행</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/etc-category}">
+              <input type="hidden" value="5">
+              기타</a>
           </li>
         </ul>
       </nav>
@@ -68,7 +74,7 @@
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${result2.dtoList}">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${mobile.dtoList}">
                   <div class="products__item" th:title="${dto.title}">
                     <!-- data-setbg="https://via.placeholder.com/175x250" -->
                     <div>
@@ -95,16 +101,16 @@
             </div>
 
             <div class="products__pagination justify-content-center">
-              <td th:if="${result2.prev}">
-                <a th:href="@{mobile-category(page=${result2.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+              <td th:if="${mobile.prev}">
+                <a th:href="@{mobile-category(page=${mobile.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
                   <i class="fa fa-angle-double-left"></i>
                 </a>
               </td>
-              <td th:each="page : ${result2.pageList}">
+              <td th:each="page : ${mobile.pageList}">
                 <a th:href="@{mobile-category(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
               </td>
-              <td th:if="${result2.next}">
-                <a th:href="@{mobile-category(page=${result2.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+              <td th:if="${mobile.next}">
+                <a th:href="@{mobile-category(page=${mobile.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
                   <i class="fa fa-angle-double-right"></i>
                 </a>
               </td>

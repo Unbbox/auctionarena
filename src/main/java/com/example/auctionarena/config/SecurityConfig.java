@@ -50,7 +50,11 @@ public class SecurityConfig {
           "/auctionArena/remove",
           "/auctionArena/customer-service",
           "/auctionArena/fashion-category",
-          "/auctionArena/mobile-category"
+          "/auctionArena/mobile-category",
+          "/auctionArena/electric-category",
+          "/auctionArena/game-category",
+          "/auctionArena/trib-category",
+          "/auctionArena/etc-category"
         )
         .permitAll()
         .requestMatchers("/notice/notice", "/notice/notice-details")

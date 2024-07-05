@@ -94,6 +94,121 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getFashionList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.fashioncatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
+  }
+
+  @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getElectricList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.electriccatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
+  }
+
+  @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getGameList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.gamecatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
+  }
+
+  @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getTribList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.tribcatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
+  }
+
+  @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getEtcList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.etccatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
+  }
+
+  @Override
   public List<ProductDto> pnodescList() {
     List<Product> list = productRepository.findTop6ByOrderByPnoDesc();
 

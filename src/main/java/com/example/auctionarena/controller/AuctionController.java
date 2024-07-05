@@ -45,10 +45,22 @@ public class AuctionController {
 
     model.addAttribute("result", service.getList(requestDto));
     log.info("result {}", service.getList(requestDto));
-    // return "auctionArena/categories";
   }
 
-  // 전체 상품
+  // 패션
+  @GetMapping("/fashion-category")
+  public void getfashionCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
+
+    model.addAttribute("fashion", service.getFashionList(requestDto));
+    log.info("fashion {}", service.getFashionList(requestDto));
+  }
+
+  // 모바일
   @GetMapping("/mobile-category")
   public void getMobileCategory(
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
@@ -57,17 +69,60 @@ public class AuctionController {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
-    model.addAttribute("result2", service.getMobileList(requestDto));
-    log.info("result2 {}", service.getMobileList(requestDto));
-    // return "auctionArena/categories";
+    model.addAttribute("mobile", service.getMobileList(requestDto));
+    log.info("mobile {}", service.getMobileList(requestDto));
   }
 
-  @GetMapping("/fashion-category")
-  public void Home(Model model, Long cno) {
-    log.info("패션카테고리 요청");
-    // List<ProductDto> biddinglist = service.BiddingDescList();
+  // 가전제품
+  @GetMapping("/electric-category")
+  public void getelectronicCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
 
-    model.addAttribute("list", service.CategoryList(cno));
+    model.addAttribute("electric", service.getElectricList(requestDto));
+    log.info("electric {}", service.getElectricList(requestDto));
+  }
+
+  // 게임
+  @GetMapping("/game-category")
+  public void getgameCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
+
+    model.addAttribute("game", service.getGameList(requestDto));
+    log.info("game {}", service.getGameList(requestDto));
+  }
+
+  // 레저/여행
+  @GetMapping("/trib-category")
+  public void gettribCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
+
+    model.addAttribute("trib", service.getTribList(requestDto));
+    log.info("trib {}", service.getTribList(requestDto));
+  }
+
+  // 기타
+  @GetMapping("/etc-category")
+  public void getetcCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
+
+    model.addAttribute("etc", service.getEtcList(requestDto));
+    log.info("etc {}", service.getEtcList(requestDto));
   }
 
   // 제품 상세 페이지

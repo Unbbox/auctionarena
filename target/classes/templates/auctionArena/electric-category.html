@@ -74,7 +74,7 @@
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${trib.dtoList}">
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${electric.dtoList}">
                   <div class="products__item" th:title="${dto.title}">
                     <!-- data-setbg="https://via.placeholder.com/175x250" -->
                     <div>
@@ -101,16 +101,16 @@
             </div>
 
             <div class="products__pagination justify-content-center">
-              <td th:if="${trib.prev}">
-                <a th:href="@{trib-category(page=${trib.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+              <td th:if="${electric.prev}">
+                <a th:href="@{electric-category(page=${electric.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
                   <i class="fa fa-angle-double-left"></i>
                 </a>
               </td>
-              <td th:each="page : ${trib.pageList}">
-                <a th:href="@{trib-category(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
+              <td th:each="page : ${electric.pageList}">
+                <a th:href="@{electric-category(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
               </td>
-              <td th:if="${trib.next}">
-                <a th:href="@{trib-category(page=${trib.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+              <td th:if="${electric.next}">
+                <a th:href="@{electric-category(page=${electric.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
                   <i class="fa fa-angle-double-right"></i>
                 </a>
               </td>

@@ -1,294 +1,138 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-  
+
   <div layout:fragment="content">
     <!-- Breadcrumb Begin -->
-    <!-- <div class="breadcrumb-option">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="breadcrumb__links">
-              <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-              <a href="./categories.html">카테고리</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
+    <!-- <div class="breadcrumb-option"> <div class="container"> <div class="row"> <div class="col-lg-12"> <div class="breadcrumb__links"> <a href="./index.html"><i class="fa fa-home"></i> Home</a> <a href="./categories.html">카테고리</a> </div> </div> </div> </div> </div> -->
     <!-- Breadcrumb End -->
 
-
-       
-        
-
-
-
-        <!-- <form class="mt-4" role="search" id="searchForm">
-          <input type="hidden" name="page" class="form-control" />
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <select name="type" id="type" class="form-select">
-                <option value="" >조건 선택</option>
-                <option value="t">상품명</option>
-                <option value="c" >내용</option>
-                <option value="w" >판매자</option>
-
-              </select>
-            </div>
-            <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" />
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </div>
-        </form> -->
-        <!-- <div class="col-md-5">
-            <form action="" method="get" name="search" class="form-inline">
-            <div class="form-group">
-              <select name="criteria" class="form-control">
-                <option value="n"> >---</option>
-                <option value="title"> >title</option>
-                <option value="content" > >content</option>
-                <option value="name"> >name</option>					
-              </select>
-            </div>
-            <div class="form-group">
-              <input type="text" name="keyword"  class="form-control">				
-            </div>
-            <div class="form-group">
-              <input type="submit" value="검색" class="btn btn-primary">				
-            </div>
-             </form>
-          </div> -->
-          <div class="header__nav">
-            <nav class="category__menu mobile-menu">
-              <ul>
-                <li>
-                  <a th:href="@{/auctionArena/categories}">전체</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">여성의류</a></li>
-                    <li><a href="">남성의류</a></li>
-                    <li><a href="">운동화</a></li>
-                    <li><a href="">시계</a></li>
-                    <li><a href="">모자</a></li>
-                  </ul> -->
-                </li>
-                <li>
-                  <a th:href="@{/auctionArena/fashion-category}">패션 의류/잡화</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">여성의류</a></li>
-                    <li><a href="">남성의류</a></li>
-                    <li><a href="">운동화</a></li>
-                    <li><a href="">시계</a></li>
-                    <li><a href="">모자</a></li>
-                  </ul> -->
-                </li>      
-                <li>
-                  <a th:href="@{/auctionArena/mobile-category}">모바일/태블릿</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">스마트폰</a></li>
-                    <li><a href="">태블릿pc</a></li>
-                    <li><a href="">스마트워치/밴드</a></li>
-                  </ul> -->
-                </li>
-                <li>
-                  <a th:href="@{/auctionArena/electronic-category}">가전제품</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">냉장고</a></li>
-                    <li><a href="">TV</a></li>
-                    <li><a href="">세탁기/건조기</a></li>
-                    <li><a href="">주방가전</a></li>
-                  </ul> -->
-                </li>
-                <li>
-                  <a th:href="@{/auctionArena/game-category}">게임</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">PC게임</a></li>
-                    <li><a href="">플레이스테이션</a></li>
-                    <li><a href="">닌텐도</a></li>
-                    <li><a href="">xbox</a></li>
-                  </ul> -->
-                </li>
-                <li>
-                  <a th:href="@{/auctionArena/trib-category}">레저/여행</a>
-                  <!-- <ul class="dropdown">
-                  <li><a href="">등산의류/용품</a></li>
-                    <li><a href="">캠핑용품</a></li>
-                    <li><a href="">낚시용품</a></li>
-                  </ul> -->
-                </li>         
-               </ul>
-            </nav>
-          </div>
-          <form action="" role="search" id="searchForm">
-            <!-- 검색 후 결과 페이지는 1로 보여주기 -->
-            <input type="hidden" name="page" value="1" class="form-control">
-            <div class="search product-search">
-              <select name="search_type" id="search_type">
-                <option value="t">상품명</option>
-                <option value="c" >내용</option>
-              </select>
-              <input class="text" type="search" placeholder="검색" name="keyword" id="keyword" />
-              <button class="search-btn" type="submit">검색</button>
-            </div>
-          </form>
-
-      
-        
-
-
+    <!-- <form class="mt-4" role="search" id="searchForm"> <input type="hidden" name="page" class="form-control" /> <div class="input-group mb-3"> <div class="input-group-prepend"> <select name="type" id="type" class="form-select"> <option value="" >조건 선택</option> <option value="t">상품명</option> <option value="c" >내용</option> <option value="w" >판매자</option> </select> </div> <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" /> <button class="btn btn-outline-success" type="submit">Search</button> </div> </form> -->
+    <!-- <div class="col-md-5"> <form action="" method="get" name="search" class="form-inline"> <div class="form-group"> <select name="criteria" class="form-control"> <option value="n"> >---</option> <option value="title"> >title</option> <option value="content" > >content</option> <option value="name"> >name</option> </select> </div> <div class="form-group"> <input type="text" name="keyword" class="form-control"> </div> <div class="form-group"> <input type="submit" value="검색" class="btn btn-primary"> </div> </form> </div> -->
+    <div class="header__nav">
+      <nav class="category__menu mobile-menu">
+        <ul>
+          <li class="cate_all">
+            <!-- <a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/categories}">
+              <input type="hidden" value="0">
+              전체</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/fashion-category}">
+              <input type="hidden" value="1">
+              패션 의류/잡화</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/mobile-category}">
+              <input type="hidden" value="2">
+              모바일/태블릿</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/electric-category}">
+              <input type="hidden" value="3">
+              가전제품</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/game-category}">
+              <input type="hidden" value="4">
+              게임</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/trib-category}">
+              <input type="hidden" value="5">
+              레저/여행</a>
+          </li>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/etc-category}">
+              <input type="hidden" value="5">
+              기타</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <form action="" role="search" id="productSearchForm" class="product-search-form">
+      <!-- 검색 후 결과 페이지는 1로 보여주기 -->
+      <input type="hidden" name="page" value="1" class="form-control">
+      <div class="search product-search">
+        <!-- <select name="search_type" id="search_type"> <option value="t" th:selected="${requestDto.type == 't'}">상품명</option> <option value="c" th:selected="${requestDto.type == 'c'}">내용</option> </select> -->
+        <input class="from-control" type="search" placeholder="검색" name="keyword" id="keyword" th:value="${requestDto.keyword}"/>
+        <button class="search-btn" type="submit">검색</button>
+      </div>
+    </form>
     <!-- Product Section Begin -->
 
-    <section class="product-page spad">
-      
+    <div class="product-page spad">
+
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="product__page__content">
               <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg link" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
+                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${trib.dtoList}">
+                  <div class="products__item" th:title="${dto.title}">
+                    <!-- data-setbg="https://via.placeholder.com/175x250" -->
+                    <div>
+                      <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                        <img class="products__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'>
+                        <!-- th:if="${dto.productImageDtos[0].path != null}" -->
+                        <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
+                      </a>
                     </div>
                     <div class="products__item__text">
-                      <h5><a href="#">상품명</a></h5>
+                      <h5>
+                        <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a>
+                      </h5>
+                      <!-- <div class="wish"><i class="fa-regular fa-heart"></i></div> -->
                       <ul>
-                        <li><a href="#">200,000원~</a></li>
+                        <li>
+                          <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
+                        </li>
                       </ul>
                     </div>
                   </div>
                 </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>  
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2 col-md-4 col-sm-6">
-                  <div class="products__item">  
-                    <div class="products__item__pic set-bg" data-setbg="https://via.placeholder.com/175x250">
-                      <div class="wish"><i class="fa-regular fa-heart"></i></div>
-                    </div>
-                    <div class="products__item__text">
-                      <h5><a href="#">지티스피릿 1:18 포르쉐 911터보S</a></h5>
-                      <ul>
-                        <li><a href="#">200,000원</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>                                 
               </div>
             </div>
-            
-            <div class="products__pagination">
-              <a href="#"><i class="fa fa-angle-double-left"></i></a>
-              <a href="#" class="current-page">1</a>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <a href="#">4</a>
-              <a href="#">5</a>
-              <a href="#"><i class="fa fa-angle-double-right"></i></a>
+
+            <div class="products__pagination justify-content-center">
+              <td th:if="${trib.prev}">
+                <a th:href="@{trib-category(page=${trib.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                  <i class="fa fa-angle-double-left"></i>
+                </a>
+              </td>
+              <td th:each="page : ${trib.pageList}">
+                <a th:href="@{trib-category(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
+              </td>
+              <td th:if="${trib.next}">
+                <a th:href="@{trib-category(page=${trib.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                  <i class="fa fa-angle-double-right"></i>
+                </a>
+              </td>
             </div>
           </div>
-          
+
+        </div>
       </div>
-    </section>
-    <!-- Product Section End -->
-    
+    </div>
+  </div>
+</section>
+<!-- Product Section End -->
+<th:block layout:fragment="script">
+  <script>
+    const msg = "[[${msg}]]"
+
+    if (msg) {
+      // alert
+      Swal.fire({icon: "success", title: "제품 등록 완료.", showConfirmButton: false, timer: 1500});
+    }
+  </script>
+  <script th:src="@{/js/productSearch.js}"></script>
+
+</th:block>
 </html>

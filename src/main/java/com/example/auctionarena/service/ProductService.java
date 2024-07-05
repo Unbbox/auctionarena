@@ -21,7 +21,27 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
+  CategoryPageResultDto<ProductDto, Object[]> getFashionList(
+    CategoryPageRequestDto requestDto
+  );
+
   CategoryPageResultDto<ProductDto, Object[]> getMobileList(
+    CategoryPageRequestDto requestDto
+  );
+
+  CategoryPageResultDto<ProductDto, Object[]> getElectricList(
+    CategoryPageRequestDto requestDto
+  );
+
+  CategoryPageResultDto<ProductDto, Object[]> getGameList(
+    CategoryPageRequestDto requestDto
+  );
+
+  CategoryPageResultDto<ProductDto, Object[]> getTribList(
+    CategoryPageRequestDto requestDto
+  );
+
+  CategoryPageResultDto<ProductDto, Object[]> getEtcList(
     CategoryPageRequestDto requestDto
   );
 
