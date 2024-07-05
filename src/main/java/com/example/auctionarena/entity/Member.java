@@ -17,6 +17,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Cleanup;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -54,6 +55,13 @@ public class Member extends BaseEntity {
 
     @Column(nullable = true)
     private String zonecode;
+
+    // 나이, 성별 추가
+    @Column(nullable = true)
+    private Integer age;
+
+    @Column(nullable = true)
+    private String gender;
 
     @Enumerated(EnumType.STRING)
     private MemberRole role;

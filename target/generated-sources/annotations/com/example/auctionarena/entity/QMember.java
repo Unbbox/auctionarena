@@ -24,6 +24,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath addr = createString("addr");
 
+    public final NumberPath<Integer> age = createNumber("age", Integer.class);
+
     public final ListPath<Bidding, QBidding> biddingList = this.<Bidding, QBidding>createList("biddingList", Bidding.class, QBidding.class, PathInits.DIRECT2);
 
     public final ListPath<Comment, QComment> commentList = this.<Comment, QComment>createList("commentList", Comment.class, QComment.class, PathInits.DIRECT2);
@@ -34,6 +36,8 @@ public class QMember extends EntityPathBase<Member> {
     public final StringPath email = createString("email");
 
     public final BooleanPath fromSocial = createBoolean("fromSocial");
+
+    public final StringPath gender = createString("gender");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;

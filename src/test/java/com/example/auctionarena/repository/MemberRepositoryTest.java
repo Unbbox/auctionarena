@@ -1,5 +1,7 @@
 package com.example.auctionarena.repository;
 
+import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -24,9 +26,18 @@ public class MemberRepositoryTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    private String[] genders = {"male", "female", null};
+
+
     @Test
     public void memberInsert() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
+
+            Integer age = (int) ((Math.random()*80)+1);
+
+            String gender = genders[(int)(Math.random()*3)];
+        
+
             Member member = Member.builder()
                     .email("user" + i + "@gmail.com")
                     .password(passwordEncoder.encode("1111"))
@@ -35,6 +46,8 @@ public class MemberRepositoryTest {
                     .zonecode("0000" + i)
                     .addr("서울시 종로구 종로" + i + "길")
                     .phoneNumber("0101111111" + i)
+                    .age(age)
+                    .gender(gender)
                     .role(MemberRole.MEMBER)
                     .build();
             memberRepository.save(member);

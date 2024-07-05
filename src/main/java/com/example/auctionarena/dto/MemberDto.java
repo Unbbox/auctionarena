@@ -40,6 +40,11 @@ public class MemberDto {
 
     private String zonecode;
 
+    // 나이, 성별 추가
+    private Integer age;
+
+    private String gender;
+
     private MemberRole role;
 
     private LocalDateTime createdDate;
