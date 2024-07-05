@@ -37,22 +37,31 @@ const getBiddingList = () => {
         // 입찰가 format
         bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-        result += `<tr class="text-gray-700 dark:text-white-400">`;
+        result += `<tr>`;
 
         if (index == 0) {
           if (user == `${bidding.mnickName}`) {
-            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
-            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
-            result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+            result += `<th scope="row" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</th>`;
+            result += `<th style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</th>`;
+            result += `<th style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td`;
+            // result += `<td class="px-4 py-3" style="text-align: center; text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
+            // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
+            // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
           } else {
-            result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
-            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
-            result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+            result += `<td scope="row" style="text-decoration: underline;>${bidding.mnickName}</th>`;
+            result += `<td style="text-decoration: underline">` + bidPrice + `원</td>`;
+            result += `<td style="text-decoration: underline">` + format_Date(`${bidding.biddingTime}`) + `</td`;
+            // result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
+            // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
+            // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
           }
         } else {
-          result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
-          result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
-          result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
+          result += `<td scope="row">${bidding.mnickName}</td>`;
+          result += `<td>` + bidPrice + `원</td>`;
+          result += `<td>` + format_Date(`${bidding.biddingTime}`) + `</td`;
+          // result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
+          // result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
+          // result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
         }
         result += `</tr>`;
         bidCnt += 1;

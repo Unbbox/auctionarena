@@ -119,7 +119,7 @@
           <!-- <div class="section-title"> -->
             <h5>상품설명</h5>
           </div>
-          <div class="item_nav_sub item_detail_content">[[${dto.content}]]</div>
+          <div class="item_nav_sub item_detail item_detail_content">[[${dto.content}]]</div>
         </div>
         <!-- </div> -->
         <div class="row item_nav_sub item-bidding-record section-title" style="display: none">
@@ -127,18 +127,15 @@
             <h5>경매기록</h5>
           <!-- </div> -->
           <div>
-            <table class="w-full whitespace-no-wrap">
+             <table class="table table-sm mt-4">
               <thead>
-                <tr
-                  class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                >
-                  <!-- <th class="px-4 py-3">번호</th> -->
-                  <th class="px-4 py-3">닉네임</th>
-                  <th class="px-4 py-3">입찰가</th>
-                  <th class="px-4 py-3">입찰시간</th>
+                <tr>
+                  <th scope="col">닉네임</th>
+                  <th scope="col">입찰가</th>
+                  <th scope="col">입찰시간</th>
                 </tr>
               </thead>
-              <tbody class="divide-y dark:divide-gray-700 dark:bg-gray-800 biddingList">
+              <tbody class="biddingList">
                 <!-- js 에서 출력 -->
               </tbody>
             </table>
@@ -189,7 +186,8 @@
           </div>
         </form>
         <!-- [Swiper] 관련 상품 슬라이더 -->
-        <div class="swiper">
+         
+        <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             <!-- 슬라이드 -->
             <div class="swiper-slide" th:each="relation : ${relationDto}">
@@ -209,7 +207,6 @@
           </div>
           <!-- Add Pagination -->
           <div class="swiper-pagination"></div>
-          <!-- <div class="swiper-pagination-bullet"></div> -->
           <!-- Add Arrows -->
           <div class="swiper-button-next"></div>
           <div class="swiper-button-prev"></div>
@@ -256,6 +253,7 @@
         const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
         console.log("user info : ", user);
         const user2 = "[[${dto.writerName}]]";
+        console.log("user2 info : ", user2);
 
         // 페이지 정보 가져오기
         // const page="${requestDto.page}";

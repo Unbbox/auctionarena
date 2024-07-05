@@ -312,6 +312,13 @@
   margin-bottom: 24px;
 }
 
+/* 경매 기록 css */
+.bid_table {
+  /* align-items: center; */
+  text-align: center;
+}
+/* 경매 기록 css 완료 */
+
 /* 댓글 css */
 .comment_text {
   overflow: hidden;

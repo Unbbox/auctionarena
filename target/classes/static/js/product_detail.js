@@ -26,6 +26,7 @@ const items_nav = document.querySelectorAll(".items_nav li");
 const items = document.querySelectorAll(".item_nav_sub");
 
 const details = document.querySelectorAll(".item_detail");
+const content = document.querySelectorAll(".item_detail_content");
 const bidding = document.querySelector(".item-bidding-record");
 const review = document.querySelector(".item_review");
 const commentRegister = document.querySelector(".item_review_register");
@@ -136,7 +137,7 @@ getTime();
 
 // 삭제 버튼
 const deleteForm = document.querySelector("#deleteForm");
-if (user != "anonymousUser") {
+if ((user != "anonymousUser") & (user == user2)) {
   document.querySelector(".btn-danger").addEventListener("click", () => {
     // !confirm("정말 삭제하시겠습니까?")
     Swal.fire({

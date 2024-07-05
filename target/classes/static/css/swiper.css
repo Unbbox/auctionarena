@@ -13,6 +13,10 @@ body {
   margin: 20px auto;
 }
 
+.swiper-wrapper {
+  width: 70%;
+}
+
 .swiper-slide {
   text-align: center;
   font-size: 18px;
