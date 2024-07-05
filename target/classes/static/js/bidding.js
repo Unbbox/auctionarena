@@ -48,9 +48,9 @@ const getBiddingList = () => {
             // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
           } else {
-            result += `<td scope="row" style="text-decoration: underline;>${bidding.mnickName}</th>`;
-            result += `<td style="text-decoration: underline">` + bidPrice + `원</td>`;
-            result += `<td style="text-decoration: underline">` + format_Date(`${bidding.biddingTime}`) + `</td`;
+            result += `<td scope="row" style="text-decoration: underline;">${bidding.mnickName}</th>`;
+            result += `<td style="text-decoration: underline;">` + bidPrice + `원</td>`;
+            result += `<td style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;

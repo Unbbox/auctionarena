@@ -7,19 +7,21 @@ const sleep = (ms) => {
 
 // 찜목록 활성화 비활성화
 const wishBtn = document.querySelector(".anime__details__btn .wish_list");
-wishBtn.addEventListener("click", (e) => {
-  const btn = e.target.querySelector("i");
+if ((user != "anonymousUser") & (user == user2)) {
+  wishBtn.addEventListener("click", (e) => {
+    const btn = e.target.querySelector("i");
 
-  if (btn.classList.contains("fa-heart")) {
-    if (btn.classList.contains("fa-regular")) {
-      btn.classList.remove("fa-regular");
-      btn.classList.add("fa-solid");
-    } else {
-      btn.classList.remove("fa-solid");
-      btn.classList.add("fa-regular");
+    if (btn.classList.contains("fa-heart")) {
+      if (btn.classList.contains("fa-regular")) {
+        btn.classList.remove("fa-regular");
+        btn.classList.add("fa-solid");
+      } else {
+        btn.classList.remove("fa-solid");
+        btn.classList.add("fa-regular");
+      }
     }
-  }
-});
+  });
+}
 
 // 탭별 활성화 표시 및 해당 내용 출력
 const items_nav = document.querySelectorAll(".items_nav li");
