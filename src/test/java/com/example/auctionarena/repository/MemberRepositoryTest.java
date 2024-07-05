@@ -33,7 +33,7 @@ public class MemberRepositoryTest {
     public void memberInsert() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
 
-            Integer age = (int) ((Math.random()*80)+1);
+            Integer age = (int) ((Math.random()*70)+10);
 
             String gender = genders[(int)(Math.random()*3)];
         
