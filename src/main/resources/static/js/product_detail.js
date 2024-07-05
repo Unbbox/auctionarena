@@ -1,3 +1,10 @@
+// sleep 함수 구현 with ES6
+const sleep = (ms) => {
+  // 현재 시간이 (당시 시간 + 추가되는시간)과 같아질때까지 while문 반복
+  const wakeUpTime = Date.now() + ms;
+  while (Date.now() < wakeUpTime) {}
+};
+
 // 찜목록 활성화 비활성화
 const wishBtn = document.querySelector(".anime__details__btn .wish_list");
 wishBtn.addEventListener("click", (e) => {
@@ -129,10 +136,32 @@ getTime();
 
 // 삭제 버튼
 const deleteForm = document.querySelector("#deleteForm");
+if (user != "anonymousUser") {
+  document.querySelector(".btn-danger").addEventListener("click", () => {
+    // !confirm("정말 삭제하시겠습니까?")
+    Swal.fire({
+      title: "게시글 삭제",
+      text: "정말 삭제하시겠습니까?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancleButtonText: "아니요",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "삭제 완료",
+          text: "게시글이 삭제되었습니다.",
+          icon: "success",
+        });
 
-document.querySelector(".btn-danger").addEventListener("click", () => {
-  if (!confirm("정말 삭제하시겠습니까?")) {
-    return;
-  }
-  deleteForm.submit();
-});
+        sleep(1500);
+
+        deleteForm.submit();
+      } else {
+        return;
+      }
+    });
+  });
+}

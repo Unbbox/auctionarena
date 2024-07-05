@@ -356,6 +356,8 @@
   padding: 10px;
   min-height: 200px;
   border-radius: 5px;
+
+  white-space: pre-wrap;
 }
 
 /* 버튼 css */

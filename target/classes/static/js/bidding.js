@@ -32,6 +32,7 @@ const getBiddingList = () => {
       }
 
       let result = "";
+      let bidCnt = 0;
       data.forEach((bidding, index) => {
         // 입찰가 format
         bidPrice = `${bidding.biddingPrice}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -54,16 +55,19 @@ const getBiddingList = () => {
           result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
         }
         result += `</tr>`;
+        bidCnt += 1;
       });
 
       // 현재 경매가 업데이트
       if (data[0].biddingPrice != null) {
         document.querySelector(".currPrice").innerText = data[0].biddingPrice.toLocaleString("ko-KR") + "원";
         document.querySelector(".currPrice").value = data[0].biddingPrice;
+
+        document.querySelector(".biddingCnt").innerText = bidCnt + "회";
       }
       biddingList.innerHTML = result;
       // console.log("biddingCnt : ", biddingCnt);
-      document.querySelector(".biddingCnt").innerText = biddingCnt + "회";
+      document.querySelector(".biddingCnt").innerText = bidCnt + "회";
     });
 };
 
@@ -141,7 +145,7 @@ biddingForm.addEventListener("submit", (e) => {
               icon: "success",
               title: "입찰 등록이 완료되었습니다.",
               showConfirmButton: false,
-              timer: 1000,
+              timer: 1500,
             });
           }
         });
