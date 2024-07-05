@@ -13,27 +13,39 @@
         <ul>
           <li class="cate_all">
             <!-- <a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/categories}">
               <input type="hidden" value="0">
               전체</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/fashion-category}">
               <input type="hidden" value="1">
               패션 의류/잡화</a>
           </li>
-          <li>
-            <a th:href="@{/auctionArena/categories}">모바일/태블릿</a>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a href="">
+              <input type="hidden" value="2">
+              모바일/태블릿</a>
           </li>
-          <li>
-            <a th:href="@{/auctionArena/categories}">가전제품</a>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a href="">
+              <input type="hidden" value="3">
+              가전제품</a>
           </li>
-          <li>
-            <a th:href="@{/auctionArena/categories}">게임</a>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a href="">
+              <input type="hidden" value="4">
+              게임</a>
           </li>
-          <li>
-            <a th:href="@{/auctionArena/categories}">레저/여행</a>
+          <li class="cate_fashion">
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a href="">
+              <input type="hidden" value="5">
+              레저/여행</a>
           </li>
         </ul>
       </nav>
@@ -115,6 +127,6 @@
     }
   </script>
   <script th:src="@{/js/productSearch.js}"></script>
-  <script th:src="@{/js/category.js}"></script>
+
 </th:block>
 </html>

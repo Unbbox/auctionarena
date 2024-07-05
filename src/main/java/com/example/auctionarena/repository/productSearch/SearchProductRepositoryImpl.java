@@ -39,12 +39,7 @@ public class SearchProductRepositoryImpl
   }
 
   @Override
-  public Page<Object[]> list(
-    String type,
-    String keyword,
-    // Long cno,
-    Pageable pageable
-  ) {
+  public Page<Object[]> list(String type, String keyword, Pageable pageable) {
     QProduct product = QProduct.product;
     QMember member = QMember.member;
     QCategory category = QCategory.category;
@@ -87,26 +82,10 @@ public class SearchProductRepositoryImpl
     BooleanBuilder builder = new BooleanBuilder();
     builder.and(product.pno.gt(0L));
 
-    // WHERE gno > 0 AND title LIKE '%Title%' OR content LIKE '%content%'
-    // gno > 0
-
     // 검색 타입이 있는 경우
     BooleanBuilder conditionBuilder = new BooleanBuilder();
     conditionBuilder.or(product.title.contains(keyword));
-    // if (type.contains("t")) {
-    //   conditionBuilder.or(product.title.contains(keyword));
-    // }
-    // if (type.contains("c")) {
-    //   conditionBuilder.or(product.content.contains(keyword));
-    // }
     builder.and(conditionBuilder);
-
-    // 카테고리가 지정된 경우
-    // BooleanBuilder cateBuilder = new BooleanBuilder();
-    // if (cno != null) {
-    // cateBuilder.or(product.category.eq(category));
-    // }
-    // builder.and(cateBuilder);
     tuple.where(builder);
 
     Sort sort = pageable.getSort();

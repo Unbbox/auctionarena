@@ -27,14 +27,8 @@ public interface ProductService {
   // List<ProductDto> BiddingDescList(Long pno);
   List<ProductDto> BiddingDescList();
 
-  // ProductDto getRow(Long cno);
+  List<ProductDto> CategoryList(Long cno);
 
-  // 제품 상세 페이지 요청
-  // ProductDto getRow(Long pno);
-
-  // entity => dto
-  // public default ProductDto entityToDto(Product product, Member member, Long
-  // replyCount) {
   public default ProductDto entityToDto(
     Product product,
     List<ProductImage> productImages
@@ -48,7 +42,7 @@ public interface ProductService {
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
-      // .cno(product.getCategory().getCno())
+      .cno(product.getCategory().getCno())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();
@@ -108,7 +102,7 @@ public interface ProductService {
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
-      // .cno(product.getCategory().getCno())
+      .cno(product.getCategory().getCno())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();

@@ -32,6 +32,7 @@ public class ProductServiceTest {
       System.out.println(product);
     });
   }
+
   // @Transactional
   // @Test
   // public void getRow() {
@@ -47,6 +48,16 @@ public class ProductServiceTest {
   @Test
   public void printCate() {
     List<ProductDto> products = detailService.getRelationList(1L);
+
+    products.forEach(product -> {
+      System.out.println(product);
+    });
+  }
+
+  @Transactional
+  @Test
+  public void printCategory() {
+    List<ProductDto> products = service.CategoryList(1L);
 
     products.forEach(product -> {
       System.out.println(product);

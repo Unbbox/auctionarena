@@ -52,9 +52,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
   // 카테고리 선택별 제품 출력용
   @Query(
-    value = "SELECT * FROM PRODUCT p " +
-    "WHERE p.CATEGORY_CNO = ?1 ORDER BY CREATED_DATE DESC",
+    value = " SELECT * FROM PRODUCT p WHERE p.CATEGORY_CNO = 1 ORDER BY CREATED_DATE DESC ",
     nativeQuery = true
   )
-  List<ProductDto> getCategoryByCno(Long cno);
+  List<Product> getCategoryByCno(Long cno);
 }
