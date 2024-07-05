@@ -1722,7 +1722,7 @@ ol {
   margin-right: 2%;
 }
 
-.login__form form .input__item input:not(input[type=radio]) {
+.login__form form .input__item input:not(input[type="radio"]) {
   height: 50px;
   width: 100%;
   font-family: "Noto Sans KR", sans-serif;
@@ -1732,7 +1732,6 @@ ol {
   border: 1px solid #e8e8e8;
   padding-left: 76px;
 }
-
 
 .login__form form .input__item input::-webkit-input-placeholder {
   color: #b7b7b7;
@@ -2197,8 +2196,8 @@ ol {
   }
 
   .form-check-inline {
-  margin-left: 50px !important;
-}
+    margin-left: 50px !important;
+  }
 }
 
 /* Wide Mobile = 480px */
@@ -2351,9 +2350,9 @@ ol {
     width: 40%;
   }
 
-    .form-check-inline {
-  margin-left: 20px !important;
-}
+  .form-check-inline {
+    margin-left: 20px !important;
+  }
 }
 
 /* Small Device = 320px */
@@ -2843,24 +2842,24 @@ input[type="file"]::file-selector-button {
 }
 
 .input__item #gender-input {
-    width: 35%;
-    min-width: 120px;
-    font-size: 15px;
-    color: #b7b7b7;
-    background: #ffffff;
-    border: none !important;
-    padding-left: 76px;
-    margin-right: 5%;
+  width: 35%;
+  min-width: 120px;
+  font-size: 15px;
+  color: #b7b7b7;
+  background: #ffffff;
+  border: none !important;
+  padding-left: 76px;
+  margin-right: 5%;
 }
 
 .gender-radio {
-    width: 60%;
-    font-size: 15px;
-    color: #b7b7b7;
-    background: #ffffff;
-    float: right;
-    padding: 15px 0 0 0;
-    text-align: right;
+  width: 60%;
+  font-size: 15px;
+  color: #b7b7b7;
+  background: #ffffff;
+  float: right;
+  padding: 15px 0 0 0;
+  text-align: right;
 }
 
 .form-check-inline {

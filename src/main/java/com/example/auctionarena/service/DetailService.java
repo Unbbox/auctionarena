@@ -151,7 +151,7 @@ public interface DetailService {
         return bidding;
       }).collect(Collectors.toList());
 
-      entityMap.put("imgList", biddings);
+      entityMap.put("bidList", biddings);
     }
 
     return entityMap;

@@ -78,18 +78,18 @@ document.querySelector("#register_form").addEventListener("submit", (e) => {
   console.log(form);
 
   // 이미지 삽입 확인
-  const image = document.querySelector(".upload_product_image");
-  console.log("image: " + image.value);
-  if (image.value == null) {
-    // alert
-    Swal.fire({
-      icon: "warning",
-      title: "이미지를 삽입해주세요.",
-      showConfirmButton: false,
-      timer: 1000,
-    });
-    return;
-  }
+  // const image = document.querySelector(".upload_product_image");
+  // console.log("image: " + image.value);
+  // if (image.value == null) {
+  //   // alert
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "이미지를 삽입해주세요.",
+  //     showConfirmButton: false,
+  //     timer: 1000,
+  //   });
+  //   return;
+  // }
 
   // 제목 입력 확인
   const title = document.querySelector("#title");

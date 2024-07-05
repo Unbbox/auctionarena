@@ -6,7 +6,7 @@
       <img src="/img/logo_icon2.png" alt="">
       <h3 class="col-12">제품 수정</h3>
     </div>
-    <form method="post" th:action="@{product_modify}">
+    <form method="post" id="register_form" th:action="@{product_modify}">
       <!-- 이미지 업로드 칸 -->
       <!--<div class="row col-8 upload_image_form"> <div class="col product_image section-title"> <h5>제품 이미지 업로드</h5> <input type="file" class="upload_product_image" accept="image/*" required="required" multiple="multiple" style="display: none;"> <div class="upload_image" name="upload_image"> <i class="fa-solid fa-camera"> 이미지 업로드</i> </div> </div> <div class="col"> <div class="upload_image_preview section-title"> <h5>이미지 미리보기</h5> <div> <ul> 이미지 미리보기 div </ul> </div> </div> </div> </div>-->
 
@@ -15,8 +15,7 @@
         <div class="row image_title">
           <!-- 글자 부분 -->
           <div class="col section-title">
-            <h5>이미지 업로드<span class="vali">
-                (필수)</span></h5>
+            <h5>이미지 업로드</h5>
           </div>
 
           <!-- 업로드 버튼 -->
@@ -24,7 +23,8 @@
             <label for="file" class="btn btn-outline-success file_add">
               <i class="fa-solid fa-plus"></i>
               사진 업로드</label>
-            <input type="file" class="upload_product_image" name="file" id="file" accept="image/*" required="required" multiple="multiple">
+            <!-- 수정은 required 써져있으면 안됨 -->
+            <input type="file" class="upload_product_image" name="file" id="file" accept="image/*" multiple="multiple">
           </div>
         </div>
 
@@ -56,8 +56,7 @@
       <div class="product_detail">
         <div class="col-8 product_title section-title">
           <div class="prod_head">
-            <h5>제목<span class="vali">
-                (필수)</span></h5>
+            <h5>제목</h5>
           </div>
           <input class="form-control" type="text" name="title" id="title" th:value="${dto.title}">
         </div>
@@ -65,8 +64,7 @@
       <div class="product_detail prod_cate">
         <div class="col-8 product_category section-title">
           <div class="prod_head">
-            <h5>카테고리<span class="vali">
-                (필수)</span></h5>
+            <h5>카테고리</h5>
           </div>
           <select name="category" id="category" class="product_cate">
             <option value="" th:selected="${dto.category} == ${dto.category}" th:value="${dto.category}" th:text="${dto.category}">선택</option>
@@ -85,8 +83,7 @@
       <div class="product_detail">
         <div class="col-8 bidding_start_price section-title">
           <div class="prod_head">
-            <h5>경매 시작가<span class="vali">
-                (필수)</span></h5>
+            <h5>경매 시작가</h5>
           </div>
           <input type="number" class="form-control" name="startPrice" id="startPrice" placeholder="가격을 입력해주세요" th:value="${dto.startPrice}" readonly="readonly">
         </div>
@@ -97,7 +94,6 @@
       <input type="hidden" name="biddingDate" id="biddingDate" th:value="${dto.biddingDate}">
       <input type="hidden" name="writerName" id="writerName" th:value="${#authentication.principal.memberDto.nickname}">
 
-      <input type="hidden" name="writerName" id="writerName" th:value="${#authentication.principal.memberDto.nickname}">
       <!-- 등록, 취소 버튼 -->
       <div class="col-8 product_register_btn d-grid gap-2">
         <button type="submit" class="btn btn-primary">수정</button>

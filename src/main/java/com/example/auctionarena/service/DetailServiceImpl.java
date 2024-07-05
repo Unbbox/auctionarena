@@ -16,6 +16,9 @@ import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
 import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
+
+import jakarta.transaction.Transactional;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -80,16 +83,26 @@ public class DetailServiceImpl implements DetailService {
   }
 
   // 제품 수정
+  @Transactional
   @Override
   public Long productUpdate(ProductDto productDto) {
     Map<String, Object> entityMap = dtoToEntity(productDto);
-    log.info("entity : {}", entityMap);
 
+    // product의 기존 이미지 삭제
+
+    Product prod = productRepository.findById(productDto.getPno()).get();
     Product product = (Product) entityMap.get("product");
-    log.info("product : {}", product);
+    log.info("title : {}", productDto.getTitle());
+    log.info("content : {}", productDto.getContent());
+    prod.setTitle(productDto.getTitle());
+    prod.setContent(productDto.getContent());
 
-    productImageRepository.deleteByProduct(product.getPno());
+    productRepository.save(prod);
 
+    // 기존 이미지 삭제
+    productImageRepository.deleteByProduct(product);
+
+    // 새 이미지 삽입
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get("imgList");
     log.info("product Image : {}", productImages);
     productImages.forEach(image -> productImageRepository.save(image));

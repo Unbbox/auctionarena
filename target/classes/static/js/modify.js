@@ -6,7 +6,21 @@ document.querySelector(".upload_image_preview").addEventListener("click", (e) =>
   // li 태그 가져오기
   const currentLi = e.target.closest("li");
 
-  if (confirm("정말로 삭제하시겠습니까?")) {
-    currentLi.remove();
-  }
+  // confirm
+  Swal.fire({
+    title: "이미지 삭제",
+    text: "이미지를 삭제하시겠습니까?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "네",
+    cancelButtonText: "아니요",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      currentLi.remove();
+    } else {
+      return;
+    }
+  });
 });

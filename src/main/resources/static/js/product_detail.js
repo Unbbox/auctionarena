@@ -148,17 +148,9 @@ if ((user != "anonymousUser") & (user == user2)) {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "네",
-      cancleButtonText: "아니요",
+      cancelButtonText: "아니요",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire({
-          title: "삭제 완료",
-          text: "게시글이 삭제되었습니다.",
-          icon: "success",
-        });
-
-        sleep(1500);
-
         deleteForm.submit();
       } else {
         return;

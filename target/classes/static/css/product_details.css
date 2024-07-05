@@ -1,23 +1,41 @@
+/* 네비게이션 css */
+.nav-link {
+  color: white !important;
+}
+
+.nav-item {
+  width: 125px;
+  background-color: black;
+  font-size: 13px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
 .active {
   font-size: 13px;
-  color: #ffffff;
+  color: #ffffff !important;
   background: #e53637;
   display: inline-block;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 14px 20px;
+  padding: 10px;
   border-radius: 4px;
-  margin-right: 11px;
+  margin-right: 5px;
 }
 
-.nav-item {
-  font-size: 13px;
-  text-align: center;
-  padding: 14px 20px;
-  border-radius: 4px;
-  margin-right: 11px;
+/* a 링크 호버 시 상위 태그에 css 적용 */
+.nav-item:has(.nav-link:hover) {
+  /* border: 1px solid #e53637; */
 }
+
+.nav-link:hover {
+  /* color: #b7b7b7 !important; */
+  font-size: 14px;
+}
+/* 네비게이션 css 종료 */
 
 .sub_btn {
   font-size: 11px;
@@ -45,7 +63,7 @@
   position: relative;
 }
 
-.product_details_pic .wish_list {
+/* .product_details_btn .wish_list {
   font-size: 13px;
   color: #ffffff;
   background: #3d3d3d;
@@ -55,7 +73,7 @@
   position: absolute;
   right: 10px;
   bottom: 25px;
-}
+} */
 
 /* .product_div {
   display: flex;
@@ -115,6 +133,7 @@
 }
 
 .bid-btn {
+  height: 50px;
   font-size: 13px;
   color: #ffffff;
   background: #e53637;
@@ -123,16 +142,27 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 14px 20px;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px;
+}
+
+.follow_btn {
+  height: 50px;
+  margin-left: 5px;
+
+  font-size: 13px;
+  color: #ffffff !important;
+  background: #e53637;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: 4px;
 }
 
 /* 테두리만 변경 */
 .anime__details__btn .watch-btn span {
   border-radius: 4px;
-}
-
-.anime__details__btn .follow-btn {
-  margin-left: 11px;
 }
 
 .arrows {

@@ -125,11 +125,17 @@
 <!-- Product Section End -->
 <th:block layout:fragment="script">
   <script>
-    const msg = "[[${msg}]]"
+    const msg = "[[${msg}]]";
+    console.log("msg : " + msg)
+    const ppno = "[[${pno}]]";
+    console.log("pno : " + ppno)
 
     if (msg) {
       // alert
       Swal.fire({icon: "success", title: "제품 등록 완료.", showConfirmButton: false, timer: 1500});
+    }
+    if (ppno) {
+      Swal.fire({icon: "success", title: "제품이 삭제되었습니다.", showConfirmButton: false, timer: 1500});
     }
   </script>
   <script th:src="@{/js/productSearch.js}"></script>
