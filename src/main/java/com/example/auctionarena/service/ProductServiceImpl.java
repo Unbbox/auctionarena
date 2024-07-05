@@ -232,15 +232,14 @@ public class ProductServiceImpl implements ProductService {
       .map(entity -> entityToDto2(entity, productImages))
       .collect(Collectors.toList());
   }
+  // @Override
+  // public List<ProductDto> CategoryList(Long cno) {
+  //   List<Product> list = productRepository.getCategoryByCno(cno);
+  //   List<ProductImage> productImages = productImageRepository.getCategoryByCno();
 
-  @Override
-  public List<ProductDto> CategoryList(Long cno) {
-    List<Product> list = productRepository.getCategoryByCno(cno);
-    List<ProductImage> productImages = productImageRepository.getCategoryByCno();
-
-    return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
-  }
+  //   return list
+  //     .stream()
+  //     .map(entity -> entityToDto2(entity, productImages))
+  //     .collect(Collectors.toList());
+  // }
 }

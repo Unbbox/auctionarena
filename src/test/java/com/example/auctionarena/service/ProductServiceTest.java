@@ -63,14 +63,13 @@ public class ProductServiceTest {
       System.out.println(product);
     });
   }
+  // @Transactional
+  // @Test
+  // public void printCategory() {
+  //   List<ProductDto> products = service.CategoryList(1L);
 
-  @Transactional
-  @Test
-  public void printCategory() {
-    List<ProductDto> products = service.CategoryList(1L);
-
-    products.forEach(product -> {
-      System.out.println(product);
-    });
-  }
+  //   products.forEach(product -> {
+  //     System.out.println(product);
+  //   });
+  // }
 }

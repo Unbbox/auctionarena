@@ -51,7 +51,7 @@ public interface ProductService {
   // List<ProductDto> BiddingDescList(Long pno);
   List<ProductDto> BiddingDescList();
 
-  List<ProductDto> CategoryList(Long cno);
+  // List<ProductDto> CategoryList(Long cno);
 
   public default ProductDto entityToDto(
     Product product,
@@ -66,7 +66,7 @@ public interface ProductService {
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
-      .cno(product.getCategory().getCno())
+      // .cno(product.getCategory().getCno())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();
@@ -126,7 +126,7 @@ public interface ProductService {
       .startPrice(product.getStartPrice())
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
-      .cno(product.getCategory().getCno())
+      // .cno(product.getCategory().getCno())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
       .build();

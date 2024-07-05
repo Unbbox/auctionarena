@@ -128,23 +128,22 @@ public class ProductRepositoryTest {
 
     productRepository.delete(product);
   }
+  // @Test
+  // public void noiceImageList() {
+  //   PageRequestDto requestDto = PageRequestDto
+  //     .builder()
+  //     .page(1)
+  //     .size(24)
+  //     .build();
 
-  @Test
-  public void noiceImageList() {
-    PageRequestDto requestDto = PageRequestDto
-      .builder()
-      .page(1)
-      .size(24)
-      .build();
+  //   Page<Object[]> list = searchProductRepository.mobilecatelist(
+  //     requestDto.getType(),
+  //     requestDto.getKeyword(),
+  //     requestDto.getPageable(Sort.by("pno").descending())
+  //   );
 
-    Page<Object[]> list = searchProductRepository.mobilecatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
-
-    for (Object[] objects : list) {
-      System.out.println(Arrays.toString(objects));
-    }
-  }
+  //   for (Object[] objects : list) {
+  //     System.out.println(Arrays.toString(objects));
+  //   }
+  // }
 }
