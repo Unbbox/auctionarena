@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <!-- Floatingbar Section Begin -->
+  <header class="floatingbar" th:fragment="floatingbar">
+    <!-- 플로팅바 -->
+    <div class="fab-container">
+      <div class="fab shadow">
+        <div class="fab-content">
+          <span class="icon_plus"></span>
+        </div>
+      </div>
+      <div class="sub-button shadow">
+        <a href="#" target="_blank">
+          <span class="icon_headphones"></span>
+        </a>
+      </div>
+      <div class="sub-button shadow">
+        <a th:href="@{/member/mypage}" target="_blank">
+          <span class="icon_profile"></span>
+        </a>
+      </div>
+    </div>
+
+  </html>
