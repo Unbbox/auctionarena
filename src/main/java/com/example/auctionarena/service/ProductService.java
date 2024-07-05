@@ -21,6 +21,10 @@ public interface ProductService {
     CategoryPageRequestDto requestDto
   );
 
+  CategoryPageResultDto<ProductDto, Object[]> getMobileList(
+    CategoryPageRequestDto requestDto
+  );
+
   // ProductDto descList();
   List<ProductDto> pnodescList();
 

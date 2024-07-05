@@ -13,13 +13,13 @@
         <ul>
           <li class="cate_all">
             <!-- <a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/categories}">
               <input type="hidden" value="0">
               전체</a>
           </li>
           <li class="cate_fashion">
             <!-- <a a th:href="@{/auctionArena/categories}"> -->
-            <a href="">
+            <a th:href="@{/auctionArena/fashion-category}">
               <input type="hidden" value="1">
               패션 의류/잡화</a>
           </li>
@@ -95,21 +95,8 @@
               </div>
             </div>
 
-            <!-- <div class="products__pagination justify-content-center">
-              <td th:if="${result.prev}">
-                <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                  <i class="fa fa-angle-double-left"></i>
-                </a>
-              </td>
-              <td th:each="page : ${result.pageList}">
-                <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
-              </td>
-              <td th:if="${result.next}">
-                <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                  <i class="fa fa-angle-double-right"></i>
-                </a>
-              </td>
-            </div> -->
+            <!--<div class="products__pagination justify-content-center"> <td th:if="${result.prev}"> <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-left"></i> </a> </td> <td th:each="page : ${result.pageList}"> <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a> </td> <td th:if="${result.next}"> <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-right"></i> </a> </td> </div>-->
+
           </div>
 
         </div>
@@ -128,6 +115,6 @@
     }
   </script>
   <script th:src="@{/js/productSearch.js}"></script>
-  {% comment %} <script th:src="@{/js/category.js}"></script> {% endcomment %}
+
 </th:block>
 </html>

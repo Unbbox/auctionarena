@@ -48,6 +48,20 @@ public class AuctionController {
     // return "auctionArena/categories";
   }
 
+  // 전체 상품
+  @GetMapping("/mobile-category")
+  public void getMobileCategory(
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
+    log.info("모바일 목록 페이지 요청");
+    log.info(service.getList(requestDto));
+
+    model.addAttribute("result2", service.getMobileList(requestDto));
+    log.info("result2 {}", service.getMobileList(requestDto));
+    // return "auctionArena/categories";
+  }
+
   @GetMapping("/fashion-category")
   public void Home(Model model, Long cno) {
     log.info("패션카테고리 요청");

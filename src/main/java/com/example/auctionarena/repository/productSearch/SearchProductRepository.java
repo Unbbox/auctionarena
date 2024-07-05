@@ -8,4 +8,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface SearchProductRepository {
   Page<Object[]> list(String type, String keyword, Pageable pageable);
+  Page<Object[]> mobilecatelist(String type, String keyword, Pageable pageable);
 }

@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -67,6 +68,29 @@ public class ProductServiceImpl implements ProductService {
       );
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+  }
+
+  @Override
+  public CategoryPageResultDto<ProductDto, Object[]> getMobileList(
+    CategoryPageRequestDto requestDto
+  ) {
+    Page<Object[]> result = productImageRepository.mobilecatelist(
+      requestDto.getType(),
+      requestDto.getKeyword(),
+      // requestDto.getCno(),
+      // requestDto.getCategory(),
+      requestDto.getPageable(Sort.by("pno").descending())
+    );
+
+    Function<Object[], ProductDto> fn =
+      (
+        entity ->
+          entityToDto(
+            (Product) entity[0],
+            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
+          )
+      );
+    return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override

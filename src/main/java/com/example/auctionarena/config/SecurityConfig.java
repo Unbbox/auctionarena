@@ -23,64 +23,79 @@ public class SecurityConfig {
 
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http.authorizeHttpRequests(authorize -> authorize
+    http.authorizeHttpRequests(authorize ->
+      authorize
         // 전체 접근
         // .anyRequest()
         // .permitAll()
 
         // 접근 제한
         .requestMatchers(
-            "/",
-            "/css/**",
-            "/fonts/**",
-            "/img/**",
-            "/js/**",
-            "/noticejs/**",
-            "/memberjs/**",
-            "/saas/**",
-            "/videos/**",
-            "/auth")
+          "/",
+          "/css/**",
+          "/fonts/**",
+          "/img/**",
+          "/js/**",
+          "/noticejs/**",
+          "/memberjs/**",
+          "/saas/**",
+          "/videos/**",
+          "/auth"
+        )
         .permitAll()
         .requestMatchers(
-            "/auctionArena/product_details",
-            "/auctionArena/categories",
-            "/auctionArena/product_modify",
-            "/auctionArena/remove", "/auctionArena/customer-service")
+          "/auctionArena/product_details",
+          "/auctionArena/categories",
+          "/auctionArena/product_modify",
+          "/auctionArena/remove",
+          "/auctionArena/customer-service",
+          "/auctionArena/fashion-category",
+          "/auctionArena/mobile-category"
+        )
         .permitAll()
         .requestMatchers("/notice/notice", "/notice/notice-details")
         .permitAll()
         .requestMatchers("/upload/display")
         .permitAll()
         .requestMatchers(
-            "/member/signup",
-            "/member/find-password",
-            "/member/edit-password")
+          "/member/signup",
+          "/member/find-password",
+          "/member/edit-password"
+        )
         .permitAll()
         .requestMatchers("/access-denied", "/error")
         .permitAll()
         .anyRequest()
-        .authenticated());
+        .authenticated()
+    );
 
     // 로그인
-    http.formLogin(login -> login.loginPage("/member/login").permitAll().defaultSuccessUrl("/", true));
+    http.formLogin(login ->
+      login.loginPage("/member/login").permitAll().defaultSuccessUrl("/", true)
+    );
     // .rememberMe(remember -> remember.rememberMeServices(remembermMeServices))
 
     // 소셜로그인
-    http.oauth2Login(oauth2Login -> oauth2Login
-        .defaultSuccessUrl("/", true));
+    http.oauth2Login(oauth2Login -> oauth2Login.defaultSuccessUrl("/", true));
 
     // 로그아웃
-    http.logout(logout -> logout
+    http.logout(logout ->
+      logout
         .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
-        .logoutSuccessUrl("/"));
+        .logoutSuccessUrl("/")
+    );
 
     // 토큰 비활성화
     // http.csrf(csrf -> csrf.disable());
 
-    http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS));
+    http.sessionManagement(session ->
+      session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+    );
 
     // 403 접근제한
-    http.exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler()));
+    http.exceptionHandling(exception ->
+      exception.accessDeniedHandler(customAccessDeniedHandler())
+    );
 
     return http.build();
   }

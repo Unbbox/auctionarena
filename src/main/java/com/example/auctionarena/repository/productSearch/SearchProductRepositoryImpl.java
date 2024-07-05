@@ -119,4 +119,101 @@ public class SearchProductRepositoryImpl
 
     return new PageImpl<>(list, pageable, count);
   }
+
+  @Override
+  public Page<Object[]> mobilecatelist(
+    String type,
+    String keyword,
+    Pageable pageable
+  ) {
+    QProduct product = QProduct.product;
+    QMember member = QMember.member;
+    QCategory category = QCategory.category;
+    QProductImage productImage = QProductImage.productImage;
+    QComment comment = QComment.comment;
+
+    // JPQLQuery<Product> query = from(product);
+    // query.leftJoin(product.member, member);
+
+    // JPQLQuery<Tuple> tuple = query.select(
+    // product,
+    // member,
+    // JPAExpressions
+    // .select(category.cno)
+    // .from(category)
+    // .where(category.category.eq(product.category))
+    // );
+
+    JPQLQuery<ProductImage> query = from(productImage);
+    query
+      .leftJoin(product)
+      .on(productImage.product.eq(product))
+      .leftJoin(category)
+      .on(product.category.cno.eq(category.cno));
+
+    JPQLQuery<Tuple> tuple = query
+      .select(
+        product,
+        productImage,
+        category,
+        JPAExpressions
+          .select(comment.countDistinct())
+          .from(comment)
+          .where(
+            comment.product
+              .eq(productImage.product)
+              .and(product.category.cno.eq(category.cno))
+          )
+      )
+      .where(
+        productImage.inum
+          .in(
+            JPAExpressions
+              .select(productImage.inum.min())
+              .from(productImage)
+              .groupBy(productImage.product.pno)
+          )
+          .and(product.category.cno.eq((long) 2))
+      );
+
+    BooleanBuilder builder = new BooleanBuilder();
+    builder.and(product.pno.gt(0L));
+
+    // 검색 타입이 있는 경우
+    BooleanBuilder conditionBuilder = new BooleanBuilder();
+    conditionBuilder.or(product.title.contains(keyword));
+    builder.and(conditionBuilder);
+    tuple.where(builder);
+
+    Sort sort = pageable.getSort();
+    sort
+      .stream()
+      .forEach(order -> {
+        Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+        String prop = order.getProperty();
+
+        PathBuilder<Product> orderByExpression = new PathBuilder<>(
+          Product.class,
+          "product"
+        );
+        tuple.orderBy(
+          new OrderSpecifier(direction, orderByExpression.get(prop))
+        );
+      });
+    // 페이지 처리
+    tuple.offset(pageable.getOffset());
+    tuple.limit(pageable.getPageSize());
+
+    List<Tuple> result = tuple.fetch();
+
+    // 전체 개수
+    long count = tuple.fetchCount();
+
+    List<Object[]> list = result
+      .stream()
+      .map(t -> t.toArray())
+      .collect(Collectors.toList());
+
+    return new PageImpl<>(list, pageable, count);
+  }
 }
