@@ -29,6 +29,20 @@
   margin-left: 3px;
 }
 
+.active {
+  font-size: 13px;
+  color: #ffffff !important;
+  background: #e53637;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px;
+  border-radius: 4px;
+  margin-right: 5px;
+  height: 10px;
+}
+
 .category__menu {
   text-align: center;
   /* box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15); */
