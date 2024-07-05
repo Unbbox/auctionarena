@@ -5,23 +5,28 @@ const sleep = (ms) => {
   while (Date.now() < wakeUpTime) {}
 };
 
-// 찜목록 활성화 비활성화
-const wishBtn = document.querySelector(".anime__details__btn .wish_list");
-if ((user != "anonymousUser") & (user == user2)) {
-  wishBtn.addEventListener("click", (e) => {
-    const btn = e.target.querySelector("i");
+// 찜목록 표기
+// const wishBtn = document.querySelector(".follow_btn");
+// const wishForm = document.querySelector(".wishForm");
+// const mid = wishForm.querySelector("#mid");
 
-    if (btn.classList.contains("fa-heart")) {
-      if (btn.classList.contains("fa-regular")) {
-        btn.classList.remove("fa-regular");
-        btn.classList.add("fa-solid");
-      } else {
-        btn.classList.remove("fa-solid");
-        btn.classList.add("fa-regular");
-      }
-    }
-  });
-}
+// wishBtn.addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const btn = e.target.querySelector("i");
+
+//   // console.log("wish_mid : ", wish_mid);
+//   console.log("mid : ", mid);
+
+//   // if (btn.classList.contains("fa-heart")) {
+//   //   if (btn.classList.contains("fa-regular")) {
+//   //     btn.classList.remove("fa-regular");
+//   //     btn.classList.add("fa-solid");
+//   //   } else {
+//   //     btn.classList.remove("fa-solid");
+//   //     btn.classList.add("fa-regular");
+//   //   }
+//   // }
+// });
 
 // 탭별 활성화 표시 및 해당 내용 출력
 const items_nav = document.querySelectorAll(".items_nav li");

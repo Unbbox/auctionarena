@@ -5,9 +5,12 @@ import com.example.auctionarena.dto.CategoryDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.dto.WishDto;
 import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.ProductService;
+import com.example.auctionarena.service.WishService;
+
 import jakarta.validation.Valid;
 import java.lang.ProcessBuilder.Redirect;
 import java.util.ArrayList;
@@ -33,6 +36,7 @@ public class AuctionController {
   private final ProductService service;
   private final DetailService detailService;
   private final BiddingService biddingService;
+  private final WishService wishService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -136,6 +140,11 @@ public class AuctionController {
       log.info("product : ", productDto);
       log.info("===========");
     }
+
+    // 찜목록 dto
+    List<WishDto> wishDto = wishService.getRow(pno);
+    model.addAttribute("wishDto", wishDto);
+
     // log.info("relation : ", detailService.getRelationList(pno));
     model.addAttribute("relationDto", detailService.getRelationList(pno));
   }
