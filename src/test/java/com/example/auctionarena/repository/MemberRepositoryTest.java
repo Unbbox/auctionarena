@@ -26,7 +26,7 @@ public class MemberRepositoryTest {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private String[] genders = {"male", "female", null};
+    private String[] genders = {"male", "female"};
 
 
     @Test
@@ -35,7 +35,7 @@ public class MemberRepositoryTest {
 
             Integer age = (int) ((Math.random()*70)+10);
 
-            String gender = genders[(int)(Math.random()*3)];
+            String gender = genders[(int)(Math.random()*2)];
         
 
             Member member = Member.builder()

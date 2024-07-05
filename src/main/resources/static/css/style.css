@@ -2192,17 +2192,13 @@ ol {
   }
 
   /* 회원가입 */
-  .input__item #gender {
+  .input__item #gender-input {
     width: 30% !important;
   }
 
-  .gender-radio {
-      width: 68% !important;
-  }
-
   .form-check-inline {
-     padding-right: 40px !important;
-  }
+  margin-left: 50px !important;
+}
 }
 
 /* Wide Mobile = 480px */
@@ -2354,6 +2350,10 @@ ol {
     height: 50%;
     width: 40%;
   }
+
+    .form-check-inline {
+  margin-left: 20px !important;
+}
 }
 
 /* Small Device = 320px */
@@ -2842,7 +2842,7 @@ input[type="file"]::file-selector-button {
   border: 1px solid #e8e8e8;
 }
 
-.input__item #gender {
+.input__item #gender-input {
     width: 35%;
     min-width: 120px;
     font-size: 15px;
@@ -2850,22 +2850,21 @@ input[type="file"]::file-selector-button {
     background: #ffffff;
     border: none !important;
     padding-left: 76px;
-    margin-right: 1%;
+    margin-right: 5%;
 }
 
 .gender-radio {
-    width: 64%;
-    min-width: 230px;
+    width: 60%;
     font-size: 15px;
     color: #b7b7b7;
     background: #ffffff;
     float: right;
     padding: 15px 0 0 0;
-    text-align: center;
+    text-align: right;
 }
 
 .form-check-inline {
-  margin-right: 5px !important;
+  margin-right: 30px !important;
 }
 
 /* footer */
@@ -3073,7 +3072,6 @@ input[type="file"]::file-selector-button {
   margin-bottom: 7px;
 }
 
-/*  */
 .listContainer .item:hover {
   /*   background-color: #f8f8f8; */
 }
@@ -3177,6 +3175,10 @@ input[type="file"]::file-selector-button {
 
 .mypage-btn:hover {
   background: #000000;
+}
+
+.accountInfo .form-check-inline {
+  margin-right: 50px !important;
 }
 
 /*=================== Access-denied ==================*/

@@ -86,6 +86,21 @@ pwdInput.forEach((pwdInput, index) => {
 });
 
 // ========================================== //
+// 성별 선택
+const radio = document.querySelectorAll('input[name="gender-radio"]');
+radio.forEach((e) => {
+  e.addEventListener("change", (event) => {
+    const genderInput = document.getElementById('gender');
+    genderInput.value = event.target.value;
+  })
+});
+
+// ========================================== //
+// 라디오 선택 체크 해제
+
+
+
+// ========================================== //
 // 유효성 검사
 
 // 에러 메세지
@@ -110,6 +125,7 @@ const errMsg = {
   nickname: "닉네임을 입력해주세요.",
   zonecode: "우편번호를 입력해주세요.",
   addr: "주소를 입력해주세요.",
+  age: "세자리의 숫자로 입력해주세요"
 };
 
 // 이메일
@@ -181,49 +197,56 @@ signupBtn.addEventListener("click", (e) => {
   const addr = document.querySelector("#addr");
   const addrError = document.querySelector("addrError");
 
+  const age = document.querySelector("#age");
+  const ageError = document.querySelector("#ageError");
+  const ageRegExp = /^[0-9]{0,3}$/;
+
   if (email.value == "") {
     emailError.textContent = errMsg.email.empty;
     email.focus();
-    return;
+    exit;
   } else if (!emailRegExp.test(email.value)) {
     emailError.textContent = errMsg.email.notEmail;
-    return;
+    exit;
   } else if (password.value == "") {
     passwordError.textContent = errMsg.password.empty;
     password.focus();
-    return;
+    exit;
   } else if (!pwRegExp.test(password.value)) {
    passwordError.textContent = errMsg.password.notPw;
-   return;
+   exit;
   }else if (checkPassword.value == "") {
     chkPasswordError.textContent = errMsg.checkPassword.empty;
     checkPassword.focus();
-    return;
+    exit;
   } else if (checkPassword.value != password.value) {
     chkPasswordError.textContent = errMsg.checkPassword.notPw;
+    exit
   } else if (name.value == "") {
     nameError.textContent = errMsg.name;
     name.focus();
-    return;
+    exit;
   } else if (nickname.value == "") {
     nicknameError.textContent = errMsg.nickname;
     nickname.focus();
-    return;
+    exit;
   } else if (zonecode.value == "") {
     zonecodeError.textContent = errMsg.zonecode;
     zonecode.focus();
-    return;
+    exit;
   } else if (addr.value == "") {
     addrError.textContent = errMsg.addr;
     addr.focus();
-    return;
+    exit;
   } else if (phoneNumber.value == "") {
     phoneError.textContent = errMsg.phoneNumber.empty;
     phoneNumber.focus();
-    return;
+    exit;
   } else if (!phoneRegExp.test(phoneNumber.value)) {
     phoneError.textContent = errMsg.phoneNumber.notPhone;
-    return;
+    exit;
+  } else if (!ageRegExp.test(age.value)){
+    ageError.textContent = errMsg.age;
   } else {
     form.submit();
   }
