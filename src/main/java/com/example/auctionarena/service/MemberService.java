@@ -32,6 +32,8 @@ public interface MemberService {
                 .zonecode(dto.getZonecode())
                 .addr(dto.getAddr())
                 .phoneNumber(dto.getPhoneNumber())
+                .age(dto.getAge())
+                .gender(dto.getGender())
                 .role(dto.getRole())
                 .build();
     }
@@ -46,6 +48,8 @@ public interface MemberService {
                 .zonecode(member.getZonecode())
                 .addr(member.getAddr())
                 .phoneNumber(member.getPhoneNumber())
+                .age(member.getAge())
+                .gender(member.getGender())
                 .role(member.getRole())
                 .build();
     }

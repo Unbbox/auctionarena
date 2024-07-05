@@ -121,6 +121,8 @@ public class MemberServiceImpl implements UserDetailsService, MemberService {
         member.setZonecode(infoDto.getZonecode());
         member.setAddr(infoDto.getAddr());
         member.setPhoneNumber(infoDto.getPhoneNumber());
+        member.setAge(infoDto.getAge());
+        member.setGender(infoDto.getGender());
 
         memberRepository.save(member);
     }

@@ -146,8 +146,6 @@ public class OAuth2UserDetailService extends DefaultOAuth2UserService {
                 .name(member.getName())
                 .nickname(member.getNickname())
                 .phoneNumber(member.getPhoneNumber())
-                .addr(member.getAddr())
-                .zonecode(member.getZonecode())
                 .role(member.getRole())
                 .createdDate(member.getCreatedDate())
                 .lastModifiedDate(member.getLastModifiedDate())
