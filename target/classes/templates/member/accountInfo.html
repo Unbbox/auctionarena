@@ -59,6 +59,14 @@
               <span class="icon_phone"></span>
               <div class="text-danger" id="phoneError"></div>
             </div>
+            <div class="input__item">
+              <input type="text" placeholder="나이" id="age" name="age"/>
+              <span class="icon_id"></span>
+            </div>
+            <div class="input__item">
+              <input type="text" placeholder="성별" id="gender" name="gender"/>
+              <span class="icon_profile"></span>
+            </div>
             <button type="submit" class="edit-btn">수정</button>
             <button type="button" class="edit-btn remove">회원탈퇴</button>
             <a th:href="@{/member/mypage}" class="mypage-btn">취소</a>

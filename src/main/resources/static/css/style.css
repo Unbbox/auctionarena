@@ -1722,7 +1722,7 @@ ol {
   margin-right: 2%;
 }
 
-.login__form form .input__item input {
+.login__form form .input__item input:not(input[type=radio]) {
   height: 50px;
   width: 100%;
   font-family: "Noto Sans KR", sans-serif;
@@ -1852,7 +1852,7 @@ ol {
 }
 
 .signup .login__form:after {
-  height: 120%;
+  height: 110%;
   margin-top: 10px;
   margin-right: 3%;
 }
@@ -2189,6 +2189,19 @@ ol {
   .accountInfo .container {
     width: 600px !important;
     margin: 0 auto;
+  }
+
+  /* 회원가입 */
+  .input__item #gender {
+    width: 30% !important;
+  }
+
+  .gender-radio {
+      width: 68% !important;
+  }
+
+  .form-check-inline {
+     padding-right: 40px !important;
   }
 }
 
@@ -2740,7 +2753,7 @@ input[type="file"]::file-selector-button {
 .agree textarea {
   padding: 20px;
   width: 100%;
-  height: 150px;
+  height: 200px;
   background-color: #fff;
   border: 1px solid #d8d9df;
   font-size: 12px;
@@ -2788,10 +2801,6 @@ input[type="file"]::file-selector-button {
 .agreeActive {
 }
 
-.input__item input {
-
-}
-
 .input__item input:focus {
   outline: 1px solid #555555;
   color: #555555;
@@ -2823,6 +2832,40 @@ input[type="file"]::file-selector-button {
   -o-transition: all, 0.3s;
   transition: all, 0.3s;
   float: right;
+}
+
+.input__item .gender {
+  float: right;
+}
+
+.login__form form .gender {
+  border: 1px solid #e8e8e8;
+}
+
+.input__item #gender {
+    width: 35%;
+    min-width: 120px;
+    font-size: 15px;
+    color: #b7b7b7;
+    background: #ffffff;
+    border: none !important;
+    padding-left: 76px;
+    margin-right: 1%;
+}
+
+.gender-radio {
+    width: 64%;
+    min-width: 230px;
+    font-size: 15px;
+    color: #b7b7b7;
+    background: #ffffff;
+    float: right;
+    padding: 15px 0 0 0;
+    text-align: center;
+}
+
+.form-check-inline {
+  margin-right: 5px !important;
 }
 
 /* footer */
