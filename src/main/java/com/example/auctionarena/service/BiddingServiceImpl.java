@@ -26,7 +26,9 @@ public class BiddingServiceImpl implements BiddingService {
         log.info("{}번 제품 응찰 리스트 가져오기", pno);
 
         Product product = Product.builder().pno(pno).build();
+        log.info("bid pno : {}", product);
         List<Bidding> biddings = repository.findByProductOrderByCreatedDateDesc(product);
+        log.info("bid list : {}", biddings);
 
         Function<Bidding, BiddingDto> fn = bidding -> entityToDto(bidding);
         return biddings.stream().map(fn).collect(Collectors.toList());

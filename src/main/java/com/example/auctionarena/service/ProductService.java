@@ -52,7 +52,7 @@ public interface ProductService {
   List<ProductDto> BiddingDescList();
 
   List<ProductDto> CategoryList(Long cno);
-
+  
   List<ProductDto> MemberBiddingList(String email);
 
   public default ProductDto entityToDto(
@@ -129,10 +129,8 @@ public interface ProductService {
       .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
       .cno(product.getCategory().getCno())
-      .writerEmail(product.getMember().getEmail())
       .createdDate(product.getCreatedDate())
       .lastModifiedDate(product.getLastModifiedDate())
-      .mno(product.getMember().getMid())
       .build();
 
     productImages.forEach(image -> {

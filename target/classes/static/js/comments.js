@@ -59,60 +59,62 @@ commentLoaded();
 
 // 댓글 등록 이벤트
 const commentForm = document.querySelector(".comment-form");
-commentForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+if ((user != "anonymousUser") & (user == user2)) {
+  commentForm.addEventListener("submit", (e) => {
+    e.preventDefault();
 
-  const text = commentForm.querySelector("#text");
-  const mid = commentForm.querySelector("#mid");
-  const nickname = commentForm.querySelector("#nickname");
-  const email = commentForm.querySelector("#email");
-  const commentNo = commentForm.querySelector("#commentNo"); // 수정일 경우
+    const text = commentForm.querySelector("#text");
+    const mid = commentForm.querySelector("#mid");
+    const nickname = commentForm.querySelector("#nickname");
+    const email = commentForm.querySelector("#email");
+    const commentNo = commentForm.querySelector("#commentNo"); // 수정일 경우
 
-  const body = {
-    pno: pno,
-    text: text.value,
-    nickname: nickname.value,
-    email: email.value,
-    mid: mid.value,
-    commentNo: commentNo.value,
-  };
+    const body = {
+      pno: pno,
+      text: text.value,
+      nickname: nickname.value,
+      email: email.value,
+      mid: mid.value,
+      commentNo: commentNo.value,
+    };
 
-  console.log("text : ", text);
-  console.log("text value : ", text.value);
+    console.log("text : ", text);
+    console.log("text value : ", text.value);
 
-  // 댓글 등록
-  if (!commentNo.value) {
-    if (text.value == "") {
-      // alert
-      Swal.fire({
-        icon: "warning",
-        title: "댓글 내용을 입력해주세요.",
-        showConfirmButton: false,
-        timer: 1000,
-      });
-      text.focus();
-      return;
+    // 댓글 등록
+    if (!commentNo.value) {
+      if (text.value == "") {
+        // alert
+        Swal.fire({
+          icon: "warning",
+          title: "댓글 내용을 입력해주세요.",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        text.focus();
+        return;
+      }
+
+      fetch(`/comments/${pno}`, {
+        headers: {
+          "content-type": "application/json",
+          "X-CSRF-TOKEN": csrfValue,
+        },
+        body: JSON.stringify(body),
+        method: "post",
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          console.log("comment >> " + data);
+
+          text.value = ""; // 작성한 댓글 내용 지우기
+
+          if (data) console.log("댓글 등록 완료");
+          commentLoaded();
+        });
     }
-
-    fetch(`/comments/${pno}`, {
-      headers: {
-        "content-type": "application/json",
-        "X-CSRF-TOKEN": csrfValue,
-      },
-      body: JSON.stringify(body),
-      method: "post",
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        console.log("comment >> " + data);
-
-        text.value = ""; // 작성한 댓글 내용 지우기
-
-        if (data) console.log("댓글 등록 완료");
-        commentLoaded();
-      });
-  }
-});
+  });
+}
 
 // 댓글 삭제
 commentList.addEventListener("click", (e) => {

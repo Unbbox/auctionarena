@@ -49,7 +49,8 @@ public class HomeController {
   @GetMapping("error")
   public String getError() {
     log.info("error");
-    return "except/url404";
+    // return "except/url404";
+    return "error";
   }
 
   @ResponseBody

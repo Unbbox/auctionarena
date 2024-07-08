@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
   <div layout:fragment="content">
 
@@ -250,11 +250,14 @@
     <th:block layout:fragment="script">
       <script>
 
-        // 유저 정보 가져오기
+        // 멤버 정보 가져오기
         const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
         console.log("user info : ", user);
         const user2 = "[[${dto.writerName}]]";
         console.log("user2 info : ", user2);
+        const mid = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.mid}]]";
+        console.log("mid info : ", mid);
+
 
         // 페이지 정보 가져오기
         // const page="${requestDto.page}";

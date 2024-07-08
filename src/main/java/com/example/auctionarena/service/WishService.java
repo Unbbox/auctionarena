@@ -1,5 +1,6 @@
 package com.example.auctionarena.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import com.example.auctionarena.dto.WishDto;
@@ -9,7 +10,7 @@ import com.example.auctionarena.entity.Wish;
 
 public interface WishService {
 
-    List<WishDto> getRow(Long pno);
+    WishDto getRow(Long pno, Long mid);
 
     Long addWish(WishDto wishdDto);
 
@@ -18,16 +19,16 @@ public interface WishService {
     public default Wish dtoToEntity(WishDto wishDto) {
 
         return Wish.builder()
-                .product(Product.builder().pno(wishDto.getProductPno()).build())
-                .member(Member.builder().mid(wishDto.getMemberMid()).build())
+                .product(Product.builder().pno(wishDto.getPno()).build())
+                .member(Member.builder().mid(wishDto.getMid()).build())
                 .build();
     }
 
     public default WishDto entityToDto(Wish wish) {
 
         return WishDto.builder()
-                .productPno(wish.getProduct().getPno())
-                .memberMid(wish.getMember().getMid())
+                .pno(wish.getProduct().getPno())
+                .mid(wish.getMember().getMid())
                 .build();
     }
 }

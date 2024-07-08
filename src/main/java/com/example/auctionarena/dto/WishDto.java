@@ -14,8 +14,8 @@ public class WishDto {
     private Long wno;
 
     // 제품
-    private Long productPno;
+    private Long pno;
 
     // 멤버
-    private Long memberMid;
+    private Long mid;
 }

@@ -18,7 +18,6 @@ import com.querydsl.core.Tuple;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
@@ -51,163 +50,114 @@ public class ProductServiceImpl implements ProductService {
   // }
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.list(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
     // (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getMobileList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.mobilecatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getFashionList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.fashioncatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getElectricList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.electriccatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getGameList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.gamecatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getTribList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.tribcatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
   @Override
   public CategoryPageResultDto<ProductDto, Object[]> getEtcList(
-    CategoryPageRequestDto requestDto
-  ) {
+      CategoryPageRequestDto requestDto) {
     Page<Object[]> result = productImageRepository.etccatelist(
-      requestDto.getType(),
-      requestDto.getKeyword(),
-      // requestDto.getCno(),
-      // requestDto.getCategory(),
-      requestDto.getPageable(Sort.by("pno").descending())
-    );
+        requestDto.getType(),
+        requestDto.getKeyword(),
+        // requestDto.getCno(),
+        // requestDto.getCategory(),
+        requestDto.getPageable(Sort.by("pno").descending()));
 
-    Function<Object[], ProductDto> fn =
-      (
-        entity ->
-          entityToDto(
-            (Product) entity[0],
-            (List<ProductImage>) Arrays.asList((ProductImage) entity[1])
-          )
-      );
+    Function<Object[], ProductDto> fn = (entity -> entityToDto(
+        (Product) entity[0],
+        (List<ProductImage>) Arrays.asList((ProductImage) entity[1])));
     return new CategoryPageResultDto<>(result, fn);
   }
 
@@ -220,9 +170,9 @@ public class ProductServiceImpl implements ProductService {
     log.info("제품 정보 {}", list);
     log.info("제품 이미지 {}", productImages);
     return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
 
   @Override
@@ -231,9 +181,9 @@ public class ProductServiceImpl implements ProductService {
     List<ProductImage> productImages = productImageRepository.orderByBiddingDesc();
 
     return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
 
   @Override
@@ -242,11 +192,11 @@ public class ProductServiceImpl implements ProductService {
     List<ProductImage> productImages = productImageRepository.getCategoryByCno();
 
     return list
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
   }
-
+  
   @Override
   public List<ProductDto> MemberBiddingList(String email) {
     Member member = membereRepository.findByEmail2(email);

@@ -114,6 +114,7 @@ public class DetailServiceImpl implements DetailService {
   @Override
   public void productRemove(Long pno) {
     Product product = Product.builder().pno(pno).build();
+    log.info("product 제거 : {}", product);
 
     productRepository.delete(product);
   }

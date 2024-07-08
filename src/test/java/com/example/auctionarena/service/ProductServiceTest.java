@@ -73,13 +73,4 @@ public class ProductServiceTest {
       System.out.println(product);
     });
   }
-  // @Transactional
-  // @Test
-  // public void printbidding() {
-  //   List<ProductDto> products = service.MemberBiddingList(1L);
-
-  //   products.forEach(product -> {
-  //     System.out.println(product);
-  //   });
-  // }
 }

@@ -34,7 +34,6 @@ public class ProductDto {
   // 멤버 관계
   private String writerName; // 작성자 이름
   private String writerEmail;
-  private Long mno;
 
   @NotBlank(message = "경매 시작 가격을 입력해주세요")
   private Long startPrice; // 경매 시작 가격

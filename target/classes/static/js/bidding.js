@@ -15,7 +15,8 @@ const format_Date = (data) => {
 };
 
 // bidding 내역 get
-const getBiddingList = () => {
+function getBidList() {
+// const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
@@ -25,7 +26,7 @@ const getBiddingList = () => {
       if (data.length <= 0) {
         biddingList.innerText = "입찰 기록이 없습니다.";
 
-        // 가격 3자리씩 끊어서 comma 넣기
+        // 현재 경매가 => 가격 3자리씩 끊어서 comma 넣기
         document.querySelector(".currPrice").innerText = startPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
         // 입찰 기록 없으면 바로 종료
         return;
@@ -43,14 +44,14 @@ const getBiddingList = () => {
           if (user == `${bidding.mnickName}`) {
             result += `<th scope="row" style="text-decoration: underline; color: #e53637;">${bidding.mnickName}</th>`;
             result += `<th style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</th>`;
-            result += `<th style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td`;
+            result += `<th style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</th>`;
             // result += `<td class="px-4 py-3" style="text-align: center; text-decoration: underline; color: #e53637;">${bidding.mnickName}</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + bidPrice + `원</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline; color: #e53637;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
           } else {
-            result += `<td scope="row" style="text-decoration: underline;">${bidding.mnickName}</th>`;
+            result += `<td scope="row" style="text-decoration: underline;">${bidding.mnickName}</td>`;
             result += `<td style="text-decoration: underline;">` + bidPrice + `원</td>`;
-            result += `<td style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td`;
+            result += `<td style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">${bidding.mnickName}</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + bidPrice + `원</td>`;
             // result += `<td class="px-4 py-3" style="text-decoration: underline;">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
@@ -58,7 +59,7 @@ const getBiddingList = () => {
         } else {
           result += `<td scope="row">${bidding.mnickName}</td>`;
           result += `<td>` + bidPrice + `원</td>`;
-          result += `<td>` + format_Date(`${bidding.biddingTime}`) + `</td`;
+          result += `<td>` + format_Date(`${bidding.biddingTime}`) + `</td>`;
           // result += `<td class="px-4 py-3">${bidding.mnickName}</td>`;
           // result += `<td class="px-4 py-3" name="bidPrice" id="bidPrice">` + bidPrice + `원</td>`;
           // result += `<td class="px-4 py-3">` + format_Date(`${bidding.biddingTime}`) + `</td>`;
@@ -80,83 +81,86 @@ const getBiddingList = () => {
     });
 };
 
-getBiddingList();
+// getBiddingList();
+getBidList();
 
 // bidding 등록 post
 const biddingForm = document.querySelector(".biddingForm");
-biddingForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // biddingPrice, mid, mNickname
-  const biddingPrice = biddingForm.querySelector("#biddingPrice");
-  const mid = biddingForm.querySelector("#mid");
-  const mNickName = biddingForm.querySelector("#mNickName");
-  const currPrice = document.querySelector(".currPrice");
+if ((user != "anonymousUser") & (user == user2)) {
+  biddingForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    // biddingPrice, mid, mNickname
+    const biddingPrice = biddingForm.querySelector("#biddingPrice");
+    const mid = biddingForm.querySelector("#mid");
+    const mNickName = biddingForm.querySelector("#mNickName");
+    const currPrice = document.querySelector(".currPrice");
 
-  // 입찰 마감되었을 때 입찰 안되게 해야함
-  const bidding_date = document.querySelector(".date_now");
-  if (bidding_date.classList.contains("finish_sale")) {
-    Swal.fire({
-      icon: "warning",
-      title: "경매가 마감되었습니다.",
-      showConfirmButton: false,
-      timer: 1000,
-    });
-    return;
-  }
-  // 처음 입찰 기록 없을 때 입찰 기록 설정
-  if (currPrice.value == undefined) {
-    currPrice.value = startPrice;
-  }
-  if (biddingPrice.value == undefined) {
-    biddingPrice.value = startPrice;
-  }
+    // 입찰 마감되었을 때 입찰 안되게 해야함
+    const bidding_date = document.querySelector(".date_now");
+    if (bidding_date.classList.contains("finish_sale")) {
+      Swal.fire({
+        icon: "warning",
+        title: "경매가 마감되었습니다.",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      return;
+    }
+    // 처음 입찰 기록 없을 때 입찰 기록 설정
+    if (currPrice.value == undefined) {
+      currPrice.value = startPrice;
+    }
+    if (biddingPrice.value == undefined) {
+      biddingPrice.value = startPrice;
+    }
 
-  // console.log("currPrice value : ", currPrice.value);
-  // console.log("biddingPrice : ", biddingPrice.value);
-  // console.log("currPrice type : ", typeof currPrice.value);
-  // console.log("biddingPrice type : ", typeof biddingPrice.value);
+    // console.log("currPrice value : ", currPrice.value);
+    // console.log("biddingPrice : ", biddingPrice.value);
+    // console.log("currPrice type : ", typeof currPrice.value);
+    // console.log("biddingPrice type : ", typeof biddingPrice.value);
 
-  if (Number(biddingPrice.value) <= Number(currPrice.value)) {
-    Swal.fire({
-      icon: "error",
-      text: "입찰 금액이 현재 경매가보다 낮습니다.",
-      showConfirmButton: false,
-      timer: 1500,
-    });
-    return;
-  } else {
-    const body = {
-      pno: pno,
-      biddingPrice: biddingPrice.value,
-      mid: mid.value,
-      mNickName: mNickName.value,
-    };
+    if (Number(biddingPrice.value) <= Number(currPrice.value)) {
+      Swal.fire({
+        icon: "error",
+        text: "입찰 금액이 현재 경매가보다 낮습니다.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    } else {
+      const body = {
+        pno: pno,
+        biddingPrice: biddingPrice.value,
+        mid: mid.value,
+        mNickName: mNickName.value,
+      };
 
-    if (biddingPrice)
-      // 입찰 등록
-      fetch(`/biddings/${pno}`, {
-        headers: {
-          "content-type": "application/json",
-          "X-CSRF-TOKEN": csrfValue,
-        },
-        body: JSON.stringify(body),
-        method: "post",
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          console.log(data);
+      if (biddingPrice)
+        // 입찰 등록
+        fetch(`/biddings/${pno}`, {
+          headers: {
+            "content-type": "application/json",
+            "X-CSRF-TOKEN": csrfValue,
+          },
+          body: JSON.stringify(body),
+          method: "post",
+        })
+          .then((response) => response.text())
+          .then((data) => {
+            console.log(data);
 
-          biddingPrice.value = "";
+            biddingPrice.value = "";
 
-          getBiddingList();
-          if (data) {
-            Swal.fire({
-              icon: "success",
-              title: "입찰 등록이 완료되었습니다.",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-          }
-        });
-  }
-});
+            getBiddingList();
+            if (data) {
+              Swal.fire({
+                icon: "success",
+                title: "입찰 등록이 완료되었습니다.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+    }
+  });
+}

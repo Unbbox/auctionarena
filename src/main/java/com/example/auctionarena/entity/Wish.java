@@ -14,7 +14,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString(exclude = { "product", "member" })
+// @ToString(exclude = { "product", "member" })
+@ToString
 @Builder
 @Getter
 @Setter
