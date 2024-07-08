@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class WishDto {
 
-    private Long wno;
+  private Long wno;
 
-    // 제품
-    private Long pno;
+  // 제품
+  private Long pno;
 
-    // 멤버
-    private Long mid;
+  // 멤버
+  private Long mid;
 }

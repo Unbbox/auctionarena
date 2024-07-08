@@ -16,7 +16,7 @@ const format_Date = (data) => {
 
 // bidding 내역 get
 function getBidList() {
-// const getBiddingList = () => {
+  // const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
@@ -79,7 +79,7 @@ function getBidList() {
       // console.log("biddingCnt : ", biddingCnt);
       document.querySelector(".biddingCnt").innerText = bidCnt + "회";
     });
-};
+}
 
 // getBiddingList();
 getBidList();

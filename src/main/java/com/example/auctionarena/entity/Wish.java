@@ -24,14 +24,21 @@ import lombok.ToString;
 @Entity
 public class Wish extends BaseEntity {
 
-    @SequenceGenerator(name = "wish_seq_gen", sequenceName = "wish_gen", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "wish_seq_gen")
-    @Id
-    private Long wno;
+  @SequenceGenerator(
+    name = "wish_seq_gen",
+    sequenceName = "wish_gen",
+    allocationSize = 1
+  )
+  @GeneratedValue(
+    strategy = GenerationType.SEQUENCE,
+    generator = "wish_seq_gen"
+  )
+  @Id
+  private Long wno;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Product product;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+  @ManyToOne(fetch = FetchType.LAZY)
+  private Member member;
 }

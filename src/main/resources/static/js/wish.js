@@ -41,7 +41,7 @@ if ((user != "anonymousUser") & (user == user2)) {
           mid: mid,
         };
 
-        console.log("remove body : ", body)
+        console.log("remove body : ", body);
 
         fetch(`/wish/remove/${pno}`, {
           headers: {
@@ -62,22 +62,21 @@ if ((user != "anonymousUser") & (user == user2)) {
   });
 }
 
-
-const showWish =  () => {
+const showWish = () => {
   const btn = wishBtn.querySelector(".fa-heart");
   console.log("찜목록 wish : ", user);
 
   console.log("type of pno, mid : ", typeof pno, typeof mid);
-  
+
   // if (user != 'anonymousUser') {
   fetch(`/wish/${pno}/${mid}`)
     .then((response) => response.json())
     .then((data) => {
-      if(data) {
+      if (data) {
         console.log("data.mid: ", data.mid);
         console.log("mid: ", mid);
 
-        if(data.mid == mid) {
+        if (data.mid == mid) {
           btn.classList.remove("fa-regular");
           btn.classList.add("fa-solid");
         } else {
@@ -89,9 +88,9 @@ const showWish =  () => {
         return;
       }
     });
-  // } 
+  // }
 };
 
 // if ((user != "anonymousUser") & (user == user2)) {
-  showWish();
+showWish();
 // }

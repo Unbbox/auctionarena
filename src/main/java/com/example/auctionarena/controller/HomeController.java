@@ -1,7 +1,6 @@
 package com.example.auctionarena.controller;
 
 import com.example.auctionarena.dto.ProductDto;
-
 import com.example.auctionarena.service.ProductService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -12,9 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Log4j2
 @Controller
