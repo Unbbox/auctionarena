@@ -51,7 +51,7 @@ public class ProductRepositoryTest {
           Long cno = (long) (Math.random() * 6) + 1;
           Category category = Category.builder().cno(cno).build();
 
-          Long mid = (long) (Math.random() * 99) + 1;
+          Long mid = (long) (Math.random() * 40) + 1;
           Member member = Member.builder().mid(mid).build();
 
           Product product = Product

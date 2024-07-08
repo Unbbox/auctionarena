@@ -27,7 +27,7 @@ public interface WishService {
 
         return WishDto.builder()
                 .productPno(wish.getProduct().getPno())
-                .MemberMid(wish.getMember().getMid())
+                .memberMid(wish.getMember().getMid())
                 .build();
     }
 }

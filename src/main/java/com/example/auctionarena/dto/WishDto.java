@@ -17,5 +17,5 @@ public class WishDto {
     private Long productPno;
 
     // 멤버
-    private Long MemberMid;
+    private Long memberMid;
 }

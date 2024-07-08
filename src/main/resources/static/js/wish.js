@@ -13,11 +13,11 @@ wishBtn.addEventListener("click", (e) => {
       btn.classList.add("fa-solid");
 
       const body = {
-        pno: pno,
-        mid: mid.value,
+        productPno: pno,
+        memberMid: mid.value,
       };
 
-      console.log("mid : ", mid);
+      console.log("body : ", body);
 
       fetch(`/wish/add/${pno}`, {
         headers: {
