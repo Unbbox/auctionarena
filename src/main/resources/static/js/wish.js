@@ -41,7 +41,8 @@ const showWish = () => {
 showWish();
 
 // 찜하기 클릭 시 버튼 변경
-if ((user != "anonymousUser") & (user == user2)) {
+// if ((user != "anonymousUser") & (user == user2)) {
+if (user != "anonymousUser") {
   wishBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
