@@ -317,14 +317,10 @@ span {
   margin: 0;
 }
 
-a {
-  color: black;
-}
-
 img {
   display: block;
-  width: 80%;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   margin: auto;
 }
 
@@ -332,6 +328,12 @@ img {
   width: 80%;
   margin: auto;
   padding: 30px;
+}
+
+h4 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bold;
 }
 
 .cart ul {
@@ -349,10 +351,11 @@ img {
 }
 
 table {
-  border-top: solid 1.5px black;
+  border-top: solid 1px lightgrey;
   border-collapse: collapse;
   width: 100%;
   font-size: 14px;
+  table-layout: fixed;
 }
 
 thead {
@@ -367,14 +370,17 @@ tbody {
 td {
   padding: 15px 0px;
   border-bottom: 1px solid lightgrey;
+  /* border-right: 1px solid lightgrey; */
 }
 
-.cart__list__detail :nth-child(2) {
+.cart__list__detail :nth-child(2) td {
   vertical-align: top;
+  border-right: 1px solid lightgrey;
 }
 
 .cart__list__detail :nth-child(3) {
   vertical-align: top;
+  border-left: 1.5px solid whitesmoke;
 }
 
 .cart__list__detail :nth-child(3) a {
@@ -441,6 +447,9 @@ td {
 
 .price {
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: "Oswald", sans-serif;
 }
 
 .cart__mainbtns {
