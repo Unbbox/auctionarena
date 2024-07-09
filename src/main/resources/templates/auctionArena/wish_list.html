@@ -18,6 +18,7 @@
               <tr>
                 <td colspan="2">상품정보</td>
                 <td>내용</td>
+                <td>경매 시작가</td>
                 <td>현재 최고가</td>
               </tr>
             </thead>
@@ -38,9 +39,11 @@
                 </td>
                 <td>
                   <!-- <span class="price" th:text="${#numbers.formatInteger(bid.biddingPrice, 3, 'COMMA')+' 원'}"></span><br> -->
-                  <span class="price" th:text="${bid_list[dtoStat.index].biddingPrice}"></span><br>
+                  <span class="price" th:text="${dto.startPrice}"></span><br>
                 </td>
-                <td></td>
+                <td>
+                  <span class="price" th:text="${bid_list[dtoStat.index].biddingPrice} == 0? ${dto.startPrice} : ${bid_list[dtoStat.index].biddingPrice}"></span><br>
+                </td>
               </tr>
             </tbody>
             <tfoot>

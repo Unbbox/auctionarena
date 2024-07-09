@@ -2,6 +2,7 @@ package com.example.auctionarena.service;
 
 import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.entity.Bidding;
+import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.repository.BiddingRepository;
 import java.util.List;
@@ -25,8 +26,7 @@ public class BiddingServiceImpl implements BiddingService {
     Product product = Product.builder().pno(pno).build();
     log.info("bid pno : {}", product);
     List<Bidding> biddings = repository.findByProductOrderByCreatedDateDesc(
-      product
-    );
+        product);
     log.info("bid list : {}", biddings);
 
     Function<Bidding, BiddingDto> fn = bidding -> entityToDto(bidding);
@@ -47,10 +47,19 @@ public class BiddingServiceImpl implements BiddingService {
 
     Product product = Product.builder().pno(pno).build();
     Bidding bidding = repository.findTop1ByProductOrderByBiddingPriceDesc(
-      product
-    );
+        product);
 
-    log.info("최고 응찰 기록 {}", bidding);
+    if (bidding == null) {
+      Member member = Member.builder()
+          .mid(0L)
+          .build();
+
+      bidding = Bidding.builder()
+          .biddingPrice(0L)
+          .product(product)
+          .member(member)
+          .build();
+    }
     return entityToDto(bidding);
   }
 }
