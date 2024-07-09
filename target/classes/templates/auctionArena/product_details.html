@@ -90,9 +90,10 @@
                       </div>
                     </form>
                     <form th:action="@{/wish/}" method="post" class="wishForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
-                      <div class="product_details_btn wish_list">
+                      <div class="product_details_btn wish_list" data-wno="">
+                        <input type="hidden" name="wishNo" id="wishNo" value="">
                         <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
-                        <a href="#" class="follow_btn"><i class="fa-regular fa-heart"></i> 찜하기</a>
+                        <a href="#" class="follow_btn"><i class="fa-heart fa-regular"></i> 찜하기</a>
                       </div>
                     </form>
                   </div>
@@ -252,11 +253,11 @@
 
         // 멤버 정보 가져오기
         const user = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.nickname}]]";
-        console.log("user info : ", user);
+        //console.log("user info : ", user);
         const user2 = "[[${dto.writerName}]]";
-        console.log("user2 info : ", user2);
+        //console.log("user2 info : ", user2);
         const mid = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.mid}]]";
-        console.log("mid info : ", mid);
+        //console.log("mid info : ", mid);
 
 
         // 페이지 정보 가져오기

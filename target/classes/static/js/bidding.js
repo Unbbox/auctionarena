@@ -151,7 +151,7 @@ if ((user != "anonymousUser") & (user == user2)) {
 
             biddingPrice.value = "";
 
-            getBiddingList();
+            getBidList();
             if (data) {
               Swal.fire({
                 icon: "success",

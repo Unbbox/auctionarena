@@ -28,10 +28,9 @@ public class WishController {
 
   @GetMapping("/{pno}/{mid}")
   public ResponseEntity<WishDto> getWish(
-    @PathVariable("pno") Long pno,
-    @PathVariable("mid") Long mid,
-    Model model
-  ) {
+      @PathVariable("pno") Long pno,
+      @PathVariable("mid") Long mid,
+      Model model) {
     log.info("찜 목록 보여주기 {}", pno);
     log.info("멤버 아이디 정보 {}", mid);
 

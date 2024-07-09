@@ -16,17 +16,18 @@ public interface WishService {
 
   public default Wish dtoToEntity(WishDto wishDto) {
     return Wish
-      .builder()
-      .product(Product.builder().pno(wishDto.getPno()).build())
-      .member(Member.builder().mid(wishDto.getMid()).build())
-      .build();
+        .builder()
+        .product(Product.builder().pno(wishDto.getPno()).build())
+        .member(Member.builder().mid(wishDto.getMid()).build())
+        .build();
   }
 
   public default WishDto entityToDto(Wish wish) {
     return WishDto
-      .builder()
-      .pno(wish.getProduct().getPno())
-      .mid(wish.getMember().getMid())
-      .build();
+        .builder()
+        .wno(wish.getWno())
+        .pno(wish.getProduct().getPno())
+        .mid(wish.getMember().getMid())
+        .build();
   }
 }

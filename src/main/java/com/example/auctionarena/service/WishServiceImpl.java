@@ -30,6 +30,7 @@ public class WishServiceImpl implements WishService {
   @Override
   public Long addWish(WishDto wishDto) {
     log.info("{}번 위시리스트에 추가", wishDto.getPno());
+    log.info("wish Dto : {}", wishDto);
 
     // WishDto wishDto = WishDto.builder()
     // .mid(mid)
