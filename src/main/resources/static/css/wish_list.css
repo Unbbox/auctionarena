@@ -1,0 +1,7 @@
+.wish__list__detail td {
+  align-items: center;
+}
+
+.wish__list__detail td p {
+  font-weight: bold;
+}

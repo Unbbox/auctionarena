@@ -3,6 +3,9 @@
   <div layout:fragment="content">
     <!-- <section class="blog-details spad"> <div class="container"> <div class="row d-flex justify-content-center"> <div class="col-lg-8 notice"> <div class="blog__details__title"> <h2>내 응찰목록</h2> </div> </div> <table class="table notice-table"> <thead> <tr> <th scope="col">번호</th> <th scope="col">제목</th> <th scope="col">작성자</th> <th scope="col">작성일</th> </tr> </thead> <tbody> <tr th:each="dto : ${bid_list}"> <th scope="row"></th> <td> <img class="bidding__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'> </td> <td></td> <td></td> </tr> </tbody> </table> </div> </div> </div> </div> </section>-->
 
+    <link rel="stylesheet" th:href="@{/css/bidding_list.css}" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/css/wish_list.css}" type="text/css"/>
+
     <body>
       <section class="cart">
         <div class="mb-3">
@@ -13,15 +16,13 @@
           <form>
             <thead>
               <tr>
-                <td></td>
                 <td colspan="2">상품정보</td>
                 <td>내용</td>
                 <td>현재 최고가</td>
               </tr>
             </thead>
-            <tbody th:each="bid : ${bid_list}">
-              <tr class="wish__list__detail" th:each="dto : ${wish_list}">
-                <td></td>
+            <tbody>
+              <tr class="wish__list__detail" th:each="dto, dtoStat : ${wish_list}">
                 <td><img th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|"></td>
                 <td>
                   <a href="#"></a>
@@ -30,29 +31,30 @@
                     <!-- 상품명 -->
                   </p>
                   <!-- 가격 -->
-                </sapn>
-              </td>
-              <td>
-                <span class="price" th:text="${dto.content}"></span><br>
-              </td>
-              <td>
-                <span class="price" th:text="${#numbers.formatInteger(bid.biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
-              </td>
-              <td></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <!-- <tr> <td colspan="3"><input type="checkbox"> <button class="cart__list__optionbtn">선택상품 삭제</button> <button class="cart__list__optionbtn">선택상품 찜</button> </td> <td></td> <td></td> <td></td> </tr>-->
-          </tfoot>
-        </form>
-      </table>
-      <div class="cart__mainbtns">
-        <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
-        <button class="cart__bigorderbtn right">주문하기</button>
-      </div>
-    </section>
-  </body>
-  <!-- Blog Details Section End -->
-</div>
+                  <!-- </span> -->
+                </td>
+                <td>
+                  <span class="price content" th:text="${dto.content}"></span><br>
+                </td>
+                <td>
+                  <!-- <span class="price" th:text="${#numbers.formatInteger(bid.biddingPrice, 3, 'COMMA')+' 원'}"></span><br> -->
+                  <span class="price" th:text="${bid_list[dtoStat.index].biddingPrice}"></span><br>
+                </td>
+                <td></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <!-- <tr> <td colspan="3"><input type="checkbox"> <button class="cart__list__optionbtn">선택상품 삭제</button> <button class="cart__list__optionbtn">선택상품 찜</button> </td> <td></td> <td></td> <td></td> </tr>-->
+            </tfoot>
+          </form>
+        </table>
+        <div class="cart__mainbtns">
+          <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
+          <button class="cart__bigorderbtn right">주문하기</button>
+        </div>
+      </section>
+    </body>
+    <!-- Blog Details Section End -->
+  </div>
 
 </html>
