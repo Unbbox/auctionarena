@@ -15,7 +15,6 @@ const format_Date = (data) => {
 };
 
 // bidding 내역 get
-// function getBidList() {
 const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
@@ -82,7 +81,6 @@ const getBiddingList = () => {
 };
 
 getBiddingList();
-// getBidList();
 
 // bidding 등록 post
 const biddingForm = document.querySelector(".biddingForm");

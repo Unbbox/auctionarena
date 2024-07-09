@@ -2949,7 +2949,8 @@ input[type="file"]::file-selector-button {
   margin-top: 10px;
 }
 /* 텍스트 */
-.summaryContainer .item > div:nth-child(2) {
+.summaryContainer .item > div:nth-child(2),
+.summaryContainer .item a > div:nth-child(2) {
   font-family: "Noto Sans KR", sans-serif;
   font-size: 15px;
   font-weight: 900;

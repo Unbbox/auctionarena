@@ -24,8 +24,12 @@
       </div>
       <div class="summaryContainer">
         <div class="item">
-          <div class="number">354</div>
-          <div>찜</div>
+          <a th:href="@{/auctionArena/wish_list}">
+            <div class="number wishCnt">354</div>
+            <div>
+              찜
+            </div>
+          </a>
         </div>
         <div class="item">
           <div class="number">354</div>
@@ -111,7 +115,12 @@
   <!-- 마이페이지 End -->
 
   <th:block layout:fragment="script">
+    <script>
+      const mid = "[[${memberDto.mid}]]";
+      console.log("mid", mid);
+    </script>
     <script th:src="@{/memberjs/password.js}"></script>
+    <script th:src="@{/js/mypage.js}"></script>
   </th:block>
 
 </html>
