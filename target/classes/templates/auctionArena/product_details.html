@@ -76,7 +76,7 @@
                 <div class="anime__details__btn">
                   <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
                   <div class="bidding_form">
-                    <form th:action="@{/bidding/}" method="post" class="biddingForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+                    <form th:action="@{/biddings/}" method="post" class="biddingForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
                       <input type="hidden" name="mid" id="mid"  th:value="${#authentication.principal.memberDto.mid}">
                       <input type="hidden" name="mNickName" id="mNickName"  th:value="${#authentication.principal.memberDto.nickname}">
                       <div class="row">
@@ -274,9 +274,6 @@
         
         // 제품 경매 시작가 가져오기
         const startPrice = "[[${dto.startPrice}]]";
-
-        // 제품 이미지 가져오기
-        // const images = '[[${dto.productImageDtos}]]';
 
         // 경매 영역
         const biddingList = document.querySelector(".biddingList");

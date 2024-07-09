@@ -15,8 +15,8 @@ const format_Date = (data) => {
 };
 
 // bidding 내역 get
-function getBidList() {
-  // const getBiddingList = () => {
+// function getBidList() {
+const getBiddingList = () => {
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
@@ -79,19 +79,23 @@ function getBidList() {
       // console.log("biddingCnt : ", biddingCnt);
       document.querySelector(".biddingCnt").innerText = bidCnt + "회";
     });
-}
+};
 
-// getBiddingList();
-getBidList();
+getBiddingList();
+// getBidList();
 
 // bidding 등록 post
 const biddingForm = document.querySelector(".biddingForm");
-if ((user != "anonymousUser") & (user == user2)) {
+if (user != "anonymousUser") {
   biddingForm.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    console.log("경매 등록");
+    console.log("pno mid >> ", pno, mid);
+
     // biddingPrice, mid, mNickname
     const biddingPrice = biddingForm.querySelector("#biddingPrice");
-    const mid = biddingForm.querySelector("#mid");
+    // const mid = biddingForm.querySelector("#mid");
     const mNickName = biddingForm.querySelector("#mNickName");
     const currPrice = document.querySelector(".currPrice");
 
@@ -131,7 +135,7 @@ if ((user != "anonymousUser") & (user == user2)) {
       const body = {
         pno: pno,
         biddingPrice: biddingPrice.value,
-        mid: mid.value,
+        mid: mid,
         mNickName: mNickName.value,
       };
 
@@ -151,7 +155,7 @@ if ((user != "anonymousUser") & (user == user2)) {
 
             biddingPrice.value = "";
 
-            getBidList();
+            getBiddingList();
             if (data) {
               Swal.fire({
                 icon: "success",
