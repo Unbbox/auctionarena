@@ -1,11 +1,11 @@
 package com.example.auctionarena.service;
 
+import java.util.List;
+
 import com.example.auctionarena.dto.WishDto;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.Wish;
-import java.security.Principal;
-import java.util.List;
 
 public interface WishService {
   WishDto getRow(Long pno, Long mid);
@@ -13,6 +13,9 @@ public interface WishService {
   Long addWish(WishDto wishdDto);
 
   Long removeWish(WishDto wishdDto);
+
+  // 멤버 아이디로 찜한 제품 번호 가져오기
+  List<Long> getPnos(Long mid);
 
   public default Wish dtoToEntity(WishDto wishDto) {
     return Wish

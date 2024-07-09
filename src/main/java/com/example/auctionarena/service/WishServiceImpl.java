@@ -80,4 +80,12 @@ public class WishServiceImpl implements WishService {
       return null;
     }
   }
+
+  @Override
+  public List<Long> getPnos(Long mid) {
+    List<Long> pnos = repository.findByMemberMid(mid);
+    log.info("wishService pnos : {}", pnos);
+
+    return pnos;
+  }
 }

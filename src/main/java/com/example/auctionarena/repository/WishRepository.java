@@ -3,6 +3,9 @@ package com.example.auctionarena.repository;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.Wish;
+
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,14 +23,13 @@ public interface WishRepository extends JpaRepository<Wish, Long> {
   // @EntityGraph(attributePaths = { "product" }, type = EntityGraphType.FETCH)
   // List<Wish> findByMember(Member member);
 
-  @Query(
-    value = "SELECT COUNT(*) FROM WISH w where w.member_mid = ?1",
-    nativeQuery = true
-  )
-  Long findByMemberMid(Long mid);
+  @Query(value = "SELECT COUNT(*) FROM WISH w where w.member_mid = ?1", nativeQuery = true)
+  Long findByMemberMidCnt(Long mid);
 
   Wish findByProductAndMember(
-    @Param("product") Product product,
-    @Param("member") Member member
-  );
+      @Param("product") Product product,
+      @Param("member") Member member);
+
+  @Query(value = "SELECT w.product_pno FROM WISH w where w.member_mid = ?1", nativeQuery = true)
+  List<Long> findByMemberMid(Long mid);
 }
