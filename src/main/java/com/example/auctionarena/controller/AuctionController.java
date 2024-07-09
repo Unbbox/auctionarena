@@ -41,8 +41,9 @@ public class AuctionController {
   // 전체 상품
   @GetMapping("/categories")
   public void getAllCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("전체 상품 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -52,17 +53,22 @@ public class AuctionController {
 
   @GetMapping("/bidding_list")
   public void getbiddingList(Model model, Principal principal) {
-    log.info("bid_list : {}", service.MemberBiddingList(principal.getName()));
+    // log.info(
+    //   "bid_list : {}",
+    //   service.MemberBiddingList(principal.getName(), null)
+    // );
     model.addAttribute(
-        "bid_list",
-        service.MemberBiddingList(principal.getName()));
+      "bid_list",
+      service.MemberBiddingList(principal.getName())
+    );
   }
 
   // 패션
   @GetMapping("/fashion-category")
   public void getfashionCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -73,8 +79,9 @@ public class AuctionController {
   // 모바일
   @GetMapping("/mobile-category")
   public void getMobileCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -85,8 +92,9 @@ public class AuctionController {
   // 가전제품
   @GetMapping("/electric-category")
   public void getelectronicCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -97,8 +105,9 @@ public class AuctionController {
   // 게임
   @GetMapping("/game-category")
   public void getgameCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -109,8 +118,9 @@ public class AuctionController {
   // 레저/여행
   @GetMapping("/trib-category")
   public void gettribCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -121,8 +131,9 @@ public class AuctionController {
   // 기타
   @GetMapping("/etc-category")
   public void getetcCategory(
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
-      Model model) {
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
+    Model model
+  ) {
     log.info("모바일 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
@@ -133,9 +144,10 @@ public class AuctionController {
   // 제품 상세 페이지
   @GetMapping("/product_details")
   public void getDetails(
-      @RequestParam Long pno,
-      Model model,
-      @ModelAttribute("requestDto") CategoryPageRequestDto requestDto) {
+    @RequestParam Long pno,
+    Model model,
+    @ModelAttribute("requestDto") CategoryPageRequestDto requestDto
+  ) {
     log.info("제품 상세 페이지 요청 {}", pno);
 
     // 제품 dto
@@ -160,9 +172,10 @@ public class AuctionController {
   // 제품 수정 페이지 Get
   @GetMapping("/product_modify")
   public void getProductModify(
-      @RequestParam Long pno,
-      Model model,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
+    @RequestParam Long pno,
+    Model model,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto
+  ) {
     log.info("{}번 제품 정보", pno);
 
     model.addAttribute("dto", detailService.getRow(pno));
@@ -171,9 +184,10 @@ public class AuctionController {
   // 제품 수정 페이지 Post
   @PostMapping("/product_modify")
   public String postProductModify(
-      ProductDto productDto,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-      RedirectAttributes rttr) {
+    ProductDto productDto,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+    RedirectAttributes rttr
+  ) {
     log.info("제품 수정 요청: {}", productDto);
 
     Long pno = detailService.productUpdate(productDto);
@@ -191,9 +205,10 @@ public class AuctionController {
   // 등록된 제품 삭제 페이지
   @PostMapping("/remove")
   public String postRemove(
-      Long pno,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-      RedirectAttributes rttr) {
+    Long pno,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+    RedirectAttributes rttr
+  ) {
     log.info("{}번 제품 삭제 요청", pno);
     detailService.productRemove(pno);
 
@@ -210,9 +225,10 @@ public class AuctionController {
   // 제품 판매 등록 페이지
   @GetMapping("/product_sale")
   public void getProductSale(
-      ProductDto productDto,
-      Model model,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto) {
+    ProductDto productDto,
+    Model model,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto
+  ) {
     log.info("제품 판매 페이지 요청");
 
     // 카테고리 리스트 보여주기
@@ -222,11 +238,12 @@ public class AuctionController {
   // 제품 판매 등록 POST
   @PostMapping("/product_sale")
   public String postMethodName(
-      // @Valid // 나중에 다 완료 되면 추가
-      ProductDto productDto,
-      @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
-      // RedirectAttributes rttr) {
-      RedirectAttributes rttr) {
+    // @Valid // 나중에 다 완료 되면 추가
+    ProductDto productDto,
+    @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+    // RedirectAttributes rttr) {
+    RedirectAttributes rttr
+  ) {
     log.info("제품 판매 등록 {}", productDto);
 
     Long pno = detailService.productRegister(productDto);
@@ -234,12 +251,6 @@ public class AuctionController {
     rttr.addFlashAttribute("msg", pno);
 
     return "redirect:/auctionArena/categories";
-  }
-
-  // 찜 목록
-  @GetMapping("/wish_list")
-  public void getMethodName() {
-    log.info("찜 목록 요청");
   }
 
   // 고객센터

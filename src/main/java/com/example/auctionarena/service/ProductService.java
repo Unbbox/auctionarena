@@ -145,4 +145,40 @@ public interface ProductService {
     });
     return productDto;
   }
+
+  // top6
+  public default ProductDto entityToDto3(
+    Bidding bidding,
+    Product product,
+    List<ProductImage> productImages
+  ) {
+    ProductDto productDto = ProductDto
+      .builder()
+      .pno(product.getPno())
+      .title(product.getTitle())
+      .content(product.getContent())
+      .writerName(product.getMember().getNickname())
+      .startPrice(product.getStartPrice())
+      .biddingDate(product.getBiddingDate())
+      .biddingPrice(bidding.getBiddingPrice())
+      .category(product.getCategory().getCategoryName())
+      .cno(product.getCategory().getCno())
+      .writerEmail(product.getMember().getEmail())
+      .createdDate(product.getCreatedDate())
+      .lastModifiedDate(product.getLastModifiedDate())
+      .build();
+
+    productImages.forEach(image -> {
+      ProductImageDto imageDto = null;
+      if (image.getProduct().getPno() == product.getPno()) {
+        imageDto = new ProductImageDto();
+        imageDto.setInum(image.getInum());
+        imageDto.setPath(image.getPath());
+        imageDto.setUuid(image.getUuid());
+        imageDto.setImgName(image.getImgName());
+        productDto.getProductImageDtos().add(imageDto);
+      }
+    });
+    return productDto;
+  }
 }

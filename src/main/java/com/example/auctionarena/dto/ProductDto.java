@@ -41,6 +41,8 @@ public class ProductDto {
   @NotBlank(message = "경매 진행 기간을 입력해주세요")
   private Long biddingDate; // 경매 진행 기간
 
+  private Long biddingPrice;
+
   // 리뷰 개수
   private Long replyCnt;
 

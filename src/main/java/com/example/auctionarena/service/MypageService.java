@@ -1,5 +1,5 @@
 package com.example.auctionarena.service;
 
 public interface MypageService {
-    Long getWishCnt(Long mid);
+  Long getWishCnt(Long mid);
 }

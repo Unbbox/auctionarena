@@ -1,76 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-
   <div layout:fragment="content">
-    <!-- Breadcrumb Begin -->
-    <!-- <div class="breadcrumb-option"> <div class="container"> <div class="row"> <div class="col-lg-12"> <div class="breadcrumb__links"> <a href="./index.html"><i class="fa fa-home"></i> Home</a> <a href="./categories.html">카테고리</a> </div> </div> </div> </div> </div> -->
-    <!-- Breadcrumb End -->
+    <!-- <section class="blog-details spad"> <div class="container"> <div class="row d-flex justify-content-center"> <div class="col-lg-8 notice"> <div class="blog__details__title"> <h2>내 응찰목록</h2> </div> </div> <table class="table notice-table"> <thead> <tr> <th scope="col">번호</th> <th scope="col">제목</th> <th scope="col">작성자</th> <th scope="col">작성일</th> </tr> </thead> <tbody> <tr th:each="dto : ${bid_list}"> <th scope="row"></th> <td> <img class="bidding__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'> </td> <td></td> <td></td> </tr> </tbody> </table> </div> </div> </div> </div> </section>-->
 
-    <!-- <form class="mt-4" role="search" id="searchForm"> <input type="hidden" name="page" class="form-control" /> <div class="input-group mb-3"> <div class="input-group-prepend"> <select name="type" id="type" class="form-select"> <option value="" >조건 선택</option> <option value="t">상품명</option> <option value="c" >내용</option> <option value="w" >판매자</option> </select> </div> <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" /> <button class="btn btn-outline-success" type="submit">Search</button> </div> </form> -->
-    <!-- <div class="col-md-5"> <form action="" method="get" name="search" class="form-inline"> <div class="form-group"> <select name="criteria" class="form-control"> <option value="n"> >---</option> <option value="title"> >title</option> <option value="content" > >content</option> <option value="name"> >name</option> </select> </div> <div class="form-group"> <input type="text" name="keyword" class="form-control"> </div> <div class="form-group"> <input type="submit" value="검색" class="btn btn-primary"> </div> </form> </div> -->
-
-    <!-- Product Section Begin -->
-
-    <div class="product-page spad">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="product__page__content">
-              <h3>내 응찰목록</h3>
-              <div class="row">
-                <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${bid_list}">
-                  <div class="products__item" th:title="${dto.title}">
-                    <!-- data-setbg="https://via.placeholder.com/175x250" -->
-                    <div>
-                      <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}">
-                        <img class="products__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'>
-                        <!-- |/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|-->
-                        <!-- th:if="${dto.productImageDtos[0].path != null}" -->
-                        <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
-                      </a>
-                    </div>
-                    <div class="products__item__text">
-                      <h5>
-                        <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}" th:text="${dto.title}"></a>
-                      </h5>
-                      <!-- <div class="wish"><i class="fa-regular fa-heart"></i></div> -->
-                      <ul>
-                        <li>
-                          <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!--<div class="products__pagination justify-content-center"> <td th:if="${result.prev}"> <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-left"></i> </a> </td> <td th:each="page : ${result.pageList}"> <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a> </td> <td th:if="${result.next}"> <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}"> <i class="fa fa-angle-double-right"></i> </a> </td> </div> -->
-          </div>
-
-        </div>
+    <body>
+      <section class="cart">
+        <!--<div class="cart__information"> <ul> <li>장바구니 상품은 최대 30일간 저장됩니다.</li> <li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li> <li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li> </ul> </div>-->
+        <table class="cart__list">
+          <form>
+            <thead>
+              <tr>
+                <td></td>
+                <td colspan="2">상품정보</td>
+                <td>내용</td>
+                <td>현재 최고가</td>
+                <td>내 입찰가</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="cart__list__detail" th:each="dto : ${bid_list}">
+                <td></td>
+                <td><img th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|"></td>
+                <td>
+                  <a href="#"></a>
+                  <!--<span class="cart__list__smartstore"></span>-->
+                  <p th:text="${dto.title}">
+                    <!-- 상품명 -->
+                  </p>
+                  <!-- 가격 -->
+                </sapn>
+              </td>
+              <td>
+                <span class="price" th:text="${dto.content}"></span><br>
+              </td>
+              <td>
+                <span class="price" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></span><br>
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <!-- <tr> <td colspan="3"><input type="checkbox"> <button class="cart__list__optionbtn">선택상품 삭제</button> <button class="cart__list__optionbtn">선택상품 찜</button> </td> <td></td> <td></td> <td></td> </tr>-->
+          </tfoot>
+        </form>
+      </table>
+      <div class="cart__mainbtns">
+        <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
+        <button class="cart__bigorderbtn right">주문하기</button>
       </div>
-    </div>
-  </div>
-</section>
-<!-- Product Section End -->
-<th:block layout:fragment="script">
-  <script>
-    const msg = "[[${msg}]]";
-    console.log("msg : " + msg)
-    const ppno = "[[${pno}]]";
-    console.log("pno : " + ppno)
+    </section>
+  </body>
+  <!-- Blog Details Section End -->
+</div>
 
-    if (msg) {
-      // alert
-      Swal.fire({icon: "success", title: "제품 등록 완료.", showConfirmButton: false, timer: 1500});
-    }
-    if (ppno) {
-      Swal.fire({icon: "success", title: "제품이 삭제되었습니다.", showConfirmButton: false, timer: 1500});
-    }
-  </script>
-  <script th:src="@{/js/productSearch.js}"></script>
-
-</th:block>
 </html>

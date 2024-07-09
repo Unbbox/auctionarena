@@ -5,11 +5,13 @@ import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.PageResultDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.NoticeImage;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.repository.BiddingRepository;
 import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
@@ -38,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
   private final CategoryRepository categoryRepository;
   private final ProductImageRepository productImageRepository;
   private final MemberRepository membereRepository;
+  private final BiddingRepository biddingRepository;
 
   // @Override
   // public List<ProductDto> getList() {

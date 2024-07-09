@@ -94,8 +94,7 @@ public class MemberController {
     }
 
     @GetMapping("/edit-password")
-    public String editPassword(@ModelAttribute("email") String email, Model model, PasswordChangeDto pDto,
-            HttpSession session) {
+    public String editPassword(@ModelAttribute("email") String email, Model model, PasswordChangeDto pDto, HttpSession session) {
 
         Boolean passwordResetCompleted = (Boolean) session.getAttribute("passwordResetCompleted");
         if (passwordResetCompleted == null || !passwordResetCompleted) {

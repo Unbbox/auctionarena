@@ -1,8 +1,5 @@
 package com.example.auctionarena.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,6 +11,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +21,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString(exclude = { "member", "category", "productImages", "comments", "biddings" })
+@ToString(
+  exclude = { "member", "category", "productImages", "comments", "biddings" }
+)
 @Builder
 @Getter
 @Setter
@@ -31,8 +32,15 @@ import lombok.ToString;
 @Entity
 public class Product extends BaseEntity {
 
-  @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_seq", allocationSize = 1)
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
+  @SequenceGenerator(
+    name = "product_seq_gen",
+    sequenceName = "product_seq",
+    allocationSize = 1
+  )
+  @GeneratedValue(
+    strategy = GenerationType.SEQUENCE,
+    generator = "product_seq_gen"
+  )
   @Id
   private Long pno;
 
@@ -57,6 +65,7 @@ public class Product extends BaseEntity {
   // 카테고리 관련
   @ManyToOne(fetch = FetchType.LAZY) // , cascade = CascadeType.ALL
   private Category category;
+
   // // 이미지 관련 리스트
   // @Builder.Default
   // @OneToMany(mappedBy = "product")
@@ -65,14 +74,26 @@ public class Product extends BaseEntity {
   // private ProductImage productImage;
 
   @Builder.Default
-  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  @OneToMany(
+    mappedBy = "product",
+    cascade = CascadeType.REMOVE,
+    orphanRemoval = true
+  )
   private List<ProductImage> productImages = new ArrayList<>();
 
   @Builder.Default
-  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  @OneToMany(
+    mappedBy = "product",
+    cascade = CascadeType.REMOVE,
+    orphanRemoval = true
+  )
   private List<Comment> comments = new ArrayList<>();
 
   @Builder.Default
-  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  @OneToMany(
+    mappedBy = "product",
+    cascade = CascadeType.REMOVE,
+    orphanRemoval = true
+  )
   private List<Bidding> biddings = new ArrayList<>();
 }
