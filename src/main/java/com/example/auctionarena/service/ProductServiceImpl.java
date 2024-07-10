@@ -1,5 +1,6 @@
 package com.example.auctionarena.service;
 
+import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
@@ -243,11 +244,12 @@ public class ProductServiceImpl implements ProductService {
   public List<ProductDto> MemberBiddingList(String email) {
     Member member = membereRepository.findByEmail2(email);
     List<Product> list = productRepository.findbiddingList(member.getMid());
+    Bidding biddings = biddingRepository.findBymybiddingPrice(member.getMid());
     List<ProductImage> productImages = productImageRepository.getCategoryByCno();
 
     return list
       .stream()
-      .map(entity -> entityToDto2(entity, productImages))
+      .map(entity -> entityToDto3(entity, biddings, productImages))
       .collect(Collectors.toList());
   }
 }

@@ -1,5 +1,6 @@
 package com.example.auctionarena.service;
 
+import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.CategoryPageResultDto;
 import com.example.auctionarena.dto.PageRequestDto;
@@ -146,10 +147,9 @@ public interface ProductService {
     return productDto;
   }
 
-  // top6
   public default ProductDto entityToDto3(
-    Bidding bidding,
     Product product,
+    Bidding bidding,
     List<ProductImage> productImages
   ) {
     ProductDto productDto = ProductDto
@@ -159,8 +159,8 @@ public interface ProductService {
       .content(product.getContent())
       .writerName(product.getMember().getNickname())
       .startPrice(product.getStartPrice())
-      .biddingDate(product.getBiddingDate())
       .biddingPrice(bidding.getBiddingPrice())
+      .biddingDate(product.getBiddingDate())
       .category(product.getCategory().getCategoryName())
       .cno(product.getCategory().getCno())
       .writerEmail(product.getMember().getEmail())

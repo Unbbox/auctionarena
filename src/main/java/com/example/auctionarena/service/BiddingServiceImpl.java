@@ -26,7 +26,8 @@ public class BiddingServiceImpl implements BiddingService {
     Product product = Product.builder().pno(pno).build();
     log.info("bid pno : {}", product);
     List<Bidding> biddings = repository.findByProductOrderByCreatedDateDesc(
-        product);
+      product
+    );
     log.info("bid list : {}", biddings);
 
     Function<Bidding, BiddingDto> fn = bidding -> entityToDto(bidding);
@@ -47,14 +48,15 @@ public class BiddingServiceImpl implements BiddingService {
 
     Product product = Product.builder().pno(pno).build();
     Bidding bidding = repository.findTop1ByProductOrderByBiddingPriceDesc(
-        product);
+      product
+    );
 
     if (bidding == null) {
-      Member member = Member.builder()
-          .mid(0L)
-          .build();
+      Member member = Member.builder().mid(0L).build();
 
-      bidding = Bidding.builder()
+      bidding =
+        Bidding
+          .builder()
           .biddingPrice(0L)
           .product(product)
           .member(member)
@@ -62,4 +64,20 @@ public class BiddingServiceImpl implements BiddingService {
     }
     return entityToDto(bidding);
   }
+
+  // 추가부분
+  @Override
+  public List<Long> getBiddingPno(Long mid) {
+    List<Long> biddings = repository.findBybiddingPno(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+  // @Override
+  // public List<Long> getMyBiddingPrice(Long mid) {
+  //   List<Long> biddings = repository.findBymybiddingPrice(mid);
+  //   log.info("biddingService biddings : {}", biddings);
+
+  //   return biddings;
+  // }
 }
