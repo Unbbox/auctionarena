@@ -77,16 +77,18 @@ public class AuctionController {
     // log.info("bid_price : {}", bid_price);
     List<ProductDto> productDtos = new ArrayList<ProductDto>();
     List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
 
     for (Long pno : biddings) {
       productDtos.add(detailService.getRow(pno));
       biddingDtos.add(biddingService.getBestBidding(pno));
-
-      log.info("pDtos : {}", productDtos);
-
-      model.addAttribute("wish_list", productDtos);
-      model.addAttribute("bid_list", biddingDtos);
+      biddingDtos2.addAll(biddingService.getMybidPrice(mid));
     }
+    log.info("pDtos : {}", productDtos);
+
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
     // model.addAttribute(
     // "bid_price",
     // service.MemberBiddingList(principal.getName())

@@ -16,7 +16,7 @@
 
                 <td colspan="2">상품정보</td>
                 <td>내용</td>
-                <td>최초 입찰가</td>
+                <td>내 입찰가</td>
                 <td>현재 최고가</td>
               </tr>
             </thead>
@@ -42,7 +42,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="price" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원'}"></span><br>
+                  <span class="price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
                 </td>
                 <td>
                   <span class="price" th:text="${#numbers.formatInteger(bid_list[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>

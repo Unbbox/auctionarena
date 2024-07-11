@@ -1,7 +1,9 @@
 package com.example.auctionarena.service;
 
 import com.example.auctionarena.dto.BiddingDto;
+import com.example.auctionarena.dto.CommentDto;
 import com.example.auctionarena.entity.Bidding;
+import com.example.auctionarena.entity.Comment;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.repository.BiddingRepository;
@@ -72,6 +74,13 @@ public class BiddingServiceImpl implements BiddingService {
     log.info("biddingService biddings : {}", biddings);
 
     return biddings;
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPrice(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPrice(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
   }
   // @Override
   // public List<Long> getMyBiddingPrice(Long mid) {
