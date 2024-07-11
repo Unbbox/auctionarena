@@ -45,7 +45,8 @@
                   <span class="price" th:text="(${bid_list[dtoStat.index].biddingPrice} == 0? ${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원'} : ${#numbers.formatInteger(bid_list[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'})"></span><br/>
                 </td>
                 <td>
-                  <span class="bid_end_date" th:text="${dto.createdDate}"></span><br/>
+                  <span class="bid_end_date" th:text="${dto.createdDate}" style="font-weight: bold; verflow: hidden; text-overflow: ellipsis; font-family: 'Oswald', sans-serif;"></span><br/>
+                  <input type="hidden" id="bidDate" name="bidDate" th:value="${dto.createdDate}">
                 </td>
               </tr>
             </tbody>
@@ -58,5 +59,10 @@
     </body>
     <!-- 찜 목록 Section End -->
   </div>
-  <script th:src="@{/js/sale_list.js}"></script>
+  <th:block layout:fragment="script">
+    <script>
+      const bidEndDate = "[[${bid_list}]]";
+    </script>
+    <script th:src="@{/js/sale_list.js}"></script>
+  </th:block>
 </html>
