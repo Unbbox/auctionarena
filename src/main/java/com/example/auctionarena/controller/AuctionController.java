@@ -179,7 +179,7 @@ public class AuctionController {
       log.info("===========");
     }
 
-    model.addAttribute("relationDto", detailService.getRelationList(pno));
+    model.addAttribute("relationDto", productDtos);
   }
 
   // 제품 수정 페이지 Get
@@ -259,6 +259,26 @@ public class AuctionController {
     rttr.addFlashAttribute("msg", pno);
 
     return "redirect:/auctionArena/categories";
+  }
+
+  // 판매 내역
+  @GetMapping("/sale_list")
+  public void getSaleList(@RequestParam Long mid, Model model) {
+    log.info("{} 멤버 판매 내역 페이지 요청", mid);
+
+    List<Long> pnos = detailService.getPnos(mid);
+    // log.info("판매내역 product : {}", productDtos);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+
+    for (Long pno : pnos) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+    }
+    log.info("판매내역 bidding : {}", biddingDtos);
+
+    model.addAttribute("sale_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
   }
 
   // 위시리스트

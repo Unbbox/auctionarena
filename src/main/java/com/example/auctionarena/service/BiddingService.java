@@ -21,20 +21,22 @@ public interface BiddingService {
 
   List<Long> getBiddingPno(Long mid);
 
+  // 필요없을수도
+  // BiddingDto getSaleBidList(Long mid);
+
   // List<Long> getMyBiddingPrice(Long mid);
 
   // entityToDto
   public default BiddingDto entityToDto(Bidding bidding) {
     return BiddingDto
-      .builder()
-      .biddingPrice(
-        bidding.getBiddingPrice() != null ? bidding.getBiddingPrice() : 0L
-      )
-      .biddingTime(bidding.getCreatedDate())
-      .pno(bidding.getProduct().getPno())
-      .mid(bidding.getMember().getMid())
-      .mNickName(bidding.getMember().getNickname())
-      .build();
+        .builder()
+        .biddingPrice(
+            bidding.getBiddingPrice() != null ? bidding.getBiddingPrice() : 0L)
+        .biddingTime(bidding.getCreatedDate())
+        .pno(bidding.getProduct().getPno())
+        .mid(bidding.getMember().getMid())
+        .mNickName(bidding.getMember().getNickname())
+        .build();
   }
 
   // dtoToEntity

@@ -47,6 +47,9 @@ public interface DetailService {
   // 관련 제품 리스트 반환
   List<ProductDto> getRelationList(Long pno);
 
+  // 마이페이지 판매 내역 pno 반환
+  List<Long> getPnos(Long mid);
+
   // entity => dto
   // public default ProductDto entityToDto(Product product, Member member, Long
   // replyCount) {

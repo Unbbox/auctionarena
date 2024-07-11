@@ -10,11 +10,13 @@ import com.example.auctionarena.entity.Category;
 import com.example.auctionarena.entity.Member;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
+import com.example.auctionarena.entity.Wish;
 import com.example.auctionarena.repository.BiddingRepository;
 import com.example.auctionarena.repository.CategoryRepository;
 import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.repository.ProductImageRepository;
 import com.example.auctionarena.repository.ProductRepository;
+import com.example.auctionarena.repository.WishRepository;
 import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
@@ -42,6 +44,7 @@ public class DetailServiceImpl implements DetailService {
   private final MemberRepository memberRepository;
   private final BiddingRepository biddingRepository;
   private final BiddingDetailRepository biddingDetailRepository;
+  private final WishRepository wishRepositody;
 
   @Override
   public ProductDto getRow(Long pno) {
@@ -102,8 +105,7 @@ public class DetailServiceImpl implements DetailService {
 
     // 새 이미지 삽입
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get(
-      "imgList"
-    );
+        "imgList");
     log.info("product Image : {}", productImages);
     productImages.forEach(image -> productImageRepository.save(image));
 
@@ -114,8 +116,14 @@ public class DetailServiceImpl implements DetailService {
   @Override
   public void productRemove(Long pno) {
     Product product = Product.builder().pno(pno).build();
-    log.info("product 제거 : {}", product);
+    List<Wish> wishs = wishRepositody.findByProduct(product);
 
+    for (Wish wish : wishs) {
+      log.info("wish 제거 : {}", wish);
+      wishRepositody.delete(wish);
+    }
+
+    log.info("product 제거 : {}", product);
     productRepository.delete(product);
   }
 
@@ -128,8 +136,8 @@ public class DetailServiceImpl implements DetailService {
     // if (member.isPresent()) {
     // 닉네임 있을 때 진행
     Category category = categoryRepository
-      .findByCategoryName(productDto.getCategory())
-      .get();
+        .findByCategoryName(productDto.getCategory())
+        .get();
     Member member = memberRepository.findByNickname(productDto.getWriterName());
 
     Map<String, Object> entityMap = dtoToEntity(productDto);
@@ -145,8 +153,7 @@ public class DetailServiceImpl implements DetailService {
 
     // 이미지 등록
     List<ProductImage> productImages = (List<ProductImage>) entityMap.get(
-      "imgList"
-    );
+        "imgList");
     productImages.forEach(image -> productImageRepository.save(image));
 
     return product.getPno();
@@ -160,9 +167,9 @@ public class DetailServiceImpl implements DetailService {
   public List<String> categoryNameList() {
     List<Category> list = categoryRepository.findAll();
     return list
-      .stream()
-      .map(entity -> entity.getCategoryName())
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entity.getCategoryName())
+        .collect(Collectors.toList());
   }
 
   // 관련 제품 리스트 반환(카테고리 기준)
@@ -176,17 +183,22 @@ public class DetailServiceImpl implements DetailService {
 
     // result 길이만큼 반복
     List<ProductImage> productImages = productImageRepository.getRelationRow(
-      pno
-    );
+        pno);
     log.info(
-      "{}번 제품과 같은 카테고리인 제품의 이미지 {}",
-      pno,
-      productImages
-    );
+        "{}번 제품과 같은 카테고리인 제품의 이미지 {}",
+        pno,
+        productImages);
 
     return products
-      .stream()
-      .map(entity -> entityToDto2(entity, productImages))
-      .collect(Collectors.toList());
+        .stream()
+        .map(entity -> entityToDto2(entity, productImages))
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<Long> getPnos(Long mid) {
+    // 해당 멤버가 판매한 제품의 제품번호 가져오기
+    List<Long> pnos = productRepository.findByMemberMid(mid);
+    return pnos;
   }
 }

@@ -21,20 +21,15 @@ public interface WishRepository extends JpaRepository<Wish, Long> {
   // @EntityGraph(attributePaths = { "product" }, type = EntityGraphType.FETCH)
   // List<Wish> findByMember(Member member);
 
-  @Query(
-    value = "SELECT COUNT(*) FROM WISH w where w.member_mid = ?1",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT COUNT(*) FROM WISH w where w.member_mid = ?1", nativeQuery = true)
   Long findByMemberMidCnt(Long mid);
 
   Wish findByProductAndMember(
-    @Param("product") Product product,
-    @Param("member") Member member
-  );
+      @Param("product") Product product,
+      @Param("member") Member member);
 
-  @Query(
-    value = "SELECT w.product_pno FROM WISH w where w.member_mid = ?1",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT w.product_pno FROM WISH w where w.member_mid = ?1", nativeQuery = true)
   List<Long> findByMemberMid(Long mid);
+
+  List<Wish> findByProduct(Product product);
 }

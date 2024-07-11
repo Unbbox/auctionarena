@@ -16,34 +16,35 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
   List<Product> findTop6ByOrderByPnoDesc();
 
-  @Query(
-    value = "SELECT * FROM PRODUCT p LEFT JOIN " +
-    " (SELECT b.product_pno,count(b.PRODUCT_PNO) AS cnt, ROW_NUMBER() OVER (ORDER BY count(b.PRODUCT_PNO) DESC) AS RankNo " +
-    " FROM BIDDING b GROUP BY b.PRODUCT_PNO)b1 oN p.pno = b1.product_pno " +
-    " WHERE b1.product_pno IS NOT NULL AND RankNo < 7 ORDER BY Rankno asc",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT * FROM PRODUCT p LEFT JOIN " +
+      " (SELECT b.product_pno,count(b.PRODUCT_PNO) AS cnt, ROW_NUMBER() OVER (ORDER BY count(b.PRODUCT_PNO) DESC) AS RankNo "
+      +
+      " FROM BIDDING b GROUP BY b.PRODUCT_PNO)b1 oN p.pno = b1.product_pno " +
+      " WHERE b1.product_pno IS NOT NULL AND RankNo < 7 ORDER BY Rankno asc", nativeQuery = true)
   List<Product> findTop6ByOrderByBiddingCntDesc();
 
   // 관련 카테고리
-  @Query(
-    value = "SELECT * " +
-    "FROM (SELECT * " +
-    "FROM PRODUCT p " +
-    "WHERE p.CATEGORY_CNO = (SELECT CATEGORY_CNO " +
-    "FROM product p " +
-    "WHERE PNO = ?1) " +
-    "AND NOT p.pno = ?1 " +
-    "ORDER BY p.CREATED_DATE DESC)" +
-    "WHERE rownum <= 10",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT * " +
+      "FROM (SELECT * " +
+      "FROM PRODUCT p " +
+      "WHERE p.CATEGORY_CNO = (SELECT CATEGORY_CNO " +
+      "FROM product p " +
+      "WHERE PNO = ?1) " +
+      "AND NOT p.pno = ?1 " +
+      "ORDER BY p.CREATED_DATE DESC)" +
+      "WHERE rownum <= 10", nativeQuery = true)
   List<Product> findByProductList(Long pno);
 
-  @Query(
-    value = "SELECT DISTINCT p.* from BIDDING b LEFT JOIN product p " +
-    " ON p.PNO = b.PRODUCT_PNO WHERE b.MEMBER_MID = ?1",
-    nativeQuery = true
-  )
+  @Query(value = "SELECT DISTINCT p.* from BIDDING b LEFT JOIN product p " +
+      " ON p.PNO = b.PRODUCT_PNO WHERE b.MEMBER_MID = ?1", nativeQuery = true)
   List<Product> findbiddingList(Long mid);
+
+  // 판매 내역 리스트
+  List<Product> findByMemberOrderByCreatedDateDesc(Member member);
+
+  @Query(value = "SELECT pno " +
+      "FROM PRODUCT p " +
+      "WHERE MEMBER_MID = 34 " +
+      "ORDER by created_date DESC", nativeQuery = true)
+  List<Long> findByMemberMid(Long mid);
 }
