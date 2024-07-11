@@ -46,7 +46,8 @@
                 </td>
                 <td>
                   <span class="bid_end_date" th:text="${dto.createdDate}" style="font-weight: bold; verflow: hidden; text-overflow: ellipsis; font-family: 'Oswald', sans-serif;"></span><br/>
-                  <input type="hidden" id="bidDate" name="bidDate" th:value="${dto.createdDate}">
+                  <input type="hidden" id="startDate" name="startDate" th:value="${dto.createdDate}">
+                  <input type="hidden" id="bidDate" name="bidDate" th:value="${dto.biddingDate}">
                 </td>
               </tr>
             </tbody>

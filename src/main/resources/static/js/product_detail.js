@@ -1,33 +1,3 @@
-// sleep 함수 구현 with ES6
-const sleep = (ms) => {
-  // 현재 시간이 (당시 시간 + 추가되는시간)과 같아질때까지 while문 반복
-  const wakeUpTime = Date.now() + ms;
-  while (Date.now() < wakeUpTime) {}
-};
-
-// 찜목록 표기
-// const wishBtn = document.querySelector(".follow_btn");
-// const wishForm = document.querySelector(".wishForm");
-// const mid = wishForm.querySelector("#mid");
-
-// wishBtn.addEventListener("click", (e) => {
-//   e.preventDefault();
-//   const btn = e.target.querySelector("i");
-
-//   // console.log("wish_mid : ", wish_mid);
-//   console.log("mid : ", mid);
-
-//   // if (btn.classList.contains("fa-heart")) {
-//   //   if (btn.classList.contains("fa-regular")) {
-//   //     btn.classList.remove("fa-regular");
-//   //     btn.classList.add("fa-solid");
-//   //   } else {
-//   //     btn.classList.remove("fa-solid");
-//   //     btn.classList.add("fa-regular");
-//   //   }
-//   // }
-// });
-
 // 탭별 활성화 표시 및 해당 내용 출력
 const items_nav = document.querySelectorAll(".items_nav li");
 const items = document.querySelectorAll(".item_nav_sub");
