@@ -350,12 +350,12 @@ h4 {
   color: limegreen;
 }
 
-table {
+.cart__list {
   border-top: solid 1px lightgrey;
   border-collapse: collapse;
   width: 100%;
   font-size: 14px;
-  table-layout: fixed;
+  /* table-layout: fixed; */
 }
 
 thead {
