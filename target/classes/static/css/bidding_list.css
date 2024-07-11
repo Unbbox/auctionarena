@@ -357,6 +357,13 @@ h4 {
   font-size: 14px;
   /* table-layout: fixed; */
 }
+.bid__cart__list {
+  border-top: solid 1px lightgrey;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  table-layout: fixed;
+}
 
 thead {
   text-align: center;
@@ -450,6 +457,7 @@ td {
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: "Oswald", sans-serif;
+  font-size: 16px;
 }
 
 .cart__mainbtns {
@@ -485,6 +493,7 @@ td {
 
 .bid__list__detail td p {
   font-weight: bold;
+  font-size: 16px;
 }
 
 .bid_mainbtns {

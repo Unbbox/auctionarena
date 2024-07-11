@@ -66,6 +66,9 @@ public class Product extends BaseEntity {
   @ManyToOne(fetch = FetchType.LAZY) // , cascade = CascadeType.ALL
   private Category category;
 
+  @OneToMany(mappedBy = "product")
+  private List<Comment> comment;
+
   // // 이미지 관련 리스트
   // @Builder.Default
   // @OneToMany(mappedBy = "product")
