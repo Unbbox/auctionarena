@@ -53,10 +53,13 @@
                 <div class="row">
                   <div class="col-lg-6 notice-detail-row">
                     <div class="blog__details__btns__item">
-                      <h5 th:if="${preNno != null}">
-                        <a th:href="@{notice-details(nno=${preNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
+                      <h5 th:if="${prevNno != null}">
+                        <a th:href="@{notice-details(nno=${prevNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
                           ><span class="arrow_left"></span>이전글</a
                         >
+                      </h5>
+                      <h5 th:if="${prevNno == null}" class="none">
+                        이전글이 없습니다.
                       </h5>
                     </div>
                   </div>
@@ -66,6 +69,9 @@
                         <a th:href="@{notice-details(nno=${nextNno},page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}"
                           >다음글<span class="arrow_right"></span
                         ></a>
+                      </h5>
+                      <h5 th:if="${nextNno == null}" class="none">
+                        다음글이 없습니다.
                       </h5>
                     </div>
                   </div>

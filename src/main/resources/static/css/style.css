@@ -1503,8 +1503,19 @@ ol {
   text-align: right;
 }
 
+.blog__details__btns__item .none{
+  font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #b7b7b7;
+  padding-top: 12px;
+}
+
 .blog__details__btns__item h5 a {
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 17px;
+    font-weight: 600;
   letter-spacing: 2px;
   color: #b7b7b7;
 }

@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.auctionarena.entity.Notice;
+
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,4 +36,5 @@ public class NoticeDto {
 
     @Builder.Default
     private List<NoticeImageDto> noticeImageDtos = new ArrayList<>();
+
 }
