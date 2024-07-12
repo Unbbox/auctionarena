@@ -1503,8 +1503,19 @@ ol {
   text-align: right;
 }
 
+.blog__details__btns__item .none{
+  font-family: "Noto Sans KR", sans-serif;
+    font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #b7b7b7;
+  padding-top: 12px;
+}
+
 .blog__details__btns__item h5 a {
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 17px;
+    font-weight: 600;
   letter-spacing: 2px;
   color: #b7b7b7;
 }
@@ -2621,6 +2632,10 @@ ol {
   transition: all, 0.3s;
 }
 
+.notice-detail-row {
+  max-width: 50% !important;
+}
+
 /* notice-create */
 /* 이미지 */
 .notice-create label {
@@ -3012,7 +3027,7 @@ input[type="file"]::file-selector-button {
 .listContainer {
   padding: 0;
   background-color: #ffffff;
-  height: 500px;
+  height: 420px;
   margin-bottom: 10px;
   border-radius: 5px;
   border: 2px solid #e53637;
@@ -3023,7 +3038,7 @@ input[type="file"]::file-selector-button {
   padding: 16px;
   color: black;
   text-decoration: none;
-  height: 14%;
+  height: 17%;
   box-sizing: border-box;
 }
 .listContainer .icon {
@@ -3180,6 +3195,27 @@ input[type="file"]::file-selector-button {
 .accountInfo .form-check-inline {
   margin-right: 50px !important;
 }
+
+
+input[type="radio"]:checked + label { 
+  color: black; 
+}
+
+input[type="radio"]:checked + label::before {
+  background: radial-gradient(0.75em circle at center, currentColor 50%, transparent 55%); 
+  box-shadow: 0 0 1em 0 rgba(116, 116, 116, 0.75); 
+  border-color: currentColor; 
+}
+
+input[type="radio"]:checked + label, input[type="radio"]:focus + label {
+   color: black; 
+  }
+
+input[type="radio"]:focus + label::before { 
+  box-shadow: 0 0 1em 0 rgba(105, 105, 105, 0.75); 
+  border-color: currentColor; 
+}
+
 
 /*=================== Access-denied ==================*/
 .w3-display-middle {

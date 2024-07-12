@@ -20,7 +20,7 @@ public interface BiddingRepository extends JpaRepository<Bidding, Long> {
   Bidding findTop1ByProductOrderByBiddingPriceDesc(Product product);
 
   @Query(
-    value = "SELECT distinct b.product_pno FROM BIDDING b WHERE b.MEMBER_MID = ?1",
+    value = "SELECT distinct b.product_pno FROM BIDDING b WHERE b.MEMBER_MID = ?1 ORDER BY b.PRODUCT_PNO desc",
     nativeQuery = true
   )
   List<Long> findBybiddingPno(Long mid);
@@ -31,8 +31,11 @@ public interface BiddingRepository extends JpaRepository<Bidding, Long> {
   // )
   // Bidding findBymybiddingPrice(Long mid);
   @Query(
-    value = "SELECT DISTINCT max(b.BIDDING_PRICE) OVER (PARTITION BY product_pno ORDER BY bidding_price DESC) AS max FROM BIDDING b WHERE b.MEMBER_MID = ?1",
+    value = "SELECT b.* FROM bidding b INNER JOIN " +
+    " (SELECT product_pno,max(bidding_price) AS max_bidding_price FROM BIDDING WHERE member_mid = ?1 GROUP BY product_pno)b2 " +
+    " ON b.product_pno = b2.product_pno AND b.bidding_price = b2.max_bidding_price " +
+    " ORDER BY b2.product_pno desc",
     nativeQuery = true
   )
-  Bidding findBymybiddingPrice(Long mid);
+  List<Bidding> findBymybiddingPrice(Long mid);
 }

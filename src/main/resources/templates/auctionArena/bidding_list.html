@@ -9,14 +9,14 @@
       <section class="cart">
         <h4 class="bid_list">내 응찰 목록</h4>
         <!--<div class="cart__information"> <ul> <li>장바구니 상품은 최대 30일간 저장됩니다.</li> <li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li> <li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li> </ul> </div>-->
-        <table class="cart__list">
+        <table class="bid__cart__list">
           <form>
             <thead>
               <tr>
 
                 <td colspan="2">상품정보</td>
                 <td>내용</td>
-                <td>최초 입찰가</td>
+                <td>내 입찰가</td>
                 <td>현재 최고가</td>
               </tr>
             </thead>
@@ -42,7 +42,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="price" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원'}"></span><br>
+                  <span class="price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
                 </td>
                 <td>
                   <span class="price" th:text="${#numbers.formatInteger(bid_list[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
@@ -55,6 +55,7 @@
             </tfoot>
           </form>
         </table>
+
         <div class="bid_mainbtns">
           <a th:href="@{/member/mypage}" class="btn btn_myPage">돌아가기</a>
         </div>

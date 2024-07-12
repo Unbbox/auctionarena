@@ -45,11 +45,11 @@ public class NoticeController {
         log.info("read or modify 요청");
 
         NoticeDto dto = service.getRow(nno);
-        Long preNno = service.getPreNo(nno);
+        Long prevNno = service.getPrevNo(nno);
         Long nextNno = service.getNextNo(nno);
 
         model.addAttribute("dto", dto);
-        model.addAttribute("preNno", preNno);
+        model.addAttribute("prevNno", prevNno);
         model.addAttribute("nextNno", nextNno);
     }
 

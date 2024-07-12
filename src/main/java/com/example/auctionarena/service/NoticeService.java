@@ -26,7 +26,7 @@ public interface NoticeService {
 
     Long noticeCreate(NoticeDto noticeDto);
 
-    Long getPreNo(Long nno);
+    Long getPrevNo(Long nno);
 
     Long getNextNo(Long nno);
 
@@ -64,15 +64,6 @@ public interface NoticeService {
     }
 
     public default Map<String, Object> dtoToEntity(NoticeDto dto) {
-        // Member member =
-        // Member.builder().mid(dto.getMid()).nickname(dto.getWriterNickname()).build();
-
-        // return Notice.builder()
-        // .nno(dto.getNno())
-        // .title(dto.getTitle())
-        // .content(dto.getContent())
-        // .writer(member)
-        // .build();
 
         Map<String, Object> entityMap = new HashMap<>();
 

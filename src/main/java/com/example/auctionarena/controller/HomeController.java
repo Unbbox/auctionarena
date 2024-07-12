@@ -1,7 +1,10 @@
 package com.example.auctionarena.controller;
 
+import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.ProductDto;
+import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.ProductService;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
   private final ProductService service;
+  private final BiddingService biddingservice;
 
   // private final ProductImageService service;
 
@@ -28,11 +32,15 @@ public class HomeController {
     log.info("메인화면 요청");
     // List<ProductDto> biddinglist = service.BiddingDescList();
     List<ProductDto> productDtos = service.pnodescList();
+    // List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
     for (ProductDto productDto : productDtos) {
       log.info(productDto);
       log.info("============");
     }
+    // model.addAttribute("bestprice", biddingservice.getBestBidding(pno));
+    // biddingDtos.add(biddingservice.getBestBidding(pno));
     model.addAttribute("list", service.pnodescList());
+    // model.addAttribute("bid_price", biddingDtos);
     model.addAttribute("biddinglist", service.BiddingDescList());
     return "/index";
   }

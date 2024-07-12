@@ -146,26 +146,25 @@ public class NoticeServiceImpl implements NoticeService {
 
     // 이전글, 다음글
     @Override
-    public Long getPreNo(Long nno) {
-
-        return noticeRepository.findById(nno - 1)
-                .map(Notice::getNno)
-                .orElse(null);
-
-        // if (noticeRepository.findById(nno - 1) != null) {
-        // Notice notice = noticeRepository.findById(nno - 1).get();
-        // nno = notice.getNno();
-        // return nno;
-        // }
-        // return null;
+    public Long getPrevNo(Long nno) {
+        Notice notice = noticeRepository.findPrevNotice(nno);
+        
+        if (notice != null) {
+            return notice.getNno();
+        } else {
+            return null; // 이전 글이 없을 경우
+        }
     }
 
     @Override
     public Long getNextNo(Long nno) {
-        return noticeRepository.findById(nno + 1)
-                .map(Notice::getNno)
-                .orElse(null);
-
+        Notice notice = noticeRepository.findNextNotice(nno);
+        
+        if (notice != null) {
+            return notice.getNno();
+        } else {
+            return null; // 다음 글이 없을 경우
+        }
     }
 
 }
