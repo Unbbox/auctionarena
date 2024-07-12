@@ -4,14 +4,18 @@ import com.example.auctionarena.dto.BiddingDto;
 import com.example.auctionarena.dto.CategoryDto;
 import com.example.auctionarena.dto.CategoryPageRequestDto;
 import com.example.auctionarena.dto.CommentDto;
+import com.example.auctionarena.dto.MemberDto;
 import com.example.auctionarena.dto.PageRequestDto;
 import com.example.auctionarena.dto.ProductDto;
 import com.example.auctionarena.dto.WishDto;
 import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Comment;
+import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.repository.MemberRepository;
 import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.CommentService;
 import com.example.auctionarena.service.DetailService;
+import com.example.auctionarena.service.MemberService;
 import com.example.auctionarena.service.ProductService;
 import com.example.auctionarena.service.WishService;
 import jakarta.validation.Valid;
@@ -19,8 +23,13 @@ import java.lang.ProcessBuilder.Redirect;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,6 +51,8 @@ public class AuctionController {
   private final BiddingService biddingService;
   private final WishService wishService;
   private final CommentService commentService;
+  private final MemberRepository memberRepository;
+   private final MemberService memberService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -69,7 +80,7 @@ public class AuctionController {
   // }
 
   @GetMapping("/bidding_list")
-  public void getbiddingList(Model model, @RequestParam Long mid) {
+  public void getbiddingList(Model model, @RequestParam(value = "mid") Long mid) {
     log.info("{} 멤버 응찰 목록 페이지 요청", mid);
     List<Long> biddings = biddingService.getBiddingPno(mid);
     // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
@@ -86,6 +97,11 @@ public class AuctionController {
     }
     log.info("pDtos : {}", productDtos);
 
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("member", member);
     model.addAttribute("wish_list", productDtos);
     model.addAttribute("bid_list", biddingDtos);
     model.addAttribute("bid_price", biddingDtos2);

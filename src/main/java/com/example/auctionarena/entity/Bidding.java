@@ -1,6 +1,8 @@
 package com.example.auctionarena.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -20,7 +22,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
+@ToString(exclude = "payment")
 @Builder
 @Getter
 @Setter
@@ -46,4 +48,7 @@ public class Bidding extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    @OneToOne(mappedBy = "bidding", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Payment payment;
 }

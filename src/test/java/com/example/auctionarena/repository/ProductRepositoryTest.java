@@ -6,10 +6,15 @@ import com.example.auctionarena.entity.Category;
 // import com.example.auctionarena.repository.biddingDetail.BiddingDetailRepository;
 import com.example.auctionarena.entity.Comment;
 import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.entity.Payment;
 import com.example.auctionarena.entity.Product;
 import com.example.auctionarena.entity.ProductImage;
 import com.example.auctionarena.repository.productSearch.SearchProductRepository;
 import jakarta.transaction.Transactional;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
@@ -38,6 +43,9 @@ public class ProductRepositoryTest {
 
   @Autowired
   private ProductImageRepository productImageRepository;
+
+  @Autowired
+  private PaymentRepository paymentRepository;
 
   //
 
@@ -147,4 +155,28 @@ public class ProductRepositoryTest {
   //     System.out.println(Arrays.toString(objects));
   //   }
   // }
+
+
+
+  // 결제 테스트
+  @Test
+  public void payTest() {
+
+    Member member = Member.builder().mid((long)1).build();
+    Bidding bidding = Bidding.builder().bno((long)1).build();
+
+    Payment payment = Payment.builder()
+    .status(true)
+    .member(member)
+    .bidding(bidding)
+    .build();
+    
+    
+    Payment savedPayment = paymentRepository.save(payment);
+
+    assertNotNull(savedPayment.getId());
+    assertTrue(savedPayment.getStatus());
+  }
+
+
 }

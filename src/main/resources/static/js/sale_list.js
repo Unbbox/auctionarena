@@ -106,3 +106,6 @@ function showEndTime() {
 }
 
 showEndTime();
+
+
+export default sale_list

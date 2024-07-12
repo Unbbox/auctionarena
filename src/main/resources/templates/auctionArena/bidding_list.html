@@ -18,6 +18,8 @@
                 <td>내용</td>
                 <td>내 입찰가</td>
                 <td>현재 최고가</td>
+                <td>응찰 종료</td>
+                <td>결제</td>
               </tr>
             </thead>
             <tbody>
@@ -42,10 +44,21 @@
                   </a>
                 </td>
                 <td>
-                  <span class="price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
+                  <span class="price best_price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
                 </td>
                 <td>
-                  <span class="price" th:text="${#numbers.formatInteger(bid_list[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
+                  <span class="price my_bid_price" th:text="${#numbers.formatInteger(bid_list[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
+                </td>
+                <td>
+                  <span class="end-time bid_end_date"></span><br>
+                  <input type="hidden" id="startDate" name="startDate" th:value="${dto.createdDate}">
+                  <input type="hidden" id="bidDate" name="bidDate" th:value="${dto.biddingDate}">
+                </td>
+                <td>
+                  <button id="payment" class="pay-btn" style="display: none;">결제하기</button>
+                  <input type="hidden" class="mid" th:value="${member.mid}">
+                  <input type="hidden" class="user_email" th:value="${member.email}">
+                  <input type="hidden" class="username" th:value="${member.name}">
                 </td>
               </tr>
 
@@ -60,8 +73,11 @@
           <a th:href="@{/member/mypage}" class="btn btn_myPage">돌아가기</a>
         </div>
       </section>
+
     </body>
     <!-- Blog Details Section End -->
   </div>
-
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/bidding_list.js}"></script>
+  </th:block>
 </html>

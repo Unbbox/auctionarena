@@ -36,6 +36,8 @@ public class QBidding extends EntityPathBase<Bidding> {
 
     public final QMember member;
 
+    public final QPayment payment;
+
     public final QProduct product;
 
     public QBidding(String variable) {
@@ -57,6 +59,7 @@ public class QBidding extends EntityPathBase<Bidding> {
     public QBidding(Class<? extends Bidding> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.payment = inits.isInitialized("payment") ? new QPayment(forProperty("payment"), inits.get("payment")) : null;
         this.product = inits.isInitialized("product") ? new QProduct(forProperty("product"), inits.get("product")) : null;
     }
 
