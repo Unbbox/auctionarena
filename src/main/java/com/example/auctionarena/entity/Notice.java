@@ -23,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = { "writer", "noticeImages" })
+@ToString(exclude = {"noticeImages" })
 @Data
 @Entity
 public class Notice extends BaseEntity {

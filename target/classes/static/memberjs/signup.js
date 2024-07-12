@@ -90,14 +90,14 @@ pwdInput.forEach((pwdInput, index) => {
 const radio = document.querySelectorAll('input[name="gender-radio"]');
 radio.forEach((e) => {
   e.addEventListener("change", (event) => {
-    const genderInput = document.getElementById('gender');
-    genderInput.value = event.target.value;
+      const genderInput = document.getElementById('gender');
+      genderInput.value = event.target.value;
+      console.log(genderInput)
   })
 });
 
 // ========================================== //
 // 라디오 선택 체크 해제
-
 
 
 // ========================================== //

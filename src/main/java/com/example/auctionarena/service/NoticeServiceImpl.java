@@ -151,13 +151,6 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeRepository.findById(nno - 1)
                 .map(Notice::getNno)
                 .orElse(null);
-
-        // if (noticeRepository.findById(nno - 1) != null) {
-        // Notice notice = noticeRepository.findById(nno - 1).get();
-        // nno = notice.getNno();
-        // return nno;
-        // }
-        // return null;
     }
 
     @Override
@@ -165,7 +158,6 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeRepository.findById(nno + 1)
                 .map(Notice::getNno)
                 .orElse(null);
-
     }
 
 }
