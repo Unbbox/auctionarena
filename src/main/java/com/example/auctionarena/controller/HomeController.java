@@ -42,6 +42,7 @@ public class HomeController {
     model.addAttribute("list", service.pnodescList());
     // model.addAttribute("bid_price", biddingDtos);
     model.addAttribute("biddinglist", service.BiddingDescList());
+    model.addAttribute("randomlist", service.RandomList());
     return "/index";
   }
 

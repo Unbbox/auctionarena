@@ -52,6 +52,8 @@ public interface ProductService {
   // List<ProductDto> BiddingDescList(Long pno);
   List<ProductDto> BiddingDescList();
 
+  List<ProductDto> RandomList();
+
   // List<ProductDto> MemberBiddingList(String email);
 
   public default ProductDto entityToDto(

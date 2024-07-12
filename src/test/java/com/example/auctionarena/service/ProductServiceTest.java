@@ -48,11 +48,17 @@ public class ProductServiceTest {
   // public void getRow() {
   // Object[] row = productRepository.
   // }
-  // @Transactional
-  // @Test
-  // public void serviceRead() {
-  // System.out.println(service.descList());
-  // }
+  @Transactional
+  @Test
+  public void serviceRead() {
+    System.out.println(service.RandomList());
+  }
+
+  @Transactional
+  @Test
+  public void serviceRead2() {
+    System.out.println(service.BiddingDescList());
+  }
 
   @Transactional
   @Test
