@@ -162,10 +162,10 @@
               <h5>상품평 작성</h5>
             <!-- </div> -->
             <!-- th:action="@{/comments/product/}" -->
-            <form th:action="@{/comments/}" method="post" class="comment-form">
+            <form th:action="@{/comment/}" method="post" class="comment-form">
               <input type="hidden" name="commentNo" id="commentNo" />
               <!-- 로그인 연결 후 th:value 추가 -->
-              <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
+              <!-- <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}"> -->
               <input type="hidden" name="nickname" id="nickname" th:value="${#authentication.principal.memberDto.nickname}">
               <input type="hidden" name="email" id="email" th:value="${#authentication.principal.memberDto.email}">
               <!-- 나중에 로그인 후 닉네임 가져오기 -->
@@ -257,7 +257,7 @@
         const user2 = "[[${dto.writerName}]]";
         //console.log("user2 info : ", user2);
         const mid = "[[${#authentication.principal} == 'anonymousUser' ? 'anonymousUser' : ${#authentication.principal.memberDto.mid}]]";
-        //console.log("mid info : ", mid);
+        console.log("mid info : ", mid);
 
 
         // 페이지 정보 가져오기

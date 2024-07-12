@@ -94,17 +94,23 @@
           </a>
         </div>
         <div class="header__category__notice">
-          <a th:href="@{/notice/notice}">
-            <b>공지사항</b>
-          </a>
+          <a href="http://localhost:8000/auctionarena/market_price/">
+            <a href="http://localhost:8000/auctionarena/market_price/">
+              <b>시세확인</b>
+            </a>
+          </div>
+          <div class="header__category__notice">
+            <a th:href="@{/notice/notice}">
+              <b>공지사항</b>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
-<!-- Header End -->
-<th:block layout:fragment="script">
-  <script th:src="@{/js/search.js}"></script>
-</th:block>
+  </header>
+  <!-- Header End -->
+  <th:block layout:fragment="script">
+    <script th:src="@{/js/search.js}"></script>
+  </th:block>
 
 </html>

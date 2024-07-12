@@ -59,12 +59,12 @@ commentLoaded();
 
 // 댓글 등록 이벤트
 const commentForm = document.querySelector(".comment-form");
-if ((user != "anonymousUser") & (user == user2)) {
+if (user != "anonymousUser") {
   commentForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const text = commentForm.querySelector("#text");
-    const mid = commentForm.querySelector("#mid");
+    // const mid = commentForm.querySelector("#mid");
     const nickname = commentForm.querySelector("#nickname");
     const email = commentForm.querySelector("#email");
     const commentNo = commentForm.querySelector("#commentNo"); // 수정일 경우
@@ -74,12 +74,13 @@ if ((user != "anonymousUser") & (user == user2)) {
       text: text.value,
       nickname: nickname.value,
       email: email.value,
-      mid: mid.value,
+      mid: mid,
       commentNo: commentNo.value,
     };
 
-    console.log("text : ", text);
-    console.log("text value : ", text.value);
+    console.log("body : ", body);
+    // console.log("text : ", text);
+    // console.log("text value : ", text.value);
 
     // 댓글 등록
     if (!commentNo.value) {
