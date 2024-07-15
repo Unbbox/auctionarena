@@ -47,6 +47,7 @@ const bestPrices = document.querySelectorAll(".best_price");
 const myBidPrices = document.querySelectorAll(".my_bid_price");
 const endBid = document.querySelectorAll(".bid_end_date");
 const paybtns = document.querySelectorAll(".pay-btn")
+const paymentStatus = document.querySelectorAll(".payment_status");
 
 // console.log("btns",paybtns);
 // console.log("bestPrice : ",bestPrices[0].value);
@@ -58,11 +59,20 @@ paybtns.forEach((btn, index) => {
 
     // console.log("btn", btn);
 
+    console.log("paystatus : ", paymentStatus[index].value);
+    const status = paymentStatus[index].value;
+
     if ((bestPrices[index].innerText == myBidPrices[index].innerText) && (endBid[index].innerText == "경매 마감")) {
         btn.style.removeProperty("display");
+        // 결제 성공 시 payment 가져와서 결제하기 버튼 대신 결제 완료 띄우기
+        if (status === "true") {
+            btn.innerText = "결제 완료";
+            btn.disabled = true;
+        } else {
+            btn.style.display = "block";
+        }
     }  
 });
-
 
 
 // 구매자 정보
@@ -163,6 +173,9 @@ function kakaoPay(useremail, username, ptitle, price, bno, mid) {
                             showConfirmButton: false,
                             timer: 1000,
                             });
+                    }).then(()=> {
+                        // 결제 완료 후 새로고침
+                        location.reload();
                     })
                     .catch(error => {
                         console.error("결제 정보 서버 전송 실패 : ", error);
@@ -179,4 +192,3 @@ function kakaoPay(useremail, username, ptitle, price, bno, mid) {
             });
         }
 
-    // 결제 성공 시 payment 가져와서 결제하기 버튼 대신 결제 완료 띄우기

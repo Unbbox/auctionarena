@@ -11,7 +11,9 @@ import com.example.auctionarena.dto.WishDto;
 import com.example.auctionarena.entity.Bidding;
 import com.example.auctionarena.entity.Comment;
 import com.example.auctionarena.entity.Member;
+import com.example.auctionarena.entity.Payment;
 import com.example.auctionarena.repository.MemberRepository;
+import com.example.auctionarena.repository.PaymentRepository;
 import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.CommentService;
 import com.example.auctionarena.service.DetailService;
@@ -51,6 +53,7 @@ public class AuctionController {
   private final CommentService commentService;
   private final MemberRepository memberRepository;
   private final MemberService memberService;
+  private final PaymentRepository paymentRepository;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -77,11 +80,8 @@ public class AuctionController {
   // );
   // }
 
-  @GetMapping("/bidding_list")
-  public void getbiddingList(
-    Model model,
-    @RequestParam(value = "mid") Long mid
-  ) {
+ @GetMapping("/bidding_list")
+  public void getbiddingList(Model model, @RequestParam(value = "mid") Long mid) {
     log.info("{} 멤버 응찰 목록 페이지 요청", mid);
     List<Long> biddings = biddingService.getBiddingPno(mid);
     // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
@@ -98,10 +98,17 @@ public class AuctionController {
     }
     log.info("pDtos : {}", productDtos);
 
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
     // 회원 서비스를 통해 회원 정보 가져오기
     Optional<Member> optionalMember = memberRepository.findById(mid);
     Member member = optionalMember.get();
 
+    model.addAttribute("payments", payments);
     model.addAttribute("member", member);
     model.addAttribute("wish_list", productDtos);
     model.addAttribute("bid_list", biddingDtos);
