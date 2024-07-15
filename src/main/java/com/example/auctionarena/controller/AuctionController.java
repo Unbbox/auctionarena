@@ -80,80 +80,6 @@ public class AuctionController {
   // );
   // }
 
- @GetMapping("/bidding_list")
-  public void getbiddingList(Model model, @RequestParam(value = "mid") Long mid) {
-    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
-    List<Long> biddings = biddingService.getBiddingPno(mid);
-    // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
-    log.info("biddings : {}", biddings);
-    // log.info("bid_price : {}", bid_price);
-    List<ProductDto> productDtos = new ArrayList<ProductDto>();
-    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
-    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
-
-    for (Long pno : biddings) {
-      productDtos.add(detailService.getRow(pno));
-      biddingDtos.add(biddingService.getBestBidding(pno));
-      biddingDtos2.addAll(biddingService.getMybidPrice(mid));
-    }
-    log.info("pDtos : {}", productDtos);
-
-    List<Payment> payments = new ArrayList<>();
-    for (BiddingDto biddingDto : biddingDtos) {
-      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
-      payments.add(payment);
-    }
-
-    // 회원 서비스를 통해 회원 정보 가져오기
-    Optional<Member> optionalMember = memberRepository.findById(mid);
-    Member member = optionalMember.get();
-
-    model.addAttribute("payments", payments);
-    model.addAttribute("member", member);
-    model.addAttribute("wish_list", productDtos);
-    model.addAttribute("bid_list", biddingDtos);
-    model.addAttribute("bid_price", biddingDtos2);
-    // model.addAttribute(
-    // "bid_price",
-    // service.MemberBiddingList(principal.getName())
-    // );
-  }
-
-  @GetMapping("/bidding_list__copy")
-  public void getbiddingCnoList(
-    Model model,
-    @RequestParam(value = "mid") Long mid
-  ) {
-    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
-    List<Long> biddings = biddingService.getBiddingPnoCno(mid);
-    // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
-    log.info("biddings : {}", biddings);
-    // log.info("bid_price : {}", bid_price);
-    List<ProductDto> productDtos = new ArrayList<ProductDto>();
-    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
-    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
-
-    for (Long pno : biddings) {
-      productDtos.add(detailService.getRow(pno));
-      biddingDtos.add(biddingService.getBestBidding(pno));
-      biddingDtos2.addAll(biddingService.getMybidPriceCno(mid));
-    }
-    log.info("pDtos : {}", productDtos);
-
-    // 회원 서비스를 통해 회원 정보 가져오기
-    Optional<Member> optionalMember = memberRepository.findById(mid);
-    Member member = optionalMember.get();
-
-    model.addAttribute("member", member);
-    model.addAttribute("wish_list", productDtos);
-    model.addAttribute("bid_list", biddingDtos);
-    model.addAttribute("bid_price", biddingDtos2);
-    // model.addAttribute(
-    // "bid_price",
-    // service.MemberBiddingList(principal.getName())
-    // );
-  }
-
   // 패션
   @GetMapping("/fashion-category")
   public void getfashionCategory(
@@ -415,5 +341,293 @@ public class AuctionController {
   @GetMapping("/customer-service")
   public void customerService() {
     log.info("고객센터 요청");
+  }
+
+  @GetMapping("/bidding_list")
+  public void getbiddingList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPno(mid);
+    // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
+    log.info("biddings : {}", biddings);
+    // log.info("bid_price : {}", bid_price);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPrice(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+    // model.addAttribute(
+    // "bid_price",
+    // service.MemberBiddingList(principal.getName())
+    // );
+  }
+
+  @GetMapping("/bidding/all")
+  public void getbiddingdList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPno(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPrice(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/fashion")
+  public void getbiddingfashionList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/mobile")
+  public void getbiddingmobileList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno2(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno2(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/electric")
+  public void getbiddingelectricList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno3(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno3(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/game")
+  public void getbiddinggameList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno4(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno4(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/trib")
+  public void getbiddingtribList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno5(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno5(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/bidding/etc")
+  public void getbiddingetcList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno6(mid);
+    log.info("biddings : {}", biddings);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno6(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
   }
 }
