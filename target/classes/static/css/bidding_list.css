@@ -15,7 +15,7 @@
 .category__menu {
   text-align: center;
   /* box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15); */
-  width: 1000px;
+  /* width: 1000px; */
   margin: 0 auto;
   background-color: #ffffff;
   /* display: inline-block; */
@@ -304,8 +304,9 @@ img {
 
 .cart {
   width: 80%;
+  max-width: 1170px;
   margin: auto;
-  padding: 30px;
+  padding: 30px 15px;
 }
 
 h4 {
@@ -321,6 +322,11 @@ h4 {
   border-radius: 5px;
   font-size: 13px;
   font-weight: 300;
+  text-align: center;
+}
+
+.cart ul li {
+  display: inline-block;
 }
 
 .cart ul :first-child {
@@ -352,10 +358,23 @@ tbody {
 }
 
 td {
-  padding: 15px 0px;
+  padding: 15px 5px;
   border-bottom: 1px solid lightgrey;
   /* border-right: 1px solid lightgrey; */
 }
+
+.sale_list td {
+  width: 16%;
+  padding: 15px 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.bidding_list td {
+  width: 13%;
+  padding: 15px 5px;
+  border-bottom: 1px solid lightgrey;
+}
+
 
 .cart__list__detail :nth-child(2) td {
   vertical-align: top;

@@ -116,7 +116,7 @@
               <a class="nav-link" href="">경매 기록</a>
             </li>
             <li class="nav-item review">
-              <a class="nav-link" href="">상품평</a>
+              <a class="nav-link" href="">상품 문의</a>
             </li>
           </ul>
         </div>
@@ -151,7 +151,7 @@
         <div class="row item_nav_sub item_review section-title" style="display: none">
           <div class="product_details_comment">
             <!-- <div class="section-title"> -->
-              <h5>상품평 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
+              <h5>상품문의 (<span class="commentCnt">[[${dto.replyCnt}]]</span>개)</h5>
             <!-- </div> -->
           </div>
           <div>
@@ -163,7 +163,7 @@
         <div class="row item_nav_sub item_review_register section-title" style="display: none">
           <div class="product_comment_form" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
             <!-- <div class="section-title"> -->
-              <h5>상품평 작성</h5>
+              <h5>상품문의 작성</h5>
             <!-- </div> -->
             <!-- th:action="@{/comments/product/}" -->
             <form th:action="@{/comment/}" method="post" class="comment-form">
