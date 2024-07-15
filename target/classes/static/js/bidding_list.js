@@ -96,7 +96,7 @@ paybtns.forEach((btn, index) => {
       cancelButtonColor: '#d33',
       confirmButtonText: '예',
       cancelButtonText: '아니오',
-      timer: 1000,
+      timer: 10000,
     }
     ).then(result => {
         if(result.isConfirmed) {
