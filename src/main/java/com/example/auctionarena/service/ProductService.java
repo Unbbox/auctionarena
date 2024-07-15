@@ -54,6 +54,13 @@ public interface ProductService {
 
   List<ProductDto> RandomList();
 
+  List<ProductDto> RandomFashionList();
+  List<ProductDto> RandomMobileList();
+  List<ProductDto> RandomElectricList();
+  List<ProductDto> RandomGameList();
+  List<ProductDto> RandomTribList();
+  List<ProductDto> RandomEtcList();
+
   // List<ProductDto> MemberBiddingList(String email);
 
   public default ProductDto entityToDto(

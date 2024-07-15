@@ -82,11 +82,96 @@ public class BiddingServiceImpl implements BiddingService {
     Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
     return bidding.stream().map(fn).collect(Collectors.toList());
   }
-  // @Override
-  // public List<Long> getMyBiddingPrice(Long mid) {
-  //   List<Long> biddings = repository.findBymybiddingPrice(mid);
-  //   log.info("biddingService biddings : {}", biddings);
 
-  //   return biddings;
-  // }
+  // 카테고리 1 입찰
+  @Override
+  public List<Long> getBiddingPnoCno(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  @Override
+  public List<Long> getBiddingPnoCno2(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno2(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  @Override
+  public List<Long> getBiddingPnoCno3(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno3(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  @Override
+  public List<Long> getBiddingPnoCno4(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno4(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  @Override
+  public List<Long> getBiddingPnoCno5(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno5(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  @Override
+  public List<Long> getBiddingPnoCno6(Long mid) {
+    List<Long> biddings = repository.findBybiddingPnoCno6(mid);
+    log.info("biddingService biddings : {}", biddings);
+
+    return biddings;
+  }
+
+  // 카테고리 1 내 입찰금액
+  @Override
+  public List<BiddingDto> getMybidPriceCno(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPriceCno2(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno2(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPriceCno3(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno3(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPriceCno4(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno4(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPriceCno5(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno5(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
+
+  @Override
+  public List<BiddingDto> getMybidPriceCno6(Long mid) {
+    List<Bidding> bidding = repository.findBymybiddingPriceCno6(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
 }

@@ -20,8 +20,22 @@ public interface BiddingService {
   Long bidRegister(BiddingDto biddingDto);
 
   List<Long> getBiddingPno(Long mid);
+  // 카테고리별 입찰
+  List<Long> getBiddingPnoCno(Long mid);
+  List<Long> getBiddingPnoCno2(Long mid);
+  List<Long> getBiddingPnoCno3(Long mid);
+  List<Long> getBiddingPnoCno4(Long mid);
+  List<Long> getBiddingPnoCno5(Long mid);
+  List<Long> getBiddingPnoCno6(Long mid);
 
   List<BiddingDto> getMybidPrice(Long mid);
+  // 카테고리별 내 입찰금액
+  List<BiddingDto> getMybidPriceCno(Long mid);
+  List<BiddingDto> getMybidPriceCno2(Long mid);
+  List<BiddingDto> getMybidPriceCno3(Long mid);
+  List<BiddingDto> getMybidPriceCno4(Long mid);
+  List<BiddingDto> getMybidPriceCno5(Long mid);
+  List<BiddingDto> getMybidPriceCno6(Long mid);
 
   // 필요없을수도
   // BiddingDto getSaleBidList(Long mid);

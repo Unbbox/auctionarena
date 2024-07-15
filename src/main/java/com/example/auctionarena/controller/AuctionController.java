@@ -24,10 +24,8 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -52,7 +50,7 @@ public class AuctionController {
   private final WishService wishService;
   private final CommentService commentService;
   private final MemberRepository memberRepository;
-   private final MemberService memberService;
+  private final MemberService memberService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -80,7 +78,10 @@ public class AuctionController {
   // }
 
   @GetMapping("/bidding_list")
-  public void getbiddingList(Model model, @RequestParam(value = "mid") Long mid) {
+  public void getbiddingList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
     log.info("{} 멤버 응찰 목록 페이지 요청", mid);
     List<Long> biddings = biddingService.getBiddingPno(mid);
     // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
@@ -111,16 +112,52 @@ public class AuctionController {
     // );
   }
 
+  @GetMapping("/bidding_list__copy")
+  public void getbiddingCnoList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> biddings = biddingService.getBiddingPnoCno(mid);
+    // List<Long> bid_price = biddingService.getMyBiddingPrice(mid);
+    log.info("biddings : {}", biddings);
+    // log.info("bid_price : {}", bid_price);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : biddings) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMybidPriceCno(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+    // model.addAttribute(
+    // "bid_price",
+    // service.MemberBiddingList(principal.getName())
+    // );
+  }
+
   // 패션
   @GetMapping("/fashion-category")
   public void getfashionCategory(
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
-    log.info("모바일 목록 페이지 요청");
+    log.info("패션 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
     model.addAttribute("fashion", service.getFashionList(requestDto));
+    model.addAttribute("randomlist", service.RandomFashionList());
     log.info("fashion {}", service.getFashionList(requestDto));
   }
 
@@ -134,6 +171,7 @@ public class AuctionController {
     log.info(service.getList(requestDto));
 
     model.addAttribute("mobile", service.getMobileList(requestDto));
+    model.addAttribute("randomlist", service.RandomMobileList());
     log.info("mobile {}", service.getMobileList(requestDto));
   }
 
@@ -143,10 +181,11 @@ public class AuctionController {
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
-    log.info("모바일 목록 페이지 요청");
+    log.info("가전제품 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
     model.addAttribute("electric", service.getElectricList(requestDto));
+    model.addAttribute("randomlist", service.RandomElectricList());
     log.info("electric {}", service.getElectricList(requestDto));
   }
 
@@ -156,10 +195,11 @@ public class AuctionController {
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
-    log.info("모바일 목록 페이지 요청");
+    log.info("게임 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
     model.addAttribute("game", service.getGameList(requestDto));
+    model.addAttribute("randomlist", service.RandomGameList());
     log.info("game {}", service.getGameList(requestDto));
   }
 
@@ -169,10 +209,11 @@ public class AuctionController {
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
-    log.info("모바일 목록 페이지 요청");
+    log.info("여행 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
     model.addAttribute("trib", service.getTribList(requestDto));
+    model.addAttribute("randomlist", service.RandomTribList());
     log.info("trib {}", service.getTribList(requestDto));
   }
 
@@ -182,10 +223,11 @@ public class AuctionController {
     @ModelAttribute("requestDto") CategoryPageRequestDto requestDto,
     Model model
   ) {
-    log.info("모바일 목록 페이지 요청");
+    log.info("기타 목록 페이지 요청");
     log.info(service.getList(requestDto));
 
     model.addAttribute("etc", service.getEtcList(requestDto));
+    model.addAttribute("randomlist", service.RandomEtcList());
     log.info("etc {}", service.getEtcList(requestDto));
   }
 

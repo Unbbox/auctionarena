@@ -250,16 +250,70 @@ public class ProductServiceImpl implements ProductService {
       .map(entity -> entityToDto2(entity, productImages))
       .collect(Collectors.toList());
   }
-  // @Override
-  // public List<ProductDto> MemberBiddingList(String email) {
-  //   Member member = membereRepository.findByEmail2(email);
-  //   List<Product> list = productRepository.findbiddingList(member.getMid());
-  //   Bidding biddings = biddingRepository.findBymybiddingPrice(member.getMid());
-  //   List<ProductImage> productImages = productImageRepository.getCategoryByCno();
 
-  //   return list
-  //     .stream()
-  //     .map(entity -> entityToDto3(entity, biddings, productImages))
-  //     .collect(Collectors.toList());
-  // }
+  @Override
+  public List<ProductDto> RandomFashionList() {
+    List<Product> list = productRepository.findfashionRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductDto> RandomMobileList() {
+    List<Product> list = productRepository.findmobileRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductDto> RandomElectricList() {
+    List<Product> list = productRepository.findelectricRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductDto> RandomGameList() {
+    List<Product> list = productRepository.findgameRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductDto> RandomTribList() {
+    List<Product> list = productRepository.findtribRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<ProductDto> RandomEtcList() {
+    List<Product> list = productRepository.findetcRandomList();
+    List<ProductImage> productImages = productImageRepository.findImage();
+
+    return list
+      .stream()
+      .map(entity -> entityToDto2(entity, productImages))
+      .collect(Collectors.toList());
+  }
 }

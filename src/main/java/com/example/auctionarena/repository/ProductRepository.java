@@ -60,8 +60,44 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
   List<Long> findByMemberMid(Long mid);
 
   @Query(
-    value = "SELECT p1.*FROM (SELECT p.* FROM product p ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 90",
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
     nativeQuery = true
   )
   List<Product> findRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 1 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findfashionRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 2 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findmobileRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 3 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findelectricRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 4 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findgameRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 5 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findtribRandomList();
+
+  @Query(
+    value = "SELECT p1.*FROM (SELECT p.* FROM product p  WHERE p.category_cno = 6 ORDER BY DBMS_RANDOM.VALUE)p1 WHERE ROWNUM <= 6",
+    nativeQuery = true
+  )
+  List<Product> findetcRandomList();
 }
