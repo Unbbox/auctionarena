@@ -510,3 +510,25 @@ td {
   max-height: 100px;
   margin: auto;
 }
+
+/* 결제 */
+.pay-btn {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: #ffffff;
+  background: #b7b7b7;
+  border: none;
+  border-radius: 2px;
+padding: 8px 13px;
+margin: 0 auto;
+}
+
+.pay-btn:hover {
+  background-color: #e53637;;
+}
+
+.pay-btn:disabled {
+  background: none;
+  color: #808080;
+}
