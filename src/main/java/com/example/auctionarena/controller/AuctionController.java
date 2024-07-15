@@ -18,6 +18,7 @@ import com.example.auctionarena.service.BiddingService;
 import com.example.auctionarena.service.CommentService;
 import com.example.auctionarena.service.DetailService;
 import com.example.auctionarena.service.MemberService;
+import com.example.auctionarena.service.PaymentService;
 import com.example.auctionarena.service.ProductService;
 import com.example.auctionarena.service.WishService;
 import jakarta.validation.Valid;
@@ -54,6 +55,7 @@ public class AuctionController {
   private final MemberRepository memberRepository;
   private final MemberService memberService;
   private final PaymentRepository paymentRepository;
+  private final PaymentService paymentService;
 
   // 전체 상품
   @GetMapping("/categories")
@@ -614,6 +616,44 @@ public class AuctionController {
       biddingDtos2.addAll(biddingService.getMybidPriceCno6(mid));
     }
     log.info("pDtos : {}", productDtos);
+    List<Payment> payments = new ArrayList<>();
+    for (BiddingDto biddingDto : biddingDtos) {
+      Payment payment = paymentRepository.findByBno(biddingDto.getBno());
+      payments.add(payment);
+    }
+
+    // 회원 서비스를 통해 회원 정보 가져오기
+    Optional<Member> optionalMember = memberRepository.findById(mid);
+    Member member = optionalMember.get();
+
+    model.addAttribute("payments", payments);
+    model.addAttribute("member", member);
+    model.addAttribute("wish_list", productDtos);
+    model.addAttribute("bid_list", biddingDtos);
+    model.addAttribute("bid_price", biddingDtos2);
+  }
+
+  @GetMapping("/payment_list")
+  public void getPaymentList(
+    Model model,
+    @RequestParam(value = "mid") Long mid
+  ) {
+    log.info("{} 멤버 응찰 목록 페이지 요청", mid);
+    List<Long> payment2 = paymentService.getPaymentMid(mid);
+
+    log.info("biddings : {}", payment2);
+    // log.info("bid_price : {}", bid_price);
+    List<ProductDto> productDtos = new ArrayList<ProductDto>();
+    List<BiddingDto> biddingDtos = new ArrayList<BiddingDto>();
+    List<BiddingDto> biddingDtos2 = new ArrayList<BiddingDto>();
+
+    for (Long pno : payment2) {
+      productDtos.add(detailService.getRow(pno));
+      biddingDtos.add(biddingService.getBestBidding(pno));
+      biddingDtos2.addAll(biddingService.getMypayPrice(mid));
+    }
+    log.info("pDtos : {}", productDtos);
+
     List<Payment> payments = new ArrayList<>();
     for (BiddingDto biddingDto : biddingDtos) {
       Payment payment = paymentRepository.findByBno(biddingDto.getBno());

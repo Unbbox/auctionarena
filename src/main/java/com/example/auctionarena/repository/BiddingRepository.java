@@ -141,4 +141,13 @@ public interface BiddingRepository extends JpaRepository<Bidding, Long> {
     nativeQuery = true
   )
   List<Bidding> findBymybiddingPriceCno6(Long mid);
+
+  @Query(
+    value = "SELECT b.* FROM bidding b LEFT JOIN PAYMENT p ON b.BNO = p.BIDDING_BNO INNER JOIN " +
+    " (SELECT product_pno,max(bidding_price) AS max_bidding_price FROM BIDDING WHERE member_mid = ?1 GROUP BY product_pno)b2 " +
+    " ON b.product_pno = b2.product_pno AND b.bidding_price = b2.max_bidding_price WHERE p.STATUS = 1 " +
+    " ORDER BY p.CREATED_DATE desc",
+    nativeQuery = true
+  )
+  List<Bidding> findBymypaymentPrice(Long mid);
 }

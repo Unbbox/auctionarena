@@ -29,6 +29,7 @@ public interface BiddingService {
   List<Long> getBiddingPnoCno6(Long mid);
 
   List<BiddingDto> getMybidPrice(Long mid);
+
   // 카테고리별 내 입찰금액
   List<BiddingDto> getMybidPriceCno(Long mid);
   List<BiddingDto> getMybidPriceCno2(Long mid);
@@ -36,6 +37,7 @@ public interface BiddingService {
   List<BiddingDto> getMybidPriceCno4(Long mid);
   List<BiddingDto> getMybidPriceCno5(Long mid);
   List<BiddingDto> getMybidPriceCno6(Long mid);
+  List<BiddingDto> getMypayPrice(Long mid);
 
   // 필요없을수도
   // BiddingDto getSaleBidList(Long mid);
@@ -53,6 +55,24 @@ public interface BiddingService {
       .pno(bidding.getProduct().getPno())
       .mid(bidding.getMember().getMid())
       .bno(bidding.getBno())
+      // .createdDate(bidding.getPayment().getCreatedDate())
+      // .status(bidding.getPayment().getStatus())
+      .mNickName(bidding.getMember().getNickname())
+      .build();
+  }
+
+  public default BiddingDto entityToDto2(Bidding bidding) {
+    return BiddingDto
+      .builder()
+      .biddingPrice(
+        bidding.getBiddingPrice() != null ? bidding.getBiddingPrice() : 0L
+      )
+      .biddingTime(bidding.getCreatedDate())
+      .pno(bidding.getProduct().getPno())
+      .mid(bidding.getMember().getMid())
+      .bno(bidding.getBno())
+      .createdDate(bidding.getPayment().getCreatedDate())
+      .status(bidding.getPayment().getStatus())
       .mNickName(bidding.getMember().getNickname())
       .build();
   }

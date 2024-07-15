@@ -1,10 +1,9 @@
 package com.example.auctionarena.dto;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,18 +15,21 @@ import lombok.NoArgsConstructor;
 @Data
 public class PaymentDto {
 
-    private Long id;
+  private Long id;
 
-    // 결제 상태
-    private Boolean status = false;
+  // 결제 상태
+  private Boolean status = false;
 
-    private String impUid;
+  private String impUid;
 
-    private String merchantUid;
+  private String merchantUid;
 
-    // 결제가격 - 최고 응찰가
-    private Long bno;
+  // 결제가격 - 최고 응찰가
+  private Long bno;
 
-    // 회원번호
-    private Long mno;
+  // 회원번호
+  private Long mno;
+
+  private LocalDateTime createdDate;
+  private LocalDateTime lastModifiedDate;
 }

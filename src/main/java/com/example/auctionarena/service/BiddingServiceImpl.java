@@ -174,4 +174,11 @@ public class BiddingServiceImpl implements BiddingService {
     Function<Bidding, BiddingDto> fn = biddings -> entityToDto(biddings);
     return bidding.stream().map(fn).collect(Collectors.toList());
   }
+
+  @Override
+  public List<BiddingDto> getMypayPrice(Long mid) {
+    List<Bidding> bidding = repository.findBymypaymentPrice(mid);
+    Function<Bidding, BiddingDto> fn = biddings -> entityToDto2(biddings);
+    return bidding.stream().map(fn).collect(Collectors.toList());
+  }
 }

@@ -1,8 +1,7 @@
 package com.example.auctionarena.dto;
 
-import java.time.LocalDateTime;
-
 import jakarta.validation.constraints.NotBlank;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,16 +17,20 @@ import lombok.ToString;
 @NoArgsConstructor
 public class BiddingDto {
 
-    private Long bno;
+  private Long bno;
 
-    private Long pno; // 제품 번호
+  private Long pno; // 제품 번호
 
-    private Long mid; // 멤버 번호
-    private String mNickName;
+  private Long mid; // 멤버 번호
+  private String mNickName;
 
-    @NotBlank(message = "입찰 금액을 입력해주세요.")
-    private Long biddingPrice;
+  private Boolean status = false;
 
-    // createdDate
-    private LocalDateTime biddingTime;
+  @NotBlank(message = "입찰 금액을 입력해주세요.")
+  private Long biddingPrice;
+
+  // createdDate
+  private LocalDateTime biddingTime;
+
+  private LocalDateTime createdDate;
 }
