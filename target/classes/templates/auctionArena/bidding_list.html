@@ -56,6 +56,7 @@
                 </td>
                 <td>
                   <button id="payment" class="pay-btn" style="display: none;">결제하기</button>
+                  <input type="hidden" class="bno" th:value="${bid_list[dtoStat.index].bno}">
                   <input type="hidden" class="mid" th:value="${member.mid}">
                   <input type="hidden" class="user_email" th:value="${member.email}">
                   <input type="hidden" class="username" th:value="${member.name}">
@@ -78,6 +79,9 @@
     <!-- Blog Details Section End -->
   </div>
   <th:block layout:fragment="script">
+    <script>
+      const csrfValue = `[[${_csrf.token}]]`;
+    </script>
     <script th:src="@{/js/bidding_list.js}"></script>
   </th:block>
 </html>

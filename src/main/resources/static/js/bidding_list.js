@@ -68,7 +68,7 @@ paybtns.forEach((btn, index) => {
 // 구매자 정보
 const user_email = document.querySelector(".user_email").value;
 const username = document.querySelector(".username").value;
-
+const mid = document.querySelector(".mid").value;
 
 
 paybtns.forEach((btn, index) => {
@@ -82,12 +82,29 @@ paybtns.forEach((btn, index) => {
 
         const price = parseInt(priceString);
 
+        // bno 가져오기
+        const bno = document.querySelectorAll(".bno")[index].value;
+        // console.log("bno : ", bno)
         // console.log("Product Title:", ptitle);
         // console.log("Product Price:", price);
         // console.log("email : ", user_email);
 
-        kakaoPay(user_email, username, ptitle, price);
+     Swal.fire({
+      title: "구매하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '예',
+      cancelButtonText: '아니오',
+      timer: 1000,
+    }
+    ).then(result => {
+        if(result.isConfirmed) {
+           kakaoPay(user_email, username, ptitle, price, bno, mid);
+        }
     })
+        }
+    )
 })
 
 // 결제창 함수 넣어주기
@@ -100,9 +117,8 @@ var seconds = today.getSeconds();  // 초
 var milliseconds = today.getMilliseconds();
 var makeMerchantUid = `${hours}` + `${minutes}` + `${seconds}` + `${milliseconds}`;
 
-function kakaoPay(useremail, username, ptitle, price) {
-    if (confirm("구매 하시겠습니까?")) { // 구매 클릭시 한번 더 확인하기
-            IMP.init("imp63664483"); // 가맹점 식별코드
+function kakaoPay(useremail, username, ptitle, price, bno, mid) {
+            IMP.init("imp63664483"); // 고객사 식별코드
             IMP.request_pay({
                 pg: 'kakaopay.TC0ONETIME', // PG사 코드표에서 선택
                 pay_method: 'card', // 결제 방식
@@ -112,23 +128,55 @@ function kakaoPay(useremail, username, ptitle, price) {
                 //구매자 정보 ↓
                 buyer_email: `${useremail}`,
                 buyer_name: `${username}`,
-            }, async function (rsp) { // callback
+            }, function (rsp) { // callback
+                    const paymentInfo = {
+                            "status": true,
+                            "mno":mid,
+                            "bno":bno,
+                            "impUid": rsp.imp_uid,
+                            "merchantUid": rsp.merchant_uid
+                            // 필요한 경우 추가 정보도 포함할 수 있음
+                        };
                 if (rsp.success) { //결제 성공시
-                    console.log(rsp);
-					
-                    //결제 성공시 프로젝트 DB저장 요청
-                    if (response.status == 200) { // DB저장 성공시
-                        alert('결제 완료!')
-                        window.location.reload();
-                    } else { // 결제완료 후 DB저장 실패시
-                        alert(`error:[${response.status}]\n결제요청이 승인된 경우 관리자에게 문의바랍니다.`);
-                        // DB저장 실패시 status에 따라 추가적인 작업 가능성
+                    // console.log("rsp: ", rsp);
+                   
+					fetch(`/payments`, {
+                        method: "post",
+                        headers: {
+                            "content-type": "application/json",
+                            "X-CSRF-TOKEN": csrfValue,
+                        },
+                        body: JSON.stringify(paymentInfo)
+                    })
+                    .then(response => {
+                        // console.log("response ",response)
+                        
+                        return response.text()
+
                     }
+                    )
+                    .then(data => {
+                        // 서버 결제 API 성공시 로직
+                            // alert
+                            Swal.fire({
+                            title: "결제가 완료되었습니다.",
+                            showConfirmButton: false,
+                            timer: 1000,
+                            });
+                    })
+                    .catch(error => {
+                        console.error("결제 정보 서버 전송 실패 : ", error);
+                    });
+
                 } else if (rsp.success == false) { // 결제 실패시
-                    alert(rsp.error_msg)
+                    Swal.fire({
+                            title: "결제가 취소되었습니다.",
+                            showConfirmButton: false,
+                            timer: 1000,
+                            });
+                    console.log(rsp.error_msg)
                 }
             });
         }
-    }
 
     // 결제 성공 시 payment 가져와서 결제하기 버튼 대신 결제 완료 띄우기

@@ -54,7 +54,8 @@ public class SecurityConfig {
           "/auctionArena/electric-category",
           "/auctionArena/game-category",
           "/auctionArena/trib-category",
-          "/auctionArena/etc-category"
+          "/auctionArena/etc-category",
+          "/payments"
         )
         .permitAll()
         .requestMatchers("/notice/notice", "/notice/notice-details")

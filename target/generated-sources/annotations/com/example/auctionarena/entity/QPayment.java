@@ -31,10 +31,14 @@ public class QPayment extends EntityPathBase<Payment> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final StringPath impUid = createString("impUid");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> lastModifiedDate = _super.lastModifiedDate;
 
     public final QMember member;
+
+    public final StringPath merchantUid = createString("merchantUid");
 
     public final BooleanPath status = createBoolean("status");
 

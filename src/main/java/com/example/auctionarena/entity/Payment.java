@@ -30,6 +30,10 @@ public class Payment extends BaseEntity{
     // 결제 상태
     private Boolean status = false;
 
+    private String impUid;
+
+    private String merchantUid;
+
     // 결제 시간 - baseentity
 
     // 회원 아이디

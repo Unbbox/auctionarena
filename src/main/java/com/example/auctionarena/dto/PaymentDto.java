@@ -21,14 +21,12 @@ public class PaymentDto {
     // 결제 상태
     private Boolean status = false;
 
-    // 결제 시간 - baseentity
-    private LocalDateTime paidAt;
+    private String impUid;
+
+    private String merchantUid;
 
     // 결제가격 - 최고 응찰가
-    private Integer price;
-
-    // 상품이름
-    private String pname;
+    private Long bno;
 
     // 회원번호
     private Long mno;

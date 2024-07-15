@@ -38,6 +38,7 @@ public interface BiddingService {
       .biddingTime(bidding.getCreatedDate())
       .pno(bidding.getProduct().getPno())
       .mid(bidding.getMember().getMid())
+      .bno(bidding.getBno())
       .mNickName(bidding.getMember().getNickname())
       .build();
   }
