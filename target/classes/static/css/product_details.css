@@ -115,6 +115,46 @@
   margin-left: 40px;
 }
 
+.bidding_form {
+  display: flex;
+}
+
+.bidding_form div {
+  height: 50px;
+}
+
+#biddingPrice {
+  min-width: 250px;
+}
+
+.form_right {
+  margin-left: auto;
+}
+
+.wish_btn_form {
+  margin-left: 15px;
+}
+
+.bid-btn {
+  height: 50px;
+  font-size: 13px;
+  color: #ffffff;
+  background: #e53637;
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: 4px;
+}
+
+.bidding_form .biddingForm {
+  margin-right: 0px;
+}
+
+.bidding_form .wishForm {
+}
+
 .bidding_form input {
   height: 50px;
   width: 100%;
@@ -130,19 +170,6 @@
 /* width만 추가 */
 .header__menu ul li {
   width: 15%;
-}
-
-.bid-btn {
-  height: 50px;
-  font-size: 13px;
-  color: #ffffff;
-  background: #e53637;
-  display: inline-block;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  padding: 14px 20px;
-  border-radius: 4px;
 }
 
 .follow_btn {

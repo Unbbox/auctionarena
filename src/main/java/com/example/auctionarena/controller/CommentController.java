@@ -33,7 +33,7 @@ public class CommentController {
     @GetMapping("/{pno}/all")
     public ResponseEntity<List<CommentDto>> getComments(@PathVariable("pno") Long pno) {
         log.info("{}번 제품 댓글 가져오기", pno);
-        return new ResponseEntity<>(service.getCommentList(pno), HttpStatus.OK);
+        return new ResponseEntity<List<CommentDto>>(service.getCommentList(pno), HttpStatus.OK);
     }
 
     // 댓글 등록

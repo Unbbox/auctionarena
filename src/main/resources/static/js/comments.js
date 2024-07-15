@@ -18,6 +18,7 @@ const cNickname = document.querySelector("#nickname");
 
 // 댓글 목록 가져오기
 const commentLoaded = () => {
+  console.log("댓글 목록 가져오기");
   fetch(`/comments/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {

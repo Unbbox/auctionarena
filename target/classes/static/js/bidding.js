@@ -16,10 +16,12 @@ const format_Date = (data) => {
 
 // bidding 내역 get
 const getBiddingList = () => {
+  console.log("pno : ", pno);
   fetch(`/biddings/${pno}/all`)
     .then((response) => response.json())
     .then((data) => {
       console.log("bid : ", data);
+      console.log("typeof bid : ", typeof data);
 
       // 입찰 내역이 없을 시 출력
       if (data.length <= 0) {
@@ -120,6 +122,16 @@ if (user != "anonymousUser") {
     // console.log("biddingPrice : ", biddingPrice.value);
     // console.log("currPrice type : ", typeof currPrice.value);
     // console.log("biddingPrice type : ", typeof biddingPrice.value);
+    console.log("number : ", Number(biddingPrice.value));
+    if (isNaN(Number(biddingPrice.value))) {
+      Swal.fire({
+        icon: "warning",
+        text: "입찰금액은 숫자만 입력해주세요.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
 
     if (Number(biddingPrice.value) <= Number(currPrice.value)) {
       Swal.fire({

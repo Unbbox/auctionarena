@@ -76,26 +76,30 @@
                 <div class="anime__details__btn">
                   <!-- <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> 찜하기</a> -->
                   <div class="bidding_form">
-                    <form th:action="@{/bidding/}" method="post" class="biddingForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
-                      <input type="hidden" name="mid" id="mid"  th:value="${#authentication.principal.memberDto.mid}">
-                      <input type="hidden" name="mNickName" id="mNickName"  th:value="${#authentication.principal.memberDto.nickname}">
-                      <div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                          <input type="text" name="biddingPrice" id="biddingPrice" placeholder="가격을 입력하세요" />
+                    <div>
+                      <form th:action="@{/bidding/}" method="post" class="biddingForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+                        <input type="hidden" name="mid" id="mid"  th:value="${#authentication.principal.memberDto.mid}">
+                        <input type="hidden" name="mNickName" id="mNickName"  th:value="${#authentication.principal.memberDto.nickname}">
+                        <div class="row">
+                          <div class="col-lg-4 col-md-4 col-sm-4">
+                            <input type="text" name="biddingPrice" id="biddingPrice" placeholder="가격을 입력하세요" />
+                          </div>
+                          <div class="form_right">
+                            <button type="submit" class="bid-btn btn">입찰하기</button>
+                            <!-- <i class="fa fa-angle-right"></i> -->
+                          </div>
                         </div>
-                        <div>
-                          <button type="submit" class="bid-btn btn">입찰하기</button>
-                          <!-- <i class="fa fa-angle-right"></i> -->
+                      </form>
+                    </div>
+                    <div class="wish_btn_form">
+                      <form th:action="@{/wish/}" method="post" class="wishForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
+                        <div class="product_details_btn wish_list" data-wno="">
+                          <input type="hidden" name="wishNo" id="wishNo" value="">
+                          <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
+                          <a href="#" class="follow_btn"><i class="fa-heart fa-regular"></i> 찜하기</a>
                         </div>
-                      </div>
-                    </form>
-                    <form th:action="@{/wish/}" method="post" class="wishForm" sec:authorize="hasAnyRole('MEMBER', 'ADMIN')">
-                      <div class="product_details_btn wish_list" data-wno="">
-                        <input type="hidden" name="wishNo" id="wishNo" value="">
-                        <input type="hidden" name="mid" id="mid" th:value="${#authentication.principal.memberDto.mid}">
-                        <a href="#" class="follow_btn"><i class="fa-heart fa-regular"></i> 찜하기</a>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,41 +1,43 @@
 // 찜목록 활성화 비활성화
 const wishBtn = document.querySelector(".follow_btn");
 const wishForm = document.querySelector(".wishForm");
-const btn = wishBtn.querySelector(".fa-heart");
 
 const showWish = () => {
-  console.log("mid: ", mid);
-  console.log("pno: ", pno);
+  if (user != "anonymousUser") {
+    const btn = wishBtn.querySelector(".fa-heart");
+    console.log("mid: ", mid);
+    console.log("pno: ", pno);
 
-  console.log("load classList : ", btn.classList);
+    console.log("load classList : ", btn.classList);
 
-  fetch(`/wish/${pno}/${mid}`)
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        const wishNo = document.querySelector("#wishNo");
-        wishNo.value = data.wno;
-
+    fetch(`/wish/${pno}/${mid}`)
+      .then((response) => response.json())
+      .then((data) => {
         if (data) {
-          console.log("true");
-          if (btn.classList.contains("fa-regular")) {
-            btn.classList.remove("fa-regular");
-            btn.classList.add("fa-solid");
+          const wishNo = document.querySelector("#wishNo");
+          wishNo.value = data.wno;
+
+          if (data) {
+            console.log("true");
+            if (btn.classList.contains("fa-regular")) {
+              btn.classList.remove("fa-regular");
+              btn.classList.add("fa-solid");
+            }
+          } else {
+            console.log("false");
+            if (btn.classList.contains("fa-solid")) {
+              btn.classList.remove("fa-solid");
+              btn.classList.add("fa-regular");
+            }
           }
         } else {
-          console.log("false");
-          if (btn.classList.contains("fa-solid")) {
-            btn.classList.remove("fa-solid");
-            btn.classList.add("fa-regular");
-          }
+          console.log("no data : ", data);
+          return;
         }
-      } else {
-        console.log("no data : ", data);
-        return;
-      }
 
-      console.log("load after classList : ", btn.classList);
-    });
+        console.log("load after classList : ", btn.classList);
+      });
+  }
 };
 
 showWish();
@@ -46,6 +48,7 @@ if (user != "anonymousUser") {
   wishBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
+    const btn = wishBtn.querySelector(".fa-heart");
     if (btn.classList.contains("fa-heart")) {
       console.log("classList : ", btn.classList);
       if (btn.classList.contains("fa-regular")) {

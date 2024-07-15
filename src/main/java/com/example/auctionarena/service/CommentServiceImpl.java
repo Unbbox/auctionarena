@@ -29,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
     List<Comment> comments = repository.findByProductOrderByCreatedDateDesc(
       product
     );
+    log.info("comments : ", comments);
 
     // entity to dto
     Function<Comment, CommentDto> fn = comment -> entityToDto(comment);
