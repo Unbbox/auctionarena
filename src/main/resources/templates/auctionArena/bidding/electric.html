@@ -11,44 +11,49 @@
         <!--<div class="cart__information"> <ul> <li>장바구니 상품은 최대 30일간 저장됩니다.</li> <li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li> <li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li> </ul> </div>-->
         <table class="bid__cart__list">
           <div class="header_nav">
-            <nav class="category__menu">
+            <nav class="category_menu">
               <ul>
                 <li>
                   <!-- <a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/all(mid=${member.mid})}">
-                    전체</a>
+                    <b>전체</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/fashion(mid=${member.mid})}">
-                    패션 의류/잡화</a>
+                    <b>패션 의류/잡화</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/mobile(mid=${member.mid})}">
-                    모바일/태블릿</a>
+                    <b>모바일/태블릿</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/electric(mid=${member.mid})}">
-                    가전제품</a>
+                    <b>가전제품</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/game(mid=${member.mid})}">
-                    게임</a>
+                    <b>게임</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/trib(mid=${member.mid})}">
-                    <input type="hidden" value="5">
-                    레저/여행</a>
+                    <b>레저/여행</b>
+                  </a>
                 </li>
                 <li>
                   <!-- <a a th:href="@{/auctionArena/categories}"> -->
                   <a th:href="@{/auctionArena/bidding/etc(mid=${member.mid})}">
-                    <input type="hidden" value="5">
-                    기타</a>
+                    <b>기타</b>
+                  </a>
                 </li>
               </ul>
             </nav>

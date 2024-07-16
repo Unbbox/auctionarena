@@ -13,9 +13,8 @@
           <form>
             <thead>
               <tr>
-
                 <td colspan="2">상품정보</td>
-                <td>내용</td>
+                <td>주문번호</td>
                 <td>결제 금액</td>
                 <td>결제 일시</td>
               </tr>
@@ -38,14 +37,14 @@
                 </td>
                 <td>
                   <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}">
-                    <span class="price content" th:text="${dto.content}"></span><br>
+                    <span class="price content" th:text="${bid_price[dtoStat.index].merchantUid}"></span><br>
                   </a>
                 </td>
                 <td>
                   <span class="price best_price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
                 </td>
                 <td>
-                  <span class="price best_price" th:text="${bid_price[dtoStat.index].createdDate}"></span><br>
+                  <span class="price" id="startDate" name="startDate" th:text="${bid_price[dtoStat.index].createdDate}"></span><br>
                 </td>
                 <!--<td> <button id="payment" class="pay-btn" style="display: none;">결제하기</button> <input type="hidden" class="payment_status" th:value="${bid_price[dtoStat.index]?.status}"> <input type="hidden" class="bno" th:value="${bid_list[dtoStat.index].bno}"> <input type="hidden" class="mid" th:value="${member.mid}"> <input type="hidden" class="user_email" th:value="${member.email}"> <input type="hidden" class="username" th:value="${member.name}"> </td>-->
               </tr>
@@ -70,6 +69,31 @@
       const csrfValue = `[[${_csrf.token}]]`;
     </script>
     <script th:src="@{/js/bidding_list.js}"></script>
-    <script th:src="@{/js/sale_list.js}"></script>
+    <script th:src="@{/js/payment_list.js}"></script>
+    <script>
+
+      function formatDate(dateString) {
+        const date = new Date(dateString);
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+
+        return `${year}년 ${month}월 ${day}일 ${hours}시 ${minutes}분`;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const dateElements = document.querySelectorAll("#startDate");
+
+        dateElements.forEach(function (element) {
+          const dateText = element.innerText;
+          element.innerText = formatDate(dateText);
+        });
+      });
+    </script>
+
   </th:block>
 </html>

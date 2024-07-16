@@ -26,6 +26,8 @@ public class BiddingDto {
 
   private Boolean status = false;
 
+  private String merchantUid;
+
   @NotBlank(message = "입찰 금액을 입력해주세요.")
   private Long biddingPrice;
 

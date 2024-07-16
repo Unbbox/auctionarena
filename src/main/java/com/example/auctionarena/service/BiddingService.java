@@ -72,6 +72,7 @@ public interface BiddingService {
       .mid(bidding.getMember().getMid())
       .bno(bidding.getBno())
       .createdDate(bidding.getPayment().getCreatedDate())
+      .merchantUid(bidding.getPayment().getMerchantUid())
       .status(bidding.getPayment().getStatus())
       .mNickName(bidding.getMember().getNickname())
       .build();

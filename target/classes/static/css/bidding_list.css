@@ -12,7 +12,7 @@
   height: 10px;
 }
 
-.category__menu {
+.category_menu {
   text-align: center;
   /* box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15); */
   /* width: 1000px; */
@@ -24,34 +24,43 @@
   background-color: #ffffff;
 }
 
-.category__menu ul li {
+.category_menu ul li {
   list-style: none;
   display: inline-block;
   position: relative;
-  margin-right: 16px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
-.category__menu ul li .active a {
+/* .category__menu ul li .active {
   background: #e53637;
-  color: #111111;
+  color: #e53637;
+} */
+.category_menu ul li a:active {
+  color: red;
 }
 
-.category__menu ul li:hover a {
+.category_menu ul li:hover b:hover {
+  color: red;
+}
+
+/* .category__menu ul li:hover a {
   color: black;
   visibility: visible;
   display: flex;
-}
+} */
 
-.category__menu ul li:hover a:hover {
+/* .category__menu ul li:hover a:hover {
   color: red;
-}
+} */
 
 /* .category__menu ul li a:hover {
   color: #e53637;
   font: blod;
 } */
 
-.category__menu ul li:hover .dropdown {
+/* .category__menu ul li:hover .dropdown {
   top: 62px;
   opacity: 1;
   visibility: visible;
@@ -92,7 +101,7 @@
   color: #111111;
   font-weight: 500;
   padding: 5px 20px;
-}
+} */
 
 /* .category__menu ul li a {
   font-size: 15px;
@@ -105,7 +114,7 @@
   font-family: "Noto Sans KR", sans-serif;
 } */
 
-.category__menu ul li a span {
+.category_menu ul li a span {
   position: relative;
   font-size: 17px;
   top: 2px;
@@ -375,7 +384,6 @@ td {
   border-bottom: 1px solid lightgrey;
 }
 
-
 .cart__list__detail :nth-child(2) td {
   vertical-align: top;
   border-right: 1px solid lightgrey;
@@ -539,12 +547,12 @@ td {
   background: #b7b7b7;
   border: none;
   border-radius: 2px;
-padding: 8px 13px;
-margin: 0 auto;
+  padding: 8px 13px;
+  margin: 0 auto;
 }
 
 .pay-btn:hover {
-  background-color: #e53637;;
+  background-color: #e53637;
 }
 
 .pay-btn:disabled {
