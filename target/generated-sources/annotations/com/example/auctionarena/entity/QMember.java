@@ -60,6 +60,8 @@ public class QMember extends EntityPathBase<Member> {
 
     public final EnumPath<com.example.auctionarena.constant.MemberRole> role = createEnum("role", com.example.auctionarena.constant.MemberRole.class);
 
+    public final ListPath<Wish, QWish> wishs = this.<Wish, QWish>createList("wishs", Wish.class, QWish.class, PathInits.DIRECT2);
+
     public final StringPath zonecode = createString("zonecode");
 
     public QMember(String variable) {

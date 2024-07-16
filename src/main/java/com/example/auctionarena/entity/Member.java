@@ -25,7 +25,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = { "noticeList", "productList", "biddingList", "commentList", "payList" })
+@ToString(exclude = { "noticeList", "productList", "biddingList", "commentList", "payList", "wishs" })
 @Data
 @Entity
 public class Member extends BaseEntity {
@@ -88,4 +88,8 @@ public class Member extends BaseEntity {
     @Builder.Default
     @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Payment> payList = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Wish> wishs = new ArrayList<>();
 }

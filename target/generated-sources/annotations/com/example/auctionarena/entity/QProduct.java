@@ -52,6 +52,8 @@ public class QProduct extends EntityPathBase<Product> {
 
     public final StringPath title = createString("title");
 
+    public final ListPath<Wish, QWish> wishs = this.<Wish, QWish>createList("wishs", Wish.class, QWish.class, PathInits.DIRECT2);
+
     public QProduct(String variable) {
         this(Product.class, forVariable(variable), INITS);
     }

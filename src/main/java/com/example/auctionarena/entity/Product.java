@@ -21,9 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString(
-  exclude = { "member", "category", "productImages", "comments", "biddings" }
-)
+@ToString(exclude = { "member", "category", "productImages", "comments", "biddings", "wishs" })
 @Builder
 @Getter
 @Setter
@@ -32,15 +30,8 @@ import lombok.ToString;
 @Entity
 public class Product extends BaseEntity {
 
-  @SequenceGenerator(
-    name = "product_seq_gen",
-    sequenceName = "product_seq",
-    allocationSize = 1
-  )
-  @GeneratedValue(
-    strategy = GenerationType.SEQUENCE,
-    generator = "product_seq_gen"
-  )
+  @SequenceGenerator(name = "product_seq_gen", sequenceName = "product_seq", allocationSize = 1)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq_gen")
   @Id
   private Long pno;
 
@@ -77,26 +68,18 @@ public class Product extends BaseEntity {
   // private ProductImage productImage;
 
   @Builder.Default
-  @OneToMany(
-    mappedBy = "product",
-    cascade = CascadeType.REMOVE,
-    orphanRemoval = true
-  )
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<ProductImage> productImages = new ArrayList<>();
 
   @Builder.Default
-  @OneToMany(
-    mappedBy = "product",
-    cascade = CascadeType.REMOVE,
-    orphanRemoval = true
-  )
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<Comment> comments = new ArrayList<>();
 
   @Builder.Default
-  @OneToMany(
-    mappedBy = "product",
-    cascade = CascadeType.REMOVE,
-    orphanRemoval = true
-  )
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<Bidding> biddings = new ArrayList<>();
+
+  @Builder.Default
+  @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE, orphanRemoval = true)
+  private List<Wish> wishs = new ArrayList<>();
 }
