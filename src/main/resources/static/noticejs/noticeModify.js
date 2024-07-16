@@ -56,8 +56,8 @@ document.querySelector(".remove").addEventListener("click", () => {
   const form = document.querySelector("#actionForm");
 
    Swal.fire({
-            title: "이미지 삭제",
-            text: "이미지를 삭제하시겠습니까?",
+            title: "게시글 삭제",
+            text: "게시글을 삭제하시겠습니까?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
