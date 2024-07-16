@@ -86,6 +86,8 @@ h6 {
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
+  font-size: 25px;
+  line-height: 40px;
 }
 
 .service:hover .description {

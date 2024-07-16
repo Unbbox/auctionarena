@@ -3,14 +3,23 @@
 document.querySelector(".remove").addEventListener("click", () => {
   const form = document.querySelector("#removeForm");
 
-  if (!confirm("정말로 탈퇴하시겠습니까?")) {
-    return;
-  }
-
-  form.submit();
+    Swal.fire({
+    title: "회원탈퇴",
+    text: "정말로 탈퇴하시겠습니까?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "네",
+    cancelButtonText: "아니요",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      form.submit();
+    } else {
+      return;
+    }
+  });  
 });
-
-
 
 // ========================================== //
 // 성별 선택
