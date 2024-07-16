@@ -21,9 +21,22 @@ document.querySelector(".uploadResult").addEventListener("click", (e) => {
     .then((data) => {
       console.log(data);
       if (data) {
-        if (confirm("이미지를 삭제하시겠습니까?")) {
-          currentLi.remove();
-        }
+            Swal.fire({
+            title: "이미지 삭제",
+            text: "이미지를 삭제하시겠습니까?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "네",
+            cancelButtonText: "아니요",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              currentLi.remove();
+            } else {
+              return;
+            }
+          }); 
       }
     });
 });
