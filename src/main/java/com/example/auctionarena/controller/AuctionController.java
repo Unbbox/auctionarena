@@ -226,7 +226,7 @@ public class AuctionController {
   @PostMapping("/remove")
   public String postRemove(
     Long pno,
-    @ModelAttribute("requestDto") PageRequestDto pageRequestDto,
+    @ModelAttribute("requestDto") CategoryPageRequestDto pageRequestDto,
     RedirectAttributes rttr
   ) {
     log.info("{}번 제품 삭제 요청", pno);
@@ -247,7 +247,7 @@ public class AuctionController {
   public void getProductSale(
     ProductDto productDto,
     Model model,
-    @ModelAttribute("requestDto") PageRequestDto pageRequestDto
+    @ModelAttribute("requestDto") CategoryPageRequestDto pageRequestDto
   ) {
     log.info("제품 판매 페이지 요청");
 

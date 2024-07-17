@@ -36,9 +36,7 @@
                   </a>
                 </td>
                 <td>
-                  <a th:href="@{/auctionArena/product_details(pno=${dto.pno})}">
-                    <span class="price content" th:text="${bid_price[dtoStat.index].merchantUid}"></span><br>
-                  </a>
+                  <span class="price content" th:text="${bid_price[dtoStat.index].merchantUid}"></span><br>
                 </td>
                 <td>
                   <span class="price best_price" th:text="${#numbers.formatInteger(bid_price[dtoStat.index].biddingPrice, 3, 'COMMA')+' 원'}"></span><br>
