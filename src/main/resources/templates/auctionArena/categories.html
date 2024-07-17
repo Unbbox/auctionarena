@@ -3,153 +3,159 @@
 
   <head>
     <!-- SweetAlert2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.1/dist/sweetalert2.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .swal2-select {
+        display: none;
+      }
+    </style>
+  </head>
 
-    <div layout:fragment="content">
-      <!-- Breadcrumb Begin -->
-      <!-- <div class="breadcrumb-option"> <div class="container"> <div class="row"> <div class="col-lg-12"> <div class="breadcrumb__links"> <a href="./index.html"><i class="fa fa-home"></i> Home</a> <a href="./categories.html">카테고리</a> </div> </div> </div> </div> </div> -->
-      <!-- Breadcrumb End -->
+  <div layout:fragment="content">
+    <!-- Breadcrumb Begin -->
+    <!-- <div class="breadcrumb-option"> <div class="container"> <div class="row"> <div class="col-lg-12"> <div class="breadcrumb__links"> <a href="./index.html"><i class="fa fa-home"></i> Home</a> <a href="./categories.html">카테고리</a> </div> </div> </div> </div> </div> -->
+    <!-- Breadcrumb End -->
 
-      <!-- <form class="mt-4" role="search" id="searchForm"> <input type="hidden" name="page" class="form-control" /> <div class="input-group mb-3"> <div class="input-group-prepend"> <select name="type" id="type" class="form-select"> <option value="" >조건 선택</option> <option value="t">상품명</option> <option value="c" >내용</option> <option value="w" >판매자</option> </select> </div> <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" /> <button class="btn btn-outline-success" type="submit">Search</button> </div> </form> -->
-      <!-- <div class="col-md-5"> <form action="" method="get" name="search" class="form-inline"> <div class="form-group"> <select name="criteria" class="form-control"> <option value="n"> >---</option> <option value="title"> >title</option> <option value="content" > >content</option> <option value="name"> >name</option> </select> </div> <div class="form-group"> <input type="text" name="keyword" class="form-control"> </div> <div class="form-group"> <input type="submit" value="검색" class="btn btn-primary"> </div> </form> </div> -->
-      <div class="header__nav">
-        <nav class="category__menu mobile-menu">
-          <ul>
-            <li class="actives">
-              <!-- <a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/categories}">
-                <input type="hidden" value="0">
-                전체</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/fashion-category}">
-                <input type="hidden" value="1">
-                패션 의류/잡화</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/mobile-category}">
-                <input type="hidden" value="2">
-                모바일/태블릿</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/electric-category}">
-                <input type="hidden" value="3">
-                가전제품</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/game-category}">
-                <input type="hidden" value="4">
-                게임</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/trib-category}">
-                <input type="hidden" value="5">
-                레저/여행</a>
-            </li>
-            <li>
-              <!-- <a a th:href="@{/auctionArena/categories}"> -->
-              <a th:href="@{/auctionArena/etc-category}">
-                <input type="hidden" value="5">
-                기타</a>
-            </li>
-          </ul>
-        </nav>
+    <!-- <form class="mt-4" role="search" id="searchForm"> <input type="hidden" name="page" class="form-control" /> <div class="input-group mb-3"> <div class="input-group-prepend"> <select name="type" id="type" class="form-select"> <option value="" >조건 선택</option> <option value="t">상품명</option> <option value="c" >내용</option> <option value="w" >판매자</option> </select> </div> <input class="form-control" type="search" placeholder="Search" name="keyword" id="keyword" /> <button class="btn btn-outline-success" type="submit">Search</button> </div> </form> -->
+    <!-- <div class="col-md-5"> <form action="" method="get" name="search" class="form-inline"> <div class="form-group"> <select name="criteria" class="form-control"> <option value="n"> >---</option> <option value="title"> >title</option> <option value="content" > >content</option> <option value="name"> >name</option> </select> </div> <div class="form-group"> <input type="text" name="keyword" class="form-control"> </div> <div class="form-group"> <input type="submit" value="검색" class="btn btn-primary"> </div> </form> </div> -->
+    <div class="header__nav">
+      <nav class="category__menu mobile-menu">
+        <ul>
+          <li class="actives">
+            <!-- <a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/categories}">
+              <input type="hidden" value="0">
+              전체</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/fashion-category}">
+              <input type="hidden" value="1">
+              패션 의류/잡화</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/mobile-category}">
+              <input type="hidden" value="2">
+              모바일/태블릿</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/electric-category}">
+              <input type="hidden" value="3">
+              가전제품</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/game-category}">
+              <input type="hidden" value="4">
+              게임</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/trib-category}">
+              <input type="hidden" value="5">
+              레저/여행</a>
+          </li>
+          <li>
+            <!-- <a a th:href="@{/auctionArena/categories}"> -->
+            <a th:href="@{/auctionArena/etc-category}">
+              <input type="hidden" value="5">
+              기타</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <form action="" role="search" id="productSearchForm" class="product-search-form">
+      <!-- 검색 후 결과 페이지는 1로 보여주기 -->
+      <input type="hidden" name="page" value="1" class="form-control">
+      <div class="search product-search">
+        <!-- <select name="search_type" id="search_type"> <option value="t" th:selected="${requestDto.type == 't'}">상품명</option> <option value="c" th:selected="${requestDto.type == 'c'}">내용</option> </select> -->
+        <input class="from-control" type="search" placeholder="검색" name="keyword" id="keyword" th:value="${requestDto.keyword}"/>
+        <button class="search-btn" type="submit">검색</button>
       </div>
-      <form action="" role="search" id="productSearchForm" class="product-search-form">
-        <!-- 검색 후 결과 페이지는 1로 보여주기 -->
-        <input type="hidden" name="page" value="1" class="form-control">
-        <div class="search product-search">
-          <!-- <select name="search_type" id="search_type"> <option value="t" th:selected="${requestDto.type == 't'}">상품명</option> <option value="c" th:selected="${requestDto.type == 'c'}">내용</option> </select> -->
-          <input class="from-control" type="search" placeholder="검색" name="keyword" id="keyword" th:value="${requestDto.keyword}"/>
-          <button class="search-btn" type="submit">검색</button>
-        </div>
-      </form>
-      <!-- Product Section Begin -->
+    </form>
+    <!-- Product Section Begin -->
 
-      <div class="product-page spad">
+    <div class="product-page spad">
 
-        <div class="container">
-          <div class="popular__product">
-            <div class="row">
-              <div class="col-lg-8 col-md-8 col-sm-8">
-                <div class="section-title">
-                  <h4>전체 상품</h4>
-                </div>
+      <div class="container">
+        <div class="popular__product">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+              <div class="section-title">
+                <h4>전체 상품</h4>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="product__page__content">
-                  <div class="row">
-                    <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${result.dtoList}">
-                      <div class="products__item" th:title="${dto.title}">
-                        <!-- data-setbg="https://via.placeholder.com/175x250" -->
-                        <div>
-                          <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                            <img class="products__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'>
-                            <!-- th:if="${dto.productImageDtos[0].path != null}" -->
-                            <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
-                          </a>
-                        </div>
-                        <div class="products__item__text">
-                          <h5>
-                            <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a>
-                          </h5>
-                          <!-- <div class="wish"><i class="fa-regular fa-heart"></i></div> -->
-                          <ul>
-                            <li>
-                              <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
-                            </li>
-                          </ul>
-                        </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="product__page__content">
+                <div class="row">
+                  <div class="col-lg-2 col-md-4 col-sm-6" th:each="dto : ${result.dtoList}">
+                    <div class="products__item" th:title="${dto.title}">
+                      <!-- data-setbg="https://via.placeholder.com/175x250" -->
+                      <div>
+                        <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                          <img class="products__item__pic set-bg link" th:src="|/upload/display?fileName=${dto.productImageDtos[0].getImageURL()}|" onerror='this.src="https://via.placeholder.com/175x250"'>
+                          <!-- th:if="${dto.productImageDtos[0].path != null}" -->
+                          <!-- onerror='this.src="https://via.placeholder.com/175x250"' -->
+                        </a>
+                      </div>
+                      <div class="products__item__text">
+                        <h5>
+                          <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${dto.title}"></a>
+                        </h5>
+                        <!-- <div class="wish"><i class="fa-regular fa-heart"></i></div> -->
+                        <ul>
+                          <li>
+                            <a th:href="@{product_details(pno=${dto.pno},page=${requestDto.page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${#numbers.formatInteger(dto.startPrice, 3, 'COMMA')+' 원~'}"></a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
-
-                <div class="products__pagination justify-content-center">
-                  <td th:if="${result.prev}">
-                    <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                      <i class="fa fa-angle-double-left"></i>
-                    </a>
-                  </td>
-                  <td th:each="page : ${result.pageList}">
-                    <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
-                  </td>
-                  <td th:if="${result.next}">
-                    <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
-                      <i class="fa fa-angle-double-right"></i>
-                    </a>
-                  </td>
-                </div>
               </div>
 
+              <div class="products__pagination justify-content-center">
+                <td th:if="${result.prev}">
+                  <a th:href="@{categories(page=${result.start-1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                    <i class="fa fa-angle-double-left"></i>
+                  </a>
+                </td>
+                <td th:each="page : ${result.pageList}">
+                  <a th:href="@{categories(page=${page},type=${requestDto.type},keyword=${requestDto.keyword})}" th:text="${page}"></a>
+                </td>
+                <td th:if="${result.next}">
+                  <a th:href="@{categories(page=${result.end+1},type=${requestDto.type},keyword=${requestDto.keyword})}">
+                    <i class="fa fa-angle-double-right"></i>
+                  </a>
+                </td>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
-      <!-- Product Section End -->
-      <script>
-        const msg = "[[${msg}]]";
-        console.log("msg : " + msg)
-        const ppno = "[[${pno}]]";
-        console.log("pno : " + ppno)
+    </div>
+    <!-- Product Section End -->
+    <script>
+      const msg = "[[${msg}]]";
+      console.log("msg : " + msg)
+      const ppno = "[[${pno}]]";
+      console.log("pno : " + ppno)
 
-        if (msg) {
-          // alert
-          Swal.fire({icon: "success", title: "제품 등록 완료.", showConfirmButton: false, timer: 1500});
-        }
-        if (ppno) {
-          Swal.fire({icon: "success", title: "제품이 삭제되었습니다.", showConfirmButton: false, timer: 1500});
-        }
-      </script>
-      <script th:src="@{/js/productSearch.js}"></script>
-      <!--<th:block layout:fragment="script"> </th:block>-->
-    </html>
+      if (msg) {
+        // alert
+        Swal.fire({icon: "success", title: "제품 등록 완료.", showConfirmButton: false, timer: 1500});
+      }
+      if (ppno) {
+        Swal.fire({icon: "success", title: "제품이 삭제되었습니다.", showConfirmButton: false, timer: 1500});
+      }
+    </script>
+    <script th:src="@{/js/productSearch.js}"></script>
+    <!--<th:block layout:fragment="script"> </th:block>-->
+  </html>
