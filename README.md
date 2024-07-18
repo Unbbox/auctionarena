@@ -11,5 +11,5 @@
 - 2차 github 주소<br/>
 https://github.com/2naayoon/auctionDjango.git<br/>
 <br/>
-![image](https://github.com/user-attachments/assets/f9a681db-3d54-458c-aa2d-45592eef0940)
+![image](https://github.com/user-attachments/assets/e889dfa3-963c-4a00-a9c2-8fecd45fe764)
 
