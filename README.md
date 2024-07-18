@@ -14,8 +14,6 @@ https://github.com/2naayoon/auctionDjango.git<br/>
 시연영상 링크<br/>
 https://youtu.be/mwN89ER2_qs?si=MyUwVKg7Y2StTmz-
 <br/>
-<iframe src="https://www.youtube.com/embed/mwN89ER2_qs"></iframe>
-
 <img src="https://github.com/user-attachments/assets/67897e11-2861-463b-af88-e5cddac8be58" />
 
 
