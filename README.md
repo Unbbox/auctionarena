@@ -18,6 +18,7 @@ https://youtu.be/mwN89ER2_qs?si=MyUwVKg7Y2StTmz-
 
 
 {% include video id="mwN89ER2_qs" provider="youtube" %}
+[![Video Label](https://github.com/user-attachments/assets/67897e11-2861-463b-af88-e5cddac8be58.jpg)](https://youtu.be/mwN89ER2_qs)
 
 <img src="https://github.com/user-attachments/assets/67897e11-2861-463b-af88-e5cddac8be58" />
 
