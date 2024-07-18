@@ -12,4 +12,4 @@
 https://github.com/2naayoon/auctionDjango.git<br/>
 <br/>
 <img src="https://github.com/user-attachments/assets/67897e11-2861-463b-af88-e5cddac8be58" />
-<iframe width="956" height="538" src="https://www.youtube.com/embed/ozv4q2ov3Mk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="895" height="503" src="https://www.youtube.com/embed/mwN89ER2_qs" title="AuctionArena 프로젝트 시연 영상" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
