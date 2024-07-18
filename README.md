@@ -11,4 +11,5 @@
 - 2차 github 주소<br/>
 https://github.com/2naayoon/auctionDjango.git<br/>
 <br/>
-[<img width="100%" src="https://github.com/Unbbox/auctionarena/issues/1#issue-2415094136"/>](https://github.com/Unbbox/auctionarena/issues/1#issue-2415094136)
+![image](https://github.com/user-attachments/assets/f9a681db-3d54-458c-aa2d-45592eef0940)
+
